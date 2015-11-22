@@ -19,6 +19,13 @@ class JwtAuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Find path to the package
+        $componenentsFileName = with(new ReflectionClass('\JwtAuth\JwtAuthServiceProvider'))->getFileName();
+        $componenentsPath = dirname($componenentsFileName);
+
+        $this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
+
+        // include $componenentsPath . '/../routes.php';
 
     }
 

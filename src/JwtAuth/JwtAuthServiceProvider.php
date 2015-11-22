@@ -36,7 +36,11 @@ class JwtAuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
+
+        $loader = AliasLoader::getInstance();
+        $loader->alias('JWTAuth', \Tymon\JWTAuth\Facades\JWTAuth::class);
+        $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
     }
 
     /**

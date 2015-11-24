@@ -6,11 +6,11 @@
      * @name app
      *
      * @description
-     * _Please update the description and dependencies._
+     * _Update the description and dependencies._
      *
      * @requires $scope
      * */
-    angular.module('components.controllers').controller('ComponentsCtrl', function($scope) {
+    angular.module('components.controllers').controller('ComponentsCtrl', ['$scope', function($scope) {
 
-    });
+    }]);
 })();

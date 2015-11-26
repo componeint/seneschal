@@ -5,12 +5,7 @@
 (function() {
     'use strict';
 
-    angular.module('app.controllers').controller('JwtAuthHeaderCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-        $scope.$watch(function() {
-            return $rootScope.title;
-        }, function(newPage) {
-            $scope.title = newPage || 'Applications';
-        });
+    angular.module('app.controllers').controller('JwtAuthHeaderCtrl', ['$scope', function($scope) {
 
     }]);
 })();

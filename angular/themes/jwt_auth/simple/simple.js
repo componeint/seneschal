@@ -1,11 +1,11 @@
 /**
- * Created by anonymoussc on 26/11/15 18:18.
+ * Created by anonymoussc on 26/11/15 20:29.
  */
 
 (function() {
     'use strict';
 
-    angular.module('app.controllers').controller('StaticpageSimpleCtrl', function($scope, $timeout, $mdSidenav, $log) {
+    angular.module('app.controllers').controller('JwtAuthSimpleCtrl', function($scope, $timeout, $mdSidenav, $log) {
         $scope.toggleLeft  = buildDelayedToggler('left');
         $scope.toggleRight = buildToggler('right');
         $scope.isOpenRight = function() {

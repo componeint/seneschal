@@ -1,11 +1,11 @@
 /**
- * Created by anonymoussc on 26/11/15 15:45.
+ * Created by anonymoussc on 26/11/15 19:51.
  */
 
 (function() {
     'use strict';
 
-    angular.module('app.controllers').controller('StaticpageHeaderCtrl', ['$scope', function($scope) {
+    angular.module('app.controllers').controller('JwtAuthHeaderCtrl', ['$scope', function($scope) {
 
     }]);
 })();

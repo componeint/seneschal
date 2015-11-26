@@ -7,9 +7,9 @@
 
     angular.module('app.controllers').controller('JwtAuthHeaderCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
         $scope.$watch(function() {
-            return $rootScope.current_page;
+            return $rootScope.title;
         }, function(newPage) {
-            $scope.current_page = newPage || 'Page Name';
+            $scope.title = newPage || 'Applications';
         });
 
     }]);

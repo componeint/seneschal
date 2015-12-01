@@ -15,7 +15,9 @@
                 url     : '/auth',
                 views   : {
                     'layout@'       : {
-                        templateUrl: layout('jwt_auth.simple')
+                        templateUrl : layout('jwt_auth.simple'),
+                        controller  : 'JwtAuthSimpleController',
+                        controllerAs: 'jwtAuthSimple'
                     },
                     'header@jwtauth': {
                         templateUrl: view('jwt_auth.header')
@@ -52,7 +54,7 @@
 
         function layout(viewName) {
             if (viewName !== "") {
-                return './views/themes/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
+                return './views/layouts/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
             } else {
                 return './views/applications/app/home/home.html';
             }

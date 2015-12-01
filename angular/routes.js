@@ -25,12 +25,14 @@
                         controllerAs: 'jwtAuthHeader'
                     },
                     'left@jwtauth'  : {
-                        templateUrl: view('jwt_auth.left'),
+                        templateUrl : view('jwt_auth.left'),
                         controller  : 'JwtAuthLeftController',
                         controllerAs: 'jwtAuthLeft'
                     },
                     'right@jwtauth' : {
-                        templateUrl: view('jwt_auth.right')
+                        templateUrl : view('jwt_auth.right'),
+                        controller  : 'JwtAuthRightController',
+                        controllerAs: 'jwtAuthRight'
                     },
                     'footer@jwtauth': {
                         templateUrl: view('jwt_auth.footer')

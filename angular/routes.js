@@ -43,11 +43,13 @@
                 }
             })
             .state('jwtauth.signin', {
-                url  : '/signin',
+                url  : '/sign-in',
                 data : { pageName: 'Sign-in' },
                 views: {
                     'main@jwtauth': {
-                        templateUrl: view('jwt_auth.home')
+                        templateUrl : view('jwt_auth.signin'),
+                        controller  : 'JwtAuthSigninController',
+                        controllerAs: 'signin'
                     }
                 }
             });

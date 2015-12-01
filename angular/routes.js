@@ -2,10 +2,6 @@
  * Created by anonymoussc on 01/12/15 23:48.
  */
 
-/**
- * Created by anonymoussc on 18/11/15 17:31.
- */
-
 (function() {
     'use strict';
 

@@ -35,7 +35,9 @@
                         controllerAs: 'jwtAuthRight'
                     },
                     'footer@jwtauth': {
-                        templateUrl: view('jwt_auth.footer')
+                        templateUrl : view('jwt_auth.footer'),
+                        controller  : 'JwtAuthFooterController',
+                        controllerAs: 'jwtAuthFooter'
                     },
                     'main@jwtauth'  : {}
                 }

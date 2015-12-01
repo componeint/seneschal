@@ -20,7 +20,9 @@
                         controllerAs: 'jwtAuthSimple'
                     },
                     'header@jwtauth': {
-                        templateUrl: view('jwt_auth.header')
+                        templateUrl : view('jwt_auth.header'),
+                        controller  : 'JwtAuthHeaderController',
+                        controllerAs: 'jwtAuthHeader'
                     },
                     'left@jwtauth'  : {
                         templateUrl: view('jwt_auth.left')

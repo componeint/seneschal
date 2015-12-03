@@ -3,17 +3,14 @@
  * Created by anonymoussc on 03/12/15 4:04.
  */
 
-namespace JwtAuth\Controllers;
+namespace Onderdelen\JwtAuth\Controllers;
 
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use App\User;
+use Anwendungen\Application\Controller;
 
-class JwtAuthController extends BaseController
+class JwtAuthController extends Controller
 {
 
 }

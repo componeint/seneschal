@@ -17,7 +17,7 @@
                     'layout@'       : {
                         templateUrl : layout('jwt_auth.simple'),
                         controller  : 'JwtAuthController',
-                        controllerAs: 'JwtAuth'
+                        controllerAs: 'jwtAuth'
                     },
                     'header@jwtauth': {
                         templateUrl : view('jwt_auth.header'),

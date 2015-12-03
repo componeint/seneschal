@@ -17,19 +17,17 @@
         vm.title       = 'JwtAuthController';
         vm.toggleLeft  = buildDelayedToggler('left');
         vm.toggleRight = buildToggler('right');
-        vm.isOpenRight = function() {
-            return $mdSidenav('right').isOpen();
-        };
+        vm.isOpenRight = isOpenRight;
 
         /*
-        activate();
+         activate();
 
-        ////////////////
+         ////////////////
 
-        function activate() {
-            //
-        }
-        */
+         function activate() {
+         //
+         }
+         */
 
         /**
          * Build handler to open/close a SideNav; when animation finishes
@@ -53,6 +51,10 @@
                         // $log.debug("toggle " + navID + " is done");
                     });
             };
+        }
+
+        function isOpenRight() {
+            return $mdSidenav('right').isOpen();
         }
 
         /**

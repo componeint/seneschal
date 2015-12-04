@@ -3,16 +3,17 @@
         <div flex="30" hide-sm hide-md></div>
         <div flex="auto">
             <form>
+                <p class="" ng-if="auth.loginError"><strong>Error:</strong> {{auth.loginErrorText}}</p>
                 <md-input-container>
                     <label for="email">Email</label>
-                    <input type="text" id="email" ng-model="" md-autofocus>
+                    <input type="email" id="email" ng-model="signin.email" md-autofocus>
                 </md-input-container>
                 <md-input-container>
                     <label for="password">Password</label>
-                    <input type="text" id="password" ng-model="">
+                    <input type="password" id="password" ng-model="signin.password">
                 </md-input-container>
                 <div layout="row" layout-align="end center">
-                    <md-button ng-click="" class="md-raised md-primary md-hue-3">
+                    <md-button ng-click="signin.login()" class="md-raised md-primary md-hue-3">
                         Sign-in
                     </md-button>
                 </div>

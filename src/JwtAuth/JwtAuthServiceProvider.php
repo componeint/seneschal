@@ -1,4 +1,4 @@
-<?php namespace JwtAuth;
+<?php namespace Onderdelen\JwtAuth;
 
 use ReflectionClass;
 use Illuminate\Foundation\AliasLoader;
@@ -22,7 +22,7 @@ class JwtAuthServiceProvider extends ServiceProvider
     public function boot()
     {
         // Find path to the package
-        $componenentsFileName = with(new ReflectionClass('\JwtAuth\JwtAuthServiceProvider'))->getFileName();
+        $componenentsFileName = with(new ReflectionClass('\Onderdelen\JwtAuth\JwtAuthServiceProvider'))->getFileName();
         $componenentsPath = dirname($componenentsFileName);
 
         $this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');

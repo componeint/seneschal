@@ -6,7 +6,9 @@
     'use strict';
 
     angular.module('components.routes.jwtAuth').config(function($stateProvider, $urlRouterProvider) {
-
+        $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
+        $httpProvider.interceptors.push('redirectWhenLoggedOut');
+        $authProvider.loginUrl = '/api/authenticate';
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
@@ -99,6 +101,28 @@
             } else {
                 return 'home';
             }
+        }
+
+        function redirectWhenLoggedOut($q, $injector) {
+
+            return {
+
+                responseError: function(rejection) {
+                    var
+                        $state           = $injector.get('$state'),
+                        rejectionReasons = ['token_not_provided', 'token_expired', 'token_absent', 'token_invalid'];
+
+                    angular.forEach(rejectionReasons, function(value, key) {
+
+                        if (rejection.data.error === value) {
+                            localStorage.removeItem('user');
+                            $state.go('auth');
+                        }
+                    });
+
+                    return $q.reject(rejection);
+                }
+            };
         }
     });
 })();

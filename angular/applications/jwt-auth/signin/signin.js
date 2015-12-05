@@ -19,6 +19,7 @@
         vm.loginErrorText;
         vm.login      = login;
 
+        /*
         activate();
 
         ////////////////
@@ -26,6 +27,7 @@
         function activate() {
             //
         }
+        */
 
         function login() {
             var
@@ -44,7 +46,7 @@
                 localStorage.setItem('user', user);
                 $rootScope.authenticated = true;
                 $rootScope.currentUser   = response.data.user;
-                $state.go('app.home');
+                $state.go('jwtauth.home');
             });
         }
     }

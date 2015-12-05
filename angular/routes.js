@@ -5,10 +5,9 @@
 (function() {
     'use strict';
 
-    angular.module('components.routes.jwtAuth').config(function($stateProvider, $urlRouterProvider) {
+    angular.module('components.routes.jwtAuth').config(function($stateProvider, $urlRouterProvider, $httpProvider, $provide) {
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
         $httpProvider.interceptors.push('redirectWhenLoggedOut');
-        $authProvider.loginUrl = '/api/authenticate';
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
@@ -127,7 +126,7 @@
 
                         if (rejection.data.error === value) {
                             localStorage.removeItem('user');
-                            $state.go('auth');
+                            $state.go('jwtauth.signin');
                         }
                     });
 

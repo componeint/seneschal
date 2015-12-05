@@ -5,7 +5,7 @@
 (function() {
     'use strict';
 
-    angular.module('components.routes.jwtAuth').run(function($rootScope) {
+    angular.module('components.routes.jwtAuth').run(function($rootScope, $state) {
         $rootScope.$on("$stateChangeStart", function(event, toState) {
             var user = JSON.parse(localStorage.getItem('user'));
             if (user) {
@@ -14,7 +14,7 @@
 
                 if ((toState.name === 'jwtauth.signin') || (toState.name === 'jwtauth.register')) {
                     event.preventDefault();
-                    $state.go('app.home');
+                    $state.go('dashboard.home');
                 }
             }
         });

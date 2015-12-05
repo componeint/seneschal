@@ -9,10 +9,10 @@
         .module('components.controllers')
         .controller('JwtAuthController', JwtAuthController);
 
-    JwtAuthController.$inject = [];
+    JwtAuthController.$inject = ['$http', '$auth', '$rootScope', '$state'];
 
     /* @ngInject */
-    function JwtAuthController() {
+    function JwtAuthController($http, $auth, $rootScope, $state) {
         var vm   = this;
         vm.title = 'JwtAuthController';
 
@@ -33,11 +33,9 @@
         function signout() {
             $auth.logout().then(function() {
                 localStorage.removeItem('user');
-
                 $rootScope.authenticated = false;
                 $rootScope.currentUser   = null;
-
-                $state.go('app.home');
+                $state.go('jwtauth.signin');
             });
         }
     }

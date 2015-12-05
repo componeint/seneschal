@@ -1,5 +1,22 @@
-<md-content flex layout-padding ng-controller="JwtAuthHomeCtrl">
-    <p>
-        When the tribble harvests for subspace, all girls disrupt delighted, strange protons.All those hypnosis will be lost in loves like understandings in anomaliesWhy does the transformator yell?This paralysis has only been desired by a modern sonic shower.The crewmate is quickly most unusual.Why does the creature resist?This future has only been captured by a virtual ship.Walk, scotty.The green people is more kahless now than crewmate. gravimetric and tightly fantastic.Planets die on alignment at captain's quarters!Adventure at the solar system that is when small cosmonauts die.Why does the sonic shower wobble?The brave admiral rudely destroies the lieutenant commander.I teleport this coordinates, it's called greatly exaggerated powerdrain.Where is the apocalyptic lieutenant commander?
-    </p>
+<md-content flex layout-padding>
+    <div class="">
+        <h5 ng-if="authenticated">Welcome, {{currentUser.name}}</h5>
+
+        <h3>Users</h3>
+
+        <div class="">
+            <button class="" ng-click="user.getUsers()">Get Users!</button>
+            <button class="" ng-click="user.logout()">Logout</button>
+        </div>
+        <ul class="" ng-if="user.users">
+            <li class="" ng-repeat="user in user.users">
+                <h4>{{user.name}}</h4>
+                <h5>{{user.email}}</h5>
+            </li>
+        </ul>
+        <div class="" ng-if="user.error">
+            <strong>There was an error: </strong> {{user.error.error}}
+            <br>Please go back and login again
+        </div>
+    </div>
 </md-content>

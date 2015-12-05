@@ -5,7 +5,25 @@
 (function() {
     'use strict';
 
-    angular.module('app.controllers').controller('JwtAuthHomeCtrl', ['$scope', function($scope) {
+    angular
+        .module('components.controllers')
+        .controller('JwtAuthHomeController', JwtAuthHomeController);
 
-    }]);
+    JwtAuthHomeController.$inject = [];
+
+    /* @ngInject */
+    function JwtAuthHomeController() {
+        var vm   = this;
+        vm.title = 'JwtAuthHomeController';
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+            //
+        }
+    }
+
 })();
+

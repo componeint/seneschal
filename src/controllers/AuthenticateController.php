@@ -8,7 +8,8 @@ namespace Onderdelen\JwtAuth\Controllers;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Anwendungen\Application\Controller;
+use Anwendungen\Application\Controller\Controller;
+use Onderdelen\JwtAuth\User;
 
 //use App\Http\Requests;
 //use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ use Anwendungen\Application\Controller;
 
 /**
  * Class AuthenticateController
- * @package App\Http\Controllers
+ *
+ * @package Onderdelen\JwtAuth\Controllers
  */
 class AuthenticateController extends Controller
 {

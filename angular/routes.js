@@ -17,27 +17,27 @@
                 url     : '/auth',
                 views   : {
                     'layout@'       : {
-                        templateUrl : layout('jwt_auth.simple'),
+                        templateUrl : layout('jwt-auth.simple'),
                         controller  : 'JwtAuthController',
                         controllerAs: 'jwtAuth'
                     },
                     'header@jwtauth': {
-                        templateUrl : view('jwt_auth.header'),
+                        templateUrl : view('jwt-auth.header'),
                         controller  : 'JwtAuthHeaderController',
                         controllerAs: 'jwtAuthHeader'
                     },
                     'left@jwtauth'  : {
-                        templateUrl : view('jwt_auth.left'),
+                        templateUrl : view('jwt-auth.left'),
                         controller  : 'JwtAuthLeftController',
                         controllerAs: 'jwtAuthLeft'
                     },
                     'right@jwtauth' : {
-                        templateUrl : view('jwt_auth.right'),
+                        templateUrl : view('jwt-auth.right'),
                         controller  : 'JwtAuthRightController',
                         controllerAs: 'jwtAuthRight'
                     },
                     'footer@jwtauth': {
-                        templateUrl : view('jwt_auth.footer'),
+                        templateUrl : view('jwt-auth.footer'),
                         controller  : 'JwtAuthFooterController',
                         controllerAs: 'jwtAuthFooter'
                     },
@@ -49,7 +49,7 @@
                 data : { pageName: 'Sign-in' },
                 views: {
                     'main@jwtauth': {
-                        templateUrl : view('jwt_auth.signin'),
+                        templateUrl : view('jwt-auth.signin'),
                         controller  : 'JwtAuthSigninController',
                         controllerAs: 'signin'
                     }

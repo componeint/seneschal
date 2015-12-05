@@ -5,17 +5,17 @@
         <h3>Users</h3>
 
         <div class="">
-            <button class="" ng-click="user.getUsers()">Get Users!</button>
-            <button class="" ng-click="user.logout()">Logout</button>
+            <button class="" ng-click="jwtAuth.getUsers()">Get Users!</button>
+            <button class="" ng-click="jwtAuth.logout()">Logout</button>
         </div>
-        <ul class="" ng-if="user.users">
-            <li class="" ng-repeat="user in user.users">
+        <ul class="" ng-if="jwtAuth.users">
+            <li class="" ng-repeat="user in jwtAuth.users">
                 <h4>{{user.name}}</h4>
                 <h5>{{user.email}}</h5>
             </li>
         </ul>
-        <div class="" ng-if="user.error">
-            <strong>There was an error: </strong> {{user.error.error}}
+        <div class="" ng-if="jwtAuth.error">
+            <strong>There was an error: </strong> {{jwtAuth.error.error}}
             <br>Please go back and login again
         </div>
     </div>

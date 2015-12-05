@@ -54,6 +54,17 @@
                         controllerAs: 'signin'
                     }
                 }
+            })
+            .state('jwtauth.home', {
+                url  : '/home',
+                data : { pageName: 'Home' },
+                views: {
+                    'main@jwtauth': {
+                        templateUrl : view('jwt-auth.home'),
+                        controller  : 'JwtAuthHomeController',
+                        controllerAs: 'jwtAuthHome'
+                    }
+                }
             });
 
         function view(viewName) {

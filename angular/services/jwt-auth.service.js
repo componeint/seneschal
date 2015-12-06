@@ -9,12 +9,13 @@
         .module('components.factory')
         .factory('jwtAuthService', jwtAuthService);
 
-    jwtAuthService.$inject = ['$http'];
+    jwtAuthService.$inject = ['$rootScope','$http', '$auth'];
 
     /* @ngInject */
-    function jwtAuthService($http) {
+    function jwtAuthService($rootScope, $http, $auth) {
         var service = {
-            getUsers: getUsers
+            getUsers: getUsers,
+            signout : signout
         };
         return service;
 
@@ -32,6 +33,14 @@
             function getUsersFailed(error) {
                 console.log('XHR failed for getUser.' + error.data);
             }
+        }
+
+        function signout() {
+            return $auth.logout().then(function() {
+                localStorage.removeItem('user');
+                $rootScope.authenticated = false;
+                $rootScope.currentUser   = null;
+            });
         }
     }
 

@@ -1,5 +1,5 @@
 /**
- * Created by anonymoussc on 03/12/15 4:55.
+ * Created by anonymous on 03/12/15 4:55.
  */
 
 (function() {
@@ -37,9 +37,10 @@
 
         function getUsers() {
             return jwtAuthService.getUsers()
-                .then(function(data) {
-                    vm.users = data;
-                    return vm.users;
+                .success(function(users) {
+                    vm.users = users;
+                    console.log(users);
+                    //return vm.users;
                 })
                 .error(function(error) {
                     vm.error = error;
@@ -49,6 +50,7 @@
 
         function signout() {
             jwtAuthService.signout();
+            console.log('sign-out' + jwtAuthService.signout());
             $state.go('jwtauth.signin');
         }
 

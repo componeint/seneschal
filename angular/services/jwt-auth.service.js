@@ -22,8 +22,8 @@
         ////////////////
 
         function getUsers() {
-            return $http.get('api/authenticate')
-                .then(getUsersComplete)
+            return $http.get('api/authenticate');
+            /*    .then(getUsersComplete)
                 .catch(getUsersFailed);
 
             function getUsersComplete(response) {
@@ -32,7 +32,7 @@
 
             function getUsersFailed(error) {
                 console.log('XHR failed for getUser.' + error.data);
-            }
+            }*/
         }
 
         function signout() {

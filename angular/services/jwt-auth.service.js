@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('components.factory')
+        .module('components.services')
         .factory('jwtAuthService', jwtAuthService);
 
     jwtAuthService.$inject = ['$rootScope','$http', '$auth'];

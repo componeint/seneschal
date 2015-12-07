@@ -20,14 +20,14 @@
         vm.login      = login;
 
         /*
-        activate();
+         activate();
 
-        ////////////////
+         ////////////////
 
-        function activate() {
-            //
-        }
-        */
+         function activate() {
+         //
+         }
+         */
 
         function login() {
             var
@@ -36,18 +36,20 @@
                     password: vm.password
                 };
 
-            $auth.login(credentials).then(function() {
-                return $http.get('api/authenticate/user');
-            }, function(error) {
-                vm.loginError     = true;
-                vm.loginErrorText = error.data.error;
-            }).then(function(response) {
-                var user                 = JSON.stringify(response.data.user);
-                localStorage.setItem('user', user);
-                $rootScope.authenticated = true;
-                $rootScope.currentUser   = response.data.user;
-                $state.go('jwtauth.home');
-            });
+            $auth.login(credentials)
+                .then(function() {
+                    return $http.get('api/authenticate/user');
+                }, function(error) {
+                    vm.loginError     = true;
+                    vm.loginErrorText = error.data.error;
+                })
+                .then(function(response) {
+                    var user                 = JSON.stringify(response.data.user);
+                    localStorage.setItem('user', user);
+                    $rootScope.authenticated = true;
+                    $rootScope.currentUser   = response.data.user;
+                    $state.go('jwtauth.home');
+                });
         }
     }
 

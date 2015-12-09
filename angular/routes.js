@@ -68,9 +68,9 @@
 
         function view(viewName) {
             if (viewName !== "") {
-                return './views/applications/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
+                return './views/app/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
             } else {
-                return './views/applications/app/home/home.html';
+                return './views/app/app/home/home.html';
             }
         }
 
@@ -78,7 +78,7 @@
             if (viewName !== "") {
                 return './views/layouts/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
             } else {
-                return './views/applications/app/home/home.html';
+                return './views/app/app/home/home.html';
             }
 
         }

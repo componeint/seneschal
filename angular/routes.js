@@ -1,11 +1,11 @@
 /**
- * Created by anonymoussc on 01/12/15 23:48.
+ * Created by anonymous on 01/12/15 23:48.
  */
 
 (function() {
     'use strict';
 
-    angular.module('components.routes.jwtAuth').config(function($stateProvider, $urlRouterProvider, $httpProvider, $provide) {
+    angular.module('jwtAuth').config(function($stateProvider, $urlRouterProvider, $httpProvider, $provide) {
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
         $httpProvider.interceptors.push('redirectWhenLoggedOut');
         $urlRouterProvider.otherwise('/');

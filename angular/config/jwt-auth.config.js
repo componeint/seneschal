@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('components.config')
+        .module('jwtAuth')
         .config(jwtAuth);
 
     jwtAuth.$inject = ['$authProvider'];

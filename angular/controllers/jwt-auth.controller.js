@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module('components.controllers')
+        .module('jwtAuth')
         .controller('JwtAuthController', JwtAuthController);
 
     JwtAuthController.$inject = ['$http', '$auth', '$rootScope', '$state', 'jwtAuthService'];

@@ -1,11 +1,11 @@
 /**
- * Created by anonymoussc on 04/12/15 9:11.
+ * Created by anonymous on 04/12/15 9:11.
  */
 
 (function() {
     'use strict';
 
-    angular.module('components.routes.jwtAuth').run(function($rootScope, $state) {
+    angular.module('jwtAuth').run(function($rootScope, $state) {
         $rootScope.$on("$stateChangeStart", function(event, toState) {
             var user = JSON.parse(localStorage.getItem('user'));
             if (user) {

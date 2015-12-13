@@ -8,7 +8,7 @@
     angular
         .module('jwtAuth', [
             /* Shared */
-            'app.foundation',
+            'appFoundation',
             'widgets'
         ]);
 

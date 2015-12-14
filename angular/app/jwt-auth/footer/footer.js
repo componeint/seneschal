@@ -5,7 +5,25 @@
 (function() {
     'use strict';
 
-    angular.module('jwtAuth').controller('JwtAuthFooterController', ['$scope', function($scope) {
+    angular
+        .module('jwtAuth')
+        .controller('JwtAuthFooterController', JwtAuthFooterController);
 
-    }]);
+    JwtAuthFooterController.$inject = [];
+
+    /* @ngInject */
+    function JwtAuthFooterController() {
+        var vm   = this;
+        vm.title = 'JwtAuthFooterController';
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+            //
+        }
+    }
+
 })();
+

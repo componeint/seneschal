@@ -38,7 +38,7 @@
                     'footer@jwtauth': {
                         templateUrl : view('jwt-auth.footer'),
                         controller  : 'JwtAuthFooterController',
-                        controllerAs: 'jwtAuthFooter'
+                        controllerAs: 'footer'
                     },
                     'main@jwtauth'  : {}
                 }

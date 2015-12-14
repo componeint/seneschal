@@ -2,21 +2,31 @@
     <div layout="row" layout-wrap>
         <div flex="30" hide-sm hide-md></div>
         <div flex="auto">
-            <form>
+            <form name="loginForm" novalidate>
                 <p class="" ng-if="auth.loginError"><strong>Error:</strong> {{auth.loginErrorText}}</p>
                 <md-input-container>
                     <label for="email">Email</label>
-                    <input type="email" id="email" ng-model="signin.email" md-autofocus>
+                    <input type="email" id="email" ng-model="signin.email">
+                    <div ng-if="loginForm.email.$dirty" ng-messages="loginForm.email.$error">
+                        <div ng-message="required">Your email address is required.</div>
+                        <div ng-message="pattern">Your email address is invalid.</div>
+                    </div>
                 </md-input-container>
                 <md-input-container>
                     <label for="password">Password</label>
                     <input type="password" id="password" ng-model="signin.password">
+                    <div ng-if="loginForm.password.$dirty" ng-messages="loginForm.password.$error">
+                        <div ng-message="required">Password is required.</div>
+                    </div>
                 </md-input-container>
                 <div layout="row" layout-align="end center">
                     <md-button ng-click="signin.login()" class="md-raised md-primary md-hue-3">
                         Sign-in
                     </md-button>
                 </div>
+                <p class="u-center">
+                    <small>Don't have an account? <a ui-sref="jwtauth.signup">Sign up</a></small>
+                </p>
             </form>
         </div>
         <div flex="25" hide-sm hide-md></div>

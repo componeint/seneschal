@@ -22,18 +22,13 @@
         vm.getUsers = getUsers;
         vm.signout  = signout;
 
-        /*
         activate();
 
         ////////////////
 
         function activate() {
-            return getUsers().then(function() {
-                console.log('Activated getUsers.');
-            });
 
         }
-        */
 
         function getUsers() {
             return jwtAuthService.getUsers()

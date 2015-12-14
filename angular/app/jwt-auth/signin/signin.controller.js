@@ -19,15 +19,13 @@
         vm.loginErrorText;
         vm.login      = login;
 
-        /*
-         activate();
+        activate();
 
-         ////////////////
+        ////////////////
 
-         function activate() {
-         //
-         }
-         */
+        function activate() {
+            //
+        }
 
         function login() {
             var

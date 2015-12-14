@@ -23,7 +23,7 @@
                     'header@jwtauth': {
                         templateUrl : view('jwt-auth.header'),
                         controller  : 'JwtAuthHeaderController',
-                        controllerAs: 'jwtAuthHeader'
+                        controllerAs: 'header'
                     },
                     'left@jwtauth'  : {
                         templateUrl : view('jwt-auth.left'),

@@ -7,12 +7,12 @@
 
     angular
         .module('jwtAuth')
-        .config(jwtAuth);
+        .config(jwtAuthRouter);
 
-    jwtAuth.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$provide'];
+    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$provide'];
 
     /* @ngInject */
-    function jwtAuth($stateProvider, $urlRouterProvider, $httpProvider, $provide) {
+    function jwtAuthRouter($stateProvider, $urlRouterProvider, $httpProvider, $provide) {
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
         $httpProvider.interceptors.push('redirectWhenLoggedOut');
         $urlRouterProvider.otherwise('/');

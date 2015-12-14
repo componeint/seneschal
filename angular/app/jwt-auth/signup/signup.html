@@ -1,0 +1,58 @@
+<md-content flex layout-padding>
+    <div layout="row">
+        <div flex="30" hide-sm hide-md></div>
+        <div flex="auto">
+            <form method="post" ng-submit="signup.signup()" name="signupForm" novalidate>
+                <md-input-container>
+                    <label for="username">Name</label>
+                    <input type="text" id="username" name="username" ng-model="signup.user.username" required>
+
+                    <div ng-if="signupForm.username.$dirty" ng-messages="signupForm.username.$error">
+                        <div ng-message="required">You must enter your name.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" ng-model="signup.user.email" required>
+
+                    <div ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
+                        <div ng-message="required">Your email address is required.</div>
+                        <div ng-message="pattern">Your email address is invalid.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label for="password">Password</label>
+                    <input password-strength type="password" id="password" name="password" ng-model="signup.user.password" required>
+
+                    <div ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
+                        <div ng-message="required">Password is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input password-match="signup.user.password" type="password" id="confirmPassword" name="confirmPassword" ng-model="signup.confirmPassword">
+
+                    <div ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
+                        <div ng-message="compareTo">Password must match.</div>
+                    </div>
+                </md-input-container>
+                <p>
+                    <small>By clicking on Sign up, you agree to <a href="#">terms & conditions</a> and
+                        <a href="#">privacy policy</a>
+                    </small>
+                </p>
+                <div layout="row" layout-align="end center">
+                    <md-button ng-click="" ng-disabled="signupForm.$invalid" class="md-raised md-primary md-hue-3">
+                        Sign-up
+                    </md-button>
+                </div>
+
+                <p class="u-center">
+                    <small>Already have an account? <a ui-sref="jwtauth.login">Sign in</a></small>
+                </p>
+            </form>
+        </div>
+        <div flex="25" hide-sm hide-md></div>
+    </div>
+</md-content>
+

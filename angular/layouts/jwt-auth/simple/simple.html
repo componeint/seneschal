@@ -1,32 +1,25 @@
 <div id="jwtauth-layout-container" layout="column" ng-cloak>
-
-    <!--left-->
     <section layout="row" flex>
         <div id="jwtauth-sidenav">
+            <!--left-->
             <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
                 <div ui-view="left"></div>
             </md-sidenav>
         </div>
-
-        <!--main-->
         <md-content flex>
             <div layout="column" layout-fill>
-                <md-toolbar md-scroll-shrink class="md-primary md-hue-3">
-                    <div ui-view="header"></div>
-                </md-toolbar>
-                <md-content flex>
-                    <div ui-view="main"></div>
-                </md-content>
+                <!--header-->
+                <div ui-view="header"></div>
+                <!--main-->
+                <div ui-view="main"></div>
             </div>
             <div flex></div>
         </md-content>
-
         <!--right-->
         <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
             <div ui-view="right"></div>
         </md-sidenav>
     </section>
-
     <!--footer-->
     <div ui-view="footer"></div>
 </div>

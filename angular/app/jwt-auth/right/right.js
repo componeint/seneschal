@@ -5,11 +5,30 @@
 (function() {
     'use strict';
 
-    angular.module('jwtAuth').controller('JwtAuthRightController', ['$scope', '$timeout', '$mdSidenav', '$log', function($scope, $timeout, $mdSidenav, $log) {
-        $scope.close = function() {
+    angular
+        .module('jwtAuth')
+        .controller('JwtAuthRightController', JwtAuthRightController);
+
+    JwtAuthRightController.$inject = ['$timeout', '$mdSidenav', '$log'];
+
+    /* @ngInject */
+    function JwtAuthRightController($timeout, $mdSidenav, $log) {
+        var vm   = this;
+        vm.title = 'JwtAuthRightController';
+        vm.close = function() {
             $mdSidenav('right').close().then(function() {
                 // $log.debug("close RIGHT is done");
             });
         };
-    }]);
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+            //
+        }
+    }
+
 })();
+

@@ -9,10 +9,10 @@
         .module('jwtAuth')
         .config(jwtAuthRouter);
 
-    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$provide'];
+    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider','$authProvider', '$httpProvider', '$provide'];
 
     /* @ngInject */
-    function jwtAuthRouter($stateProvider, $urlRouterProvider, $httpProvider, $provide) {
+    function jwtAuthRouter($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
         $httpProvider.interceptors.push('redirectWhenLoggedOut');
         $urlRouterProvider.otherwise('/');
@@ -50,6 +50,17 @@
                     'main@jwtauth'  : {}
                 }
             })
+            .state('jwtauth.signup', {
+                url  : '/signup',
+                data : {pageName: 'Sign-up'},
+                views: {
+                    'main@jwtauth': {
+                        templateUrl : view('jwt-auth.signup'),
+                        controller  : 'JwtAuthSignupController',
+                        controllerAs: 'signup'
+                    }
+                }
+            })
             .state('jwtauth.signin', {
                 url  : '/signin',
                 data : {pageName: 'Sign in'},
@@ -70,6 +81,9 @@
                         controller  : 'JwtAuthHomeController',
                         controllerAs: 'home'
                     }
+                },
+                resolve    : {
+                    loginRequired: loginRequired
                 }
             });
 
@@ -140,6 +154,26 @@
                     return $q.reject(rejection);
                 }
             };
+        }
+
+        function skipIfLoggedIn($q, $auth) {
+            var deferred = $q.defer();
+            if ($auth.isAuthenticated()) {
+                deferred.reject();
+            } else {
+                deferred.resolve();
+            }
+            return deferred.promise;
+        }
+
+        function loginRequired($q, $location, $auth) {
+            var deferred = $q.defer();
+            if ($auth.isAuthenticated()) {
+                deferred.resolve();
+            } else {
+                $location.path('/auth/signin');
+            }
+            return deferred.promise;
         }
 
     }

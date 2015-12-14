@@ -14,7 +14,7 @@
 
                 if ((toState.name === 'jwtauth.signin') || (toState.name === 'jwtauth.register')) {
                     event.preventDefault();
-                    $state.go('dashboard.home');
+                    $state.go('client.home');
                 }
             }
         });

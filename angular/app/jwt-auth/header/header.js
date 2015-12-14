@@ -1,12 +1,12 @@
 /**
- * Created by anonymoussc on 26/11/15 19:51.
+ * Created by anonymous on 26/11/15 19:51.
  */
 
 (function() {
     'use strict';
 
     angular
-        .module('components.controllers')
+        .module('jwtAuth')
         .controller('JwtAuthHeaderController', JwtAuthHeaderController);
 
     JwtAuthHeaderController.$inject = ['$timeout', '$mdSidenav', '$log'];

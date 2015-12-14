@@ -1,12 +1,12 @@
 /**
- * Created by anonymoussc on 02/12/15 5:49.
+ * Created by anonymous on 02/12/15 5:49.
  */
 
 (function() {
     'use strict';
 
     angular
-        .module('components.controllers')
+        .module('jwtAuth')
         .controller('JwtAuthSigninController', JwtAuthSigninController);
 
     JwtAuthSigninController.$inject = ['$auth', '$state', '$http', '$rootScope'];

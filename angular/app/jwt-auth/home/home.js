@@ -1,12 +1,12 @@
 /**
- * Created by anonymoussc on 26/11/15 19:55.
+ * Created by anonymous on 26/11/15 19:55.
  */
 
 (function() {
     'use strict';
 
     angular
-        .module('components.controllers')
+        .module('jwtAuth')
         .controller('JwtAuthHomeController', JwtAuthHomeController);
 
     JwtAuthHomeController.$inject = [];

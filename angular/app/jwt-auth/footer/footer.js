@@ -1,11 +1,11 @@
 /**
- * Created by anonymoussc on 26/11/15 19:33.
+ * Created by anonymous on 26/11/15 19:33.
  */
 
 (function() {
     'use strict';
 
-    angular.module('app.controllers').controller('JwtAuthFooterController', ['$scope', function($scope) {
+    angular.module('jwtAuth').controller('JwtAuthFooterController', ['$scope', function($scope) {
 
     }]);
 })();

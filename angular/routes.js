@@ -18,6 +18,50 @@
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
+            .state('dashboard.user', {
+                url  : '/',
+                data : {pageName: 'Overview'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : view('dashboard.home'),
+                        controller  : 'DashboardHomeController',
+                        controllerAs: 'home'
+                    }
+                }
+            })
+            .state('dashboard.user.create', {
+                url  : '/',
+                data : {pageName: 'Overview'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : view('dashboard.home'),
+                        controller  : 'DashboardHomeController',
+                        controllerAs: 'home'
+                    }
+                }
+            })
+            .state('dashboard.user.show', {
+                url  : '/',
+                data : {pageName: 'Overview'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : view('dashboard.home'),
+                        controller  : 'DashboardHomeController',
+                        controllerAs: 'home'
+                    }
+                }
+            })
+            .state('dashboard.user.edit', {
+                url  : '/',
+                data : {pageName: 'Overview'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : view('dashboard.home'),
+                        controller  : 'DashboardHomeController',
+                        controllerAs: 'home'
+                    }
+                }
+            })
             .state('jwtauth', {
                 abstract: true,
                 url     : '/auth',

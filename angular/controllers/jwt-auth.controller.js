@@ -35,7 +35,6 @@
                 .success(function(users) {
                     vm.users = users;
                     console.log(users);
-                    //return vm.users;
                 })
                 .error(function(error) {
                     vm.error = error;
@@ -44,35 +43,11 @@
         }
 
         function signout() {
-            jwtAuthService.signout();
-            console.log('sign-out' + jwtAuthService.signout());
-            $state.go('jwtauth.signin');
+            jwtAuthService.signout().then(function() {
+                $state.go('jwtauth.signin');
+            });
+            console.log('sign-out');
         }
-
-        /*
-         vm.users;
-         vm.error;
-
-         vm.getUsers = getUsers;
-         vm.signout  = signout;
-
-         function getUsers() {
-         $http.get('api/authenticate').success(function(users) {
-         vm.users = users;
-         }).error(function(error) {
-         vm.error = error;
-         });
-         }
-
-         function signout() {
-         $auth.logout().then(function() {
-         localStorage.removeItem('user');
-         $rootScope.authenticated = false;
-         $rootScope.currentUser   = null;
-         $state.go('jwtauth.signin');
-         });
-         }
-         */
     }
 
 })();

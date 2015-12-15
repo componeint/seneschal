@@ -9,7 +9,7 @@
         .module('jwtAuth')
         .factory('jwtAuthService', jwtAuthService);
 
-    jwtAuthService.$inject = ['$rootScope','$http', '$auth'];
+    jwtAuthService.$inject = ['$rootScope', '$http', '$auth'];
 
     /* @ngInject */
     function jwtAuthService($rootScope, $http, $auth) {

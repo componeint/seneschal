@@ -14,13 +14,33 @@
     /* @ngInject */
     function userService() {
         var service = {
-            functionName: functionName
+            get    : get,
+            find   : find,
+            store  : store,
+            update : update,
+            destroy: destroy
         };
         return service;
 
         ////////////////
 
-        function functionName() {
+        function get() {
+            //
+        }
+
+        function find() {
+            //
+        }
+
+        function store() {
+            //
+        }
+
+        function update() {
+            //
+        }
+
+        function destroy() {
             //
         }
     }

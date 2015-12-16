@@ -2,9 +2,9 @@
     <div layout="row">
         <div flex="30" hide-sm hide-md></div>
         <div flex="auto">
-            <form method="post" ng-submit="signup.signup()" name="signupForm" novalidate>
+            <form name="signupForm" novalidate>
                 <md-input-container>
-                    <label for="username">Name</label>
+                    <label for="username">Username</label>
                     <input type="text" id="username" name="username" ng-model="signup.user.username" required>
 
                     <div ng-if="signupForm.username.$dirty" ng-messages="signupForm.username.$error">
@@ -42,7 +42,7 @@
                     </small>
                 </p>
                 <div layout="row" layout-align="end center">
-                    <md-button ng-click="" ng-disabled="signupForm.$invalid" class="md-raised md-primary md-hue-3">
+                    <md-button ng-click="signup.signup()" ng-disabled="signupForm.$invalid" class="md-raised md-primary md-hue-3">
                         Sign-up
                     </md-button>
                 </div>

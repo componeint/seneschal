@@ -7,6 +7,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
     $api->post('authenticate', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@authenticate');
+    $api->post('auth/signup', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@signup');
 });
 
 // Protected with JWT
@@ -14,3 +15,5 @@ $api->version('v1', ['middleware' => 'api.auth'], function ($api) {
     $api->get('authenticate', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@index');
     $api->get('authenticate/user', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@getAuthenticatedUser');
 });
+
+//Route::post('/auth/signup', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@signup');

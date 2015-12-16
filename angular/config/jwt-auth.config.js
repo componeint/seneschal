@@ -13,6 +13,7 @@
     /* @ngInject */
     function jwtAuth ($authProvider) {
         $authProvider.loginUrl = '/api/authenticate';
+        $authProvider.signupUrl = '/api/auth/signup';
     }
 
 })();

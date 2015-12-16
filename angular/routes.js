@@ -19,7 +19,7 @@
 
         $stateProvider
             .state('dashboard.users', {
-                url  : '/',
+                url  : '/users',
                 data : {pageName: 'Users'},
                 views: {
                     'main@dashboard': {
@@ -30,7 +30,7 @@
                 }
             })
             .state('dashboard.users.create', {
-                url  : '/',
+                url  : '/users',
                 data : {pageName: 'Create'},
                 views: {
                     'main@dashboard': {
@@ -41,7 +41,7 @@
                 }
             })
             .state('dashboard.users.show', {
-                url  : '/',
+                url  : '/show',
                 data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {
@@ -52,7 +52,7 @@
                 }
             })
             .state('dashboard.users.edit', {
-                url  : '/',
+                url  : '/edit',
                 data : {pageName: 'Edit'},
                 views: {
                     'main@dashboard': {

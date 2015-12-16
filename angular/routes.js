@@ -30,7 +30,7 @@
                 }
             })
             .state('dashboard.users.create', {
-                url  : '/users',
+                url  : '/create',
                 data : {pageName: 'Create'},
                 views: {
                     'main@dashboard': {

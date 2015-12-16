@@ -9,7 +9,7 @@
         .module('jwtAuth')
         .controller('UserShowController', UserShowController);
 
-    UserShowController.$inject = [''];
+    UserShowController.$inject = [];
 
     /* @ngInject */
     function UserShowController() {

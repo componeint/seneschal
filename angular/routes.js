@@ -18,47 +18,47 @@
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
-            .state('dashboard.user', {
+            .state('dashboard.users', {
                 url  : '/',
-                data : {pageName: 'Overview'},
+                data : {pageName: 'Users'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : view('dashboard.home'),
-                        controller  : 'DashboardHomeController',
-                        controllerAs: 'home'
+                        templateUrl : dashboard('users.index'),
+                        controller  : 'UserIndexController',
+                        controllerAs: 'index'
                     }
                 }
             })
-            .state('dashboard.user.create', {
+            .state('dashboard.users.create', {
                 url  : '/',
-                data : {pageName: 'Overview'},
+                data : {pageName: 'Create'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : view('dashboard.home'),
-                        controller  : 'DashboardHomeController',
-                        controllerAs: 'home'
+                        templateUrl : dashboard('users.create'),
+                        controller  : 'UserCreateController',
+                        controllerAs: 'create'
                     }
                 }
             })
-            .state('dashboard.user.show', {
+            .state('dashboard.users.show', {
                 url  : '/',
-                data : {pageName: 'Overview'},
+                data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : view('dashboard.home'),
-                        controller  : 'DashboardHomeController',
-                        controllerAs: 'home'
+                        templateUrl : dashboard('users.show'),
+                        controller  : 'UserShowController',
+                        controllerAs: 'show'
                     }
                 }
             })
-            .state('dashboard.user.edit', {
+            .state('dashboard.users.edit', {
                 url  : '/',
-                data : {pageName: 'Overview'},
+                data : {pageName: 'Edit'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : view('dashboard.home'),
-                        controller  : 'DashboardHomeController',
-                        controllerAs: 'home'
+                        templateUrl : dashboard('users.edit'),
+                        controller  : 'UserEditController',
+                        controllerAs: 'edit'
                     }
                 }
             })

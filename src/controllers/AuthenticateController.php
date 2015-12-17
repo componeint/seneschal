@@ -40,6 +40,7 @@ class AuthenticateController extends Controller
     public function index()
     {
         $users = User::all();
+
         //return $users;
 
         return response()->json($users);
@@ -64,6 +65,7 @@ class AuthenticateController extends Controller
             // something went wrong
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
+
         // if no errors are encountered we can return a JWT
         return response()->json(compact('token'));
     }
@@ -86,6 +88,7 @@ class AuthenticateController extends Controller
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
+
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
     }
@@ -105,8 +108,8 @@ class AuthenticateController extends Controller
             return response()->json(['message' => $validator->messages()], 400);
         }*/
 
-        $user = new User;
-        $user->name = $request->input('username');
+        $user        = new User;
+        $user->name  = $request->input('username');
         $user->email = $request->input('email');
         //$user->password = Crypt::encrypt($request->input('password'));
         $user->password = Hash::make($request->input('password'));
@@ -124,6 +127,7 @@ class AuthenticateController extends Controller
             // something went wrong
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
+
         // if no errors are encountered we can return a JWT
         return response()->json(compact('token'));
     }

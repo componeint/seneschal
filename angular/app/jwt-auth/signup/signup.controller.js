@@ -35,7 +35,11 @@
                     toastr.info('You have successfully created a new account and have been signed-in');
                 })
                 .catch(function(response) {
+                    console.log('error');
+                    //console.log(response);
+                    console.log(response.data);
                     toastr.error(response.data.message);
+                    //toastr.error(response.data);
                 });
         }
     }

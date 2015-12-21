@@ -1,17 +1,17 @@
 {
-  "name"             : "onderdelen/jwt_auth",
-  "description"      : "Description jwt_auth",
+  "name"             : "onderdelen/jwt-auth",
+  "description"      : "Description jwt-auth",
   "keywords"         : [
     "onderdelen",
-    "jwt_auth"
+    "jwt-auth"
   ],
-  "homepage"         : "https://github.com/onderdelen/jwt_auth",
+  "homepage"         : "https://github.com/onderdelen/jwt-auth",
   "license"          : "MIT",
   "authors"          : [
     {
       "name"    : "anonymoussc",
       "email"   : "50c5ac69@opayq.com",
-      "homepage": "https://github.com/onderdelen/",
+      "homepage": "https://github.com/onderdelen",
       "role"    : "Developer"
     }
   ],
@@ -19,7 +19,8 @@
     "php"                 : ">=5.5.9",
     "illuminate/support"  : "5.1.*@dev",
     "illuminate/contracts": "5.1.*@dev",
-    "tymon/jwt-auth"      : "0.5.*"
+    "tymon/jwt-auth"      : "0.5.*",
+    "rydurham/sentinel"   : "~2.2"
   },
   "require-dev"      : {
     "fzaninotto/faker": "~1.4",

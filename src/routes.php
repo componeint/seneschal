@@ -7,7 +7,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
     $api->post('authenticate', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@authenticate');
-    $api->post('auth/signup', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@signup');
+    $api->post('auth/signup', ['as' => 'register.user', 'uses' => 'Onderdelen\JwtAuth\Controllers\RegistrationController@register']);
 });
 
 // Protected with JWT
@@ -16,4 +16,5 @@ $api->version('v1', ['middleware' => 'api.auth'], function ($api) {
     $api->get('authenticate/user', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@getAuthenticatedUser');
 });
 
-//Route::post('/auth/signup', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@signup');
+// Route::post('/auth/signup', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@signup');
+// Route::post('register', ['as' => 'sentinel.register.user', 'uses' => 'RegistrationController@register']);

@@ -3,6 +3,8 @@
 use ReflectionClass;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Onderdelen\JwtAuth\Repositories\Group\GroupRepository;
+use Onderdelen\JwtAuth\Repositories\User\UserRepository;
 
 class JwtAuthServiceProvider extends ServiceProvider
 {
@@ -23,12 +25,11 @@ class JwtAuthServiceProvider extends ServiceProvider
     {
         // Find path to the package
         $componenentsFileName = with(new ReflectionClass('\Onderdelen\JwtAuth\JwtAuthServiceProvider'))->getFileName();
-        $componenentsPath = dirname($componenentsFileName);
+        $componenentsPath     = dirname($componenentsFileName);
 
         $this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
 
         include $componenentsPath . '/../routes.php';
-
     }
 
     /**
@@ -45,6 +46,24 @@ class JwtAuthServiceProvider extends ServiceProvider
         $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
 
         $this->app->register(\Consigliere\AppFoundation\AppFoundationServiceProvider::class);
+        $this->app->register(\Sentinel\SentinelServiceProvider::class);
+
+        // Bind the User Repository
+        $this->app->bind('Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface', function ($app) {
+            return new UserRepository(
+                $app['sentry'],
+                $app['config'],
+                $app['events']
+            );
+        });
+
+        // Bind the Group Repository
+        $this->app->bind('Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface', function ($app) {
+            return new GroupRepository(
+                $app['sentry'],
+                $app['events']
+            );
+        });
     }
 
     /**

@@ -29,8 +29,8 @@
                     </div>
                 </md-input-container>
                 <md-input-container>
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input password-match="signup.user.password" type="password" id="confirmPassword" name="confirmPassword" ng-model="signup.confirmPassword">
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input password-match="signup.user.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="signup.user.password_confirmation">
 
                     <div ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
                         <div ng-message="compareTo">Password must match.</div>

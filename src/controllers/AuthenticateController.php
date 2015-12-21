@@ -10,11 +10,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Hash;
 use Anwendungen\Application\Controller\Controller;
-use Onderdelen\JwtAuth\User;
-
-//use App\Http\Requests;
-//use App\Http\Controllers\Controller;
-//use App\User;
+use Onderdelen\JwtAuth\Models\User;
 
 /**
  * Class AuthenticateController
@@ -40,8 +36,6 @@ class AuthenticateController extends Controller
     public function index()
     {
         $users = User::all();
-
-        //return $users;
 
         return response()->json($users);
     }

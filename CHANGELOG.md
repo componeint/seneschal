@@ -1,6 +1,6 @@
 # Changelog
 
-All Notable changes to `jwt_auth` will be documented in this file
+All Notable changes to `jwt-auth` will be documented in this file
 
 ## NEXT - YYYY-MM-DD
 

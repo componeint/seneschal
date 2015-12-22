@@ -1,10 +1,10 @@
 <md-content flex layout-padding>
     <div layout="row" layout-wrap>
-        <div flex="30" hide-sm hide-md></div>
+        <div flex="30" hide-xs hide-sm hide-md></div>
         <div flex="auto">
             <form name="loginForm" novalidate>
                 <p class="" ng-if="auth.loginError"><strong>Error:</strong> {{auth.loginErrorText}}</p>
-                <md-input-container>
+                <md-input-container class="md-block">
                     <label for="email">Email</label>
                     <input type="email" id="email" ng-model="signin.email">
                     <div ng-if="loginForm.email.$dirty" ng-messages="loginForm.email.$error">
@@ -12,7 +12,7 @@
                         <div ng-message="pattern">Your email address is invalid.</div>
                     </div>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container class="md-block">
                     <label for="password">Password</label>
                     <input type="password" id="password" ng-model="signin.password">
                     <div ng-if="loginForm.password.$dirty" ng-messages="loginForm.password.$error">
@@ -29,6 +29,6 @@
                 </p>
             </form>
         </div>
-        <div flex="25" hide-sm hide-md></div>
+        <div flex="25" hide-xs hide-sm hide-md></div>
     </div>
 </md-content>

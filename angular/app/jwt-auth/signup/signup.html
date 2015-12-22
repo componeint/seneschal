@@ -1,9 +1,9 @@
 <md-content flex layout-padding>
     <div layout="row">
-        <div flex="30" hide-sm hide-md></div>
+        <div flex="30" hide-xs hide-sm hide-md></div>
         <div flex="auto">
             <form name="signupForm" novalidate>
-                <md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" ng-model="signup.user.username" required>
 
@@ -11,7 +11,7 @@
                         <div ng-message="required">You must enter your name.</div>
                     </div>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" ng-model="signup.user.email" required>
 
@@ -20,7 +20,7 @@
                         <div ng-message="pattern">Your email address is invalid.</div>
                     </div>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
                     <label for="password">Password</label>
                     <input password-strength type="password" id="password" name="password" ng-model="signup.user.password" required>
 
@@ -28,7 +28,7 @@
                         <div ng-message="required">Password is required.</div>
                     </div>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
                     <label for="password_confirmation">Confirm Password</label>
                     <input password-match="signup.user.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="signup.user.password_confirmation">
 
@@ -52,7 +52,7 @@
                 </p>
             </form>
         </div>
-        <div flex="25" hide-sm hide-md></div>
+        <div flex="25" hide-xs hide-sm hide-md></div>
     </div>
 </md-content>
 

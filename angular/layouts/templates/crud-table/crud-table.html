@@ -3,13 +3,64 @@
 
     <div layout="column" layout-align="start stretch">
 
-        <div flex="auto" style="background-color: #ffd39c;">
-            one
+        <div flex="auto" style="text-align: right;">
+                <!-- Select search field -->
+                <md-menu md-offset="0 -7">
+                    <md-button aria-label="Select a field" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
+                        <md-tooltip md-direction="bottom">
+                            <translate>Select a field</translate>
+                        </md-tooltip>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item ng-repeat="filter in ct.options.filters">
+                            <md-button ng-click="ct.setSearch(filter);">
+                                <!--<a href="" ng-click="ct.setSearch(filter);">{{filter.title}}</a>-->
+                                <span md-menu-align-target ng-click="ct.setSearch(filter);">Field :: </span> {{filter.title}}
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <md-input-container style="margin-bottom: 0px;">
+                    <label for="searchField">{{'Select a field'|translate}}</label>
+                    <input type="text" id="searchField" aria-label="Search Field" ng-model="ct.search_field.title" readonly>
+                </md-input-container>
+                <md-input-container style="margin-bottom: 0px;">
+                    <label for="searchValue">{{'Search for'|translate}}...</label>
+                    <input type="text" id="searchValue" aria-label="Search Value" ng-model="ct.search_value">
+                </md-input-container>
+                <md-button class="md-icon-button" aria-label="{{'Search'|translate}}" ng-click="ct.search(); $event.preventDefault();">
+                    <md-icon ng-md-icon icon="search" style="fill: black" size="24"></md-icon>
+                    <md-tooltip md-direction="bottom">
+                        <translate>Search</translate>
+                    </md-tooltip>
+                </md-button>
         </div>
-        <div flex="auto" style="background-color: #ceff6e;">two</div>
+        <div flex="auto">
+            <!-- Controls -->
+            <md-button class="md-icon-button" aria-label="{{'Refresh'|translate}}" ng-click="list.refresh();" ng-if="ct.options.refreshBtn">
+                <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
+                <md-tooltip md-direction="bottom">
+                    <translate>Refresh</translate>
+                </md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="{{'Add new record'|translate}}" ng-click="ct.options.addRecord();" ng-if="ct.options.addRecord">
+                <md-icon ng-md-icon icon="add" style="fill: black" size="24"></md-icon>
+                <md-tooltip md-direction="bottom">
+                    <translate>Add</translate>
+                </md-tooltip>
+            </md-button>
+            <md-button ng-disabled="!list.getSelectedCount()" class="md-icon-button" aria-label="{{'Delete selected records'|translate}}" ng-click="ct.options.deleteRows(list.getSelectedRecords());" ng-if="ct.options.deleteRows">
+                <md-icon ng-md-icon icon="remove" style="fill: black" size="24"></md-icon>
+                <md-tooltip md-direction="bottom">
+                    <translate>Delete</translate>
+                </md-tooltip>
+            </md-button>
+        </div>
         <div flex="auto" style="background-color: #d5b2e6;">three</div>
         <div flex="auto" style="background-color: #a8abff;">four</div>
         <div flex="auto" style="background-color: #7fc1e6;">five</div>
+        <div flex="auto" style="background-color: #e5e675;">six</div>
     </div>
 
 
@@ -17,68 +68,24 @@
     <div>
         <div>
             <div>
-                <!-- Controls -->
-                <md-button class="md-icon-button" aria-label="{{'Refresh'|translate}}" ng-click="list.refresh();" ng-if="ct.options.refreshBtn">
-                    <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
-                    <md-tooltip md-direction="bottom">
-                        <translate>Refresh</translate>
-                    </md-tooltip>
-                </md-button>
-                <md-button class="md-icon-button" aria-label="{{'Add new record'|translate}}" ng-click="ct.options.addRecord();" ng-if="ct.options.addRecord">
-                    <md-icon ng-md-icon icon="add" style="fill: black" size="24"></md-icon>
-                    <md-tooltip md-direction="bottom">
-                        <translate>Add</translate>
-                    </md-tooltip>
-                </md-button>
-                <md-button ng-disabled="!list.getSelectedCount()" class="md-icon-button" aria-label="{{'Delete selected records'|translate}}" ng-click="ct.options.deleteRows(list.getSelectedRecords());" ng-if="ct.options.deleteRows">
-                    <md-icon ng-md-icon icon="remove" style="fill: black" size="24"></md-icon>
-                    <md-tooltip md-direction="bottom">
-                        <translate>Delete</translate>
-                    </md-tooltip>
-                </md-button>
-                <!-- Select search field -->
+
+
                 <form>
                     <div>
                         <div>
                             <div>
-                                <md-menu md-offset="0 -7">
-                                    <md-button aria-label="Select a field" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                                        <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
-                                        <md-tooltip md-direction="bottom">
-                                            <translate>Select a field</translate>
-                                        </md-tooltip>
-                                    </md-button>
-                                    <md-menu-content width="4">
-                                        <md-menu-item ng-repeat="filter in ct.options.filters">
-                                            <md-button ng-click="ct.setSearch(filter);">
-                                                <!--<a href="" ng-click="ct.setSearch(filter);">{{filter.title}}</a>-->
-                                                <span md-menu-align-target ng-click="ct.setSearch(filter);">Field :: </span> {{filter.title}}
-                                            </md-button>
-                                        </md-menu-item>
-                                    </md-menu-content>
-                                </md-menu>
+
                             </div>
 
-                            <md-input-container>
-                                <label for="searchField">{{'Select a field'|translate}}</label>
-                                <input type="text" id="searchField" aria-label="Search Field" ng-model="ct.search_field.title" readonly>
-                            </md-input-container>
+
                         </div>
                     </div>
                     <!-- Enter search value -->
                     <div>
                         <div>
-                            <md-input-container>
-                                <label for="searchValue">{{'Search for'|translate}}...</label>
-                                <input type="text" id="searchValue" aria-label="Search Value" ng-model="ct.search_value">
-                            </md-input-container>
+
 					<span>
-                        <md-button class="md-icon-button" aria-label="{{'Search'|translate}}" ng-click="ct.search(); $event.preventDefault();">
-                            <md-icon ng-md-icon icon="search" style="fill: black" size="24"></md-icon>
-                            <md-tooltip md-direction="bottom">
-                                <translate>Search</translate>
-                            </md-tooltip>
-                        </md-button>
+
 					</span>
                         </div>
                     </div>

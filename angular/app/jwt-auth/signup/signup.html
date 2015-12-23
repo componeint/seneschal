@@ -5,6 +5,7 @@
             <form name="signupForm" novalidate>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label for="username">Username</label>
+                    <md-icon ng-md-icon icon="face" style="fill: black" size="24"></md-icon>
                     <input type="text" id="username" name="username" ng-model="signup.user.username" required>
 
                     <div ng-if="signupForm.username.$dirty" ng-messages="signupForm.username.$error">
@@ -13,6 +14,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label for="email">Email</label>
+                    <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
                     <input type="email" id="email" name="email" ng-model="signup.user.email" required>
 
                     <div ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
@@ -22,6 +24,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label for="password">Password</label>
+                    <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
                     <input password-strength type="password" id="password" name="password" ng-model="signup.user.password" required>
 
                     <div ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
@@ -30,6 +33,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label for="password_confirmation">Confirm Password</label>
+                    <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
                     <input password-match="signup.user.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="signup.user.password_confirmation">
 
                     <div ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">

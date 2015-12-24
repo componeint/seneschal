@@ -57,7 +57,13 @@
                 </md-tooltip>
             </md-button>
         </div>
-        <div flex="auto" style="background-color: #d5b2e6;">three</div>
+        <div flex="auto" style="background-color: #d5b2e6;" ng-if="list.isEmpty()">
+            <div>
+                <p>
+                    <translate>NO DATA FOUND</translate>
+                <p>
+            </div>
+        </div>
         <div flex="auto" style="background-color: #a8abff;">four</div>
         <div flex="auto" style="background-color: #7fc1e6;">five</div>
         <div flex="auto" style="background-color: #e5e675;">six</div>
@@ -93,12 +99,8 @@
             </div>
         </div>
     </div>
-    <div ng-if="list.isEmpty()">
-        <div>
-            <p>
-                <translate>NO DATA FOUND</translate>
-            <p>
-        </div>
+    <div >
+
     </div>
     <!-- Table -->
     <div ng-if="! list.isEmpty()">
@@ -111,9 +113,7 @@
                         <th ng-if="list.selectEnabled()">
                             <md-button class="md-icon-button" aria-label="{{ct.getCheckedStr()|translate}}" ng-click="list.toggleSelectAll();">
                                 <md-icon ng-md-icon icon="check_box_outline_blank" style="fill: black" size="24"></md-icon>
-                                <md-tooltip md-direction="bottom">
-                                    <translate>{{ct.getCheckedStr()|translate}}</translate>
-                                </md-tooltip>
+                                <md-tooltip md-direction="bottom">{{ct.getCheckedStr()|translate}}</md-tooltip>
                             </md-button>
                         </th>
                         <th ng-repeat="col in ct.options.cols" class="{{col.class}}">
@@ -121,19 +121,15 @@
                             <table ng-if="ct.colIsSortable(col)">
                                 <tr>
                                     <td>{{col.title}}</td>
-                                    <td align="right">
+                                    <td align="center">
                                         <div layout="row">
-                                            <md-button class="md-icon-button" aria-label="{{ct.getCheckedStr()|translate}}" ng-click="list.toggleSelectAll();">
+                                            <md-button ng-attr-class="{{ list.isSortedAsc(col.field) && 'md-icon-button' || 'md-icon-button' }}" ng-click="ct.sort($event, col.field, 'asc');">
                                                 <md-icon ng-md-icon icon="keyboard_arrow_up" style="fill: black" size="20"></md-icon>
-                                                <md-tooltip md-direction="bottom">
-                                                    <translate>{{ct.getCheckedStr()|translate}}</translate>
-                                                </md-tooltip>
+                                                <md-tooltip md-direction="bottom">{{'Sort asc.'|translate}}</md-tooltip>
                                             </md-button>
-                                            <md-button class="md-icon-button" aria-label="{{ct.getCheckedStr()|translate}}" ng-click="list.toggleSelectAll();">
+                                            <md-button ng-attr-class="{{ list.isSortedDesc(col.field) && 'md-icon-button' || 'md-icon-button' }}" ng-click="ct.sort($event, col.field, 'desc');">
                                                 <md-icon ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="20"></md-icon>
-                                                <md-tooltip md-direction="bottom">
-                                                    <translate>{{ct.getCheckedStr()|translate}}</translate>
-                                                </md-tooltip>
+                                                <md-tooltip md-direction="bottom">{{'Sort desc.'|translate}}</md-tooltip>
                                             </md-button>
                                         </div>
 

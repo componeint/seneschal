@@ -112,7 +112,7 @@
                     <tr>
                         <th ng-if="list.selectEnabled()">
                             <md-button class="md-icon-button" aria-label="{{ct.getCheckedStr()|translate}}" ng-click="list.toggleSelectAll();">
-                                <md-icon ng-md-icon icon="check_box_outline_blank" style="fill: black" size="24"></md-icon>
+                                <md-icon ng-md-icon icon="{{ct.getCheckedIcon('check_box_outline_blank', 'check_box')}}" style="fill: black" size="24" options='{"rotation": "random"}'></md-icon>
                                 <md-tooltip md-direction="bottom">{{ct.getCheckedStr()|translate}}</md-tooltip>
                             </md-button>
                         </th>
@@ -123,22 +123,21 @@
                                     <td>{{col.title}}</td>
                                     <td align="center">
                                         <div layout="row">
-                                            <md-button ng-attr-class="{{ list.isSortedAsc(col.field) && 'md-icon-button' || 'md-icon-button' }}" ng-click="ct.sort($event, col.field, 'asc');">
+                                            <!--<md-button ng-attr-class="{{ list.isSortedAsc(col.field) && 'md-icon-button' || 'md-icon-button' }}" ng-click="ct.sort($event, col.field, 'asc');">
                                                 <md-icon ng-md-icon icon="keyboard_arrow_up" style="fill: black" size="20"></md-icon>
                                                 <md-tooltip md-direction="bottom">{{'Sort asc.'|translate}}</md-tooltip>
                                             </md-button>
                                             <md-button ng-attr-class="{{ list.isSortedDesc(col.field) && 'md-icon-button' || 'md-icon-button' }}" ng-click="ct.sort($event, col.field, 'desc');">
                                                 <md-icon ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="20"></md-icon>
                                                 <md-tooltip md-direction="bottom">{{'Sort desc.'|translate}}</md-tooltip>
-                                            </md-button>
+                                            </md-button>-->
+                                            <md-icon ng-md-icon icon="keyboard_arrow_up" style="fill: black" size="24" ng-click="ct.sort($event, col.field, 'asc');">
+                                                <md-tooltip md-direction="bottom">{{'Sort asc.'|translate}}</md-tooltip>
+                                            </md-icon>
+                                            <md-icon ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="24" ng-click="ct.sort($event, col.field, 'desc');">
+                                                <md-tooltip md-direction="bottom">{{'Sort desc.'|translate}}</md-tooltip>
+                                            </md-icon>
                                         </div>
-
-                                        <!--<button type="button" ng-attr-class="{{ list.isSortedAsc(col.field) && 'btn btn-default btn-xs active' || 'btn btn-default btn-xs' }}" ng-click="ct.sort($event, col.field, 'asc');" title="{{'Sort asc.'|translate}}">
-                                            <md-icon ng-md-icon icon="keyboard_arrow_up" style="fill: black" size="24"></md-icon>
-                                        </button>
-                                        <button type="button" ng-attr-class="{{ list.isSortedDesc(col.field) && 'btn btn-default btn-xs active' || 'btn btn-default btn-xs' }}" ng-click="ct.sort($event, col.field, 'desc');" title="{{'Sort desc.'|translate}}">
-                                            <md-icon ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="24"></md-icon>
-                                        </button>-->
                                     </td>
                                 </tr>
                             </table>

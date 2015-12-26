@@ -58,7 +58,7 @@
                 </md-tooltip>
             </md-button>
         </div>
-        <div flex="auto" style="background-color: #d5b2e6;" ng-if="list.isEmpty()">
+        <div flex="auto" ng-if="list.isEmpty()">
             <div>
                 <p>
                     <translate>NO DATA FOUND</translate>
@@ -134,140 +134,80 @@
                 </tbody>
             </table>
         </div>
-        <br />
+        <br/>
+
         <div flex="auto" ng-if="! list.isEmpty()">
             <div>
                 <translate>Selected rows</translate>
                 : {{list.getSelectedCount()}}
             </div>
         </div>
-        <div flex="auto" style="background-color: #7fc1e6;">five</div>
-        <div flex="auto" style="background-color: #e5e675;">six</div>
-    </div>
-    <!-- Toolbar -->
-    <div>
-        <div>
-            <div>
+        <br/>
 
+        <div flex="auto">
+            <div layout="row" layout-wrap ng-if="! list.isEmpty()">
+                <!-- Pagination -->
+                <div flex="33" ng-if="list.paginationEnabled()">
+                    <!-- Angular UI Bootstrap pagination -->
+                    <pagination
+                            boundary-links="true"
+                            ng-change="ct.pageChanged()"
+                            ng-model="list.pagination_info.currpage"
+                            total-items="list.pagination_info.rowcount"
+                            items-per-page="list.pagination_info.pagesize"
+                            max-size="list.pagination_info.show_pages"
+                            previous-text="&lsaquo;"
+                            next-text="&rsaquo;"
+                            first-text="&laquo;"
+                            last-text="&raquo;">
 
-                <form>
-                    <div>
-                        <div>
-                            <div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <!-- Enter search value -->
-                    <div>
-                        <div>
-
-					<span>
-
-					</span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div>
-
-    </div>
-    <!-- Table -->
-    <div>
-        <div>
-            <div>
-
-            </div>
-        </div>
-    </div>
-
-    <div >
-
-    </div>
-
-    <!-- Pagination -->
-    <div ng-if="list.paginationEnabled()">
-        <div>
-            <!-- Angular UI Bootstrap pagination -->
-            <pagination
-                    boundary-links="true"
-                    ng-change="ct.pageChanged()"
-                    ng-model="list.pagination_info.currpage"
-                    total-items="list.pagination_info.rowcount"
-                    items-per-page="list.pagination_info.pagesize"
-                    max-size="list.pagination_info.show_pages"
-                    previous-text="&lsaquo;"
-                    next-text="&rsaquo;"
-                    first-text="&laquo;"
-                    last-text="&raquo;">
-
-            </pagination>
-        </div>
-
-        <!-- Page size -->
-
-        <md-menu md-offset="0 -7">
-            <md-button aria-label="Select a field" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
-                <md-tooltip md-direction="bottom">{{'Select a value'|translate}}</md-tooltip>
-            </md-button>
-            <md-menu-content width="4">
-                <md-menu-item ng-repeat="ps in ct.options.pagesizes">
-                    <md-button ng-click="list.setPageSize(ps);">
-                        <span md-menu-align-target ng-click="list.setPageSize(ps);"></span> {{ps}}
-                    </md-button>
-                </md-menu-item>
-            </md-menu-content>
-        </md-menu>
-        <md-input-container style="margin-bottom: 0px;">
-            <label for="pageSize">{{'Select a value'|translate}}</label>
-            <input type="text" id="pageSize" aria-label="Page Size" value="{{list.pagination_info.pagesize}}" readonly>
-        </md-input-container>
-
-
-        <!--<div style="text-align:right;">
-            <div style="margin-top:20px;">
-                <div>
-                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{'Select a value'|translate}}">
-                        <translate>Page size</translate>
-                        <span></span>
-                    </button>
-                    <ul>
-                        <li ng-repeat="ps in ct.options.pagesizes">
-                            <a href="" ng-click="list.setPageSize(ps);">{{ps}}</a>
-                        </li>
-                    </ul>
+                    </pagination>
                 </div>
-                <input type="text" aria-label="Page Size" value="{{list.pagination_info.pagesize}}" readonly>
-            </div>
-        </div>-->
-
-        <!-- Info -->
-        <div>
-            <div>
-                <translate>Showing</translate>
-                {{list.pagination_info.firstrec}}
-                <translate>to</translate>
-                {{list.pagination_info.lastrec}}
-                <translate>of</translate>
-                {{list.pagination_info.rowcount}}
-                <translate>entries</translate>
+                <!-- Page size -->
+                <div flex="33" style="text-align: center;">
+                    <md-menu md-offset="0 -7">
+                        <md-button aria-label="Select a field" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
+                            <md-tooltip md-direction="bottom">{{'Select a value'|translate}}</md-tooltip>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item ng-repeat="ps in ct.options.pagesizes">
+                                <md-button ng-click="list.setPageSize(ps);">
+                                    <span md-menu-align-target ng-click="list.setPageSize(ps);"></span> {{ps}}
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+                    <md-input-container style="margin-bottom: 0px;">
+                        <label for="pageSize">{{'Select a value'|translate}}</label>
+                        <input type="text" id="pageSize" aria-label="Page Size" value="{{list.pagination_info.pagesize}}" readonly>
+                    </md-input-container>
+                </div>
+                <!-- Info -->
+                <div flex="33">
+                    <div style="text-align: right;">
+                        <translate>Showing</translate>
+                        {{list.pagination_info.firstrec}}
+                        <translate>to</translate>
+                        {{list.pagination_info.lastrec}}
+                        <translate>of</translate>
+                        {{list.pagination_info.rowcount}}
+                        <translate>entries</translate>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Server response -->
-    <div ng-if="list.options.listURL && ct.options.debug">
-        <p>
-            <translate>Server response</translate>
-            :
-        </p>
-        <p>
-        <pre style="height:200px;scroll:auto;"><code>{{list.server_response | json: 2}}</code></pre>
-        </p>
+        <div flex="auto">
+            <!-- Server response -->
+            <div ng-if="list.options.listURL && ct.options.debug">
+                <p>
+                    <translate>Server response</translate>
+                    :
+                </p>
+                <p>
+                <pre style="height:200px;scroll:auto;"><code>{{list.server_response | json: 2}}</code></pre>
+                </p>
+            </div>
+        </div>
     </div>
 </treasure-overlay-spinner>

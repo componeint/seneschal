@@ -193,7 +193,7 @@
     <div ng-if="list.paginationEnabled()">
         <div>
             <!-- Angular UI Bootstrap pagination -->
-            <uibPagination
+            <pagination
                     boundary-links="true"
                     ng-change="ct.pageChanged()"
                     ng-model="list.pagination_info.currpage"
@@ -205,7 +205,7 @@
                     first-text="&laquo;"
                     last-text="&raquo;">
 
-            </uibPagination>
+            </pagination>
         </div>
 
         <!-- Page size -->

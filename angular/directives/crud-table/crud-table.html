@@ -2,11 +2,10 @@
 <treasure-overlay-spinner active="ct.busy">
 
     <div layout="column" layout-align="start stretch">
-        <div flex="auto" style="text-align: right;"></div>
         <div flex="auto">
-            <div layout="row" layout-xs="column" layout-sm="column" layout-align="start stretch" ng-if="! list.isEmpty()">
+            <div layout="row" layout-xs="column" layout-sm="column" layout-align="start stretch">
                 <!--  -->
-                <div flex="auto" flex-order-xs="2" flex-order-sm="2" layout="row" layout-align="start end">
+                <div flex="auto" flex-order-xs="2" flex-order-sm="2" layout="row" layout-align="start end" ng-if="!list.isEmpty()">
                     <!-- Controls -->
                     <md-button class="md-icon-button" aria-label="{{'Refresh'|translate}}" ng-click="list.refresh();" ng-if="ct.options.refreshBtn">
                         <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>

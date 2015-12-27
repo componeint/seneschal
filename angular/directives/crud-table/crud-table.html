@@ -15,8 +15,7 @@
                 <md-menu-content width="4">
                     <md-menu-item ng-repeat="filter in ct.options.filters">
                         <md-button ng-click="ct.setSearch(filter);">
-                            <!--<a href="" ng-click="ct.setSearch(filter);">{{filter.title}}</a>-->
-                            <span md-menu-align-target ng-click="ct.setSearch(filter);">Field :: </span> {{filter.title}}
+                            <span md-menu-align-target ng-click="ct.setSearch(filter);"></span> {{filter.title}}
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>
@@ -118,53 +117,41 @@
                     <!-- actions -->
                     <td ng-if="ct.options.actionsCol">
                         <div layout="row">
-                                <span ng-click="ct.options.editRecord(rec); $event.stopPropagation();" ng-if="ct.options.editRecord && ! rec.readonly">
-                                    <md-icon ng-md-icon icon="edit" style="fill: black" size="24">
-                                        <md-tooltip md-direction="bottom">{{'Edit record'|translate}}</md-tooltip>
-                                    </md-icon>
-                                </span>
-                                <span ng-click="ct.options.deleteRecord(rec); $event.stopPropagation();" ng-if="ct.options.deleteRecord && ! rec.readonly">
-                                    <md-icon ng-md-icon icon="delete" style="fill: black" size="24">
-                                        <md-tooltip md-direction="bottom">{{'Delete record'|translate}}</md-tooltip>
-                                    </md-icon>
-                                </span>
+                            <span ng-click="ct.options.editRecord(rec); $event.stopPropagation();" ng-if="ct.options.editRecord && ! rec.readonly">
+                                <md-icon ng-md-icon icon="edit" style="fill: black" size="24">
+                                    <md-tooltip md-direction="bottom">{{'Edit record'|translate}}</md-tooltip>
+                                </md-icon>
+                            </span>
+                            <span ng-click="ct.options.deleteRecord(rec); $event.stopPropagation();" ng-if="ct.options.deleteRecord && ! rec.readonly">
+                                <md-icon ng-md-icon icon="delete" style="fill: black" size="24">
+                                    <md-tooltip md-direction="bottom">{{'Delete record'|translate}}</md-tooltip>
+                                </md-icon>
+                            </span>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <br/>
 
-        <div flex="auto" ng-if="! list.isEmpty()">
+        <div flex="auto" layout-padding layout-margin layout-fill ng-if="! list.isEmpty()">
             <div>
                 <translate>Selected rows</translate>
                 : {{list.getSelectedCount()}}
             </div>
         </div>
-        <br/>
 
         <div flex="auto">
-            <div layout="row" layout-wrap ng-if="! list.isEmpty()">
+            <div layout="row" layout-xs="column" layout-sm="column" layout-align="start stretch" ng-if="! list.isEmpty()">
                 <!-- Pagination -->
-                <div flex="33" ng-if="list.paginationEnabled()">
+                <div flex="auto" ng-if="list.paginationEnabled()">
                     <!-- Angular UI Bootstrap pagination -->
-                    <pagination
-                            boundary-links="true"
-                            ng-change="ct.pageChanged()"
-                            ng-model="list.pagination_info.currpage"
-                            total-items="list.pagination_info.rowcount"
-                            items-per-page="list.pagination_info.pagesize"
-                            max-size="list.pagination_info.show_pages"
-                            previous-text="&lsaquo;"
-                            next-text="&rsaquo;"
-                            first-text="&laquo;"
-                            last-text="&raquo;">
+                    <pagination boundary-links="true" ng-change="ct.pageChanged()" ng-model="list.pagination_info.currpage" total-items="list.pagination_info.rowcount" items-per-page="list.pagination_info.pagesize" max-size="list.pagination_info.show_pages" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
 
                     </pagination>
                 </div>
                 <!-- Page size -->
-                <div flex="33" style="text-align: center;">
+                <div flex="auto" style="text-align: center;">
                     <md-menu md-offset="0 -7">
                         <md-button aria-label="Select a field" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                             <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
@@ -184,8 +171,8 @@
                     </md-input-container>
                 </div>
                 <!-- Info -->
-                <div flex="33">
-                    <div style="text-align: right;">
+                <div flex="auto" style="text-align: center;">
+                    <div>
                         <translate>Showing</translate>
                         {{list.pagination_info.firstrec}}
                         <translate>to</translate>
@@ -197,6 +184,7 @@
                 </div>
             </div>
         </div>
+        <md-divider></md-divider>
         <div flex="auto">
             <!-- Server response -->
             <div ng-if="list.options.listURL && ct.options.debug">

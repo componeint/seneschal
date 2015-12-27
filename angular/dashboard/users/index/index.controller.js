@@ -53,13 +53,15 @@ angular
                 alert(selection.length + ' records selected');
             },
             cols        : [
+
+                {field: 'age', title: 'ID'},
                 {field: 'name', title: 'Name'},
-                {field: 'age', title: 'Age'},
                 {field: 'snippet', title: 'Description', sortable: false}
             ],
             filters     : [
+
+                {field: 'age', title: 'ID', condition: 'eq'},
                 {field: 'name', title: 'Name', condition: 'like_b', options: {insensitive: true}},
-                {field: 'age', title: 'Age', condition: 'eq'},
                 {field: 'snippet', title: 'Description', condition: 'like_b', options: {insensitive: true}}
             ],
             pagesizes   : [5, 10, 20],

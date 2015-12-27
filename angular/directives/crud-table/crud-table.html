@@ -4,7 +4,6 @@
     <div layout="column" layout-align="start stretch">
         <div flex="auto">
             <div layout="row" layout-xs="column" layout-sm="column" layout-align="start stretch">
-                <!--  -->
                 <div flex="auto" flex-order-xs="2" flex-order-sm="2" layout="row" layout-align="start end" ng-if="!list.isEmpty()">
                     <!-- Controls -->
                     <md-button class="md-icon-button" aria-label="{{'Refresh'|translate}}" ng-click="list.refresh();" ng-if="ct.options.refreshBtn">
@@ -26,7 +25,6 @@
                         </md-tooltip>
                     </md-button>
                 </div>
-                <!--  -->
                 <div flex="auto" flex-order="1" layout="row" layout-align="end end">
                     <!-- Select search field -->
                     <md-menu md-offset="0 -7">
@@ -87,19 +85,31 @@
                         <table ng-if="ct.colIsSortable(col)">
                             <tr>
                                 <td>{{col.title}}</td>
-                                <td align="center">
-                                    <div layout="row">
-                                        <span ng-click="ct.sort($event, col.field, 'asc');">
-                                            <md-icon ng-md-icon icon="keyboard_arrow_up" style="fill: black" size="24">
-                                                <md-tooltip md-direction="bottom">{{'Sort asc.'|translate}}</md-tooltip>
-                                            </md-icon>
-                                        </span>
-                                        <span ng-click="ct.sort($event, col.field, 'desc');">
-                                            <md-icon ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="24">
-                                                <md-tooltip md-direction="bottom">{{'Sort desc.'|translate}}</md-tooltip>
-                                            </md-icon>
-                                        </span>
-                                    </div>
+                                <td>
+                                    <md-menu md-offset="0 -7">
+                                        <md-button aria-label="Option" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                            <md-icon ng-md-icon icon="unfold_more" style="fill: black" size="24"></md-icon>
+                                            <md-tooltip md-direction="bottom">
+                                                <translate>Option</translate>
+                                            </md-tooltip>
+                                        </md-button>
+                                        <md-menu-content width="2">
+                                            <md-menu-item>
+                                                <md-button ng-click="ct.sort($event, col.field, 'asc');">
+                                                    <md-icon ng-md-icon icon="keyboard_arrow_up" style="fill: black" size="24">
+                                                        <md-tooltip md-direction="bottom">{{'Sort asc.'|translate}}</md-tooltip>
+                                                    </md-icon>Asc.
+                                                </md-button>
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button ng-click="ct.sort($event, col.field, 'desc');">
+                                                    <md-icon ng-md-icon icon="keyboard_arrow_down" style="fill: black" size="24">
+                                                        <md-tooltip md-direction="bottom">{{'Sort desc.'|translate}}</md-tooltip>
+                                                    </md-icon>Desc.
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
                                 </td>
                             </tr>
                         </table>
@@ -123,16 +133,14 @@
                     <!-- actions -->
                     <td ng-if="ct.options.actionsCol">
                         <div layout="row">
-                            <span ng-click="ct.options.editRecord(rec); $event.stopPropagation();" ng-if="ct.options.editRecord && ! rec.readonly">
-                                <md-icon ng-md-icon icon="edit" style="fill: black" size="24">
-                                    <md-tooltip md-direction="bottom">{{'Edit record'|translate}}</md-tooltip>
-                                </md-icon>
-                            </span>
-                            <span ng-click="ct.options.deleteRecord(rec); $event.stopPropagation();" ng-if="ct.options.deleteRecord && ! rec.readonly">
-                                <md-icon ng-md-icon icon="delete" style="fill: black" size="24">
-                                    <md-tooltip md-direction="bottom">{{'Delete record'|translate}}</md-tooltip>
-                                </md-icon>
-                            </span>
+                            <md-button class="md-icon-button" ng-click="ct.options.editRecord(rec); $event.stopPropagation();" ng-if="ct.options.editRecord && ! rec.readonly">
+                                <md-icon ng-md-icon icon="edit" style="fill: black" size="24"></md-icon>
+                                <md-tooltip md-direction="bottom">{{'Edit record'|translate}}</md-tooltip>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="ct.options.deleteRecord(rec); $event.stopPropagation();" ng-if="ct.options.deleteRecord && ! rec.readonly">
+                                <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
+                                <md-tooltip md-direction="bottom">{{'Delete record'|translate}}</md-tooltip>
+                            </md-button>
                         </div>
                     </td>
                 </tr>

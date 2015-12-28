@@ -38,7 +38,7 @@
                             {field: 'status', title: 'Status'}
                         ],
                         filters     : [
-                            {field: 'email', title: 'User', condition: 'like_b'},
+                            {field: 'email', title: 'User', condition: 'like_b', options: {insensitive: true}},
                             {field: 'status', title: 'Status', condition: 'like_b', options: {insensitive: true}}
                         ],
                         pagesizes   : [5, 10, 20],
@@ -49,7 +49,7 @@
 
                 fl: {
                     options: {
-                        listURL           : 'desserts.json',
+                        listURL           : '/api/users',
                         method            : 'GET',
                         urlencoded        : true,
                         pagesize          : 5,

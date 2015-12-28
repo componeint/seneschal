@@ -23,13 +23,6 @@
         function activate() {
             //
         }
-    }
-
-})();
-
-angular
-    .module('jwtAuth')
-    .controller('ctPhonesExCtrl', ['$scope', function($scope) {
 
         $scope.phones = {};
 
@@ -59,7 +52,6 @@ angular
                 {field: 'snippet', title: 'Description', sortable: false}
             ],
             filters     : [
-
                 {field: 'age', title: 'ID', condition: 'eq'},
                 {field: 'name', title: 'Name', condition: 'like_b', options: {insensitive: true}},
                 {field: 'snippet', title: 'Description', condition: 'like_b', options: {insensitive: true}}
@@ -122,5 +114,7 @@ angular
                 }
             });
         });
+    }
 
-    }]);
+})();
+

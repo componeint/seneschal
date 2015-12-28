@@ -5,9 +5,34 @@
 
 namespace Onderdelen\JwtAuth\Controllers;
 
+use Illuminate\Pagination\Paginator;
+//use Onderdelen\JwtAuth\FormRequests\ChangePasswordRequest;
+//use Onderdelen\JwtAuth\FormRequests\UserCreateRequest;
+//use Onderdelen\JwtAuth\FormRequests\UserUpdateRequest;
+use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
+use Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface;
+use Vinkla\Hashids\HashidsManager;
+use View;
+use Input;
+use Event;
+use Redirect;
+use Session;
+use Config;
+use Anwendungen\Application\Controller\Controller;
 
-class UserController
+class UserController extends Controller
 {
+    public function __construct(
+        UserRepositoryInterface $userRepository,
+        GroupRepositoryInterface $groupRepository,
+        HashidsManager $hashids
+    ) {
+        $this->userRepository  = $userRepository;
+        $this->groupRepository = $groupRepository;
+        $this->hashids         = $hashids;
+
+        $this->middleware('jwt.auth', ['except' => ['register']]);
+    }
     /**
      * Display a paginated index of all current users, with throttle data
      *

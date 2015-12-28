@@ -18,3 +18,4 @@ $api->version('v1', ['middleware' => 'api.auth'], function ($api) {
 
 // Route::post('/auth/signup', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@signup');
 // Route::post('register', ['as' => 'sentinel.register.user', 'uses' => 'RegistrationController@register']);
+// Route::get('users', ['as' => 'sentinel.users.index', 'uses' => 'UserController@index']);

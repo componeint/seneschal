@@ -67,7 +67,7 @@
                         paginationOnClient: true,
                         searchOnClient    : true
                         // Enable log
-                        //,log: {id: 'phonesService', err: true, debug: true}
+                        ,log: {id: 'phonesService', err: true, debug: true}
                     }
                 }
             };

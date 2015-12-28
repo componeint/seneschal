@@ -9,10 +9,10 @@
         .module('jwtAuth')
         .controller('UserIndexController', UserIndexController);
 
-    UserIndexController.$inject = ['$scope', 'phonesService'];
+    UserIndexController.$inject = ['$scope', 'usersService'];
 
     /* @ngInject */
-    function UserIndexController($scope, phonesService) {
+    function UserIndexController($scope, usersService) {
         var vm   = this;
         vm.title = 'UserIndexController';
 
@@ -21,9 +21,9 @@
         ////////////////
 
         function activate() {
-            $scope.phones = phonesService.phone;
+            $scope.user = usersService.user;
             // Mark a specific record as read-only
-            $scope.$on('flComplete', phonesService.flComplete);
+            $scope.$on('flComplete', usersService.flComplete);
         }
     }
 

@@ -14,8 +14,7 @@
     /* @ngInject */
     function groupsService() {
         var service = {
-            group     : group(),
-            flComplete: flComplete()
+            group     : group()
         };
 
         return service;
@@ -85,15 +84,6 @@
             };
 
             return usr;
-        }
-
-        function flComplete($e, $args) {
-            angular.forEach(group().fl.records, function(record) {
-                if (record.id === 'dell-venue') {
-                    record.readonly = true;
-                    return;
-                }
-            });
         }
 
         function addRecord() {

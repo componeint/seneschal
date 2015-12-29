@@ -22,8 +22,16 @@
 
         function activate() {
             $scope.group = groupsService.group;
+
             // Mark a specific record as read-only
-            $scope.$on('flComplete', groupsService.flComplete);
+            $scope.$on('flComplete', function flComplete($e, $args) {
+                angular.forEach($scope.group.fl.records, function(record) {
+                    if ((record.id === 2) && (record.name === 'Admins')) {
+                        record.readonly = true;
+                        return;
+                    }
+                });
+            });
         }
     }
 

@@ -14,15 +14,15 @@
     /* @ngInject */
     function groupsService() {
         var service = {
-            group     : group()
+            lists     : lists()
         };
 
         return service;
 
         ////////////////
 
-        function group() {
-            var usr = {
+        function lists() {
+            var obj = {
                 ct: {
                     options: {
                         pk          : 'id',
@@ -83,7 +83,7 @@
                 }
             };
 
-            return usr;
+            return obj;
         }
 
         function addRecord() {

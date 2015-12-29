@@ -21,9 +21,7 @@
         ////////////////
 
         function activate() {
-            $scope.user = usersService.user;
-            // Mark a specific record as read-only
-            $scope.$on('flComplete', usersService.flComplete);
+            $scope.user = usersService.lists;
         }
     }
 

@@ -14,16 +14,15 @@
     /* @ngInject */
     function usersService() {
         var service = {
-            user      : user(),
-            flComplete: flComplete()
+            lists      : lists()
         };
 
         return service;
 
         ////////////////
 
-        function user() {
-            var usr = {
+        function lists() {
+            var obj = {
                 ct: {
                     options: {
                         pk          : 'id',
@@ -59,21 +58,12 @@
                         paginationOnClient: true,
                         searchOnClient    : true
                         // Enable log
-                        , log             : {id: 'usersService', err: true, debug: true}
+                        //, log             : {id: 'usersService', err: true, debug: true}
                     }
                 }
             };
 
-            return usr;
-        }
-
-        function flComplete($e, $args) {
-            angular.forEach(user().fl.records, function(record) {
-                if (record.id === 'dell-venue') {
-                    record.readonly = true;
-                    return;
-                }
-            });
+            return obj;
         }
 
         function addRecord() {

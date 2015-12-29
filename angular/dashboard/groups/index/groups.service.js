@@ -9,12 +9,12 @@
         .module('jwtAuth')
         .factory('groupsService', groupsService);
 
-    groupsService.$inject = [];
+    groupsService.$inject = ['$state'];
 
     /* @ngInject */
-    function groupsService() {
+    function groupsService($state) {
         var service = {
-            lists     : lists()
+            lists: lists()
         };
 
         return service;
@@ -72,7 +72,10 @@
                         urlencoded        : true,
                         pagesize          : 5,
                         orderby           : [
-                            {field: 'name', type: 'asc'}
+                            {
+                                field: 'name',
+                                type : 'asc'
+                            }
                         ],
                         sortOnClient      : true,
                         paginationOnClient: true,
@@ -87,7 +90,7 @@
         }
 
         function addRecord() {
-            alert('add record');
+            $state.go('dashboard.groups.create');
         }
 
         function editRecord(record) {

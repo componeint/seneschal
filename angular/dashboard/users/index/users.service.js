@@ -9,12 +9,12 @@
         .module('jwtAuth')
         .factory('usersService', usersService);
 
-    usersService.$inject = [];
+    usersService.$inject = ['$state'];
 
     /* @ngInject */
-    function usersService() {
+    function usersService($state) {
         var service = {
-            lists      : lists()
+            lists: lists()
         };
 
         return service;
@@ -33,12 +33,32 @@
                         deleteRecord: deleteRecord,
                         deleteRows  : deleteRows,
                         cols        : [
-                            {field: 'email', title: 'User'},
-                            {field: 'status', title: 'Status'}
+                            {
+                                field: 'email',
+                                title: 'User'
+                            },
+                            {
+                                field: 'status',
+                                title: 'Status'
+                            }
                         ],
                         filters     : [
-                            {field: 'email', title: 'User', condition: 'like_b', options: {insensitive: true}},
-                            {field: 'status', title: 'Status', condition: 'like_b', options: {insensitive: true}}
+                            {
+                                field    : 'email',
+                                title    : 'User',
+                                condition: 'like_b',
+                                options  : {
+                                    insensitive: true
+                                }
+                            },
+                            {
+                                field    : 'status',
+                                title    : 'Status',
+                                condition: 'like_b',
+                                options  : {
+                                    insensitive: true
+                                }
+                            }
                         ],
                         pagesizes   : [5, 10, 20],
                         debug       : true,
@@ -52,7 +72,10 @@
                         urlencoded        : true,
                         pagesize          : 5,
                         orderby           : [
-                            {field: 'name', type: 'asc'}
+                            {
+                                field: 'name',
+                                type : 'asc'
+                            }
                         ],
                         sortOnClient      : true,
                         paginationOnClient: true,
@@ -67,7 +90,7 @@
         }
 
         function addRecord() {
-            alert('add record');
+            $state.go('dashboard.users.create');
         }
 
         function editRecord(record) {

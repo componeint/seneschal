@@ -14,7 +14,7 @@
     /* @ngInject */
     function usersService() {
         var service = {
-            user     : user(),
+            user      : user(),
             flComplete: flComplete()
         };
 
@@ -46,7 +46,6 @@
                         displayField: displayField
                     }
                 },
-
                 fl: {
                     options: {
                         listURL           : '/api/users',
@@ -60,7 +59,7 @@
                         paginationOnClient: true,
                         searchOnClient    : true
                         // Enable log
-                        ,log: {id: 'usersService', err: true, debug: true}
+                        , log             : {id: 'usersService', err: true, debug: true}
                     }
                 }
             };

@@ -9,7 +9,7 @@
         .module('jwtAuth')
         .config(jwtAuthRouter);
 
-    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider','$authProvider', '$httpProvider', '$provide'];
+    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', '$httpProvider', '$provide'];
 
     /* @ngInject */
     function jwtAuthRouter($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
@@ -18,6 +18,50 @@
         $urlRouterProvider.otherwise('/');
 
         $stateProvider
+            .state('dashboard.groups', {
+                url  : '/groups',
+                data : {pageName: 'groups'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : dashboard('groups.index'),
+                        controller  : 'GroupIndexController',
+                        controllerAs: 'index'
+                    }
+                }
+            })
+            .state('dashboard.groups.create', {
+                url  : '/create',
+                data : {pageName: 'Create'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : dashboard('groups.create'),
+                        controller  : 'GroupCreateController',
+                        controllerAs: 'create'
+                    }
+                }
+            })
+            .state('dashboard.groups.show', {
+                url  : '/show',
+                data : {pageName: 'Show'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : dashboard('groups.show'),
+                        controller  : 'GroupShowController',
+                        controllerAs: 'show'
+                    }
+                }
+            })
+            .state('dashboard.groups.edit', {
+                url  : '/edit',
+                data : {pageName: 'Edit'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : dashboard('groups.edit'),
+                        controller  : 'GroupEditController',
+                        controllerAs: 'edit'
+                    }
+                }
+            })
             .state('dashboard.users', {
                 url  : '/users',
                 data : {pageName: 'Users'},
@@ -117,16 +161,16 @@
                 }
             })
             .state('jwtauth.home', {
-                url  : '/home',
-                data : {pageName: 'Home'},
-                views: {
+                url    : '/home',
+                data   : {pageName: 'Home'},
+                views  : {
                     'main@jwtauth': {
                         templateUrl : view('jwt-auth.home'),
                         controller  : 'JwtAuthHomeController',
                         controllerAs: 'home'
                     }
                 },
-                resolve    : {
+                resolve: {
                     loginRequired: loginRequired
                 }
             });
@@ -187,24 +231,26 @@
 
         function redirectWhenLoggedOut($q, $injector) {
 
-            return {
-
-                responseError: function(rejection) {
-                    var
-                        $state           = $injector.get('$state'),
-                        rejectionReasons = ['token_not_provided', 'token_expired', 'token_absent', 'token_invalid'];
-
-                    angular.forEach(rejectionReasons, function(value, key) {
-
-                        if (rejection.data.error === value) {
-                            localStorage.removeItem('user');
-                            $state.go('jwtauth.signin');
-                        }
-                    });
-
-                    return $q.reject(rejection);
-                }
+            var respError = {
+                responseError: responseError
             };
+
+            function responseError(rejection) {
+                var
+                    $state           = $injector.get('$state'),
+                    rejectionReasons = ['token_not_provided', 'token_expired', 'token_absent', 'token_invalid'];
+
+                angular.forEach(rejectionReasons, function(value, key) {
+                    if (rejection.data.error === value) {
+                        localStorage.removeItem('user');
+                        $state.go('jwtauth.signin');
+                    }
+                });
+
+                return $q.reject(rejection);
+            }
+
+            return respError;
         }
 
         function skipIfLoggedIn($q, $auth) {
@@ -214,6 +260,7 @@
             } else {
                 deferred.resolve();
             }
+
             return deferred.promise;
         }
 
@@ -224,6 +271,7 @@
             } else {
                 $location.path('/auth/signin');
             }
+
             return deferred.promise;
         }
 

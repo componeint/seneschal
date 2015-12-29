@@ -88,7 +88,7 @@
         }
 
         function flComplete($e, $args) {
-            angular.forEach(user().fl.records, function(record) {
+            angular.forEach(group().fl.records, function(record) {
                 if (record.id === 'dell-venue') {
                     record.readonly = true;
                     return;

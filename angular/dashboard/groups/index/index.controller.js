@@ -9,10 +9,10 @@
         .module('jwtAuth')
         .controller('GroupIndexController', GroupIndexController);
 
-    GroupIndexController.$inject = ['$scope'];
+    GroupIndexController.$inject = ['$scope', 'groupsService'];
 
     /* @ngInject */
-    function GroupIndexController($scope) {
+    function GroupIndexController($scope, groupsService) {
         var vm   = this;
         vm.title = 'GroupIndexController';
 
@@ -21,7 +21,9 @@
         ////////////////
 
         function activate() {
-            //
+            $scope.group = groupsService.group;
+            // Mark a specific record as read-only
+            $scope.$on('flComplete', groupsService.flComplete);
         }
     }
 

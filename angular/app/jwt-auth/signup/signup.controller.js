@@ -9,10 +9,10 @@
         .module('jwtAuth')
         .controller('JwtAuthSignupController', JwtAuthSignupController);
 
-    JwtAuthSignupController.$inject = ['$location', '$state', '$auth', 'toastr'];
+    JwtAuthSignupController.$inject = ['$location', '$state', '$auth', 'toastService'];
 
     /* @ngInject */
-    function JwtAuthSignupController($location, $state, $auth, toastr) {
+    function JwtAuthSignupController($location, $state, $auth, toastService) {
         var vm    = this;
         vm.title  = 'JwtAuthSignupController';
         vm.user;
@@ -30,33 +30,15 @@
             $auth.signup(vm.user)
                 .then(function(response) {
                     $auth.setToken(response);
-                    //$location.path('/');
                     $state.go('jwtauth.home');
-                    toastr.info('You have successfully created a new account and have been signed-in');
+                    toastService.show('You have successfully created a new account and have been signed-in');
                 })
                 .catch(function(response) {
-                    console.log('error');
-                    //console.log(response);
-                    console.log(response.data);
-                    toastr.error(response.data.message);
-                    //toastr.error(response.data);
+                    console.log(response.data.message);
+                    toastService.error(response.data.message);
                 });
         }
     }
 
 })();
 
-/*angular.module('jwtAuth')
- .controller('SignupCtrl', function($scope, $location, $auth, toastr) {
- $scope.signup = function() {
- $auth.signup($scope.user)
- .then(function(response) {
- $auth.setToken(response);
- $location.path('/');
- toastr.info('You have successfully created a new account and have been signed-in');
- })
- .catch(function(response) {
- toastr.error(response.data.message);
- });
- };
- });*/

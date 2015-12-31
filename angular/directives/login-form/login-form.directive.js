@@ -18,8 +18,11 @@
             controller      : LoginFormController,
             controllerAs    : 'LoginForm',
             link            : link,
-            restrict        : 'A',
-            scope           : {}
+            restrict        : 'EA',
+            scope           : false,
+            templateUrl     : function(elem, attr) {
+                return attr.template;
+            }
         };
         return directive;
 

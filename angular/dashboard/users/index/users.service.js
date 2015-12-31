@@ -107,8 +107,8 @@
 
         function displayField(scope, element, attrs) {
             // Add a link on field "name" to each record
-            if (attrs['field'] == 'name') {
-                if (attrs['value'] == 'Dell Venue') {
+            if (attrs['field'] == 'email') {
+                if (attrs['value'] === null) {
                     element.html('<a onclick="event.stopPropagation();alert(\'This is a read-only record\');" href="javascript:void(0);">' + attrs['value'] + '</a>');
                 }
                 else {

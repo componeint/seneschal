@@ -7,7 +7,7 @@ namespace Onderdelen\JwtAuth\FormRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmailRequest
+class EmailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

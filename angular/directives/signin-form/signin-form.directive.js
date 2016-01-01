@@ -18,8 +18,11 @@
             controller      : SigninFormController,
             controllerAs    : 'SigninForm',
             link            : link,
-            restrict        : 'A',
-            scope           : {}
+            restrict        : 'EA',
+            scope           : false,
+            templateUrl     : function(elem, attr) {
+                return attr.template;
+            }
         };
         return directive;
 
@@ -28,10 +31,40 @@
         }
     }
 
-    SigninFormController.$inject = [];
+    SigninFormController.$inject = ['$auth', '$state', '$http', '$rootScope'];
 
     /* @ngInject */
-    function SigninFormController() {
+    function SigninFormController($auth, $state, $http, $rootScope) {
+        var vm        = this;
+        vm.title      = 'SigninFormController';
+        vm.loginError = false;
+        vm.loginErrorText;
+        vm.login      = login;
+
+        ////////////////
+
+        function login() {
+            var
+                credentials = {
+                    email   : vm.email,
+                    password: vm.password
+                };
+
+            $auth.login(credentials)
+                .then(function() {
+                    return $http.get('api/authenticate/user');
+                }, function(error) {
+                    vm.loginError     = true;
+                    vm.loginErrorText = error.data.error;
+                })
+                .then(function(response) {
+                    var user                 = JSON.stringify(response.data.user);
+                    localStorage.setItem('user', user);
+                    $rootScope.authenticated = true;
+                    $rootScope.currentUser   = response.data.user;
+                    $state.go('jwtauth.home');
+                });
+        }
 
     }
 

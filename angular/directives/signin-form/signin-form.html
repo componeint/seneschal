@@ -3,7 +3,7 @@
     <md-input-container class="md-block">
         <label for="email">Email</label>
         <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
-        <input type="email" id="email" ng-model="signin.email">
+        <input type="email" id="email" ng-model="SigninForm.email">
         <div ng-if="signinForm.email.$dirty" ng-messages="signinForm.email.$error">
             <div ng-message="required">Your email address is required.</div>
             <div ng-message="pattern">Your email address is invalid.</div>
@@ -12,13 +12,13 @@
     <md-input-container class="md-block">
         <label for="password">Password</label>
         <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-        <input type="password" id="password" ng-model="signin.password">
+        <input type="password" id="password" ng-model="SigninForm.password">
         <div ng-if="signinForm.password.$dirty" ng-messages="signinForm.password.$error">
             <div ng-message="required">Password is required.</div>
         </div>
     </md-input-container>
     <div layout="row" layout-align="end center">
-        <md-button ng-click="signin.login()" class="md-raised md-primary md-hue-3">
+        <md-button ng-click="SigninForm.login()" class="md-raised md-primary md-hue-3">
             <ng-md-icon icon="login" style="fill: black" size="24"></ng-md-icon> Sign-in
         </md-button>
     </div>

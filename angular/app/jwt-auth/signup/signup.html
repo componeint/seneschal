@@ -7,41 +7,42 @@
                     <label for="username">Username</label>
                     <md-icon ng-md-icon icon="account_circle" style="fill: black" size="24"></md-icon>
                     <input type="text" id="username" name="username" ng-model="signup.user.username" required>
-
                     <div ng-if="signupForm.username.$dirty" ng-messages="signupForm.username.$error">
-                        <div ng-message="required">You must enter your name.</div>
+                        <div ng-message="required">Username is required.</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label for="email">Email</label>
                     <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
-                    <input type="email" id="email" name="email" ng-model="signup.user.email" required>
-
+                    <input type="email" id="email" name="email" ng-model="signup.user.email" ng-minlength="4" ng-maxlength="254" required>
                     <div ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
-                        <div ng-message="required">Your email address is required.</div>
-                        <div ng-message="pattern">Your email address is invalid.</div>
+                        <div ng-message="required">Email address is required.</div>
+                        <div ng-message="pattern">Email address is invalid.</div>
+                        <p ng-message="minlength">Email is too short.</p>
+                        <p ng-message="maxlength">Email is too long.</p>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label for="password">Password</label>
                     <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-                    <input password-strength type="password" id="password" name="password" ng-model="signup.user.password" required>
-
+                    <input password-strength type="password" id="password" name="password" ng-model="signup.user.password" ng-minlength="8" required>
                     <div ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
                         <div ng-message="required">Password is required.</div>
+                        <div ng-message="minlength">Email is too short.</div>
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
                     <label for="password_confirmation">Confirm Password</label>
                     <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-                    <input password-match="signup.user.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="signup.user.password_confirmation">
-
-                    <div ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
+                    <input password-match="signup.user.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="signup.user.password_confirmation" ng-minlength="8" required>
+                    <div ng-if="signupForm.password_confirmation.$dirty" ng-messages="signupForm.password_confirmation.$error">
                         <div ng-message="compareTo">Password must match.</div>
+                        <div ng-message="required">Password is required.</div>
+                        <div ng-message="minlength">Email is too short.</div>
                     </div>
                 </md-input-container>
                 <p>
-                    <small>By clicking on Sign up, you agree to <a href="#">terms & conditions</a> and
+                    <small>By clicking on sign up, you agree to <a href="#">terms & conditions</a> and
                         <a href="#">privacy policy</a>
                     </small>
                 </p>

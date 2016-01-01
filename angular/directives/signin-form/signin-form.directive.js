@@ -19,7 +19,7 @@
             controllerAs    : 'SigninForm',
             link            : link,
             restrict        : 'EA',
-            scope           : false,
+            scope           : {},
             templateUrl     : function(elem, attr) {
                 return attr.template;
             }

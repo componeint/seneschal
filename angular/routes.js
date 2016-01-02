@@ -120,15 +120,15 @@
                         controller  : 'JwtAuthHeaderController',
                         controllerAs: 'header'
                     },
-                    'left@jwtauth'  : {
-                        templateUrl : view('jwt-auth.left'),
+                    'sidenav@jwtauth'  : {
+                        templateUrl : view('jwt-auth.sidenav'),
                         controller  : 'JwtAuthLeftController',
-                        controllerAs: 'left'
+                        controllerAs: 'sidenav'
                     },
-                    'right@jwtauth' : {
-                        templateUrl : view('jwt-auth.right'),
+                    'aside@jwtauth' : {
+                        templateUrl : view('jwt-auth.aside'),
                         controller  : 'JwtAuthRightController',
-                        controllerAs: 'right'
+                        controllerAs: 'aside'
                     },
                     'footer@jwtauth': {
                         templateUrl : view('jwt-auth.footer'),

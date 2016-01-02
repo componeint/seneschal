@@ -122,7 +122,7 @@
                     },
                     'sidenav@jwtauth'  : {
                         templateUrl : view('jwt-auth.sidenav'),
-                        controller  : 'JwtAuthLeftController',
+                        controller  : 'JwtAuthSidenavController',
                         controllerAs: 'sidenav'
                     },
                     'aside@jwtauth' : {

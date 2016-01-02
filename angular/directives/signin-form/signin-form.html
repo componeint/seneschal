@@ -1,24 +1,23 @@
 <form name="signinForm" novalidate>
-    <p class="" ng-if="auth.loginError"><strong>Error:</strong> {{auth.loginErrorText}}</p>
+    <!--<p class="" ng-if="auth.loginError"><strong>Error:</strong> {{auth.loginErrorText}}</p>-->
     <md-input-container class="md-block">
         <label for="email">Email</label>
         <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
-        <input type="email" id="email" ng-model="SigninForm.email">
+        <input type="email" id="email" name="email" ng-model="sf.email" ng-minlength="4" ng-maxlength="254" required>
         <div ng-if="signinForm.email.$dirty" ng-messages="signinForm.email.$error">
-            <div ng-message="required">Your email address is required.</div>
-            <div ng-message="pattern">Your email address is invalid.</div>
+            <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
         </div>
     </md-input-container>
     <md-input-container class="md-block">
         <label for="password">Password</label>
         <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-        <input type="password" id="password" ng-model="SigninForm.password">
+        <input type="password" id="password" name="password" ng-model="sf.password" ng-minlength="8" required>
         <div ng-if="signinForm.password.$dirty" ng-messages="signinForm.password.$error">
-            <div ng-message="required">Password is required.</div>
+            <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
         </div>
     </md-input-container>
     <div layout="row" layout-align="end center">
-        <md-button ng-click="SigninForm.login()" class="md-raised md-primary md-hue-3">
+        <md-button ng-click="sf.login()" ng-disabled="signinForm.$invalid" class="md-raised md-primary md-hue-3">
             <ng-md-icon icon="login" style="fill: black" size="24"></ng-md-icon> Sign-in
         </md-button>
     </div>

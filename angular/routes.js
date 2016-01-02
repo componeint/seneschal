@@ -127,7 +127,7 @@
                     },
                     'aside@jwtauth' : {
                         templateUrl : view('jwt-auth.aside'),
-                        controller  : 'JwtAuthRightController',
+                        controller  : 'JwtAuthAsideController',
                         controllerAs: 'aside'
                     },
                     'footer@jwtauth': {

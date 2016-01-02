@@ -16,7 +16,7 @@
         var directive = {
             bindToController: true,
             controller      : SigninFormController,
-            controllerAs    : 'sf',
+            controllerAs    : 'SigninForm',
             link            : link,
             restrict        : 'EA',
             scope           : {},

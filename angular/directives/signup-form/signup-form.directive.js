@@ -37,7 +37,7 @@
     function SignupFormController($location, $state, $auth, toastService) {
         var vm    = this;
         vm.title  = 'JwtAuthSignupController';
-        vm.user;
+        //vm.user;
         vm.signup = signup;
 
         ////////////////

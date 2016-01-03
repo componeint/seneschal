@@ -29,7 +29,7 @@
             jwtAuthService.signout().then(function() {
                 $state.go('jwtauth.signin');
             });
-            console.log('sign-out');
+            //console.log('sign-out');
         }
     }
 

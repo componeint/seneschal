@@ -31,10 +31,10 @@
         }
     }
 
-    SigninFormController.$inject = ['$auth', '$state', '$http', '$rootScope', 'toastService'];
+    SigninFormController.$inject = ['$auth', '$state', '$http', '$rootScope', 'ToastService'];
 
     /* @ngInject */
-    function SigninFormController($auth, $state, $http, $rootScope, toastService) {
+    function SigninFormController($auth, $state, $http, $rootScope, ToastService) {
         var vm        = this;
         vm.title      = 'SigninFormController';
         vm.loginError = false;
@@ -56,7 +56,7 @@
                 }, function(error) {
                     vm.loginError     = true;
                     vm.loginErrorText = error.data.error;
-                    toastService.show(error.data.error);
+                    ToastService.show(error.data.error);
                 })
                 .then(function(response) {
                     var user                 = JSON.stringify(response.data.user);

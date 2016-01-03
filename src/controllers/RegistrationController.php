@@ -48,9 +48,6 @@ class RegistrationController extends Controller
         // Attempt Registration
         $result = $this->userRepository->store($data);
 
-        // It worked!  Use config to determine where we should go.
-        // return $this->redirectViaResponse('registration_complete', $result);
-
         $credentials = $request->only('email', 'password');
         try {
             // verify the credentials and create a token for the user

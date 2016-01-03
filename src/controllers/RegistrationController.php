@@ -50,7 +50,7 @@ class RegistrationController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        // Gather input and do validation
+        // Gather input and input data validation
         $data = $request->all();
 
         // Attempt Registration

@@ -35,24 +35,21 @@
 
     /* @ngInject */
     function SignupFormController($location, $state, $auth, ToastService) {
-        var vm   = this;
-        vm.title = 'JwtAuthSignupController';
+        var vm = this;
         // vm.user;
         vm.signup = signup;
 
         ////////////////
 
         function signup() {
-            $auth.signup(vm.user)
-                .then(function(response) {
-                    $auth.setToken(response);
-                    $state.go('jwtauth.home');
-                    ToastService.show('You have successfully created a new account and have been signed-in');
-                })
-                .catch(function(response) {
-                    console.log(response.data.message);
-                    ToastService.error(response.data.message);
-                });
+            $auth.signup(vm.user).then(function(response) {
+                $auth.setToken(response);
+                $state.go('jwtauth.home');
+                ToastService.show('You have successfully created a new account and have been signed-in');
+            }).catch(function(response) {
+                //$log.debug(response.data.message);
+                ToastService.error(response.data.message);
+            });
         }
 
     }

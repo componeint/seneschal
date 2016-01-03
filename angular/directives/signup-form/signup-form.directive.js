@@ -35,16 +35,15 @@
 
     /* @ngInject */
     function SignupFormController($location, $state, $auth, ToastService) {
-        var vm    = this;
-        vm.title  = 'JwtAuthSignupController';
-        //vm.user;
+        var vm   = this;
+        vm.title = 'JwtAuthSignupController';
+        // vm.user;
         vm.signup = signup;
 
         ////////////////
 
         function signup() {
-            $auth
-                .signup(vm.user)
+            $auth.signup(vm.user)
                 .then(function(response) {
                     $auth.setToken(response);
                     $state.go('jwtauth.home');

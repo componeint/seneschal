@@ -17,7 +17,6 @@ use Redirect;
 use Session;
 use Config;
 use Anwendungen\Application\Controller\Controller;
-
 //use Illuminate\Http\Request;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -28,6 +27,11 @@ use Sentinel\DataTransferObjects\BaseResponse;
 
 class RegistrationController extends Controller
 {
+    /**
+     * @param UserRepositoryInterface $userRepository
+     * @param GroupRepositoryInterface $groupRepository
+     * @param HashidsManager $hashids
+     */
     public function __construct(
         UserRepositoryInterface $userRepository,
         GroupRepositoryInterface $groupRepository,
@@ -40,9 +44,13 @@ class RegistrationController extends Controller
         $this->middleware('jwt.auth', ['except' => ['register']]);
     }
 
+    /**
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(RegisterRequest $request)
     {
-        // Gather input
+        // Gather input and do validation
         $data = $request->all();
 
         // Attempt Registration
@@ -62,5 +70,4 @@ class RegistrationController extends Controller
         // if no errors are encountered we can return a JWT
         return response()->json(compact('token'));
     }
-
 }

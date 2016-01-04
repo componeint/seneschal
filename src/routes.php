@@ -6,7 +6,7 @@
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    $api->post('authenticate', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@authenticate');
+    $api->post('auth/signin', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@authenticate');
     $api->post('auth/signup', ['as' => 'register.user', 'uses' => 'Onderdelen\JwtAuth\Controllers\RegistrationController@register']);
     $api->get('users', ['as' => 'users.index', 'uses' => 'Onderdelen\JwtAuth\Controllers\UserController@index']);
     $api->get('groups', ['as' => 'groups.index', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@index']);

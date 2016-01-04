@@ -13,7 +13,7 @@
 
     /* @ngInject */
     function jwtAuth($authProvider) {
-        $authProvider.loginUrl    = '/api/authenticate';
+        $authProvider.loginUrl    = '/api/auth/signin';
         $authProvider.signupUrl   = '/api/auth/signup';
         $authProvider.tokenName   = 'token';
         $authProvider.tokenPrefix = 'app';

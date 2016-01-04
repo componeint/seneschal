@@ -19,4 +19,24 @@
             <br>Please go back and login again
         </div>
     </div>
+    <md-divider></md-divider>
+    <div flex="auto">
+        <!-- Server response -->
+        <div ng-if="home.users">
+            <p>Server response : </p>
+            <p>
+                <pre style="height:200px;scroll:auto;">
+                    <code>{{home.users | json: 2}}</code>
+                </pre>
+            </p>
+        </div>
+        <div ng-if="home.error">
+            <p>Server response : </p>
+            <p>
+                <pre style="height:200px;scroll:auto;">
+                    <code>{{home.error | json: 2}}</code>
+                </pre>
+            </p>
+        </div>
+    </div>
 </md-content>

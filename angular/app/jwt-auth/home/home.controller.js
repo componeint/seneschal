@@ -9,14 +9,11 @@
         .module('jwtAuth')
         .controller('JwtAuthHomeController', JwtAuthHomeController);
 
-    JwtAuthHomeController.$inject = ['userData'];
+    JwtAuthHomeController.$inject = ['userData', '$log'];
 
     /* @ngInject */
-    function JwtAuthHomeController(userData) {
+    function JwtAuthHomeController(userData, $log) {
         var vm      = this;
-        vm.title    = 'JwtAuthHomeController';
-        vm.users;
-        vm.error;
         vm.getUsers = getUsers;
 
         activate();
@@ -28,18 +25,14 @@
         }
 
         function getUsers() {
-            return userData.get()
-                .then(function(users) {
-                    vm.users = users;
-                    console.log('All ok');
-                    console.log(users);
-                    //return vm.users;
-                })
-                .catch(function(error) {
-                    vm.error = error;
-                    console.log('Error with status code', error.status);
-                    console.log(error);
-                });
+            return userData.get().then(function(users) {
+                vm.users = users;
+                $log.debug(users);
+            }).catch(function(error) {
+                vm.error = error;
+                $log.debug('Error with status code', error.status);
+                $log.debug(error);
+            });
         }
     }
 

@@ -9,23 +9,20 @@
         .module('jwtAuth')
         .factory('userData', userData);
 
-    userData.$inject = ['Restangular'];
+    userData.$inject = ['API'];
 
     /* @ngInject */
-    function userData(Restangular) {
-        var restAngular = Restangular.withConfig(function(Configurer) {
-            Configurer.setBaseUrl('api');
-        });
-
-        var service     = {
+    function userData(API) {
+        var service = {
             get: get
         };
+
         return service;
 
         ////////////////
 
         function get() {
-            return restAngular.all('authenticate').getList();
+            return API.all('authenticate').getList();
         }
     }
 

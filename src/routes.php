@@ -23,6 +23,6 @@ $api->version('v1', ['middleware' => 'api.auth'], function ($api) {
 // Route::get('users', ['as' => 'sentinel.users.index', 'uses' => 'UserController@index']);
 
 // group
-//    Route::get('groups', ['as' => 'sentinel.groups.index', 'uses' => 'GroupController@index']);
+// Route::get('groups', ['as' => 'sentinel.groups.index', 'uses' => 'GroupController@index']);
 
-//Route::get('/users', 'Onderdelen\JwtAuth\Controllers\UserController@index');
+// Route::get('/users', 'Onderdelen\JwtAuth\Controllers\UserController@index');

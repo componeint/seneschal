@@ -25,9 +25,10 @@
         }
 
         function getUsers() {
-            return userData.get().then(function(users) {
-                vm.users = users;
-                $log.debug(users);
+            return userData.get().then(function(response) {
+                //$log.debug(response);
+                vm.users = response;
+                $log.debug(vm.users);
             }).catch(function(error) {
                 vm.error = error;
                 $log.debug('Error with status code', error.status);

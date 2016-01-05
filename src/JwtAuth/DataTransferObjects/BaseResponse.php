@@ -1,4 +1,7 @@
 <?php
+/**
+ * Created by anonymous on 06/01/16 5:02.
+ */
 
 namespace Onderdelen\JwtAuth\DataTransferObjects;
 

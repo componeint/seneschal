@@ -27,9 +27,9 @@ use Config;
 class RegistrationController extends Controller
 {
     /**
-     * @param UserRepositoryInterface $userRepository
+     * @param UserRepositoryInterface  $userRepository
      * @param GroupRepositoryInterface $groupRepository
-     * @param HashidsManager $hashids
+     * @param HashidsManager           $hashids
      */
     public function __construct(
         UserRepositoryInterface $userRepository,

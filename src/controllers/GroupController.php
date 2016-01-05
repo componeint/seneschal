@@ -7,12 +7,12 @@ namespace Onderdelen\JwtAuth\Controllers;
 
 use Vinkla\Hashids\HashidsManager;
 use Illuminate\Pagination\Paginator;
-//use Sentinel\FormRequests\GroupCreateRequest;
+use Onderdelen\JwtAuth\FormRequests\GroupCreateRequest;
 use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
+use Anwendungen\Application\Controller\Controller;
 use View;
 use Input;
 use Redirect;
-use Anwendungen\Application\Controller\Controller;
 
 class GroupController extends Controller
 {

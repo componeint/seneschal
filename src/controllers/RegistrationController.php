@@ -9,6 +9,13 @@ use Vinkla\Hashids\HashidsManager;
 use Onderdelen\JwtAuth\FormRequests\RegisterRequest;
 use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
 use Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface;
+use Anwendungen\Application\Controller\Controller;
+//use Illuminate\Http\Request;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Onderdelen\JwtAuth\Models\User;
+use Sentinel\DataTransferObjects\BaseResponse;
+use Hash;
+use JWTAuth;
 use Sentry;
 use View;
 use Input;
@@ -16,14 +23,6 @@ use Event;
 use Redirect;
 use Session;
 use Config;
-use Anwendungen\Application\Controller\Controller;
-//use Illuminate\Http\Request;
-use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Hash;
-use Onderdelen\JwtAuth\Models\User;
-use Sentinel\DataTransferObjects\BaseResponse;
-
 
 class RegistrationController extends Controller
 {

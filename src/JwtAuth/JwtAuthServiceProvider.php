@@ -5,6 +5,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Onderdelen\JwtAuth\Repositories\Group\GroupRepository;
 use Onderdelen\JwtAuth\Repositories\User\UserRepository;
+use Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepository;
 
 class JwtAuthServiceProvider extends ServiceProvider
 {
@@ -60,6 +61,14 @@ class JwtAuthServiceProvider extends ServiceProvider
         // Bind the Group Repository
         $this->app->bind('Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface', function ($app) {
             return new GroupRepository(
+                $app['sentry'],
+                $app['events']
+            );
+        });
+
+        // Bind the Authenticate Repository
+        $this->app->bind('Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface', function ($app) {
+            return new AuthenticateRepository(
                 $app['sentry'],
                 $app['events']
             );

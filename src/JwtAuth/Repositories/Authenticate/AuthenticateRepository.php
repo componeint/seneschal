@@ -24,7 +24,7 @@ use Onderdelen\JwtAuth\DataTransferObjects\FailureResponse;
  * Class AuthenticateRepository
  * @package Onderdelen\JwtAuth\Repositories\Authenticate
  */
-class AuthenticateRepository implements AuthenticateRepostitoryInterface
+class AuthenticateRepository implements AuthenticateRepositoryInterface
 {
     /**
      * @var Sentry

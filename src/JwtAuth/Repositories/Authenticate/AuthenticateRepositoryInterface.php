@@ -8,10 +8,10 @@ namespace Onderdelen\JwtAuth\Repositories\Authenticate;
 use Sentinel\DataTransferObjects\BaseResponse;
 
 /**
- * Interface AuthenticateRepostitoryInterface
+ * Interface AuthenticateRepositoryInterface
  * @package Onderdelen\JwtAuth\Repositories\Authenticate
  */
-interface AuthenticateRepostitoryInterface
+interface AuthenticateRepositoryInterface
 {
     /**
      * @param $data

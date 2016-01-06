@@ -9,8 +9,21 @@ use Anwendungen\Application\Controller\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Onderdelen\JwtAuth\Models\User;
 use Illuminate\Http\Request;
+use Onderdelen\JwtAuth\FormRequests\LoginRequest;
+use Illuminate\Support\Facades\Response;
+use Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface;
+
+// use Onderdelen\JwtAuth\Traits\SentinelRedirectionTrait;
+// use Onderdelen\JwtAuth\Traits\SentinelViewfinderTrait;
 use JWTAuth;
 use Hash;
+use Sentry;
+use View;
+use Input;
+use Event;
+use Redirect;
+use Session;
+use Config;
 
 /**
  * Class AuthenticateController
@@ -22,8 +35,9 @@ class AuthenticateController extends Controller
     /**
      * construct
      */
-    public function __construct()
+    public function __construct(AuthenticateRepositoryInterface $authenticateManager)
     {
+        $this->authenticateManager = $authenticateManager;
         $this->middleware('jwt.auth', ['except' => ['authenticate', 'signup']]);
     }
 
@@ -45,21 +59,32 @@ class AuthenticateController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
-        try {
-            // verify the credentials and create a token for the user
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
-            }
-        } catch (JWTException $e) {
-            // something went wrong
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
+        // Gather the input
+        $data = Input::all();
 
-        // if no errors are encountered we can return a JWT
-        return response()->json(compact('token'));
+        // Attempt the login
+        $result = $this->authenticateManager->store($data);
+
+        // Did it work?
+        if ($result->isSuccessful()) {
+            $credentials = $request->only('email', 'password');
+            try {
+                // verify the credentials and create a token for the user
+                if (!$token = JWTAuth::attempt($credentials)) {
+                    return response()->json(['error' => 'invalid_credentials'], 401);
+                }
+            } catch (JWTException $e) {
+                // something went wrong
+                return response()->json(['error' => 'could_not_create_token'], 500);
+            }
+
+            // if no errors are encountered we can return a JWT
+            return response()->json(compact('token'));
+        } else {
+            return response()->error($result->getMessage(), 400);
+        }
     }
 
     /**

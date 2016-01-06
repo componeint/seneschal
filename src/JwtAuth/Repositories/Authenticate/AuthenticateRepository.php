@@ -71,7 +71,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
     {
         try {
             // Check for 'rememberMe' in POST data
-            $rememberMe = isset($data['rememberMe']);
+            // $rememberMe = isset($data['rememberMe']);
 
             // Set login credentials
             $credentials['password'] = e($data['password']);
@@ -100,13 +100,13 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
             $throttle->check();
 
             // Try to authenticate the user
-            $user = $this->sentry->authenticate($credentials, $rememberMe);
+            // $user = $this->sentry->authenticate($credentials, $rememberMe);
 
             // Might be unnecessary, but just in case:
             $this->sentryUserProvider->getEmptyUser()->setLoginAttributeName('email');
 
             // Login was successful. Fire the Sentinel.user.login event
-            $this->dispatcher->fire('sentinel.user.login', ['user' => $user]);
+            // $this->dispatcher->fire('sentinel.user.login', ['user' => $user]);
 
             // Return Response Object
             return new SuccessResponse('');

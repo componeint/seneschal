@@ -20,7 +20,7 @@
         $stateProvider
             .state('dashboard.groups', {
                 url  : '/groups',
-                data : {pageName: 'groups'},
+                data : {pageName: 'Groups'},
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('groups.index'),

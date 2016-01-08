@@ -49,10 +49,10 @@
             <!-- <th md-column data-md-numeric data-md-order-by="sodium.value"><span>Sodium (mg)</span></th> -->
             <!-- <th md-column data-md-numeric data-md-order-by="calcium.value"><span>Calcium (%)</span></th> -->
             <th md-column data-md-numeric data-md-order-by="iron.value" data-hide-sm><span>Iron (%)</span></th>
-            <th md-column data-md-order-by="comment">
+            <!--<th md-column data-md-order-by="comment">
                 <md-icon>comments</md-icon>
                 <span>Comments</span>
-            </th>
+            </th>-->
         </tr>
         </thead>
         <tbody md-body>
@@ -70,9 +70,9 @@
             <!-- <td md-cell>{{dessert.sodium.value}}</td> -->
             <!-- <td md-cell>{{dessert.calcium.value}}%</td> -->
             <td md-cell hide-sm>{{dessert.iron.value}}%</td>
-            <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
+            <!--<td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
                 {{dessert.comment || 'Add a comment'}}
-            </td>
+            </td>-->
         </tr>
         </tbody>
     </table>

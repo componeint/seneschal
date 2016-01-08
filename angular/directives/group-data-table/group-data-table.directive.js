@@ -15,10 +15,10 @@
     function groupDataTable() {
         var directive = {
             //bindToController: true,
-            controller      : GroupDataTableController,
+            controller : GroupDataTableController,
             //controllerAs    : 'vm',
-            link            : link,
-            restrict        : 'EA',
+            link       : link,
+            restrict   : 'EA',
             //scope           : {},
             templateUrl: function(elem, attr) {
                 return attr.template;
@@ -35,7 +35,14 @@
 
     /* @ngInject */
     function GroupDataTableController($http, $mdEditDialog, $q, $timeout, $scope) {
-        var vm   = this;
+        var vm             = this;
+        $scope.editComment = editComment;
+        $scope.getTypes    = getTypes;
+        $scope.onPaginate  = onPaginate;
+        $scope.deselect    = deselect;
+        $scope.log         = log;
+        $scope.loadStuff   = loadStuff;
+        $scope.onReorder   = onReorder;
 
         activate();
 
@@ -108,14 +115,14 @@
                 numeric: true,
                 orderBy: 'iron.value',
                 unit   : '%'
-            },
-            {
-                name   : 'Comments',
-                orderBy: 'comment'
-            }
+            }/*,
+             {
+             name   : 'Comments',
+             orderBy: 'comment'
+             }*/
         ];
 
-        $scope.editComment = function(event, dessert) {
+        function editComment(event, dessert) {
             event.stopPropagation();
 
             var promise = $mdEditDialog.large({
@@ -141,13 +148,13 @@
                     input.$setValidity('test', input.$modelValue !== 'test');
                 });
             });
-        };
+        }
 
-        $scope.getTypes = function() {
+        function getTypes() {
             return ['Candy', 'Ice cream', 'Other', 'Pastry'];
-        };
+        }
 
-        $scope.onPaginate = function(page, limit) {
+        function onPaginate(page, limit) {
             // $scope.$broadcast('md.table.deselect');
 
             console.log('Scope Page: ' + $scope.query.page + ' Scope Limit: ' + $scope.query.limit);
@@ -156,23 +163,23 @@
             $scope.promise = $timeout(function() {
 
             }, 2000);
-        };
+        }
 
-        $scope.deselect = function(item) {
+        function deselect(item) {
             console.log(item.name, 'was deselected');
-        };
+        }
 
-        $scope.log = function(item) {
+        function log(item) {
             console.log(item.name, 'was selected');
-        };
+        }
 
-        $scope.loadStuff = function() {
+        function loadStuff() {
             $scope.promise = $timeout(function() {
 
             }, 2000);
-        };
+        }
 
-        $scope.onReorder = function(order) {
+        function onReorder(order) {
 
             console.log('Scope Order: ' + $scope.query.order);
             console.log('Order: ' + order);
@@ -180,7 +187,7 @@
             $scope.promise = $timeout(function() {
 
             }, 2000);
-        };
+        }
 
     }
 

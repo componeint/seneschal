@@ -7,7 +7,9 @@
         <md-button ng-click="hideHead = !hideHead">{{hideHead ? 'Show Head' : 'Decapitate'}}</md-button>
         <md-button ng-click="blah = !blah">{{blah ? 'turn on' : 'turn off'}}</md-button>
         -->
-        <!--<md-button ng-click="loadStuff()">Load</md-button>-->
+        <!--
+        <md-button ng-click="loadStuff()">Load</md-button>
+        -->
         <md-button class="md-icon-button" ng-click="loadStuff()">
             <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Refresh</md-tooltip>
@@ -23,7 +25,7 @@
     </div>
 </md-toolbar>
 
-<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+<md-toolbar class="md-accent" ng-show="selected.length">
     <div class="md-toolbar-tools">
         <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
         <span flex></span>
@@ -50,29 +52,37 @@
 
 <md-table-container>
     <table data-md-table data-md-row-select="!hideCheckboxes" data-ng-model="selected" md-progress="promise">
-        <!-- <thead md-head md-order="query.order">
+        <!--
+        <thead md-head md-order="query.order">
           <tr md-row>
             <th md-column ng-repeat="column in columns" md-numeric="column.numeric" md-order-by="{{column.orderBy}}">
               <span>{{column.name}}</span>
               <span ng-if="column.unit">({{column.unit}})</span>
             </th>
           </tr>
-        </thead> -->
+        </thead>
+        -->
         <thead ng-if="!hideHead" md-head data-md-order="query.order" md-on-reorder="onReorder">
         <tr md-row>
             <th md-column md:order:by="name"><span>Dessert (100g serving)</span></th>
             <th md-column md:order:by="type"><span>Type</span></th>
             <th md-column data-md-numeric data-md-order-by="calories.value" data-md-desc><span>Calories</span></th>
             <th md-column data-md-numeric data-md-order-by="fat.value"><span>Fat (g)</span></th>
-            <!-- <th md-column data-md-numeric data-md-order-by="carbs.value"><span>Carbs (g)</span></th> -->
+            <!--
+            <th md-column data-md-numeric data-md-order-by="carbs.value"><span>Carbs (g)</span></th>
+            -->
             <th md-column data-md-numeric data-md-order-by="protein.value"><span>Protein (g)</span></th>
-            <!-- <th md-column data-md-numeric data-md-order-by="sodium.value"><span>Sodium (mg)</span></th> -->
-            <!-- <th md-column data-md-numeric data-md-order-by="calcium.value"><span>Calcium (%)</span></th> -->
+            <!--
+            <th md-column data-md-numeric data-md-order-by="sodium.value"><span>Sodium (mg)</span></th>
+            <th md-column data-md-numeric data-md-order-by="calcium.value"><span>Calcium (%)</span></th>
+            -->
             <th md-column data-md-numeric data-md-order-by="iron.value" data-hide-sm><span>Iron (%)</span></th>
-            <!--<th md-column data-md-order-by="comment">
+            <!--
+            <th md-column data-md-order-by="comment">
                 <md-icon>comments</md-icon>
                 <span>Comments</span>
-            </th>-->
+            </th>
+            -->
         </tr>
         </thead>
         <tbody md-body>
@@ -85,10 +95,14 @@
             </td>
             <td md-cell>{{dessert.calories.value}}</td>
             <td md-cell>{{dessert.fat.value | number: 2}}</td>
-            <!-- <td md-cell>{{dessert.carbs.value}}</td> -->
+            <!--
+            <td md-cell>{{dessert.carbs.value}}</td>
+            -->
             <td md-cell>{{dessert.protein.value | number: 2}}</td>
-            <!-- <td md-cell>{{dessert.sodium.value}}</td> -->
-            <!-- <td md-cell>{{dessert.calcium.value}}%</td> -->
+            <!--
+            <td md-cell>{{dessert.sodium.value}}</td>
+            <td md-cell>{{dessert.calcium.value}}%</td>
+            -->
             <td md-cell hide-sm>{{dessert.iron.value}}%</td>
             <!--<td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
                 {{dessert.comment || 'Add a comment'}}

@@ -38,7 +38,7 @@ class GroupController extends Controller
     public function index()
     {
         // Paginate the existing users
-//        $groups      = $this->groupRepository->all();
+        $groups      = $this->groupRepository->all();
 //        $perPage     = 15;
 //        $currentPage = Input::get('page') - 1;
 //        $pagedData   = array_slice($groups, $currentPage * $perPage, $perPage);
@@ -46,7 +46,7 @@ class GroupController extends Controller
 //
 //        return $this->viewFinder('Sentinel::groups.index', ['groups' => $groups]);
 
-        return response()->json(['records' => $this->groupRepository->all()]);
+        return response()->json(['count' => count($groups), 'data' => $groups]);
     }
 
 }

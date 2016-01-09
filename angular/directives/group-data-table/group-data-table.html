@@ -1,29 +1,17 @@
-<md-toolbar class="md-table-toolbar md-default" ng-show="!selected.length">
+<md-toolbar class="md-table-toolbar md-default" ng-show="!vm.selected.length">
     <div class="md-toolbar-tools">
         <span></span>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="loadStuff()">
+        <md-button class="md-icon-button" ng-click="vm.loadStuff()">
             <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Refresh</md-tooltip>
         </md-button>
-        <!--
-        <md-button ng-click="hideCheckboxes = !hideCheckboxes">{{hideCheckboxes ? 'Enable Selection' : 'Disable Selection'}}</md-button>
-        <md-button ng-click="hideHead = !hideHead">{{hideHead ? 'Show Head' : 'Decapitate'}}</md-button>
-        <md-button ng-click="autoSelect = !autoSelect">{{autoSelect ? 'turn on' : 'turn off'}}</md-button>
-        <md-button ng-click="loadStuff()">Load</md-button>
-        <md-button class="md-icon-button">
-            <md-icon>filter_list</md-icon>
-        </md-button>
-        <md-button class="md-icon-button">
-            <md-icon>more_vert</md-icon>
-        </md-button>
-        -->
     </div>
 </md-toolbar>
 
-<md-toolbar class="md-accent" ng-show="selected.length">
+<md-toolbar class="md-accent" ng-show="vm.selected.length">
     <div class="md-toolbar-tools">
-        <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
+        <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selected</span>
         <span flex></span>
         <md-button class="md-icon-button">
             <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
@@ -33,71 +21,34 @@
             <md-icon ng-md-icon icon="more_vert" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">More</md-tooltip>
         </md-button>
-        <!--
-        <md-button class="md-icon-button">
-            <md-icon>delete</md-icon>
-        </md-button>
-        <md-button class="md-icon-button">
-            <md-icon>more_vert</md-icon>
-        </md-button>
-        -->
     </div>
 </md-toolbar>
 
 <md-table-container>
-    <table data-md-table data-md-row-select="!hideCheckboxes" data-ng-model="selected" md-progress="promise">
-        <!--
-        <thead md-head md-order="query.order">
-          <tr md-row>
-            <th md-column ng-repeat="column in columns" md-numeric="column.numeric" md-order-by="{{column.orderBy}}">
-              <span>{{column.name}}</span>
-              <span ng-if="column.unit">({{column.unit}})</span>
+    <table data-md-table data-md-row-select="!hideCheckboxes" data-ng-model="vm.selected" md-progress="vm.promise">
+        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
+        <tr md-row>
+            <th md-column ng-repeat="column in vm.columns" md-numeric="column.numeric" md-order-by="{{column.orderBy}}">
+                <span>{{column.name}}</span>
+                <span ng-if="column.unit">({{column.unit}})</span>
             </th>
-          </tr>
+        </tr>
         </thead>
-        -->
-        <thead ng-if="!hideHead" md-head data-md-order="query.order" md-on-reorder="onReorder">
+        <!--
+        <thead ng-if="!hideHead" md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
         <tr md-row>
             <th md-column md:order:by="name"><span>Name</span></th>
             <th md-column md:order:by="permissions"><span>Permissions</span></th>
-            <!--
-            <th md-column data-md-numeric data-md-order-by="calories.value" data-md-desc><span>Calories</span></th>
-            <th md-column data-md-numeric data-md-order-by="fat.value"><span>Fat (g)</span></th>
-            <th md-column data-md-numeric data-md-order-by="carbs.value"><span>Carbs (g)</span></th>
-            <th md-column data-md-numeric data-md-order-by="protein.value"><span>Protein (g)</span></th>
-            <th md-column data-md-numeric data-md-order-by="sodium.value"><span>Sodium (mg)</span></th>
-            <th md-column data-md-numeric data-md-order-by="calcium.value"><span>Calcium (%)</span></th>
-            <th md-column data-md-numeric data-md-order-by="iron.value" data-hide-sm><span>Iron (%)</span></th>
-            <th md-column data-md-order-by="comment">
-                <md-icon>comments</md-icon>
-                <span>Comments</span>
-            </th>
-            -->
         </tr>
         </thead>
+        -->
         <tbody md-body>
-        <tr md-row md:select="record" data-md-on-select="log" md-on-deselect="deselect" x-md-auto-select="!autoSelect" ng-disabled="((record.id === 2) && (record.name === 'Admins'))" data-ng-repeat="record in records.data | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+        <tr md-row md:select="record" data-md-on-select="vm.log" md-on-deselect="vm.deselect" x-md-auto-select="!autoSelect" ng-disabled="((record.id === 2) && (record.name === 'Admins'))" data-ng-repeat="record in vm.records.data | filter: filter.search | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
             <td md-cell>{{record.name}}</td>
             <td md-cell>{{record.permissions}}</td>
-            <!--
-            <td md-cell>
-                <md-select ng-model="record.type" placeholder="Other">
-                    <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
-                </md-select>
-            </td>
-            <td md-cell>{{record.fat.value | number: 2}}</td>
-            <td md-cell>{{record.carbs.value}}</td>
-            <td md-cell>{{record.protein.value | number: 2}}</td>
-            <td md-cell>{{record.sodium.value}}</td>
-            <td md-cell>{{record.calcium.value}}%</td>
-            <td md-cell hide-sm>{{record.iron.value}}%</td>
-            <td md-cell ng-click="editComment($event, record)" ng-class="{'md-placeholder': !record.comment}">
-                {{record.comment || 'Add a comment'}}
-            </td>
-            -->
         </tr>
         </tbody>
     </table>
 </md-table-container>
 
-<data-md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{records.count}}" md-on-paginate="onPaginate" md-page-select></data-md-table-pagination>
+<data-md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.records.count}}" md-on-paginate="vm.onPaginate" md-page-select></data-md-table-pagination>

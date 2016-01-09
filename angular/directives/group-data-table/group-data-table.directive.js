@@ -14,13 +14,13 @@
     /* @ngInject */
     function groupDataTable() {
         var directive = {
-            //bindToController: true,
-            controller : GroupDataTableController,
-            //controllerAs    : 'vm',
-            link       : link,
-            restrict   : 'EA',
-            scope      : {},
-            templateUrl: function(elem, attr) {
+            bindToController: true,
+            controller      : GroupDataTableController,
+            controllerAs    : 'vm',
+            link            : link,
+            restrict        : 'EA',
+            scope           : {},
+            templateUrl     : function(elem, attr) {
                 return attr.template;
             }
         };
@@ -31,18 +31,16 @@
         }
     }
 
-    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', '$scope'];
+    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout'];
 
     /* @ngInject */
-    function GroupDataTableController($http, $mdEditDialog, $q, $timeout, $scope) {
-        var vm             = this;
-        $scope.editComment = editComment;
-        $scope.getTypes    = getTypes;
-        $scope.onPaginate  = onPaginate;
-        $scope.deselect    = deselect;
-        $scope.log         = log;
-        $scope.loadStuff   = loadStuff;
-        $scope.onReorder   = onReorder;
+    function GroupDataTableController($http, $mdEditDialog, $q, $timeout) {
+        var vm        = this;
+        vm.onPaginate = onPaginate;
+        vm.deselect   = deselect;
+        vm.log        = log;
+        vm.loadStuff  = loadStuff;
+        vm.onReorder  = onReorder;
 
         activate();
 
@@ -50,72 +48,37 @@
 
         function activate() {
             $http.get('api/groups').then(function(responses) {
-                $scope.records = responses.data;
+                vm.records = responses.data;
                 // $timeout(function () {
-                //   $scope.records = responses.data;
+                //   vm.records = responses.data;
                 // }, 1000);
             });
-
         }
 
-        $scope.selected = [];
+        vm.selected = [];
 
-        $scope.query = {
+        vm.query = {
             order: 'id',
             limit: 5,
             page : 1
         };
 
-        $scope.columns = [
+        vm.columns = [
             {
                 name   : 'Name',
                 orderBy: 'name'
             },
             {
-                name        : 'Permissions',
-                orderBy     : 'permissions'
+                name   : 'Permissions',
+                orderBy: 'permissions'
             }
         ];
 
-        function editComment(event, dessert) {
-            event.stopPropagation();
-
-            var promise = $mdEditDialog.large({
-                // messages: {
-                //   test: 'I don\'t like tests!'
-                // },
-                modelValue : dessert.comment,
-                placeholder: 'Add a comment',
-                save       : function(input) {
-                    dessert.comment = input.$modelValue;
-                },
-                targetEvent: event,
-                title      : 'Add a comment',
-                validators : {
-                    'md-maxlength': 30
-                }
-            });
-
-            promise.then(function(ctrl) {
-                var input = ctrl.getInput();
-
-                input.$viewChangeListeners.push(function() {
-                    input.$setValidity('test', input.$modelValue !== 'test');
-                });
-            });
-        }
-
-        function getTypes() {
-            return ['Candy', 'Ice cream', 'Other', 'Pastry'];
-        }
-
         function onPaginate(page, limit) {
-            // $scope.$broadcast('md.table.deselect');
-
-            console.log('Scope Page: ' + $scope.query.page + ' Scope Limit: ' + $scope.query.limit);
+            console.log('Scope Page: ' + vm.query.page + ' Scope Limit: ' + vm.query.limit);
             console.log('Page: ' + page + ' Limit: ' + limit);
 
-            $scope.promise = $timeout(function() {
+            vm.promise = $timeout(function() {
 
             }, 2000);
         }
@@ -129,17 +92,17 @@
         }
 
         function loadStuff() {
-            $scope.promise = $timeout(function() {
+            vm.promise = $timeout(function() {
 
             }, 2000);
         }
 
         function onReorder(order) {
 
-            console.log('Scope Order: ' + $scope.query.order);
+            console.log('Scope Order: ' + vm.query.order);
             console.log('Order: ' + order);
 
-            $scope.promise = $timeout(function() {
+            vm.promise = $timeout(function() {
 
             }, 2000);
         }

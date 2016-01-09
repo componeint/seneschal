@@ -49,10 +49,10 @@
         ////////////////
 
         function activate() {
-            $http.get('desserts.json').then(function(desserts) {
-                $scope.desserts = desserts.data;
+            $http.get('api/groups').then(function(responses) {
+                $scope.records = responses.data;
                 // $timeout(function () {
-                //   $scope.desserts = desserts.data;
+                //   $scope.records = responses.data;
                 // }, 1000);
             });
 
@@ -61,65 +61,20 @@
         $scope.selected = [];
 
         $scope.query = {
-            order: 'name',
+            order: 'id',
             limit: 5,
             page : 1
         };
 
         $scope.columns = [
             {
-                name   : 'Dessert',
-                orderBy: 'name',
-                unit   : '100g serving'
+                name   : 'Name',
+                orderBy: 'name'
             },
             {
-                descendFirst: true,
-                name        : 'Type',
-                orderBy     : 'type'
-            },
-            {
-                name   : 'Calories',
-                numeric: true,
-                orderBy: 'calories.value'
-            },
-            {
-                name   : 'Fat',
-                numeric: true,
-                orderBy: 'fat.value',
-                unit   : 'g'
-            }, /* {
-             name: 'Carbs',
-             numeric: true,
-             orderBy: 'carbs.value',
-             unit: 'g'
-             }, */
-            {
-                name   : 'Protein',
-                numeric: true,
-                orderBy: 'protein.value',
-                trim   : true,
-                unit   : 'g'
-            }, /* {
-             name: 'Sodium',
-             numeric: true,
-             orderBy: 'sodium.value',
-             unit: 'mg'
-             }, {
-             name: 'Calcium',
-             numeric: true,
-             orderBy: 'calcium.value',
-             unit: '%'
-             }, */
-            {
-                name   : 'Iron',
-                numeric: true,
-                orderBy: 'iron.value',
-                unit   : '%'
-            }/*,
-             {
-             name   : 'Comments',
-             orderBy: 'comment'
-             }*/
+                name        : 'Permissions',
+                orderBy     : 'permissions'
+            }
         ];
 
         function editComment(event, dessert) {

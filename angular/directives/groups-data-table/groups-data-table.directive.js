@@ -7,15 +7,15 @@
 
     angular
         .module('jwtAuth')
-        .directive('groupDataTable', groupDataTable);
+        .directive('groupsDataTable', groupsDataTable);
 
-    groupDataTable.$inject = [];
+    groupsDataTable.$inject = [];
 
     /* @ngInject */
-    function groupDataTable() {
+    function groupsDataTable() {
         var directive = {
             bindToController: true,
-            controller      : GroupDataTableController,
+            controller      : GroupsDataTableController,
             controllerAs    : 'vm',
             link            : link,
             restrict        : 'EA',
@@ -31,10 +31,10 @@
         }
     }
 
-    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout'];
+    GroupsDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout'];
 
     /* @ngInject */
-    function GroupDataTableController($http, $mdEditDialog, $q, $timeout) {
+    function GroupsDataTableController($http, $mdEditDialog, $q, $timeout) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;

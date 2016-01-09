@@ -9,29 +9,18 @@
         .module('jwtAuth')
         .controller('GroupIndexController', GroupIndexController);
 
-    GroupIndexController.$inject = ['$scope', 'groupsService'];
+    GroupIndexController.$inject = [];
 
     /* @ngInject */
-    function GroupIndexController($scope, groupsService) {
-        var vm   = this;
-        vm.title = 'GroupIndexController';
+    function GroupIndexController() {
+        var vm = this;
 
         activate();
 
         ////////////////
 
         function activate() {
-            $scope.group = groupsService.lists;
-
-            // Mark a specific record as read-only
-            $scope.$on('flComplete', function($e, $args) {
-                angular.forEach($scope.group.fl.records, function(record) {
-                    if ((record.id === 2) && (record.name === 'Admins')) {
-                        record.readonly = true;
-                        return;
-                    }
-                });
-            });
+            //
         }
     }
 

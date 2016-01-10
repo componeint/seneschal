@@ -1,5 +1,5 @@
 /**
- * Created by anonymous on 09/01/16 9:48.
+ * Created by anonymous on 07/01/16 19:01.
  */
 
 (function() {
@@ -7,15 +7,15 @@
 
     angular
         .module('jwtAuth')
-        .directive('usersDataTable', usersDataTable);
+        .directive('groupDataTable', groupDataTable);
 
-    usersDataTable.$inject = [];
+    groupDataTable.$inject = [];
 
     /* @ngInject */
-    function usersDataTable() {
+    function groupDataTable() {
         var directive = {
             bindToController: true,
-            controller      : UsersDataTableController,
+            controller      : GroupDataTableController,
             controllerAs    : 'vm',
             link            : link,
             restrict        : 'EA',
@@ -31,10 +31,10 @@
         }
     }
 
-    UsersDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout'];
+    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout'];
 
     /* @ngInject */
-    function UsersDataTableController($http, $mdEditDialog, $q, $timeout) {
+    function GroupDataTableController($http, $mdEditDialog, $q, $timeout) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
@@ -47,7 +47,7 @@
         ////////////////
 
         function activate() {
-            $http.get('api/users').then(function(responses) {
+            $http.get('api/groups').then(function(responses) {
                 vm.records = responses.data;
                 // $timeout(function () {
                 //   vm.records = responses.data;
@@ -65,24 +65,12 @@
 
         vm.columns = [
             {
-                name   : 'Username',
-                orderBy: 'username'
-            },
-            {
-                name   : 'Email',
-                orderBy: 'email'
+                name   : 'Name',
+                orderBy: 'name'
             },
             {
                 name   : 'Permissions',
                 orderBy: 'permissions'
-            },
-            {
-                name   : 'Activated',
-                orderBy: 'activated'
-            },
-            {
-                name   : 'Status',
-                orderBy: 'status'
             }
         ];
 
@@ -118,6 +106,7 @@
 
             }, 2000);
         }
+
     }
 
 })();

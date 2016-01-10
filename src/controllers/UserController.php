@@ -42,15 +42,15 @@ class UserController extends Controller
     public function index()
     {
         // Paginate the existing users
-        //$users       = $this->userRepository->all();
-        //$perPage     = 15;
-        //$currentPage = Input::get('page') - 1;
-        //$pagedData   = array_slice($users, $currentPage * $perPage, $perPage);
-        //$users       = new Paginator($pagedData, $perPage, $currentPage);
+        $users       = $this->userRepository->all();
+        // $perPage     = 15;
+        // $currentPage = Input::get('page') - 1;
+        // $pagedData   = array_slice($users, $currentPage * $perPage, $perPage);
+        // $users       = new Paginator($pagedData, $perPage, $currentPage);
 
-        //return $this->viewFinder('Sentinel::users.index', ['users' => $users]);
+        // return $this->viewFinder('Sentinel::users.index', ['users' => $users]);
 
-        return response()->json(['records' => $this->userRepository->all()]);
+        return response()->json(['count' => count($users), 'data' => $users]);
     }
 
 }

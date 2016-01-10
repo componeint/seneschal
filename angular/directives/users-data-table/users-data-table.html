@@ -44,8 +44,11 @@
         -->
         <tbody md-body>
         <tr md-row md:select="record" data-md-on-select="vm.log" md-on-deselect="vm.deselect" x-md-auto-select="!autoSelect" ng-disabled="((record.id === 2) && (record.name === 'Admins'))" data-ng-repeat="record in vm.records.data | filter: filter.search | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
-            <td md-cell>{{record.name}}</td>
+            <td md-cell>{{record.username}}</td>
+            <td md-cell>{{record.email}}</td>
             <td md-cell>{{record.permissions}}</td>
+            <td md-cell>{{record.activated}}</td>
+            <td md-cell>{{record.status}}</td>
         </tr>
         </tbody>
     </table>

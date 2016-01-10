@@ -18,8 +18,11 @@
             controller      : UsersDataTableController,
             controllerAs    : 'vm',
             link            : link,
-            restrict        : 'A',
-            scope           : {}
+            restrict        : 'EA',
+            scope           : {},
+            templateUrl     : function(elem, attr) {
+                return attr.template;
+            }
         };
         return directive;
 
@@ -62,12 +65,24 @@
 
         vm.columns = [
             {
-                name   : 'Name',
-                orderBy: 'name'
+                name   : 'Username',
+                orderBy: 'username'
+            },
+            {
+                name   : 'Email',
+                orderBy: 'email'
             },
             {
                 name   : 'Permissions',
                 orderBy: 'permissions'
+            },
+            {
+                name   : 'Activated',
+                orderBy: 'activated'
+            },
+            {
+                name   : 'Status',
+                orderBy: 'status'
             }
         ];
 

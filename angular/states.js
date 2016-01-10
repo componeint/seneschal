@@ -24,7 +24,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('groups.index'),
-                        controller  : 'GroupIndexController',
+                        controller  : 'GroupsIndexController',
                         controllerAs: 'index'
                     }
                 }
@@ -35,7 +35,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('groups.create'),
-                        controller  : 'GroupCreateController',
+                        controller  : 'GroupsCreateController',
                         controllerAs: 'create'
                     }
                 }
@@ -46,7 +46,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('groups.show'),
-                        controller  : 'GroupShowController',
+                        controller  : 'GroupsShowController',
                         controllerAs: 'show'
                     }
                 }
@@ -57,7 +57,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('groups.edit'),
-                        controller  : 'GroupEditController',
+                        controller  : 'GroupsEditController',
                         controllerAs: 'edit'
                     }
                 }
@@ -68,7 +68,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('users.index'),
-                        controller  : 'UserIndexController',
+                        controller  : 'UsersIndexController',
                         controllerAs: 'index'
                     }
                 }
@@ -79,7 +79,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('users.create'),
-                        controller  : 'UserCreateController',
+                        controller  : 'UsersCreateController',
                         controllerAs: 'create'
                     }
                 }
@@ -90,7 +90,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('users.show'),
-                        controller  : 'UserShowController',
+                        controller  : 'UsersShowController',
                         controllerAs: 'show'
                     }
                 }
@@ -101,7 +101,7 @@
                 views: {
                     'main@dashboard': {
                         templateUrl : dashboard('users.edit'),
-                        controller  : 'UserEditController',
+                        controller  : 'UsersEditController',
                         controllerAs: 'edit'
                     }
                 }

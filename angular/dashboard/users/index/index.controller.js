@@ -7,21 +7,20 @@
 
     angular
         .module('jwtAuth')
-        .controller('UserIndexController', UserIndexController);
+        .controller('UsersIndexController', UsersIndexController);
 
-    UserIndexController.$inject = ['$scope', 'usersService'];
+    UsersIndexController.$inject = [];
 
     /* @ngInject */
-    function UserIndexController($scope, usersService) {
-        var vm   = this;
-        vm.title = 'UserIndexController';
+    function UsersIndexController() {
+        var vm = this;
 
         activate();
 
         ////////////////
 
         function activate() {
-            $scope.user = usersService.lists;
+            //
         }
     }
 

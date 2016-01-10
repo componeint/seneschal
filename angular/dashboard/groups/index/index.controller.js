@@ -7,12 +7,12 @@
 
     angular
         .module('jwtAuth')
-        .controller('GroupIndexController', GroupIndexController);
+        .controller('GroupsIndexController', GroupsIndexController);
 
-    GroupIndexController.$inject = [];
+    GroupsIndexController.$inject = [];
 
     /* @ngInject */
-    function GroupIndexController() {
+    function GroupsIndexController() {
         var vm = this;
 
         activate();

@@ -7,14 +7,13 @@
 
     angular
         .module('jwtAuth')
-        .controller('UserCreateController', UserCreateController);
+        .controller('UsersCreateController', UsersCreateController);
 
-    UserCreateController.$inject = [];
+    UsersCreateController.$inject = [];
 
     /* @ngInject */
-    function UserCreateController() {
-        var vm   = this;
-        vm.title = 'UserCreateController';
+    function UsersCreateController() {
+        var vm = this;
 
         activate();
 

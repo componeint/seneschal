@@ -7,14 +7,13 @@
 
     angular
         .module('jwtAuth')
-        .controller('GroupCreateController', GroupCreateController);
+        .controller('GroupsCreateController', GroupsCreateController);
 
-    GroupCreateController.$inject = [];
+    GroupsCreateController.$inject = [];
 
     /* @ngInject */
-    function GroupCreateController() {
-        var vm   = this;
-        vm.title = 'GroupCreateController';
+    function GroupsCreateController() {
+        var vm = this;
 
         activate();
 

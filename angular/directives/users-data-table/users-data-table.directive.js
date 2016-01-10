@@ -47,7 +47,7 @@
         ////////////////
 
         function activate() {
-            $http.get('api/groups').then(function(responses) {
+            $http.get('api/users').then(function(responses) {
                 vm.records = responses.data;
                 // $timeout(function () {
                 //   vm.records = responses.data;

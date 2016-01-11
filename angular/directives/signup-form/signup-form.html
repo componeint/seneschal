@@ -2,33 +2,37 @@
     <md-input-container class="md-block" flex-gt-sm>
         <label for="username">Username</label>
         <md-icon ng-md-icon icon="account_circle" style="fill: black" size="24"></md-icon>
-        <input type="text" id="username" name="username" ng-model="SignupForm.user.username" required>
+        <input type="text" id="username" name="username" ng-model="vm.user.username" required>
+
         <div ng-if="signupForm.username.$dirty" ng-messages="signupForm.username.$error">
-            <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
     </md-input-container>
     <md-input-container class="md-block" flex-gt-sm>
         <label for="email">Email</label>
         <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
-        <input type="email" id="email" name="email" ng-model="SignupForm.user.email" ng-minlength="4" ng-maxlength="254" required>
+        <input type="email" id="email" name="email" ng-model="vm.user.email" ng-minlength="4" ng-maxlength="254" required>
+
         <div ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
-            <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
     </md-input-container>
     <md-input-container class="md-block" flex-gt-sm>
         <label for="password">Password</label>
         <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-        <input password-strength type="password" id="password" name="password" ng-model="SignupForm.user.password" ng-minlength="8" required>
+        <input password-strength type="password" id="password" name="password" ng-model="vm.user.password" ng-minlength="8" required>
+
         <div ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
-            <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
     </md-input-container>
     <md-input-container class="md-block" flex-gt-sm>
         <label for="password_confirmation">Confirm Password</label>
         <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-        <input password-match="SignupForm.user.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="SignupForm.user.password_confirmation" ng-minlength="8" required>
+        <input password-match="vm.user.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="vm.user.password_confirmation" ng-minlength="8" required>
+
         <div ng-if="signupForm.password_confirmation.$dirty" ng-messages="signupForm.password_confirmation.$error">
-            <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
     </md-input-container>
     <p>
@@ -37,8 +41,9 @@
         </small>
     </p>
     <div layout="row" layout-align="end center">
-        <md-button ng-click="SignupForm.signup()" ng-disabled="signupForm.$invalid" class="md-raised md-primary md-hue-3">
-            <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon> Sign-up
+        <md-button ng-click="vm.signup()" ng-disabled="signupForm.$invalid" class="md-raised md-primary md-hue-3">
+            <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
+            Sign-up
         </md-button>
     </div>
 

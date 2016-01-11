@@ -16,7 +16,7 @@
         var directive = {
             bindToController: true,
             controller      : SignupFormController,
-            controllerAs    : 'SignupForm',
+            controllerAs    : 'vm',
             link            : link,
             restrict        : 'EA',
             scope           : {},
@@ -36,7 +36,6 @@
     /* @ngInject */
     function SignupFormController($location, $state, $auth, ToastService) {
         var vm = this;
-        // vm.user;
         vm.signup = signup;
 
         ////////////////
@@ -47,7 +46,6 @@
                 $state.go('jwtauth.home');
                 ToastService.show('You have successfully created a new account and have been signed-in');
             }).catch(function(response) {
-                //$log.debug(response.data.message);
                 ToastService.error(response.data.message);
             });
         }

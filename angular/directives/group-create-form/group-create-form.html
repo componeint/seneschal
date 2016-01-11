@@ -5,7 +5,7 @@
         <input id="name" name="name" ng-model="vm.name" ng-minlength="4" required>
 
         <div ng-if="groupCreateForm.name.$dirty" ng-messages="groupCreateForm.name.$error">
-            <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
     </md-input-container>
     <fieldset class="standard">

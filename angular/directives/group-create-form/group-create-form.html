@@ -2,21 +2,27 @@
     <md-input-container class="md-block">
         <label for="name">Name</label>
         <md-icon ng-md-icon icon="group" style="fill: black" size="24"></md-icon>
-        <input id="name" name="name" ng-model="groupCreateForm.name" ng-minlength="4" required>
+        <input id="name" name="name" ng-model="vm.name" ng-minlength="4" required>
+
         <div ng-if="groupCreateForm.name.$dirty" ng-messages="groupCreateForm.name.$error">
             <div ng-messages-include="./views/ng-messages/ng-messages.html"></div>
         </div>
     </md-input-container>
-    <div ng-repeat="permission in vm.defaultPermissions">
-        <md-checkbox name="permissions[{{ permission.name }}]" value="1">
-            {{ permission.name }}
-        </md-checkbox>
-    </div>
-
+    <fieldset class="standard">
+        <legend>Permissions</legend>
+        <div ng-repeat="permission in vm.defaultPermissions">
+            <md-checkbox name="permissions[{{ permission.name }}]" ng-checked="vm.exists(permission, vm.selected)" ng-click="vm.toggle(permission, vm.selected)" ng-true-value="1" ng-false-value="0">
+                {{ permission.name }} <span ng-if="vm.exists(permission, vm.selected)">selected</span>
+            </md-checkbox>
+        </div>
+    </fieldset>
     <div layout="row" layout-align="end center">
-        <md-button ng-click="" ng-disabled="signinForm.$invalid" class="md-raised md-primary md-hue-3">
-            <ng-md-icon icon="send" style="fill: black" size="24"></ng-md-icon> Create
+        <md-button ng-click="vm.groupCreate()" ng-disabled="groupCreateForm.$invalid" class="md-raised md-primary md-hue-3">
+            <ng-md-icon icon="send" style="fill: black" size="24"></ng-md-icon>
+            Create
         </md-button>
     </div>
 </form>
 
+<!--<pre style="height:200px;scroll:auto;"><code>{{vm.selected | json: 2}}</code></pre>-->
+<pre style="height:200px;scroll:auto;"><code>{{vm.formData | json: 2}}</code></pre>

@@ -16,7 +16,7 @@
         var directive = {
             bindToController: true,
             controller      : SigninFormController,
-            controllerAs    : 'SigninForm',
+            controllerAs    : 'vm',
             link            : link,
             restrict        : 'EA',
             scope           : {},
@@ -36,7 +36,6 @@
     /* @ngInject */
     function SigninFormController($auth, $state, $http, $rootScope, ToastService) {
         var vm        = this;
-        vm.title      = 'SigninFormController';
         vm.loginError = false;
         vm.loginErrorText;
         vm.login      = login;

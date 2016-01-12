@@ -32,9 +32,6 @@ class JwtAuthServiceProvider extends ServiceProvider
 
         include $componenentsPath . '/../routes.php';
 
-        // Set up event listeners
-        $dispatcher = $this->app->make('events');
-        $dispatcher->subscribe('Onderdelen\JwtAuth\Listeners\UserEventListener');
     }
 
     /**

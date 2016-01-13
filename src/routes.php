@@ -1,5 +1,6 @@
 <?php
 /**
+ * routes.php
  * Created by anonymous on 05/12/15 21:45.
  */
 
@@ -7,7 +8,8 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
     $api->post('auth/signin', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@authenticate');
-    $api->post('auth/signup', ['as' => 'register.user', 'uses' => 'Onderdelen\JwtAuth\Controllers\RegistrationController@register']);
+    $api->post('auth/signup',
+        ['as' => 'register.user', 'uses' => 'Onderdelen\JwtAuth\Controllers\RegistrationController@register']);
     $api->get('users', ['as' => 'users.index', 'uses' => 'Onderdelen\JwtAuth\Controllers\UserController@index']);
     $api->get('groups', ['as' => 'groups.index', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@index']);
     $api->post('groups', ['as' => 'groups.store', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@store']);
@@ -19,63 +21,56 @@ $api->version('v1', ['middleware' => 'api.auth'], function ($api) {
     $api->get('authenticate/user', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@getAuthenticatedUser');
 });
 
-// Route::post('/auth/signup', 'Onderdelen\JwtAuth\Controllers\AuthenticateController@signup');
-// Route::post('register', ['as' => 'sentinel.register.user', 'uses' => 'RegistrationController@register']);
-// Route::get('users', ['as' => 'sentinel.users.index', 'uses' => 'UserController@index']);
+/*
+Route::group(['namespace' => 'Cerberus\Controllers'], function () {
 
-// group
-// Route::get('groups', ['as' => 'sentinel.groups.index', 'uses' => 'GroupController@index']);
+    // Cerberus Session Routes
+    Route::get('login', ['as' => 'cerberus.login', 'uses' => 'SessionController@create']);
+    Route::get('logout', ['as' => 'cerberus.logout', 'uses' => 'SessionController@destroy']);
+    Route::get('sessions/create', ['as' => 'cerberus.session.create', 'uses' => 'SessionController@create']);
+    Route::post('sessions/store', ['as' => 'cerberus.session.store', 'uses' => 'SessionController@store']);
+    Route::delete('sessions/destroy', ['as' => 'cerberus.session.destroy', 'uses' => 'SessionController@destroy']);
 
-// Route::get('/users', 'Onderdelen\JwtAuth\Controllers\UserController@index');
+    // Cerberus Registration
+    Route::get('register', ['as' => 'cerberus.register.form', 'uses' => 'RegistrationController@registration']);
+    Route::post('register', ['as' => 'cerberus.register.user', 'uses' => 'RegistrationController@register']);
+    Route::get('users/activate/{hash}/{code}', ['as' => 'cerberus.activate', 'uses' => 'RegistrationController@activate']);
+    Route::get('reactivate', ['as' => 'cerberus.reactivate.form', 'uses' => 'RegistrationController@resendActivationForm']);
+    Route::post('reactivate', ['as' => 'cerberus.reactivate.send', 'uses' => 'RegistrationController@resendActivation']);
+    Route::get('forgot', ['as' => 'cerberus.forgot.form', 'uses' => 'RegistrationController@forgotPasswordForm']);
+    Route::post('forgot', ['as' => 'cerberus.reset.request', 'uses' => 'RegistrationController@sendResetPasswordEmail']);
+    Route::get('reset/{hash}/{code}', ['as' => 'cerberus.reset.form', 'uses' => 'RegistrationController@passwordResetForm']);
+    Route::post('reset/{hash}/{code}', ['as' => 'cerberus.reset.password', 'uses' => 'RegistrationController@resetPassword']);
 
-/*Route::group(['namespace' => 'Sentinel\Controllers'], function () {
+    // Cerberus Profile
+    Route::get('profile', ['as' => 'cerberus.profile.show', 'uses' => 'ProfileController@show']);
+    Route::get('profile/edit', ['as' => 'cerberus.profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::put('profile', ['as' => 'cerberus.profile.update', 'uses' => 'ProfileController@update']);
+    Route::post('profile/password', ['as' => 'cerberus.profile.password', 'uses' => 'ProfileController@changePassword']);
 
-    // Sentinel Session Routes
-    Route::get('login', ['as' => 'sentinel.login', 'uses' => 'SessionController@create']);
-    Route::get('logout', ['as' => 'sentinel.logout', 'uses' => 'SessionController@destroy']);
-    Route::get('sessions/create', ['as' => 'sentinel.session.create', 'uses' => 'SessionController@create']);
-    Route::post('sessions/store', ['as' => 'sentinel.session.store', 'uses' => 'SessionController@store']);
-    Route::delete('sessions/destroy', ['as' => 'sentinel.session.destroy', 'uses' => 'SessionController@destroy']);
+    // Cerberus Users
+    Route::get('users', ['as' => 'cerberus.users.index', 'uses' => 'UserController@index']);
+    Route::get('users/create', ['as' => 'cerberus.users.create', 'uses' => 'UserController@create']);
+    Route::post('users', ['as' => 'cerberus.users.store', 'uses' => 'UserController@store']);
+    Route::get('users/{hash}', ['as' => 'cerberus.users.show', 'uses' => 'UserController@show']);
+    Route::get('users/{hash}/edit', ['as' => 'cerberus.users.edit', 'uses' => 'UserController@edit']);
+    Route::post('users/{hash}/password', ['as' => 'cerberus.password.change', 'uses' => 'UserController@changePassword']);
+    Route::post('users/{hash}/memberships', ['as' => 'cerberus.users.memberships', 'uses' => 'UserController@updateGroupMemberships']);
+    Route::put('users/{hash}', ['as' => 'cerberus.users.update', 'uses' => 'UserController@update']);
+    Route::delete('users/{hash}', ['as' => 'cerberus.users.destroy', 'uses' => 'UserController@destroy']);
+    Route::get('users/{hash}/suspend', ['as' => 'cerberus.users.suspend', 'uses' => 'UserController@suspend']);
+    Route::get('users/{hash}/unsuspend', ['as' => 'cerberus.users.unsuspend', 'uses' => 'UserController@unsuspend']);
+    Route::get('users/{hash}/ban', ['as' => 'cerberus.users.ban', 'uses' => 'UserController@ban']);
+    Route::get('users/{hash}/unban', ['as' => 'cerberus.users.unban', 'uses' => 'UserController@unban']);
 
-    // Sentinel Registration
-    Route::get('register', ['as' => 'sentinel.register.form', 'uses' => 'RegistrationController@registration']);
-    Route::post('register', ['as' => 'sentinel.register.user', 'uses' => 'RegistrationController@register']);
-    Route::get('users/activate/{hash}/{code}', ['as' => 'sentinel.activate', 'uses' => 'RegistrationController@activate']);
-    Route::get('reactivate', ['as' => 'sentinel.reactivate.form', 'uses' => 'RegistrationController@resendActivationForm']);
-    Route::post('reactivate', ['as' => 'sentinel.reactivate.send', 'uses' => 'RegistrationController@resendActivation']);
-    Route::get('forgot', ['as' => 'sentinel.forgot.form', 'uses' => 'RegistrationController@forgotPasswordForm']);
-    Route::post('forgot', ['as' => 'sentinel.reset.request', 'uses' => 'RegistrationController@sendResetPasswordEmail']);
-    Route::get('reset/{hash}/{code}', ['as' => 'sentinel.reset.form', 'uses' => 'RegistrationController@passwordResetForm']);
-    Route::post('reset/{hash}/{code}', ['as' => 'sentinel.reset.password', 'uses' => 'RegistrationController@resetPassword']);
+    // Cerberus Groups
+    Route::get('groups', ['as' => 'cerberus.groups.index', 'uses' => 'GroupController@index']);
+    Route::get('groups/create', ['as' => 'cerberus.groups.create', 'uses' => 'GroupController@create']);
+    Route::post('groups', ['as' => 'cerberus.groups.store', 'uses' => 'GroupController@store']);
+    Route::get('groups/{hash}', ['as' => 'cerberus.groups.show', 'uses' => 'GroupController@show']);
+    Route::get('groups/{hash}/edit', ['as' => 'cerberus.groups.edit', 'uses' => 'GroupController@edit']);
+    Route::put('groups/{hash}', ['as' => 'cerberus.groups.update', 'uses' => 'GroupController@update']);
+    Route::delete('groups/{hash}', ['as' => 'cerberus.groups.destroy', 'uses' => 'GroupController@destroy']);
 
-    // Sentinel Profile
-    Route::get('profile', ['as' => 'sentinel.profile.show', 'uses' => 'ProfileController@show']);
-    Route::get('profile/edit', ['as' => 'sentinel.profile.edit', 'uses' => 'ProfileController@edit']);
-    Route::put('profile', ['as' => 'sentinel.profile.update', 'uses' => 'ProfileController@update']);
-    Route::post('profile/password', ['as' => 'sentinel.profile.password', 'uses' => 'ProfileController@changePassword']);
-
-    // Sentinel Users
-    Route::get('users', ['as' => 'sentinel.users.index', 'uses' => 'UserController@index']);
-    Route::get('users/create', ['as' => 'sentinel.users.create', 'uses' => 'UserController@create']);
-    Route::post('users', ['as' => 'sentinel.users.store', 'uses' => 'UserController@store']);
-    Route::get('users/{hash}', ['as' => 'sentinel.users.show', 'uses' => 'UserController@show']);
-    Route::get('users/{hash}/edit', ['as' => 'sentinel.users.edit', 'uses' => 'UserController@edit']);
-    Route::post('users/{hash}/password', ['as' => 'sentinel.password.change', 'uses' => 'UserController@changePassword']);
-    Route::post('users/{hash}/memberships', ['as' => 'sentinel.users.memberships', 'uses' => 'UserController@updateGroupMemberships']);
-    Route::put('users/{hash}', ['as' => 'sentinel.users.update', 'uses' => 'UserController@update']);
-    Route::delete('users/{hash}', ['as' => 'sentinel.users.destroy', 'uses' => 'UserController@destroy']);
-    Route::get('users/{hash}/suspend', ['as' => 'sentinel.users.suspend', 'uses' => 'UserController@suspend']);
-    Route::get('users/{hash}/unsuspend', ['as' => 'sentinel.users.unsuspend', 'uses' => 'UserController@unsuspend']);
-    Route::get('users/{hash}/ban', ['as' => 'sentinel.users.ban', 'uses' => 'UserController@ban']);
-    Route::get('users/{hash}/unban', ['as' => 'sentinel.users.unban', 'uses' => 'UserController@unban']);
-
-    // Sentinel Groups
-    Route::get('groups', ['as' => 'sentinel.groups.index', 'uses' => 'GroupController@index']);
-    Route::get('groups/create', ['as' => 'sentinel.groups.create', 'uses' => 'GroupController@create']);
-    Route::post('groups', ['as' => 'sentinel.groups.store', 'uses' => 'GroupController@store']);
-    Route::get('groups/{hash}', ['as' => 'sentinel.groups.show', 'uses' => 'GroupController@show']);
-    Route::get('groups/{hash}/edit', ['as' => 'sentinel.groups.edit', 'uses' => 'GroupController@edit']);
-    Route::put('groups/{hash}', ['as' => 'sentinel.groups.update', 'uses' => 'GroupController@update']);
-    Route::delete('groups/{hash}', ['as' => 'sentinel.groups.destroy', 'uses' => 'GroupController@destroy']);
-
-});*/
+});
+*/

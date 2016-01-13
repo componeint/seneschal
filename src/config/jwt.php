@@ -13,7 +13,6 @@ return [
     */
 
     'secret'            => env('JWT_SECRET', '3Sox3lEPzeQsNLUnrNf9Tgyh3DFK6DIE'),
-
     /*
     |--------------------------------------------------------------------------
     | JWT time to live
@@ -25,7 +24,6 @@ return [
     */
 
     'ttl'               => 60,
-
     /*
     |--------------------------------------------------------------------------
     | Refresh time to live
@@ -39,7 +37,6 @@ return [
     */
 
     'refresh_ttl'       => 20160,
-
     /*
     |--------------------------------------------------------------------------
     | JWT hashing algorithm
@@ -53,7 +50,6 @@ return [
     */
 
     'algo'              => 'HS256',
-
     /*
     |--------------------------------------------------------------------------
     | User Model namespace
@@ -64,8 +60,7 @@ return [
     |
     */
 
-    'user'              => 'App\User',
-
+    'user'              => 'Onderdelen\JwtAuth\Models\User',
     /*
     |--------------------------------------------------------------------------
     | User identifier
@@ -77,7 +72,6 @@ return [
     */
 
     'identifier'        => 'id',
-
     /*
     |--------------------------------------------------------------------------
     | Required Claims
@@ -90,7 +84,6 @@ return [
     */
 
     'required_claims'   => ['iss', 'iat', 'exp', 'nbf', 'sub', 'jti'],
-
     /*
     |--------------------------------------------------------------------------
     | Blacklist Enabled
@@ -102,7 +95,6 @@ return [
     */
 
     'blacklist_enabled' => env('JWT_BLACKLIST_ENABLED', true),
-
     /*
     |--------------------------------------------------------------------------
     | Providers
@@ -125,7 +117,6 @@ return [
         */
 
         'user'    => 'Tymon\JWTAuth\Providers\User\EloquentUserAdapter',
-
         /*
         |--------------------------------------------------------------------------
         | JWT Provider
@@ -136,7 +127,6 @@ return [
         */
 
         'jwt'     => 'Tymon\JWTAuth\Providers\JWT\NamshiAdapter',
-
         /*
         |--------------------------------------------------------------------------
         | Authentication Provider
@@ -149,7 +139,6 @@ return [
         'auth'    => function ($app) {
             return new Tymon\JWTAuth\Providers\Auth\IlluminateAuthAdapter($app['auth']);
         },
-
         /*
         |--------------------------------------------------------------------------
         | Storage Provider

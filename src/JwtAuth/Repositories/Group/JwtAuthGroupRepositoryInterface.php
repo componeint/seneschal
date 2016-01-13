@@ -1,6 +1,6 @@
 <?php
 /**
- * GroupRepositoryInterface.php
+ * JwtAuthGroupRepositoryInterface.php
  * Created by anonymous on 18/12/15 8:39.
  */
 
@@ -14,7 +14,7 @@ use Onderdelen\JwtAuth\Models\User;
  * Interface GroupRepositoryInterface
  * @package Onderdelen\JwtAuth\Repositories\Group
  */
-interface GroupRepositoryInterface
+interface JwtAuthGroupRepositoryInterface
 {
     /**
      * Store a newly created resource in storage.

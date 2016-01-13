@@ -48,7 +48,7 @@ class JwtAuthServiceProvider extends ServiceProvider
         $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
 
         $this->app->register(\Consigliere\AppFoundation\AppFoundationServiceProvider::class);
-        $this->app->register(\Sentinel\SentinelServiceProvider::class);
+        $this->app->register(\Cerberus\CerberusServiceProvider::class);
 
         // Bind the User Repository
         $this->app->bind('Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface', function ($app) {

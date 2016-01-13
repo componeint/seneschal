@@ -12,9 +12,6 @@ use Sentinel\Repositories\User\SentryUserRepository;
 
 class UserRepository extends SentryUserRepository implements UserRepositoryInterface, UserProvider
 {
-    public function store($data)
-    {
-        parent::store($data);
-    }
+
 }
 

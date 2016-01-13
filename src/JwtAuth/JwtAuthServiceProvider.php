@@ -1,15 +1,16 @@
-<?php namespace Onderdelen\JwtAuth;
+<?php
+
+namespace Onderdelen\JwtAuth;
 
 use ReflectionClass;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Onderdelen\JwtAuth\Repositories\Group\GroupRepository;
-use Onderdelen\JwtAuth\Repositories\User\UserRepository;
+use Onderdelen\JwtAuth\Repositories\Group\JwtAuthGroupRepository;
+use Onderdelen\JwtAuth\Repositories\User\JwtAuthUserRepository;
 use Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepository;
 
 class JwtAuthServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -52,7 +53,7 @@ class JwtAuthServiceProvider extends ServiceProvider
 
         // Bind the User Repository
         $this->app->bind('Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface', function ($app) {
-            return new UserRepository(
+            return new JwtAuthUserRepository(
                 $app['sentry'],
                 $app['config'],
                 $app['events']
@@ -61,19 +62,20 @@ class JwtAuthServiceProvider extends ServiceProvider
 
         // Bind the Group Repository
         $this->app->bind('Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface', function ($app) {
-            return new GroupRepository(
+            return new JwtAuthGroupRepository(
                 $app['sentry'],
                 $app['events']
             );
         });
 
         // Bind the Authenticate Repository
-        $this->app->bind('Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface', function ($app) {
-            return new AuthenticateRepository(
-                $app['sentry'],
-                $app['events']
-            );
-        });
+        $this->app->bind('Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface',
+            function ($app) {
+                return new AuthenticateRepository(
+                    $app['sentry'],
+                    $app['events']
+                );
+            });
     }
 
     /**

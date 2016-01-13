@@ -18,8 +18,15 @@ use Onderdelen\JwtAuth\DataTransferObjects\SuccessResponse;
 use Onderdelen\JwtAuth\DataTransferObjects\FailureResponse;
 use Onderdelen\JwtAuth\DataTransferObjects\ExceptionResponse;
 
-class JwtAuthGroupRepository implements GroupRepositoryInterface
+/**
+ * Class JwtAuthGroupRepository
+ * @package Onderdelen\JwtAuth\Repositories\Group
+ */
+class JwtAuthGroupRepository implements JwtAuthGroupRepositoryInterface
 {
+    /**
+     * @var Sentry
+     */
     protected $sentry;
 
     /**
@@ -44,7 +51,7 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
 
             /// Create the group
             $group = $this->sentry->createGroup([
-                'name' => e($data['name']),
+                'name'        => e($data['name']),
                 'permissions' => $permissions,
             ]);
 

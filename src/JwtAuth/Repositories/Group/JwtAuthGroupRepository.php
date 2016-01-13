@@ -22,7 +22,7 @@ use Onderdelen\JwtAuth\DataTransferObjects\ExceptionResponse;
  * Class JwtAuthGroupRepository
  * @package Onderdelen\JwtAuth\Repositories\Group
  */
-class JwtAuthGroupRepository implements JwtAuthGroupRepositoryInterface
+class JwtAuthGroupRepository implements GroupRepositoryInterface
 {
     /**
      * @var Sentry

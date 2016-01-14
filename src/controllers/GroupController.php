@@ -6,7 +6,7 @@
 
 namespace Onderdelen\JwtAuth\Controllers;
 
-use Anwendungen\Application\Controller\Controller;
+use Consigliere\AppFoundation\Controller\Controller;
 use Vinkla\Hashids\HashidsManager;
 use Illuminate\Pagination\Paginator;
 use Onderdelen\JwtAuth\FormRequests\GroupCreateRequest;

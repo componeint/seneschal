@@ -6,7 +6,7 @@
 
 namespace Onderdelen\JwtAuth\Controllers;
 
-use Anwendungen\Application\Controller\Controller;
+use Consigliere\AppFoundation\Controller\Controller;
 use Vinkla\Hashids\HashidsManager;
 use Onderdelen\JwtAuth\FormRequests\RegisterRequest;
 use Onderdelen\JwtAuth\FormRequests\EmailRequest;

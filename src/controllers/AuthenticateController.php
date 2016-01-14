@@ -6,7 +6,7 @@
 
 namespace Onderdelen\JwtAuth\Controllers;
 
-use Anwendungen\Application\Controller\Controller;
+use Consigliere\AppFoundation\Controller\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Onderdelen\JwtAuth\Models\User;
 use Illuminate\Http\Request;

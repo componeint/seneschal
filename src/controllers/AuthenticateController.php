@@ -7,17 +7,13 @@
 namespace Onderdelen\JwtAuth\Controllers;
 
 use Consigliere\AppFoundation\Controller\Controller;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Onderdelen\JwtAuth\Models\User;
-use Illuminate\Http\Request;
-use Onderdelen\JwtAuth\FormRequests\LoginRequest;
 use Illuminate\Support\Facades\Response;
+use Onderdelen\JwtAuth\FormRequests\LoginRequest;
 use Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface;
-
-// use Onderdelen\JwtAuth\Traits\SentinelRedirectionTrait;
-// use Onderdelen\JwtAuth\Traits\SentinelViewfinderTrait;
+use Cerberus\Traits\CerberusRedirectionTrait;
+use Cerberus\Traits\CerberusViewfinderTrait;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
-use Hash;
 use Sentry;
 use View;
 use Input;
@@ -27,14 +23,16 @@ use Session;
 use Config;
 
 /**
- * Class AuthenticateController
- *
+ * Class SessionController
  * @package Onderdelen\JwtAuth\Controllers
  */
-class AuthenticateController extends Controller
+class SessionController extends Controller
 {
+    use CerberusRedirectionTrait;
+    use CerberusViewfinderTrait;
+
     /**
-     * construct
+     * Constructor
      */
     public function __construct(AuthenticateRepositoryInterface $authenticateManager)
     {
@@ -63,7 +61,8 @@ class AuthenticateController extends Controller
     public function authenticate(LoginRequest $request)
     {
         // Gather the input
-        $data = Input::all();
+        // $data = Input::all();
+        $data = $request->all();
 
         // Attempt the login
         $result = $this->authenticateManager->store($data);
@@ -109,5 +108,68 @@ class AuthenticateController extends Controller
 
         // the token is valid and we have found the user via the sub claim
         return response()->json(compact('user'));
+    }
+
+    /**
+     * Show the login form
+     */
+    public function create()
+    {
+        // Is this user already signed in?
+        if (Sentry::check()) {
+            return $this->redirectTo('session_store');
+        }
+
+        // No - they are not signed in.  Show the login form.
+        return $this->viewFinder('Cerberus::sessions.login');
+    }
+
+    /**
+     * Attempt authenticate a user.
+     *
+     * @return Response
+     */
+    public function store(LoginRequest $request)
+    {
+        // Gather the input
+        $data = Input::all();
+
+        // Attempt the login
+        $result = $this->session->store($data);
+
+        // Did it work?
+        if ($result->isSuccessful()) {
+            // Login was successful.  Determine where we should go now.
+            if (!config('cerberus.views_enabled')) {
+                // Views are disabled - return json instead
+                return Response::json('success', 200);
+            }
+            // Views are enabled, so go to the determined route
+            $redirect_route = config('cerberus.routing.session_store');
+
+            return Redirect::intended($this->generateUrl($redirect_route));
+        } else {
+            // There was a problem - unrelated to Form validation.
+            if (!config('cerberus.views_enabled')) {
+                // Views are disabled - return json instead
+                return Response::json($result->getMessage(), 400);
+            }
+            Session::flash('error', $result->getMessage());
+
+            return Redirect::route('cerberus.session.create')
+                ->withInput();
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return Response
+     */
+    public function destroy()
+    {
+        $this->session->destroy();
+
+        return $this->redirectTo('session_destroy');
     }
 }

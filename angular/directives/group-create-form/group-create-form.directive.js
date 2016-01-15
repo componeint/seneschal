@@ -38,8 +38,8 @@
     function GroupCreateFormController(API, ToastService, $state) {
         var vm                = this;
         vm.defaultPermissions = [
-            {name: 'admin', value: 1},
-            {name: 'users', value: 1}
+            {name: 'admin', value: {'admin':1}},
+            {name: 'users', value: {'users':1}}
         ];
         vm.selected           = [];
         vm.toggle             = function(item, list) {

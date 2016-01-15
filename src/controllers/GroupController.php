@@ -83,7 +83,7 @@ class GroupController extends Controller
     public function store(GroupCreateRequest $request)
     {
         // Gather input
-        $data = Input::all();
+        $data = $request->all();
 
         // Store the new group
         $result = $this->groupRepository->store($data);

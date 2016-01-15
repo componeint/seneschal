@@ -1,4 +1,5 @@
 /**
+ * group-create-form.directive.js
  * Created by anonymous on 31/12/15 12:59.
  */
 
@@ -31,10 +32,10 @@
         }
     }
 
-    GroupCreateFormController.$inject = ['API', 'ToastService'];
+    GroupCreateFormController.$inject = ['API', 'ToastService', '$state'];
 
     /* @ngInject */
-    function GroupCreateFormController(API, ToastService) {
+    function GroupCreateFormController(API, ToastService, $state) {
         var vm                = this;
         vm.defaultPermissions = [
             {name: 'admin', value: 1},
@@ -70,13 +71,12 @@
                 permissions: vm.selected
             };
 
-            /*
-            API.all('posts').post(vm.formData).then(function(response){
-             ToastService.show('Post added successfully');
-             });
-             */
+            API.all('groups').post(vm.formData).then(function(response) {
+                $state.go('dashboard.groups');
+                ToastService.show('Post added successfully');
+            });
 
-            console.log(vm.formData);
+            // console.log(vm.formData);
         }
 
     }

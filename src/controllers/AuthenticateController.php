@@ -23,10 +23,10 @@ use Session;
 use Config;
 
 /**
- * Class SessionController
+ * Class AuthenticateController
  * @package Onderdelen\JwtAuth\Controllers
  */
-class SessionController extends Controller
+class AuthenticateController extends Controller
 {
     use CerberusRedirectionTrait;
     use CerberusViewfinderTrait;

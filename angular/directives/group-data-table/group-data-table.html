@@ -17,14 +17,31 @@
     <div class="md-toolbar-tools">
         <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selected</span>
         <span flex></span>
+        <md-button class="md-icon-button" ng-if="vm.selected.length > 1">
+            <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
+            <md-tooltip md-direction="bottom">Delete</md-tooltip>
+        </md-button>
+        <span ng-if="vm.selected.length === 1">
         <md-button class="md-icon-button">
             <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Delete</md-tooltip>
         </md-button>
         <md-button class="md-icon-button">
-            <md-icon ng-md-icon icon="more_vert" style="fill: black" size="24"></md-icon>
-            <md-tooltip md-direction="bottom">More</md-tooltip>
+            <md-icon ng-md-icon icon="edit" style="fill: black" size="24"></md-icon>
+            <md-tooltip md-direction="bottom">edit</md-tooltip>
         </md-button>
+        <md-button class="md-icon-button">
+            <md-icon ng-md-icon icon="details" style="fill: black" size="24"></md-icon>
+            <md-tooltip md-direction="bottom">details</md-tooltip>
+        </md-button>
+        <!--
+            <md-button class="md-icon-button">
+                <md-icon ng-md-icon icon="more_vert" style="fill: black" size="24"></md-icon>
+                <md-tooltip md-direction="bottom">More</md-tooltip>
+            </md-button>
+        -->
+        </span>
+
     </div>
 </md-toolbar>
 
@@ -47,7 +64,7 @@
         </thead>
         -->
         <tbody md-body>
-        <tr md-row md:select="record" data-md-on-select="vm.log" md-on-deselect="vm.deselect" x-md-auto-select="!autoSelect" ng-disabled="((record.id === 2) && (record.name === 'Admins'))" data-ng-repeat="record in vm.records.data | filter: filter.search | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+        <tr md-row md:select="record" data-md-on-select="vm.log" md-on-deselect="vm.deselect" x-md-auto-select="!autoSelect" ng-disabled="(((record.id === 1) && (record.name === 'Users')) || ((record.id === 2) && (record.name === 'Admins')))" data-ng-repeat="record in vm.records.data | filter: filter.search | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
             <td md-cell>{{record.name}}</td>
             <td md-cell>{{record.permissions}}</td>
         </tr>

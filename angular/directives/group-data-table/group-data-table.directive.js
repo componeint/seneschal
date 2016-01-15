@@ -1,4 +1,5 @@
 /**
+ * group-data-table.directive.js
  * Created by anonymous on 07/01/16 19:01.
  */
 

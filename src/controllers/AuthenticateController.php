@@ -12,6 +12,7 @@ use Onderdelen\JwtAuth\FormRequests\LoginRequest;
 use Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface;
 use Cerberus\Traits\CerberusRedirectionTrait;
 use Cerberus\Traits\CerberusViewfinderTrait;
+use Onderdelen\JwtAuth\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Sentry;

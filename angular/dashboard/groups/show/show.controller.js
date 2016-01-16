@@ -22,7 +22,9 @@
         ////////////////
 
         function activate() {
-            Groups.get(vm.groupId);
+            Groups.get(vm.groupId).then(function(response) {
+                vm.groups = response.data;
+            });
         }
     }
 

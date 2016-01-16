@@ -107,7 +107,8 @@ class GroupController extends Controller
         // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);
 
-        return $this->viewFinder('Cerberus::groups.show', ['group' => $group]);
+        // return $this->viewFinder('Cerberus::groups.show', ['group' => $group]);
+        return response()->json($group);
     }
 
     /**

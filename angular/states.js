@@ -42,7 +42,7 @@
                 }
             })
             .state('dashboard.groups.show', {
-                url  : '/show/{id}',
+                url  : '/show/{groupId}',
                 data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {

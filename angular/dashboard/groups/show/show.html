@@ -1,8 +1,19 @@
-<!--
-<group-show-detail template="./views/directives/group-show-detail/group-show-detail.html"></group-show-detail>
--->
 
-<div ng-repeat="group in show.groups">
-    {{group.id}}
-    {{group.name}}
-</div>
+<md-content flex layout-padding>
+    <div layout="row">
+        <div flex="30" hide-xs hide-sm hide-md></div>
+        <div flex="auto">
+                <table>
+                    <tr ng-repeat="(key, value) in show.groups">
+                        <td>{{key}}</td>
+                        <td> : </td>
+                        <td>{{value}}</td>
+                    </tr>
+                </table>
+        </div>
+        <div flex="25" hide-xs hide-sm hide-md></div>
+    </div>
+</md-content>
+<!--
+    <pre style="height:200px;scroll:auto;"><code>{{show.groups | json: 2}}</code></pre>
+-->

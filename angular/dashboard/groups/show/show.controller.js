@@ -10,10 +10,10 @@
         .module('jwtAuth')
         .controller('GroupsShowController', GroupsShowController);
 
-    GroupsShowController.$inject = ['$stateParams', 'API', 'Groups'];
+    GroupsShowController.$inject = ['$stateParams', 'Groups'];
 
     /* @ngInject */
-    function GroupsShowController($stateParams, API, Groups) {
+    function GroupsShowController($stateParams, Groups) {
         var vm     = this;
         vm.groupId = $stateParams.groupId;
 

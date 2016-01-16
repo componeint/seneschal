@@ -102,10 +102,13 @@ class GroupController extends Controller
     public function show($hash)
     {
         // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
+        // $id = $this->hashids->decode($hash);
+        // $id = $hash;
+
+        $group = [];
 
         // Pull the group from storage
-        $group = $this->groupRepository->retrieveById($id);
+        $group = $this->groupRepository->retrieveById($hash);
 
         // return $this->viewFinder('Cerberus::groups.show', ['group' => $group]);
         return response()->success($group);

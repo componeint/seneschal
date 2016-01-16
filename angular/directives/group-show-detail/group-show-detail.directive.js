@@ -20,7 +20,9 @@
             controllerAs    : 'vm',
             link            : link,
             restrict        : 'EA',
-            scope           : {},
+            scope           : {
+                id: '@'
+            },
             templateUrl     : function(elem, attr) {
                 return attr.template;
             }

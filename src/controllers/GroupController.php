@@ -108,7 +108,7 @@ class GroupController extends Controller
         $group = $this->groupRepository->retrieveById($id);
 
         // return $this->viewFinder('Cerberus::groups.show', ['group' => $group]);
-        return response()->json($group);
+        return response()->success($group);
     }
 
     /**

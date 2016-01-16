@@ -14,7 +14,7 @@
 
     /* @ngInject */
     function Groups(API) {
-        return API.service('groups');
+        return API.all('groups');
     }
 
 })();

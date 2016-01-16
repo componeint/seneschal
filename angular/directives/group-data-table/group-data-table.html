@@ -15,7 +15,7 @@
 
 <md-toolbar class="md-accent" ng-show="vm.selected.length">
     <div class="md-toolbar-tools">
-        <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selected</span>
+        <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selected : {{vm.selected}}</span>
         <span flex></span>
         <md-button class="md-icon-button" ng-if="vm.selected.length > 1">
             <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
@@ -31,8 +31,10 @@
             <md-tooltip md-direction="bottom">edit</md-tooltip>
         </md-button>
         <md-button class="md-icon-button">
-            <md-icon ng-md-icon icon="details" style="fill: black" size="24"></md-icon>
-            <md-tooltip md-direction="bottom">details</md-tooltip>
+            <a ui-sref="dashboard.groups.show({groupId : vm.selected[0].id})">
+                <md-icon ng-md-icon icon="details" style="fill: black" size="24"></md-icon>
+                <md-tooltip md-direction="bottom">details</md-tooltip>
+            </a>
         </md-button>
         <!--
             <md-button class="md-icon-button">
@@ -74,4 +76,14 @@
 
 <data-md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.records.count}}" md-on-paginate="vm.onPaginate" md-page-select></data-md-table-pagination>
 
+<div ng-if="vm.selected">
+    Detail : {{vm.selected.length}}
+    Id : {{vm.selected[0].id}}
+    Name : {{vm.selected[0].name}}
+    Permissions : {{vm.selected[0].permissions}}
+    Created : {{vm.selected[0].created_at}}
+    Updated : {{vm.selected[0].updated_at}}
+</div>
+
+<pre style="height:200px;scroll:auto;"><code>{{vm.selected | json: 2}}</code></pre>
 <pre style="height:200px;scroll:auto;"><code>{{vm.records | json: 2}}</code></pre>

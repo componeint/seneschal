@@ -88,7 +88,9 @@ class GroupController extends Controller
         // Store the new group
         $result = $this->groupRepository->store($data);
 
-        return $this->redirectViaResponse('groups_store', $result);
+        // return $this->redirectViaResponse('groups_store', $result);
+
+        return response()->success($result);
     }
 
     /**

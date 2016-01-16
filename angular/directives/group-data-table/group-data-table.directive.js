@@ -17,7 +17,7 @@
         var directive = {
             bindToController: true,
             controller      : GroupDataTableController,
-            controllerAs    : 'vm',
+            controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
             scope           : {},
@@ -76,8 +76,8 @@
         ];
 
         function onPaginate(page, limit) {
-            console.log('Scope Page: ' + vm.query.page + ' Scope Limit: ' + vm.query.limit);
-            console.log('Page: ' + page + ' Limit: ' + limit);
+            // console.log('Scope Page: ' + vm.query.page + ' Scope Limit: ' + vm.query.limit);
+            // console.log('Page: ' + page + ' Limit: ' + limit);
 
             vm.promise = $timeout(function() {
 
@@ -85,11 +85,11 @@
         }
 
         function deselect(item) {
-            console.log(item.name, 'was deselected');
+            // console.log(item.name, 'was deselected');
         }
 
         function log(item) {
-            console.log(item.name, 'was selected');
+            // console.log(item.name, 'was selected');
         }
 
         function loadStuff() {
@@ -100,8 +100,8 @@
 
         function onReorder(order) {
 
-            console.log('Scope Order: ' + vm.query.order);
-            console.log('Order: ' + order);
+            // console.log('Scope Order: ' + vm.query.order);
+            // console.log('Order: ' + order);
 
             vm.promise = $timeout(function() {
 

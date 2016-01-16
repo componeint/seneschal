@@ -17,7 +17,7 @@
         var directive = {
             bindToController: true,
             controller      : GroupCreateFormController,
-            controllerAs    : 'vm',
+            controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
             scope           : {},

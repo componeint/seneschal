@@ -1,4 +1,5 @@
 /**
+ * signin-form.directive.js
  * Created by anonymous on 01/01/16 15:01.
  */
 
@@ -16,7 +17,7 @@
         var directive = {
             bindToController: true,
             controller      : SigninFormController,
-            controllerAs    : 'vm',
+            controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
             scope           : {},

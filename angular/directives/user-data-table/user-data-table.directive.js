@@ -1,4 +1,5 @@
 /**
+ * user-data-table.directive.js
  * Created by anonymous on 09/01/16 9:48.
  */
 
@@ -16,7 +17,7 @@
         var directive = {
             bindToController: true,
             controller      : UserDataTableController,
-            controllerAs    : 'vm',
+            controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
             scope           : {},

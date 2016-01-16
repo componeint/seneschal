@@ -1,4 +1,5 @@
 /**
+ * signup-form.directive.js
  * Created by anonymous on 02/01/16 21:12.
  */
 
@@ -16,7 +17,7 @@
         var directive = {
             bindToController: true,
             controller      : SignupFormController,
-            controllerAs    : 'vm',
+            controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
             scope           : {},

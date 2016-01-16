@@ -17,7 +17,7 @@
         var directive = {
             bindToController: true,
             controller      : GroupShowDetailController,
-            controllerAs    : 'vm',
+            controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
             scope           : {

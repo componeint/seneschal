@@ -1,4 +1,4 @@
-<md-toolbar class="md-table-toolbar md-default" ng-show="!vm.selected.length">
+<md-toolbar class="md-table-toolbar md-default" ng-show="!ctrl.selected.length">
     <div class="md-toolbar-tools">
         <span></span>
         <span flex></span>
@@ -6,16 +6,16 @@
             <md-icon ng-md-icon icon="add" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Add</md-tooltip>
         </md-button>
-        <md-button class="md-icon-button" ng-click="vm.loadStuff()">
+        <md-button class="md-icon-button" ng-click="ctrl.loadStuff()">
             <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Refresh</md-tooltip>
         </md-button>
     </div>
 </md-toolbar>
 
-<md-toolbar class="md-accent" ng-show="vm.selected.length">
+<md-toolbar class="md-accent" ng-show="ctrl.selected.length">
     <div class="md-toolbar-tools">
-        <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selected</span>
+        <span>{{ctrl.selected.length}} {{ctrl.selected.length > 1 ? 'items' : 'item'}} selected</span>
         <span flex></span>
         <md-button class="md-icon-button">
             <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
@@ -29,17 +29,17 @@
 </md-toolbar>
 
 <md-table-container>
-    <table data-md-table data-md-row-select="!hideCheckboxes" data-ng-model="vm.selected" md-progress="vm.promise">
-        <thead md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
+    <table data-md-table data-md-row-select="!hideCheckboxes" data-ng-model="ctrl.selected" md-progress="ctrl.promise">
+        <thead md-head md-order="ctrl.query.order" md-on-reorder="ctrl.onReorder">
         <tr md-row>
-            <th md-column ng-repeat="column in vm.columns" md-numeric="column.numeric" md-order-by="{{column.orderBy}}">
+            <th md-column ng-repeat="column in ctrl.columns" md-numeric="column.numeric" md-order-by="{{column.orderBy}}">
                 <span>{{column.name}}</span>
                 <span ng-if="column.unit">({{column.unit}})</span>
             </th>
         </tr>
         </thead>
         <!--
-        <thead ng-if="!hideHead" md-head md-order="vm.query.order" md-on-reorder="vm.onReorder">
+        <thead ng-if="!hideHead" md-head md-order="ctrl.query.order" md-on-reorder="ctrl.onReorder">
         <tr md-row>
             <th md-column md:order:by="name"><span>Name</span></th>
             <th md-column md:order:by="permissions"><span>Permissions</span></th>
@@ -47,7 +47,7 @@
         </thead>
         -->
         <tbody md-body>
-        <tr md-row md:select="record" data-md-on-select="vm.log" md-on-deselect="vm.deselect" x-md-auto-select="!autoSelect" ng-disabled="((record.id === 2) && (record.name === 'Admins'))" data-ng-repeat="record in vm.records.data | filter: filter.search | orderBy: vm.query.order | limitTo: vm.query.limit : (vm.query.page -1) * vm.query.limit">
+        <tr md-row md:select="record" data-md-on-select="ctrl.log" md-on-deselect="ctrl.deselect" x-md-auto-select="!autoSelect" ng-disabled="((record.id === 2) && (record.name === 'Admins'))" data-ng-repeat="record in ctrl.records.data | filter: filter.search | orderBy: ctrl.query.order | limitTo: ctrl.query.limit : (ctrl.query.page -1) * ctrl.query.limit">
             <td md-cell>{{record.username}}</td>
             <td md-cell>{{record.email}}</td>
             <td md-cell>{{record.permissions}}</td>
@@ -58,6 +58,6 @@
     </table>
 </md-table-container>
 
-<data-md-table-pagination md-limit="vm.query.limit" md-page="vm.query.page" md-total="{{vm.records.count}}" md-on-paginate="vm.onPaginate" md-page-select></data-md-table-pagination>
+<data-md-table-pagination md-limit="ctrl.query.limit" md-page="ctrl.query.page" md-total="{{ctrl.records.count}}" md-on-paginate="ctrl.onPaginate" md-page-select></data-md-table-pagination>
 
-<pre style="height:200px;scroll:auto;"><code>{{vm.records | json: 2}}</code></pre>
+<pre style="height:200px;scroll:auto;"><code>{{ctrl.records | json: 2}}</code></pre>

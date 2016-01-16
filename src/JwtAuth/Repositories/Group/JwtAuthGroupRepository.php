@@ -13,10 +13,10 @@ use Illuminate\Http\Response;
 use Cartalyst\Sentry\Groups\GroupExistsException;
 use Cartalyst\Sentry\Groups\GroupNotFoundException;
 use Cerberus\Models\Group;
-use Cerberus\DataTransferObjects\BaseResponse;
-use Cerberus\DataTransferObjects\SuccessResponse;
-use Cerberus\DataTransferObjects\FailureResponse;
-use Cerberus\DataTransferObjects\ExceptionResponse;
+use Onderdelen\JwtAuth\DataTransferObjects\BaseResponse;
+use Onderdelen\JwtAuth\DataTransferObjects\SuccessResponse;
+use Onderdelen\JwtAuth\DataTransferObjects\FailureResponse;
+use Onderdelen\JwtAuth\DataTransferObjects\ExceptionResponse;
 
 /**
  * Class JwtAuthGroupRepository

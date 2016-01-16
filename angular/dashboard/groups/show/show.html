@@ -1,13 +1,32 @@
-
 <md-content flex layout-padding>
     <div layout="row">
         <div flex="30" hide-xs hide-sm hide-md></div>
         <div flex="auto">
-                <table>
-                    <tr ng-repeat="(key, value) in show.groups">
-                        <td>{{key}}</td>
+                <table ng-repeat="group in show.groups">
+                    <tr>
+                        <td>Id</td>
                         <td> : </td>
-                        <td>{{value}}</td>
+                        <td>{{group.id}}</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td> : </td>
+                        <td>{{group.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Permissions</td>
+                        <td> : </td>
+                        <td>{{group.permissions}}</td>
+                    </tr>
+                    <tr>
+                        <td>Created</td>
+                        <td> : </td>
+                        <td>{{group.created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td>Updated</td>
+                        <td> : </td>
+                        <td>{{group.updated_at}}</td>
                     </tr>
                 </table>
         </div>

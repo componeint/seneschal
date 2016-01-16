@@ -1,4 +1,5 @@
 /**
+ * states.js
  * Created by anonymous on 01/12/15 23:48.
  */
 
@@ -41,7 +42,7 @@
                 }
             })
             .state('dashboard.groups.show', {
-                url  : '/show',
+                url  : '/show/{id}',
                 data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {

@@ -161,11 +161,12 @@ class GroupController extends Controller
     public function destroy($hash)
     {
         // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
+        // $id = $this->hashids->decode($hash)[0];
 
         // Remove the group from storage
-        $result = $this->groupRepository->destroy($id);
+        $result = $this->groupRepository->destroy($hash);
 
-        return $this->redirectViaResponse('groups_destroy', $result);
+        // return $this->redirectViaResponse('groups_destroy', $result);
+        return response()->success([$result]);
     }
 }

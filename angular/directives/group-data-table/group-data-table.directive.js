@@ -72,6 +72,14 @@
             {
                 name   : 'Permissions',
                 orderBy: 'permissions'
+            },
+            {
+                name   : 'Created',
+                orderBy: 'created_at'
+            },
+            {
+                name   : 'Updated',
+                orderBy: 'updated_at'
             }
         ];
 

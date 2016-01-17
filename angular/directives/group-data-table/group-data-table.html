@@ -69,13 +69,15 @@
         <tr md-row md:select="record" data-md-on-select="ctrl.log" md-on-deselect="ctrl.deselect" x-md-auto-select="!autoSelect" ng-disabled="(((record.id === 1) && (record.name === 'Users')) || ((record.id === 2) && (record.name === 'Admins')))" data-ng-repeat="record in ctrl.records.data | filter: filter.search | orderBy: ctrl.query.order | limitTo: ctrl.query.limit : (ctrl.query.page -1) * ctrl.query.limit">
             <td md-cell>{{record.name}}</td>
             <td md-cell>{{record.permissions}}</td>
+            <td md-cell>{{record.created_at}}</td>
+            <td md-cell>{{record.updated_at}}</td>
         </tr>
         </tbody>
     </table>
 </md-table-container>
 
 <data-md-table-pagination md-limit="ctrl.query.limit" md-page="ctrl.query.page" md-total="{{ctrl.records.count}}" md-on-paginate="ctrl.onPaginate" md-page-select></data-md-table-pagination>
-
+<md-divider></md-divider>
 <!--
 <div ng-if="ctrl.selected">
     Detail : {{ctrl.selected.length}}

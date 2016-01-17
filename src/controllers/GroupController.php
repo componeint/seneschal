@@ -167,6 +167,6 @@ class GroupController extends Controller
         $result = $this->groupRepository->destroy($hash);
 
         // return $this->redirectViaResponse('groups_destroy', $result);
-        return response()->success([$result]);
+        return response()->json($result);
     }
 }

@@ -14,7 +14,10 @@ $api->version('v1', function ($api) {
 
     $api->get('groups', ['as' => 'groups.index', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@index']);
     $api->post('groups', ['as' => 'groups.store', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@store']);
-    $api->get('groups/{hash}', ['as' => 'groups.show', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@show']);
+    $api->get('groups/{hash}',
+        ['as' => 'groups.show', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@show']);
+    $api->delete('groups/{hash}',
+        ['as' => 'groups.destroy', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@destroy']);
 });
 
 // Protected with JWT

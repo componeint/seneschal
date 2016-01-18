@@ -42,7 +42,7 @@
                 }
             })
             .state('dashboard.groups.show', {
-                url  : '/show/{groupId}',
+                url  : '/show/{id}',
                 data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {
@@ -53,7 +53,7 @@
                 }
             })
             .state('dashboard.groups.edit', {
-                url  : '/edit',
+                url  : '/edit/{id}',
                 data : {pageName: 'Edit'},
                 views: {
                     'main@dashboard': {
@@ -111,32 +111,32 @@
                 abstract: true,
                 url     : '/auth',
                 views   : {
-                    'layout@'       : {
+                    'layout@'        : {
                         templateUrl : layout('jwt-auth.simple'),
                         controller  : 'JwtAuthController',
                         controllerAs: 'jwtAuth'
                     },
-                    'header@jwtauth': {
+                    'header@jwtauth' : {
                         templateUrl : view('jwt-auth.header'),
                         controller  : 'JwtAuthHeaderController',
                         controllerAs: 'header'
                     },
-                    'sidenav@jwtauth'  : {
+                    'sidenav@jwtauth': {
                         templateUrl : view('jwt-auth.sidenav'),
                         controller  : 'JwtAuthSidenavController',
                         controllerAs: 'sidenav'
                     },
-                    'aside@jwtauth' : {
+                    'aside@jwtauth'  : {
                         templateUrl : view('jwt-auth.aside'),
                         controller  : 'JwtAuthAsideController',
                         controllerAs: 'aside'
                     },
-                    'footer@jwtauth': {
+                    'footer@jwtauth' : {
                         templateUrl : view('jwt-auth.footer'),
                         controller  : 'JwtAuthFooterController',
                         controllerAs: 'footer'
                     },
-                    'main@jwtauth'  : {}
+                    'main@jwtauth'   : {}
                 }
             })
             .state('jwtauth.signup', {

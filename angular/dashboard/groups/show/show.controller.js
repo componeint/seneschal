@@ -15,7 +15,7 @@
     /* @ngInject */
     function GroupsShowController($stateParams, Groups) {
         var vm     = this;
-        vm.groupId = $stateParams.groupId;
+        vm.groupId = $stateParams.id;
 
         activate();
 

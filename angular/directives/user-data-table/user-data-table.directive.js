@@ -32,10 +32,10 @@
         }
     }
 
-    UserDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout'];
+    UserDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Users'];
 
     /* @ngInject */
-    function UserDataTableController($http, $mdEditDialog, $q, $timeout) {
+    function UserDataTableController($http, $mdEditDialog, $q, $timeout, Users) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
@@ -48,11 +48,18 @@
         ////////////////
 
         function activate() {
+            /*
             $http.get('api/users').then(function(responses) {
                 vm.records = responses.data;
                 // $timeout(function () {
                 //   vm.records = responses.data;
                 // }, 1000);
+            });
+            */
+            Users.getList().then(function(response) {
+                vm.records = response;
+            }, function(error) {
+                console.log('error: ' + error);
             });
         }
 
@@ -88,8 +95,8 @@
         ];
 
         function onPaginate(page, limit) {
-            console.log('Scope Page: ' + vm.query.page + ' Scope Limit: ' + vm.query.limit);
-            console.log('Page: ' + page + ' Limit: ' + limit);
+            // console.log('Scope Page: ' + vm.query.page + ' Scope Limit: ' + vm.query.limit);
+            // console.log('Page: ' + page + ' Limit: ' + limit);
 
             vm.promise = $timeout(function() {
 
@@ -97,11 +104,11 @@
         }
 
         function deselect(item) {
-            console.log(item.name, 'was deselected');
+            // console.log(item.name, 'was deselected');
         }
 
         function log(item) {
-            console.log(item.name, 'was selected');
+            // console.log(item.name, 'was selected');
         }
 
         function loadStuff() {
@@ -112,8 +119,8 @@
 
         function onReorder(order) {
 
-            console.log('Scope Order: ' + vm.query.order);
-            console.log('Order: ' + order);
+            // console.log('Scope Order: ' + vm.query.order);
+            // console.log('Order: ' + order);
 
             vm.promise = $timeout(function() {
 

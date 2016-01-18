@@ -32,29 +32,18 @@
         }
     }
 
-    GroupCreateFormController.$inject = ['API', 'ToastService', '$state'];
+    GroupCreateFormController.$inject = ['API', 'ToastService', '$state', 'Groups'];
 
     /* @ngInject */
-    function GroupCreateFormController(API, ToastService, $state) {
+    function GroupCreateFormController(API, ToastService, $state, Groups) {
         var vm                = this;
         vm.defaultPermissions = [
             {name: 'admin', value: 1},
             {name: 'users', value: 1}
         ];
         vm.selected           = [];
-        vm.toggle             = function(item, list) {
-            var idx = list.indexOf(item);
-            if (idx > -1) {
-                list.splice(idx, 1);
-            }
-            else {
-                list.push(item);
-                //Object.assign({}, list.push(item));
-            }
-        };
-        vm.exists             = function(item, list) {
-            return list.indexOf(item) > -1;
-        };
+        vm.toggle             = toggle;
+        vm.exists             = exists;
         vm.groupCreate        = groupCreate;
 
         activate();
@@ -65,18 +54,29 @@
             //
         }
 
+        function toggle(item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) {
+                list.splice(idx, 1);
+            } else {
+                list.push(item);
+            }
+        }
+
+        function exists(item, list) {
+            return list.indexOf(item) > -1;
+        }
+
         function groupCreate() {
             vm.formData = {
                 name       : vm.name,
                 permissions: vm.selected
             };
 
-            API.all('groups').post(vm.formData).then(function(response) {
+            Groups.post(vm.formData).then(function(response) {
                 $state.go('dashboard.groups');
                 ToastService.show('Post added successfully');
             });
-
-            // console.log(vm.formData);
         }
 
     }

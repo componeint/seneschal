@@ -32,28 +32,39 @@
         }
     }
 
-    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout'];
+    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Groups', 'ToastService'];
 
     /* @ngInject */
-    function GroupDataTableController($http, $mdEditDialog, $q, $timeout) {
+    function GroupDataTableController($http, $mdEditDialog, $q, $timeout, Groups, ToastService) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
         vm.log        = log;
         vm.loadStuff  = loadStuff;
         vm.onReorder  = onReorder;
+        vm.destroy    = destroy;
 
         activate();
 
         ////////////////
 
         function activate() {
-            $http.get('api/groups').then(function(responses) {
-                vm.records = responses.data;
+            $http.get('api/groups').then(function(response) {
+                vm.records = response.data.data;
+                // console.log(response.data);
                 // $timeout(function () {
                 //   vm.records = responses.data;
                 // }, 1000);
+            }, function(error) {
+                console.log('error: ' + error);
             });
+            /*Groups.getList().then(function(response) {
+                vm.records = response;
+                // console.log(response);
+                //ToastService.show('Refreshed');
+            }, function(error) {
+                console.log('error: ' + error);
+            });*/
         }
 
         vm.selected = [];
@@ -101,7 +112,16 @@
         }
 
         function loadStuff() {
-            vm.promise = $timeout(function() {
+            $timeout(function() {
+                activate();
+
+                /*
+                Groups.getList().then(function(response) {
+                    vm.records = response;
+                    console.log(response);
+                    ToastService.show('Refreshed');
+                });
+                */
 
             }, 2000);
         }
@@ -114,6 +134,15 @@
             vm.promise = $timeout(function() {
 
             }, 2000);
+        }
+
+        function destroy(id) {
+            Groups.remove(id).then(function() {
+                // vm.records = _.without(vm.records.data[id], id);
+                // activate();
+                ToastService.show('Group has been successfully deleted.');
+            });
+
         }
 
     }

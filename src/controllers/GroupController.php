@@ -61,7 +61,7 @@ class GroupController extends Controller
 
         $groups = $this->groupRepository->all();
 
-        return response()->json(['count' => count($groups), 'data' => $groups]);
+        return response()->success(['count' => count($groups), 'data' => $groups]);
     }
 
     /**

@@ -21,25 +21,23 @@
             <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Delete</md-tooltip>
         </md-button>
-        <span ng-if="ctrl.selected.length === 1">
-        <md-button class="md-icon-button" ng-click="ctrl.destroy(ctrl.selected[0].id)">
-            <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
-            <md-tooltip md-direction="bottom">Delete</md-tooltip>
-        </md-button>
-        <md-button class="md-icon-button" ui-sref="dashboard.groups.edit({id : ctrl.selected[0].id})">
-            <md-icon ng-md-icon icon="edit" style="fill: black" size="24"></md-icon>
-            <md-tooltip md-direction="bottom">edit</md-tooltip>
-        </md-button>
-        <md-button class="md-icon-button" ui-sref="dashboard.groups.show({id : ctrl.selected[0].id})">
-            <md-icon ng-md-icon icon="details" style="fill: black" size="24"></md-icon>
-            <md-tooltip md-direction="bottom">details</md-tooltip>
-        </md-button>
-        <!--
-            <md-button class="md-icon-button">
-                <md-icon ng-md-icon icon="more_vert" style="fill: black" size="24"></md-icon>
-                <md-tooltip md-direction="bottom">More</md-tooltip>
+        <span ng-if="ctrl.selected.length === 1" style="background-color: darkblue;">
+            <md-button class="md-icon-button" ng-click="ctrl.destroy(ctrl.selected[0].id)">
+                <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
+                <md-tooltip md-direction="bottom">Delete</md-tooltip>
             </md-button>
-        -->
+            <md-button class="md-icon-button">
+                <a ui-sref="dashboard.groups.edit({id : ctrl.selected[0].id})">
+                    <md-icon ng-md-icon icon="edit" style="fill: black" size="24"></md-icon>
+                    <md-tooltip md-direction="bottom">edit</md-tooltip>
+                </a>
+            </md-button>
+            <md-button class="md-icon-button">
+                <a ui-sref="dashboard.groups.show({id : ctrl.selected[0].id})">
+                    <md-icon ng-md-icon icon="details" style="fill: black" size="24"></md-icon>
+                    <md-tooltip md-direction="bottom">details</md-tooltip>
+                </a>
+            </md-button>
         </span>
     </div>
 </md-toolbar>
@@ -63,7 +61,7 @@
         </thead>
         -->
         <tbody md-body>
-        <tr md-row md:select="record" data-md-on-select="ctrl.log" md-on-deselect="ctrl.deselect" x-md-auto-select="!autoSelect" ng-disabled="(((record.id === 1) && (record.name === 'Users')) || ((record.id === 2) && (record.name === 'Admins')))" data-ng-repeat="record in ctrl.records.data | filter: filter.search | orderBy: ctrl.query.order | limitTo: ctrl.query.limit : (ctrl.query.page -1) * ctrl.query.limit">
+        <tr md-row md:select="record" data-md-on-select="ctrl.log" md-on-deselect="ctrl.deselect" x-md-auto-select="!autoSelect" ng-disabled="(((record.id === 1) && (record.name === 'Users')) || ((record.id === 2) && (record.name === 'Admins')))" data-ng-repeat="record in ctrl.records | filter: filter.search | orderBy: ctrl.query.order | limitTo: ctrl.query.limit : (ctrl.query.page -1) * ctrl.query.limit">
             <td md-cell>{{record.name}}</td>
             <td md-cell>{{record.permissions}}</td>
             <td md-cell>{{record.created_at}}</td>
@@ -75,16 +73,7 @@
 
 <data-md-table-pagination md-limit="ctrl.query.limit" md-page="ctrl.query.page" md-total="{{ctrl.records.count}}" md-on-paginate="ctrl.onPaginate" md-page-select></data-md-table-pagination>
 <md-divider></md-divider>
-<!--
-<div ng-if="ctrl.selected">
-    Detail : {{ctrl.selected.length}}
-    Id : {{ctrl.selected[0].id}}
-    Name : {{ctrl.selected[0].name}}
-    Permissions : {{ctrl.selected[0].permissions}}
-    Created : {{ctrl.selected[0].created_at}}
-    Updated : {{ctrl.selected[0].updated_at}}
-</div>
--->
+
 <!--
 <pre style="height:200px;scroll:auto;"><code>{{ctrl.selected | json: 2}}</code></pre>
 -->

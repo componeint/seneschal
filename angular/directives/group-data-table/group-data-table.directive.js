@@ -49,7 +49,7 @@
         ////////////////
 
         function activate() {
-            $http.get('api/groups').then(function(response) {
+            /*$http.get('api/groups').then(function(response) {
                 vm.records = response.data.data;
                 // console.log(response.data);
                 // $timeout(function () {
@@ -57,14 +57,14 @@
                 // }, 1000);
             }, function(error) {
                 console.log('error: ' + error);
-            });
-            /*Groups.getList().then(function(response) {
+            });*/
+            Groups.getList().then(function(response) {
                 vm.records = response;
                 // console.log(response);
                 //ToastService.show('Refreshed');
             }, function(error) {
                 console.log('error: ' + error);
-            });*/
+            });
         }
 
         vm.selected = [];
@@ -137,7 +137,7 @@
         }
 
         function destroy(id) {
-            Groups.remove(id).then(function() {
+            Groups.post(id).then(function() {
                 // vm.records = _.without(vm.records.data[id], id);
                 // activate();
                 ToastService.show('Group has been successfully deleted.');

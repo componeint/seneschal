@@ -86,7 +86,7 @@
                 }
             })
             .state('dashboard.users.show', {
-                url  : '/show',
+                url  : '/show/{id}',
                 data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {
@@ -97,7 +97,7 @@
                 }
             })
             .state('dashboard.users.edit', {
-                url  : '/edit',
+                url  : '/edit/{id}',
                 data : {pageName: 'Edit'},
                 views: {
                     'main@dashboard': {

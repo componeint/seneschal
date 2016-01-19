@@ -2,11 +2,87 @@
     <div layout="row">
         <div flex="30" hide-xs hide-sm hide-md></div>
         <div flex="auto">
-            Show
+            <table ng-repeat="user in show.users">
+                <tr>
+                    <td>Id</td>
+                    <td> : </td>
+                    <td>{{user.id}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td> : </td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td>Permissions</td>
+                    <td> : </td>
+                    <td>{{user.permissions}}</td>
+                </tr>
+                <tr>
+                    <td>Activated</td>
+                    <td> : </td>
+                    <td>{{user.activated}}</td>
+                </tr>
+                <tr>
+                    <td>Activated at</td>
+                    <td> : </td>
+                    <td>{{user.activated_at}}</td>
+                </tr>
+                <tr>
+                    <td>Last login</td>
+                    <td> : </td>
+                    <td>{{user.last_login}}</td>
+                </tr>
+                <tr>
+                    <td>First name</td>
+                    <td> : </td>
+                    <td>{{user.first_name}}</td>
+                </tr>
+                <tr>
+                    <td>Last name</td>
+                    <td> : </td>
+                    <td>{{user.last_name}}</td>
+                </tr>
+                <tr>
+                    <td>Created at</td>
+                    <td> : </td>
+                    <td>{{user.created_at}}</td>
+                </tr>
+                <tr>
+                    <td>Updated at</td>
+                    <td> : </td>
+                    <td>{{user.updated_at}}</td>
+                </tr>
+                <tr>
+                    <td>Username</td>
+                    <td> : </td>
+                    <td>{{user.username}}</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td> : </td>
+                    <td>{{user.status}}</td>
+                </tr>
+            </table>
         </div>
         <div flex="25" hide-xs hide-sm hide-md></div>
     </div>
 </md-content>
 <!--
     <pre style="height:200px;scroll:auto;"><code>{{show.groups | json: 2}}</code></pre>
+-->
+
+<!--
+    "id": 1,
+    "email": "admin@admin.com",
+    "permissions": [],
+    "activated": true,
+    "activated_at": null,
+    "last_login": null,
+    "first_name": null,
+    "last_name": null,
+    "created_at": "2015-12-19 08:38:36",
+    "updated_at": "2015-12-19 08:38:36",
+    "username": "admin",
+    "status": "Active",
 -->

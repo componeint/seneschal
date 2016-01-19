@@ -32,10 +32,10 @@
         }
     }
 
-    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Groups', 'ToastService'];
+    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Groups', 'ToastService', '$state'];
 
     /* @ngInject */
-    function GroupDataTableController($http, $mdEditDialog, $q, $timeout, Groups, ToastService) {
+    function GroupDataTableController($http, $mdEditDialog, $q, $timeout, Groups, ToastService, $state) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
@@ -137,11 +137,37 @@
         }
 
         function destroy(id) {
-            Groups.post(id).then(function() {
+
+            // Here we use then to resolve the promise.
+            Groups.getList().then(function(response) {
+                vm.records = response;
+                var groupWithId = _.find(response, function(group) {
+                    return group.id === id;
+                });
+
+                // groupWithId.name = '';
+                // groupWithId.put();
+
+                // Alternatively delete the element from the list when finished
+                groupWithId.remove().then(function() {
+                    // Updating the list and removing the user after the response is OK.
+                    vm.records = _.without(vm.records, groupWithId);
+                    vm.selected = [];
+                    //$state.go('dashboard.groups');
+                    ToastService.show('Group has been successfully deleted.');
+                });
+
+            });
+
+            /*
+            Groups.remove(id).then(function() {
                 // vm.records = _.without(vm.records.data[id], id);
                 // activate();
                 ToastService.show('Group has been successfully deleted.');
+            }, function(error) {
+                console.log('Error : ' + error.status_code + ' : ' + error.message);
             });
+            */
 
         }
 

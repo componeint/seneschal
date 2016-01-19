@@ -14,7 +14,7 @@
 
     /* @ngInject */
     function Users(API) {
-        return API.service('users');
+        return API.all('users');
     }
 
 })();

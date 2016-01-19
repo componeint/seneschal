@@ -46,7 +46,7 @@ class UserController extends Controller
         // You must have admin access to proceed
         // $this->middleware('sentry.admin');
 
-        $this->middleware('jwt.auth', ['except' => ['index']]);
+        $this->middleware('jwt.auth', ['except' => ['index', 'show']]);
     }
 
     /**

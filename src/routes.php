@@ -11,6 +11,8 @@ $api->version('v1', function ($api) {
     $api->post('auth/signup',
         ['as' => 'register.user', 'uses' => 'Onderdelen\JwtAuth\Controllers\RegistrationController@register']);
     $api->get('users', ['as' => 'users.index', 'uses' => 'Onderdelen\JwtAuth\Controllers\UserController@index']);
+    $api->get('users/{hash}',
+        ['as' => 'users.show', 'uses' => 'Onderdelen\JwtAuth\Controllers\UserController@show']);
 
     $api->get('groups', ['as' => 'groups.index', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@index']);
     $api->post('groups', ['as' => 'groups.store', 'uses' => 'Onderdelen\JwtAuth\Controllers\GroupController@store']);

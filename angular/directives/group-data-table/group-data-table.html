@@ -21,7 +21,7 @@
             <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Delete</md-tooltip>
         </md-button>
-        <span ng-if="ctrl.selected.length === 1" style="background-color: darkblue;">
+        <span ng-if="ctrl.selected.length === 1">
             <md-button class="md-icon-button" ng-click="ctrl.destroy(ctrl.selected[0].id)">
                 <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
                 <md-tooltip md-direction="bottom">Delete</md-tooltip>
@@ -71,7 +71,7 @@
     </table>
 </md-table-container>
 
-<data-md-table-pagination md-limit="ctrl.query.limit" md-page="ctrl.query.page" md-total="{{ctrl.records.count}}" md-on-paginate="ctrl.onPaginate" md-page-select></data-md-table-pagination>
+<data-md-table-pagination md-limit="ctrl.query.limit" md-page="ctrl.query.page" md-total="{{ctrl.records.length}}" md-on-paginate="ctrl.onPaginate" md-page-select></data-md-table-pagination>
 
 <md-divider></md-divider>
 

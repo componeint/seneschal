@@ -13,8 +13,8 @@ use Onderdelen\JwtAuth\FormRequests\UserCreateRequest;
 use Onderdelen\JwtAuth\FormRequests\UserUpdateRequest;
 use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
 use Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface;
-use Cerberus\Traits\CerberusRedirectionTrait;
-use Cerberus\Traits\CerberusViewfinderTrait;
+use Onderdelen\JwtAuth\Traits\CerberusRedirectionTrait;
+use Onderdelen\JwtAuth\Traits\CerberusViewfinderTrait;
 use Vinkla\Hashids\HashidsManager;
 use View;
 use Input;
@@ -109,12 +109,13 @@ class UserController extends Controller
     public function show($hash)
     {
         // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
+        // $id = $this->hashids->decode($hash)[0];
 
         // Get the user
-        $user = $this->userRepository->retrieveById($id);
+        $user = $this->userRepository->retrieveById($hash);
 
-        return $this->viewFinder('Cerberus::users.show', ['user' => $user]);
+        // return $this->viewFinder('Cerberus::users.show', ['user' => $user]);
+        return response()->success([$user]);
     }
 
     /**

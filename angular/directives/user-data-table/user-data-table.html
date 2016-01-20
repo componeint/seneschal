@@ -17,10 +17,12 @@
     <div class="md-toolbar-tools">
         <span>{{ctrl.selected.length}} {{ctrl.selected.length > 1 ? 'items' : 'item'}} selected</span>
         <span flex></span>
-        <md-button class="md-icon-button" ng-if="ctrl.selected.length > 1">
-            <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
-            <md-tooltip md-direction="bottom">Delete</md-tooltip>
-        </md-button>
+        <span ng-if="ctrl.selected.length > 1">
+            <md-button class="md-icon-button" ng-click="ctrl.crush(ctrl.selected)">
+                <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
+                <md-tooltip md-direction="bottom">Deletes</md-tooltip>
+            </md-button>
+        </span>
         <span ng-if="ctrl.selected.length === 1">
             <md-button class="md-icon-button" ng-click="ctrl.destroy(ctrl.selected[0].id)">
                 <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
@@ -76,4 +78,5 @@
 
 <md-divider></md-divider>
 
-<pre style="height:200px;scroll:auto;"><code>{{ctrl.records | json: 2}}</code></pre>
+<!--<pre style="height:200px;scroll:auto;"><code>{{ctrl.records | json: 2}}</code></pre>-->
+<pre style="height:200px;scroll:auto;"><code>{{ctrl.selected | json: 2}}</code></pre>

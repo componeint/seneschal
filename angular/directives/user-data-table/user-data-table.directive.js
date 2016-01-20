@@ -43,6 +43,7 @@
         vm.loadStuff  = loadStuff;
         vm.onReorder  = onReorder;
         vm.destroy    = destroy;
+        vm.crush      = crush;
 
         activate();
 
@@ -50,13 +51,13 @@
 
         function activate() {
             /*
-            $http.get('api/users').then(function(responses) {
-                vm.records = responses.data;
-                // $timeout(function () {
-                //   vm.records = responses.data;
-                // }, 1000);
-            });
-            */
+             $http.get('api/users').then(function(responses) {
+             vm.records = responses.data;
+             // $timeout(function () {
+             //   vm.records = responses.data;
+             // }, 1000);
+             });
+             */
             Users.getList().then(function(response) {
                 vm.records = response;
             }, function(error) {
@@ -114,8 +115,9 @@
 
         function loadStuff() {
             vm.promise = $timeout(function() {
-
-            }, 2000);
+                activate();
+                ToastService.show('Refresh.');
+            }, 1000);
         }
 
         function onReorder(order) {
@@ -132,19 +134,63 @@
 
             // Here we use then to resolve the promise.
             Users.getList().then(function(response) {
-                vm.records = response;
+                vm.records     = response;
                 var listWithId = _.find(response, function(list) {
                     return list.id === id;
                 });
 
                 // Alternatively delete the element from the list when finished
+                /*listWithId.remove().then(function() {
+                 // Updating the list and removing the user after the response is OK.
+                 vm.records = _.without(vm.records, listWithId);
+                 vm.selected = [];
+                 ToastService.show('User deleted');
+                 });*/
+
                 listWithId.remove().then(function() {
-                    // Updating the list and removing the user after the response is OK.
-                    vm.records = _.without(vm.records, listWithId);
+                    var index = vm.records.indexOf(listWithId);
+                    if (index > -1) {
+                        vm.records.splice(index, 1)
+                    }
                     vm.selected = [];
-                    ToastService.show('User deleted.');
+                    ToastService.show('User deleted');
                 });
 
+            });
+        }
+
+        function crush(collection) {
+            Users.getList().then(function(response) {
+                vm.records = response;
+
+                for (var i = 0; i < collection.length; i++) {
+                    var listWithId = _.find(vm.records, function(list) {
+
+                        if (list.id === collection[i].id) {
+                            return list.id === collection[i].id;
+                        }
+                    });
+
+                    // Alternatively delete the element from the list when finished
+                    // console.log('listWithId ' + listWithId);
+                    /*listWithId.remove().then(function() {
+                     // Updating the list and removing the user after the response is OK.
+                     vm.records = _.without(vm.records, listWithId);
+                     vm.selected = [];
+                     });*/
+
+                    listWithId.remove().then(function() {
+                        var index = vm.records.indexOf(listWithId);
+                        if (index > -1) {
+                            vm.records.splice(index, 1);
+                        }
+                        vm.selected = [];
+
+                    });
+                }
+
+                activate();
+                ToastService.show('User deleted.');
             });
 
         }

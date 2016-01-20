@@ -49,15 +49,16 @@
 
         function create() {
             vm.formData = {
-                username: vm.username,
-                email   : vm.email,
-                password: vm.password,
-                activate: vm.activate
+                username             : vm.username,
+                email                : vm.email,
+                password             : vm.password,
+                password_confirmation: vm.password_confirmation,
+                activate             : vm.activate
             };
 
             Users.post(vm.formData).then(function(response) {
                 $state.go('dashboard.users');
-                ToastService.show('Data added successfully');
+                ToastService.show('Data added successfully.');
             });
         }
 

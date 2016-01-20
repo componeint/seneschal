@@ -26,9 +26,18 @@
             <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
     </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label for="password_confirmation">Confirm Password</label>
+        <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
+        <input password-match="ctrl.password" type="password" id="password_confirmation" name="password_confirmation" ng-model="ctrl.password_confirmation" ng-minlength="8" required>
 
-    <md-checkbox ng-model="ctrl.activate" ng-true-value="'activate'" class="md-warn md-align-top-left" flex>
-        {{ ctrl.activate }}
+        <div ng-if="userCreateForm.password_confirmation.$dirty" ng-messages="userCreateForm.password_confirmation.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
+        </div>
+    </md-input-container>
+
+    <md-checkbox ng-model="ctrl.activate" ng-true-value="'activate'" class="md-warn" flex>
+        Activated
     </md-checkbox>
 
     <div layout="row" layout-align="end center">

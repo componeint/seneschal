@@ -17,7 +17,7 @@
         </div>
     </fieldset>
     <div layout="row" layout-align="end center">
-        <md-button ng-click="ctrl.groupCreate()" ng-disabled="groupCreateForm.$invalid" class="md-raised md-primary md-hue-3">
+        <md-button ng-click="ctrl.create()" ng-disabled="groupCreateForm.$invalid" class="md-raised md-primary md-hue-3">
             <ng-md-icon icon="send" style="fill: black" size="24"></ng-md-icon>
             Create
         </md-button>
@@ -25,8 +25,8 @@
 </form>
 
 <pre style="height:200px;scroll:auto;"><code>
-{{ctrl.name | json: 2}}
-{{ctrl.selected | json: 2}}
+    {{ctrl.name | json: 2}}
+    {{ctrl.selected | json: 2}}
 </code></pre>
 <!--
     <pre style="height:200px;scroll:auto;"><code>{{ctrl.formData | json: 2}}</code></pre>

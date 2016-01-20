@@ -32,10 +32,10 @@
         }
     }
 
-    GroupCreateFormController.$inject = ['API', 'ToastService', '$state', 'Groups'];
+    GroupCreateFormController.$inject = ['ToastService', '$state', 'Groups'];
 
     /* @ngInject */
-    function GroupCreateFormController(API, ToastService, $state, Groups) {
+    function GroupCreateFormController(ToastService, $state, Groups) {
         var vm                = this;
         vm.defaultPermissions = [
             {name: 'admin', value: 1},
@@ -44,7 +44,7 @@
         vm.selected           = [];
         vm.toggle             = toggle;
         vm.exists             = exists;
-        vm.groupCreate        = groupCreate;
+        vm.create             = create;
 
         activate();
 
@@ -67,7 +67,7 @@
             return list.indexOf(item) > -1;
         }
 
-        function groupCreate() {
+        function create() {
             vm.formData = {
                 name       : vm.name,
                 permissions: vm.selected

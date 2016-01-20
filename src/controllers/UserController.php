@@ -176,12 +176,13 @@ class UserController extends Controller
     public function destroy($hash)
     {
         // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
+        // $id = $this->hashids->decode($hash)[0];
 
         // Remove the user from storage
-        $result = $this->userRepository->destroy($id);
+        $result = $this->userRepository->destroy($hash);
 
-        return $this->redirectViaResponse('users_destroy', $result);
+        // return $this->redirectViaResponse('users_destroy', $result);
+        return response()->success($result);
     }
 
     /**

@@ -96,7 +96,7 @@ class UserController extends Controller
 
         // Finished!
         // return $this->redirectTo('users_store', ['success' => $message]);
-        return response()->success($message);
+        return response()->success(['message' => $message]);
     }
 
 

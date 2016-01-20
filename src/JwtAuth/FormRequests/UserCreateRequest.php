@@ -1,5 +1,6 @@
 <?php
 /**
+ * UserCreateRequest.php
  * Created by anonymous on 01/01/16 2:47.
  */
 
@@ -26,10 +27,10 @@ class UserCreateRequest extends FormRequest
      */
     public function rules()
     {
-        $rules =  [
-            'email' => 'required|min:4|max:254|email',
-            'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required'
+        $rules = [
+            'email'                 => 'required|min:4|max:254|email',
+            'password'              => 'required|min:8|confirmed',
+            'password_confirmation' => 'required',
         ];
 
         // If Usernames are enabled, add username validation rules

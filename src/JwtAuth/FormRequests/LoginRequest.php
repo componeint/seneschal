@@ -1,5 +1,6 @@
 <?php
 /**
+ * LoginRequest.php
  * Created by anonymous on 01/01/16 2:42.
  */
 
@@ -28,7 +29,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email'    => 'required|min:4|max:254',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ];
     }
 }

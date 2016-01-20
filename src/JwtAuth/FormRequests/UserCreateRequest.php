@@ -34,7 +34,7 @@ class UserCreateRequest extends FormRequest
         ];
 
         // If Usernames are enabled, add username validation rules
-        if (config('sentinel.allow_usernames')) {
+        if (config('cerberus.allow_usernames')) {
             $rules['username'] = 'required|unique:users,username';
         }
 

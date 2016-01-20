@@ -1,5 +1,6 @@
 <?php
 /**
+ * UserUpdateRequest.php
  * Created by anonymous on 01/01/16 2:50.
  */
 
@@ -26,6 +27,6 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return config('sentinel.additional_user_fields');
+        return config('cerberus.additional_user_fields');
     }
 }

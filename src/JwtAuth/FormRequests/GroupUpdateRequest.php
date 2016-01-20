@@ -1,5 +1,6 @@
 <?php
 /**
+ * GroupUpdateRequest.php
  * Created by anonymous on 01/01/16 2:38.
  */
 
@@ -27,7 +28,7 @@ class GroupUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:4|unique:groups'
+            'name' => 'required|min:4|unique:groups',
         ];
     }
 }

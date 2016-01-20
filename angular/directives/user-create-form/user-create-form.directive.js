@@ -58,7 +58,7 @@
 
             Users.post(vm.formData).then(function(response) {
                 $state.go('dashboard.users');
-                ToastService.show('Data added successfully.');
+                ToastService.show(response.data.message);
             });
         }
 

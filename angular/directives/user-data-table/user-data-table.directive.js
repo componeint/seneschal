@@ -32,16 +32,17 @@
         }
     }
 
-    UserDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Users'];
+    UserDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Users', 'ToastService'];
 
     /* @ngInject */
-    function UserDataTableController($http, $mdEditDialog, $q, $timeout, Users) {
+    function UserDataTableController($http, $mdEditDialog, $q, $timeout, Users, ToastService) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
         vm.log        = log;
         vm.loadStuff  = loadStuff;
         vm.onReorder  = onReorder;
+        vm.destroy    = destroy;
 
         activate();
 
@@ -125,6 +126,27 @@
             vm.promise = $timeout(function() {
 
             }, 2000);
+        }
+
+        function destroy(id) {
+
+            // Here we use then to resolve the promise.
+            Users.getList().then(function(response) {
+                vm.records = response;
+                var listWithId = _.find(response, function(list) {
+                    return list.id === id;
+                });
+
+                // Alternatively delete the element from the list when finished
+                listWithId.remove().then(function() {
+                    // Updating the list and removing the user after the response is OK.
+                    vm.records = _.without(vm.records, listWithId);
+                    vm.selected = [];
+                    ToastService.show('User deleted.');
+                });
+
+            });
+
         }
     }
 

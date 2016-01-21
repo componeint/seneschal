@@ -75,7 +75,7 @@
 
             Groups.post(vm.formData).then(function(response) {
                 $state.go('dashboard.groups');
-                ToastService.show('Post added successfully');
+                ToastService.show('Group added.');
             });
         }
 

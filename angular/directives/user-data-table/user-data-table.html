@@ -13,7 +13,7 @@
     </div>
 </md-toolbar>
 
-<md-toolbar class="md-accent" ng-show="ctrl.selected.length">
+<md-toolbar class="md-primary md-hue-1" ng-show="ctrl.selected.length">
     <div class="md-toolbar-tools">
         <span>{{ctrl.selected.length}} {{ctrl.selected.length > 1 ? 'items' : 'item'}} selected</span>
         <span flex></span>
@@ -78,5 +78,7 @@
 
 <md-divider></md-divider>
 
-<!--<pre style="height:200px;scroll:auto;"><code>{{ctrl.records | json: 2}}</code></pre>-->
+<pre style="height:200px;scroll:auto;"><code>{{ctrl.records | json: 2}}</code></pre>
+<!--
 <pre style="height:200px;scroll:auto;"><code>{{ctrl.selected | json: 2}}</code></pre>
+-->

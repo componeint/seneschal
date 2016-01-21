@@ -43,6 +43,8 @@
         vm.loadStuff  = loadStuff;
         vm.onReorder  = onReorder;
         vm.destroy    = destroy;
+        vm.crush      = crush;
+
 
         activate();
 
@@ -141,20 +143,24 @@
             // Here we use then to resolve the promise.
             Groups.getList().then(function(response) {
                 vm.records = response;
-                var groupWithId = _.find(response, function(group) {
-                    return group.id === id;
+                var listWithId = _.find(vm.records, function(list) {
+                    return list.id === id;
                 });
 
                 // groupWithId.name = '';
                 // groupWithId.put();
 
                 // Alternatively delete the element from the list when finished
-                groupWithId.remove().then(function() {
+                listWithId.remove().then(function() {
                     // Updating the list and removing the user after the response is OK.
-                    vm.records = _.without(vm.records, groupWithId);
+                    // vm.records = _.without(vm.records, listWithId);
+                    var index = vm.records.indexOf(listWithId);
+                    if (index > -1) {
+                        vm.records.splice(index, 1)
+                    }
                     vm.selected = [];
                     //$state.go('dashboard.groups');
-                    ToastService.show('Group has been successfully deleted.');
+                    ToastService.show('Group deleted.');
                 });
 
             });
@@ -168,6 +174,42 @@
                 console.log('Error : ' + error.status_code + ' : ' + error.message);
             });
             */
+
+        }
+
+        function crush(collection) {
+            Groups.getList().then(function(response) {
+                vm.records = response;
+
+                for (var i = 0; i < collection.length; i++) {
+                    var listWithId = _.find(vm.records, function(list) {
+
+                        if (list.id === collection[i].id) {
+                            return list.id === collection[i].id;
+                        }
+                    });
+
+                    // Alternatively delete the element from the list when finished
+                    // console.log('listWithId ' + listWithId);
+                    /*listWithId.remove().then(function() {
+                     // Updating the list and removing the user after the response is OK.
+                     vm.records = _.without(vm.records, listWithId);
+                     vm.selected = [];
+                     });*/
+
+                    listWithId.remove().then(function() {
+                        var index = vm.records.indexOf(listWithId);
+                        if (index > -1) {
+                            vm.records.splice(index, 1);
+                        }
+                        vm.selected = [];
+
+                    });
+                }
+
+                activate();
+                ToastService.show('Groups deleted.');
+            });
 
         }
 

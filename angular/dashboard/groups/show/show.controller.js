@@ -14,17 +14,15 @@
 
     /* @ngInject */
     function GroupsShowController($stateParams, Groups) {
-        var vm     = this;
-        vm.groupId = $stateParams.id;
+        var vm  = this;
+        vm.data = {id: $stateParams.id};
 
         activate();
 
         ////////////////
 
         function activate() {
-            Groups.get(vm.groupId).then(function(response) {
-                vm.groups = response.data;
-            });
+            //
         }
     }
 

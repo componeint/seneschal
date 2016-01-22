@@ -21,7 +21,7 @@
             link            : link,
             restrict        : 'EA',
             scope           : {
-                id: '@'
+                id: '=id'
             },
             templateUrl     : function(elem, attr) {
                 return attr.template;
@@ -34,10 +34,28 @@
         }
     }
 
-    GroupShowDetailController.$inject = [];
+    GroupShowDetailController.$inject = ['Groups'];
 
     /* @ngInject */
-    function GroupShowDetailController() {
+    function GroupShowDetailController(Groups) {
+        var vm = this;
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+            var id;
+            if (_.isString(vm.id)) {
+                id = parseInt(vm.id);
+            } else {
+                id = vm.id;
+            }
+
+            Groups.get(id).then(function(response) {
+                vm.records = response.data;
+            });
+        }
 
     }
 

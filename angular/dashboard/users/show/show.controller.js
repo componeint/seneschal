@@ -14,17 +14,15 @@
 
     /* @ngInject */
     function UsersShowController($stateParams, Users) {
-        var vm    = this;
-        vm.userId = $stateParams.id;
+        var vm  = this;
+        vm.data = {id: $stateParams.id};
 
         activate();
 
         ////////////////
 
         function activate() {
-            Users.get(vm.userId).then(function(response) {
-                vm.users = response.data;
-            });
+            //
         }
     }
 

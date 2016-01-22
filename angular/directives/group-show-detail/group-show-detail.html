@@ -1,37 +1,30 @@
-<md-content flex layout-padding>
-    <div layout="row">
-        <div flex="30" hide-xs hide-sm hide-md></div>
-        <div flex="auto">
-            <table ng-repeat="record in ctrl.records">
-                <tr>
-                    <td>Id</td>
-                    <td> :</td>
-                    <td>{{record.id}}</td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td> :</td>
-                    <td>{{record.name}}</td>
-                </tr>
-                <tr>
-                    <td>Permissions</td>
-                    <td> :</td>
-                    <td>{{record.permissions}}</td>
-                </tr>
-                <tr>
-                    <td>Created</td>
-                    <td> :</td>
-                    <td>{{record.created_at}}</td>
-                </tr>
-                <tr>
-                    <td>Updated</td>
-                    <td> :</td>
-                    <td>{{record.updated_at}}</td>
-                </tr>
-            </table>
-        </div>
-        <div flex="25" hide-xs hide-sm hide-md></div>
-    </div>
-</md-content>
+<table ng-repeat="record in ctrl.records">
+    <tr>
+        <td>Id</td>
+        <td> :</td>
+        <td>{{record.id}}</td>
+    </tr>
+    <tr>
+        <td>Name</td>
+        <td> :</td>
+        <td>{{record.name}}</td>
+    </tr>
+    <tr>
+        <td>Permissions</td>
+        <td> :</td>
+        <td>{{record.permissions}}</td>
+    </tr>
+    <tr>
+        <td>Created</td>
+        <td> :</td>
+        <td>{{record.created_at}}</td>
+    </tr>
+    <tr>
+        <td>Updated</td>
+        <td> :</td>
+        <td>{{record.updated_at}}</td>
+    </tr>
+</table>
 
-<!--<pre style="height:200px;scroll:auto;"><code>{{ctrl.records | json: 2}}</code></pre>-->
+
+<pre style="height:200px;scroll:auto;"><code>{{ctrl.records | json: 2}}</code></pre>

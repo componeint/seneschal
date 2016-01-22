@@ -45,7 +45,6 @@
         vm.destroy    = destroy;
         vm.crush      = crush;
 
-
         activate();
 
         ////////////////
@@ -156,7 +155,7 @@
                     // vm.records = _.without(vm.records, listWithId);
                     var index = vm.records.indexOf(listWithId);
                     if (index > -1) {
-                        vm.records.splice(index, 1)
+                        vm.records.splice(index, 1);
                     }
                     vm.selected = [];
                     //$state.go('dashboard.groups');

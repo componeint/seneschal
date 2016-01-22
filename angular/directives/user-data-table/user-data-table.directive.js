@@ -150,7 +150,7 @@
                 listWithId.remove().then(function() {
                     var index = vm.records.indexOf(listWithId);
                     if (index > -1) {
-                        vm.records.splice(index, 1)
+                        vm.records.splice(index, 1);
                     }
                     vm.selected = [];
                     ToastService.show('User deleted');

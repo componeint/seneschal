@@ -53,7 +53,7 @@
             }
 
             Groups.get(id).then(function(response) {
-                vm.records = response.data;
+                vm.lists = response.data;
             });
         }
 

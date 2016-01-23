@@ -8,23 +8,21 @@
 
     angular
         .module('jwtAuth')
-        .controller('UserEditController', UserEditController);
+        .controller('UsersEditController', UsersEditController);
 
-    UserEditController.$inject = ['$stateParams', 'Users'];
+    UsersEditController.$inject = ['$stateParams', 'Users'];
 
     /* @ngInject */
-    function UserEditController($stateParams, Users) {
-        var vm   = this;
-        vm.userId = $stateParams.id;
+    function UsersEditController($stateParams, Users) {
+        var vm  = this;
+        vm.data = {id: $stateParams.id};
 
         activate();
 
         ////////////////
 
         function activate() {
-            Users.get(vm.userId).then(function(response) {
-                vm.users = response.data;
-            });
+            //
         }
     }
 

@@ -19,7 +19,8 @@
     "php"                 : ">=5.5.9",
     "illuminate/support"  : "5.1.*",
     "illuminate/contracts": "5.1.*",
-    "tymon/jwt-auth"      : "0.5.*"
+    "tymon/jwt-auth"      : "0.5.*",
+    "srlabs/centaur"      : "1.*"
   },
   "require-dev"      : {
     "fzaninotto/faker": "~1.4",

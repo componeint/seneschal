@@ -1,7 +1,7 @@
 <div id="jwtauth-layout-container" layout="column" ng-cloak>
     <section layout="row" flex>
         <div id="jwtauth-sidenav">
-            <!--left-->
+            <!--sidenav-->
             <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
                 <div ui-view="sidenav"></div>
             </md-sidenav>
@@ -15,7 +15,7 @@
             </div>
             <div flex></div>
         </md-content>
-        <!--right-->
+        <!--aside-->
         <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
             <div ui-view="aside"></div>
         </md-sidenav>

@@ -31,7 +31,7 @@ class JwtAuthServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
 
-        include $componenentsPath . '/../routes.php';
+        include $componenentsPath . 'routes.php';
 
     }
 
@@ -49,6 +49,7 @@ class JwtAuthServiceProvider extends ServiceProvider
         $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
 
         $this->app->register(\Onderdelen\AppFoundation\AppFoundationServiceProvider::class);
+        $this->app->register(\Cerberus\CerberusServiceProvider::class);
 
         // Bind the User Repository
         $this->app->bind('Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface', function ($app) {

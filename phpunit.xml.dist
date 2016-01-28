@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="JwtAuth Test Suite">
+        <testsuite name="Senechal Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

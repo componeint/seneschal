@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Senechal Test Suite">
+        <testsuite name="Seneschal Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

@@ -6,7 +6,7 @@
 
 namespace Onderdelen\JwtAuth\Controllers;
 
-use Consigliere\AppFoundation\Controller\Controller;
+use Onderdelen\AppFoundation\Controller\Controller;
 use Illuminate\Pagination\Paginator;
 use Onderdelen\JwtAuth\FormRequests\ChangePasswordRequest;
 use Onderdelen\JwtAuth\FormRequests\UserCreateRequest;

@@ -6,7 +6,7 @@
 
 namespace Onderdelen\JwtAuth\Controllers;
 
-use Consigliere\AppFoundation\Controller\Controller;
+use Onderdelen\AppFoundation\Controller\Controller;
 use Onderdelen\JwtAuth\FormRequests\ChangePasswordRequest;
 use Onderdelen\JwtAuth\FormRequests\UserUpdateRequest;
 use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;

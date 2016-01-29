@@ -6,7 +6,7 @@
 
 namespace Onderdelen\JwtAuth\Controllers;
 
-use Consigliere\AppFoundation\Controller\Controller;
+use Onderdelen\AppFoundation\Controller\Controller;
 use Illuminate\Support\Facades\Response;
 use Onderdelen\JwtAuth\FormRequests\LoginRequest;
 use Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface;

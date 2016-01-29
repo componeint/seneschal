@@ -25,9 +25,6 @@ use Config;
 
 class UserController extends Controller
 {
-    /**
-     * Traits
-     */
     use CerberusRedirectionTrait;
     use CerberusViewfinderTrait;
 

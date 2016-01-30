@@ -1,4 +1,5 @@
 /**
+ * signin.controller.js
  * Created by anonymous on 02/12/15 5:49.
  */
 
@@ -13,8 +14,7 @@
 
     /* @ngInject */
     function JwtAuthSigninController() {
-        var vm        = this;
-        vm.title      = 'JwtAuthSigninController';
+        var vm = this;
 
         activate();
 

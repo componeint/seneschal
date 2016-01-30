@@ -1,4 +1,5 @@
 /**
+ * signup.controller.js
  * Created by anonymous on 10/12/15 21:24.
  */
 
@@ -13,8 +14,7 @@
 
     /* @ngInject */
     function JwtAuthSignupController() {
-        var vm    = this;
-        vm.title  = 'JwtAuthSignupController';
+        var vm = this;
 
         activate();
 

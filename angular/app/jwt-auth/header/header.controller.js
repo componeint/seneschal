@@ -1,4 +1,5 @@
 /**
+ * header.controller.js
  * Created by anonymous on 26/11/15 19:51.
  */
 
@@ -14,22 +15,19 @@
     /* @ngInject */
     function JwtAuthHeaderController($timeout, $mdSidenav, $log) {
         var vm         = this;
-        vm.title       = 'JwtAuthHeaderController';
         vm.toggleLeft  = buildDelayedToggler('left');
         vm.toggleRight = buildToggler('right');
         vm.isOpenRight = function() {
             return $mdSidenav('right').isOpen();
         };
 
-        /*
-         activate();
+        activate();
 
-         ////////////////
+        ////////////////
 
-         function activate() {
-         //
-         }
-         */
+        function activate() {
+
+        }
 
         /**
          * Build handler to open/close a SideNav; when animation finishes

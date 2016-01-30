@@ -1,4 +1,5 @@
 /**
+ * aside.controller.js
  * Created by anonymous on 03/01/16 5:37.
  */
 

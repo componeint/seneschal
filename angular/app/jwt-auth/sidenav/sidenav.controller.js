@@ -1,4 +1,5 @@
 /**
+ * sidenav.controller.js
  * Created by anonymous on 03/01/16 4:41.
  */
 
@@ -14,7 +15,6 @@
     /* @ngInject */
     function JwtAuthSidenavController($timeout, $mdSidenav, $log) {
         var vm   = this;
-        vm.title = 'JwtAuthSidenavController';
         vm.close = function() {
             $mdSidenav('left').close().then(function() {
                 // $log.debug("close LEFT is done");

@@ -1,4 +1,5 @@
 /**
+ * user.service.js
  * Created by anonymous on 15/12/15 13:51.
  */
 
@@ -9,7 +10,7 @@
         .module('jwtAuth')
         .factory('userService', userService);
 
-    userService.$inject = [''];
+    userService.$inject = [];
 
     /* @ngInject */
     function userService() {
@@ -18,7 +19,8 @@
             find   : find,
             store  : store,
             update : update,
-            destroy: destroy
+            destroy: destroy,
+            crush  : crush
         };
         return service;
 
@@ -41,6 +43,10 @@
         }
 
         function destroy() {
+            //
+        }
+
+        function crush() {
             //
         }
     }

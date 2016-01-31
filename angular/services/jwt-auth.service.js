@@ -1,4 +1,5 @@
 /**
+ * jwt-auth.service.js
  * Created by anonymous on 06/12/15 12:15.
  */
 
@@ -23,16 +24,18 @@
 
         function getUsers() {
             return $http.get('api/authenticate');
-            /*    .then(getUsersComplete)
-                .catch(getUsersFailed);
+            /*
+             .then(getUsersComplete)
+             .catch(getUsersFailed);
 
-            function getUsersComplete(response) {
-                return response.data.results;
-            }
+             function getUsersComplete(response) {
+             return response.data.results;
+             }
 
-            function getUsersFailed(error) {
-                console.log('XHR failed for getUser.' + error.data);
-            }*/
+             function getUsersFailed(error) {
+             console.log('XHR failed for getUser.' + error.data);
+             }
+             */
         }
 
         function signout() {

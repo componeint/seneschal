@@ -4,82 +4,77 @@
 <h4>Change Password</h4>
 -->
 
-<fieldset class="standard">
-    <legend>Edit User</legend>
-    <form name="userEditForm" novalidate>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label for="username">Username</label>
-            <md-icon ng-md-icon icon="account_circle" style="fill: black" size="24"></md-icon>
-            <input type="text" id="username" name="username" ng-model="ctrl.list[0].username" required>
+<h4>Edit User</h4>
+<form name="userEditForm" novalidate>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label for="username">Username</label>
+        <md-icon ng-md-icon icon="account_circle" style="fill: black" size="24"></md-icon>
+        <input type="text" id="username" name="username" ng-model="ctrl.list[0].username" required>
 
-            <div ng-if="userEditForm.username.$dirty" ng-messages="userEditForm.username.$error">
-                <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
-            </div>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label for="email">Email</label>
-            <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
-            <input type="email" id="email" name="email" ng-model="ctrl.list[0].email" ng-minlength="4" ng-maxlength="254" required>
-
-            <div ng-if="userEditForm.email.$dirty" ng-messages="userEditForm.email.$error">
-                <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
-            </div>
-        </md-input-container>
-
-        <!--
-        <md-checkbox ng-model="ctrl.list[0].activate" ng-true-value="'activate'" class="md-warn" flex>
-            Activated
-        </md-checkbox>
-        -->
-
-        <div layout="row" layout-align="end center">
-            <md-button ng-click="ctrl.update(ctrl.list[0].id)" ng-disabled="userEditForm.$invalid" class="md-raised md-primary md-hue-3">
-                <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
-                Update
-            </md-button>
+        <div ng-if="userEditForm.username.$dirty" ng-messages="userEditForm.username.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
-    </form>
-</fieldset>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label for="email">Email</label>
+        <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
+        <input type="email" id="email" name="email" ng-model="ctrl.list[0].email" ng-minlength="4" ng-maxlength="254" required>
 
-<fieldset class="standard">
-    <legend>Change password</legend>
-    <form name="changePasswordForm" novalidate>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label for="old_password">Old Password</label>
-            <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-            <input password-strength type="password" id="old_password" name="old_password" ng-model="ctrl.list[0].old_password" ng-minlength="8" required>
-
-            <div ng-if="changePasswordForm.old_password.$dirty" ng-messages="changePasswordForm.old_password.$error">
-                <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
-            </div>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label for="password">Password</label>
-            <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-            <input password-strength type="password" id="password" name="password" ng-model="ctrl.list[0].password" ng-minlength="8" required>
-
-            <div ng-if="changePasswordForm.password.$dirty" ng-messages="changePasswordForm.password.$error">
-                <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
-            </div>
-        </md-input-container>
-        <md-input-container class="md-block" flex-gt-sm>
-            <label for="password_confirmation">Confirm Password</label>
-            <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
-            <input password-match="ctrl.list[0].password" type="password" id="password_confirmation" name="password_confirmation" ng-model="ctrl.list[0].password_confirmation" ng-minlength="8" required>
-
-            <div ng-if="changePasswordForm.password_confirmation.$dirty" ng-messages="changePasswordForm.password_confirmation.$error">
-                <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
-            </div>
-        </md-input-container>
-        <div layout="row" layout-align="end center">
-            <md-button ng-click="ctrl.update(ctrl.list[0].id)" ng-disabled="changePasswordForm.$invalid" class="md-raised md-primary md-hue-3">
-                <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
-                Update
-            </md-button>
+        <div ng-if="userEditForm.email.$dirty" ng-messages="userEditForm.email.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
         </div>
-    </form>
+    </md-input-container>
 
-</fieldset>
+    <!--
+    <md-checkbox ng-model="ctrl.list[0].activate" ng-true-value="'activate'" class="md-warn" flex>
+        Activated
+    </md-checkbox>
+    -->
+
+    <div layout="row" layout-align="end center">
+        <md-button ng-click="ctrl.update(ctrl.list[0].id)" ng-disabled="userEditForm.$invalid" class="md-raised md-primary md-hue-3">
+            <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
+            Update
+        </md-button>
+    </div>
+</form>
+
+<h4>Change password</h4>
+<form name="changePasswordForm" novalidate>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label for="old_password">Old Password</label>
+        <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
+        <input password-strength type="password" id="old_password" name="old_password" ng-model="ctrl.list[0].old_password" ng-minlength="8" required>
+
+        <div ng-if="changePasswordForm.old_password.$dirty" ng-messages="changePasswordForm.old_password.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
+        </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label for="password">Password</label>
+        <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
+        <input password-strength type="password" id="password" name="password" ng-model="ctrl.list[0].password" ng-minlength="8" required>
+
+        <div ng-if="changePasswordForm.password.$dirty" ng-messages="changePasswordForm.password.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
+        </div>
+    </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+        <label for="password_confirmation">Confirm Password</label>
+        <md-icon ng-md-icon icon="lock" style="fill: black" size="24"></md-icon>
+        <input password-match="ctrl.list[0].password" type="password" id="password_confirmation" name="password_confirmation" ng-model="ctrl.list[0].password_confirmation" ng-minlength="8" required>
+
+        <div ng-if="changePasswordForm.password_confirmation.$dirty" ng-messages="changePasswordForm.password_confirmation.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
+        </div>
+    </md-input-container>
+    <div layout="row" layout-align="end center">
+        <md-button ng-click="ctrl.update(ctrl.list[0].id)" ng-disabled="changePasswordForm.$invalid" class="md-raised md-primary md-hue-3">
+            <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
+            Update
+        </md-button>
+    </div>
+</form>
 
 <md-divider></md-divider>
 

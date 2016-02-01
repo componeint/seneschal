@@ -40,24 +40,18 @@
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
         vm.log        = log;
-        vm.loadStuff  = loadStuff;
-        vm.onReorder  = onReorder;
-        vm.destroy    = destroy;
-        vm.crush      = crush;
+        // vm.loading    = loading;
+        // vm.reload     = reload;
+        vm.refresh   = refresh;
+        vm.onReorder = onReorder;
+        vm.destroy   = destroy;
+        vm.crush     = crush;
 
         activate();
 
         ////////////////
 
         function activate() {
-            /*
-             $http.get('api/users').then(function(responses) {
-             vm.lists = responses.data;
-             // $timeout(function () {
-             //   vm.lists = responses.data;
-             // }, 1000);
-             });
-             */
             Users.getList().then(function(response) {
                 vm.lists = response;
             }, function(error) {
@@ -81,10 +75,6 @@
             {
                 name   : 'Email',
                 orderBy: 'email'
-            },
-            {
-                name   : 'Permissions',
-                orderBy: 'permissions'
             },
             {
                 name   : 'Activated',
@@ -113,9 +103,21 @@
             // console.log(item.name, 'was selected');
         }
 
-        function loadStuff() {
+        function loading() {
+            Users.getList().then(function(response) {
+                vm.lists = response;
+            }, function(error) {
+                console.log('error: ' + error);
+            });
+        }
+
+        function reload() {
+            loading();
+        }
+
+        function refresh() {
             vm.promise = $timeout(function() {
-                activate();
+                loading();
                 ToastService.show('Refresh.');
             }, 1000);
         }
@@ -131,21 +133,35 @@
         }
 
         function destroy(id) {
+            var listWithId = _.find(response, function(list) {
+                return list.id === id;
+            });
 
-            // Here we use then to resolve the promise.
-            Users.getList().then(function(response) {
-                vm.lists       = response;
-                var listWithId = _.find(response, function(list) {
-                    return list.id === id;
+            // Alternatively delete the element from the list when finished
+            /*listWithId.remove().then(function() {
+             // Updating the list and removing the user after the response is OK.
+             vm.lists = _.without(vm.lists, listWithId);
+             vm.selected = [];
+             ToastService.show('User deleted');
+             });*/
+
+            listWithId.remove().then(function() {
+                var index = vm.lists.indexOf(listWithId);
+                if (index > -1) {
+                    vm.lists.splice(index, 1);
+                }
+                vm.selected = [];
+                ToastService.show('User deleted');
+            });
+        }
+
+        function crush(collection) {
+            for (var i = 0; i < collection.length; i++) {
+                var listWithId = _.find(vm.lists, function(list) {
+                    if (list.id === collection[i].id) {
+                        return list.id === collection[i].id;
+                    }
                 });
-
-                // Alternatively delete the element from the list when finished
-                /*listWithId.remove().then(function() {
-                 // Updating the list and removing the user after the response is OK.
-                 vm.lists = _.without(vm.lists, listWithId);
-                 vm.selected = [];
-                 ToastService.show('User deleted');
-                 });*/
 
                 listWithId.remove().then(function() {
                     var index = vm.lists.indexOf(listWithId);
@@ -153,46 +169,12 @@
                         vm.lists.splice(index, 1);
                     }
                     vm.selected = [];
-                    ToastService.show('User deleted');
+
                 });
+            }
 
-            });
-        }
-
-        function crush(collection) {
-            Users.getList().then(function(response) {
-                vm.lists = response;
-
-                for (var i = 0; i < collection.length; i++) {
-                    var listWithId = _.find(vm.lists, function(list) {
-
-                        if (list.id === collection[i].id) {
-                            return list.id === collection[i].id;
-                        }
-                    });
-
-                    // Alternatively delete the element from the list when finished
-                    // console.log('listWithId ' + listWithId);
-                    /*listWithId.remove().then(function() {
-                     // Updating the list and removing the user after the response is OK.
-                     vm.lists = _.without(vm.lists, listWithId);
-                     vm.selected = [];
-                     });*/
-
-                    listWithId.remove().then(function() {
-                        var index = vm.lists.indexOf(listWithId);
-                        if (index > -1) {
-                            vm.lists.splice(index, 1);
-                        }
-                        vm.selected = [];
-
-                    });
-                }
-
-                activate();
-                ToastService.show('User deleted.');
-            });
-
+            reload();
+            ToastService.show('Users deleted');
         }
     }
 

@@ -6,7 +6,7 @@
             <md-icon ng-md-icon icon="add" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Add</md-tooltip>
         </md-button>
-        <md-button class="md-icon-button" ng-click="ctrl.loadStuff()">
+        <md-button class="md-icon-button" ng-click="ctrl.refresh()">
             <md-icon ng-md-icon icon="refresh" style="fill: black" size="24"></md-icon>
             <md-tooltip md-direction="bottom">Refresh</md-tooltip>
         </md-button>
@@ -62,7 +62,6 @@
         <tr md-row md:select="list" data-md-on-select="ctrl.log" md-on-deselect="ctrl.deselect" x-md-auto-select="!autoSelect" ng-disabled="list.id === 1" data-ng-repeat="list in ctrl.lists | filter: filter.search | orderBy: ctrl.query.order | limitTo: ctrl.query.limit : (ctrl.query.page -1) * ctrl.query.limit">
             <td md-cell>{{list.username}}</td>
             <td md-cell>{{list.email}}</td>
-            <td md-cell>{{list.permissions}}</td>
             <td md-cell>{{list.activated}}</td>
             <td md-cell>{{list.status}}</td>
         </tr>

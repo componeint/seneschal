@@ -138,30 +138,24 @@
         }
 
         function destroy(id) {
+            var listWithId = _.find(vm.lists, function(list) {
+                return list.id === id;
+            });
 
-            // Here we use then to resolve the promise.
-            Groups.getList().then(function(response) {
-                vm.lists       = response;
-                var listWithId = _.find(vm.lists, function(list) {
-                    return list.id === id;
-                });
+            // groupWithId.name = '';
+            // groupWithId.put();
 
-                // groupWithId.name = '';
-                // groupWithId.put();
-
-                // Alternatively delete the element from the list when finished
-                listWithId.remove().then(function() {
-                    // Updating the list and removing the user after the response is OK.
-                    // vm.lists = _.without(vm.lists, listWithId);
-                    var index = vm.lists.indexOf(listWithId);
-                    if (index > -1) {
-                        vm.lists.splice(index, 1);
-                    }
-                    vm.selected = [];
-                    //$state.go('dashboard.groups');
-                    ToastService.show('Group deleted.');
-                });
-
+            // Alternatively delete the element from the list when finished
+            listWithId.remove().then(function() {
+                // Updating the list and removing the user after the response is OK.
+                // vm.lists = _.without(vm.lists, listWithId);
+                var index = vm.lists.indexOf(listWithId);
+                if (index > -1) {
+                    vm.lists.splice(index, 1);
+                }
+                vm.selected = [];
+                //$state.go('dashboard.groups');
+                ToastService.show('Group deleted.');
             });
 
             /*
@@ -177,39 +171,34 @@
         }
 
         function crush(collection) {
-            Groups.getList().then(function(response) {
-                vm.lists = response;
+            for (var i = 0; i < collection.length; i++) {
+                var listWithId = _.find(vm.lists, function(list) {
 
-                for (var i = 0; i < collection.length; i++) {
-                    var listWithId = _.find(vm.lists, function(list) {
+                    if (list.id === collection[i].id) {
+                        return list.id === collection[i].id;
+                    }
+                });
 
-                        if (list.id === collection[i].id) {
-                            return list.id === collection[i].id;
-                        }
-                    });
+                // Alternatively delete the element from the list when finished
+                // console.log('listWithId ' + listWithId);
+                /*listWithId.remove().then(function() {
+                 // Updating the list and removing the user after the response is OK.
+                 vm.lists = _.without(vm.lists, listWithId);
+                 vm.selected = [];
+                 });*/
 
-                    // Alternatively delete the element from the list when finished
-                    // console.log('listWithId ' + listWithId);
-                    /*listWithId.remove().then(function() {
-                     // Updating the list and removing the user after the response is OK.
-                     vm.lists = _.without(vm.lists, listWithId);
-                     vm.selected = [];
-                     });*/
+                listWithId.remove().then(function() {
+                    var index = vm.lists.indexOf(listWithId);
+                    if (index > -1) {
+                        vm.lists.splice(index, 1);
+                    }
+                    vm.selected = [];
 
-                    listWithId.remove().then(function() {
-                        var index = vm.lists.indexOf(listWithId);
-                        if (index > -1) {
-                            vm.lists.splice(index, 1);
-                        }
-                        vm.selected = [];
+                });
+            }
 
-                    });
-                }
-
-                activate();
-                ToastService.show('Groups deleted.');
-            });
-
+            activate();
+            ToastService.show('Groups deleted.');
         }
 
     }

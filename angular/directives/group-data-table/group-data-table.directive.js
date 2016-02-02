@@ -32,18 +32,20 @@
         }
     }
 
-    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Groups', 'ToastService', '$state'];
+    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Groups', 'ToastService'];
 
     /* @ngInject */
-    function GroupDataTableController($http, $mdEditDialog, $q, $timeout, Groups, ToastService, $state) {
+    function GroupDataTableController($http, $mdEditDialog, $q, $timeout, Groups, ToastService) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
         vm.log        = log;
-        vm.loadStuff  = loadStuff;
-        vm.onReorder  = onReorder;
-        vm.destroy    = destroy;
-        vm.crush      = crush;
+        // vm.loading    = loading;
+        // vm.reload     = reload;
+        vm.refresh   = refresh;
+        vm.onReorder = onReorder;
+        vm.destroy   = destroy;
+        vm.crush     = crush;
 
         activate();
 
@@ -112,19 +114,23 @@
             // console.log(item.name, 'was selected');
         }
 
-        function loadStuff() {
-            $timeout(function() {
-                activate();
+        function loading() {
+            Groups.getList().then(function(response) {
+                vm.lists = response;
+            }, function(error) {
+                console.log('error: ' + error);
+            });
+        }
 
-                /*
-                 Groups.getList().then(function(response) {
-                 vm.lists = response;
-                 console.log(response);
-                 ToastService.show('Refreshed');
-                 });
-                 */
+        function reload() {
+            loading();
+        }
 
-            }, 2000);
+        function refresh() {
+            vm.promise = $timeout(function() {
+                loading();
+                ToastService.show('Refreshed.');
+            }, 1000);
         }
 
         function onReorder(order) {
@@ -154,7 +160,6 @@
                     vm.lists.splice(index, 1);
                 }
                 vm.selected = [];
-                //$state.go('dashboard.groups');
                 ToastService.show('Group deleted.');
             });
 
@@ -197,7 +202,7 @@
                 });
             }
 
-            activate();
+            reload();
             ToastService.show('Groups deleted.');
         }
 

@@ -118,7 +118,7 @@
         function refresh() {
             vm.promise = $timeout(function() {
                 loading();
-                ToastService.show('Refresh.');
+                ToastService.show('Refreshed');
             }, 1000);
         }
 

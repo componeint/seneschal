@@ -112,7 +112,7 @@
                 url     : '/auth',
                 views   : {
                     'layout@'        : {
-                        templateUrl : layout('jwt-auth.simple'),
+                        templateUrl : layout('themes.minimalist'),
                         controller  : 'JwtAuthController',
                         controllerAs: 'jwtAuth'
                     },

@@ -10,10 +10,10 @@
         .module('jwtAuth')
         .config(jwtAuthRouter);
 
-    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', '$httpProvider', '$provide'];
+    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', '$httpProvider', '$provide', 'layoutProvider'];
 
     /* @ngInject */
-    function jwtAuthRouter($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
+    function jwtAuthRouter($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, layoutProvider) {
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
         $httpProvider.interceptors.push('redirectWhenLoggedOut');
         $urlRouterProvider.otherwise('/');
@@ -24,7 +24,7 @@
                 data : {pageName: 'Groups'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('groups.index'),
+                        templateUrl : layoutProvider.dashboard('groups.index'),
                         controller  : 'GroupsIndexController',
                         controllerAs: 'index'
                     }
@@ -35,7 +35,7 @@
                 data : {pageName: 'Create'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('groups.create'),
+                        templateUrl : layoutProvider.dashboard('groups.create'),
                         controller  : 'GroupsCreateController',
                         controllerAs: 'create'
                     }
@@ -46,7 +46,7 @@
                 data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('groups.show'),
+                        templateUrl : layoutProvider.dashboard('groups.show'),
                         controller  : 'GroupsShowController',
                         controllerAs: 'show'
                     }
@@ -57,7 +57,7 @@
                 data : {pageName: 'Edit'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('groups.edit'),
+                        templateUrl : layoutProvider.dashboard('groups.edit'),
                         controller  : 'GroupsEditController',
                         controllerAs: 'edit'
                     }
@@ -68,7 +68,7 @@
                 data : {pageName: 'Users'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('users.index'),
+                        templateUrl : layoutProvider.dashboard('users.index'),
                         controller  : 'UsersIndexController',
                         controllerAs: 'index'
                     }
@@ -79,7 +79,7 @@
                 data : {pageName: 'Create'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('users.create'),
+                        templateUrl : layoutProvider.dashboard('users.create'),
                         controller  : 'UsersCreateController',
                         controllerAs: 'create'
                     }
@@ -90,7 +90,7 @@
                 data : {pageName: 'Show'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('users.show'),
+                        templateUrl : layoutProvider.dashboard('users.show'),
                         controller  : 'UsersShowController',
                         controllerAs: 'show'
                     }
@@ -101,7 +101,7 @@
                 data : {pageName: 'Edit'},
                 views: {
                     'main@dashboard': {
-                        templateUrl : dashboard('users.edit'),
+                        templateUrl : layoutProvider.dashboard('users.edit'),
                         controller  : 'UsersEditController',
                         controllerAs: 'edit'
                     }
@@ -112,27 +112,27 @@
                 url     : '/auth',
                 views   : {
                     'layout@'        : {
-                        templateUrl : layout('themes.minimalist'),
+                        templateUrl : layoutProvider.layout('themes.minimalist'),
                         controller  : 'JwtAuthController',
                         controllerAs: 'jwtAuth'
                     },
                     'header@jwtauth' : {
-                        templateUrl : view('jwt-auth.header'),
+                        templateUrl : layoutProvider.view('jwt-auth.header'),
                         controller  : 'JwtAuthHeaderController',
                         controllerAs: 'header'
                     },
                     'sidenav@jwtauth': {
-                        templateUrl : view('jwt-auth.sidenav'),
+                        templateUrl : layoutProvider.view('jwt-auth.sidenav'),
                         controller  : 'JwtAuthSidenavController',
                         controllerAs: 'sidenav'
                     },
                     'aside@jwtauth'  : {
-                        templateUrl : view('jwt-auth.aside'),
+                        templateUrl : layoutProvider.view('jwt-auth.aside'),
                         controller  : 'JwtAuthAsideController',
                         controllerAs: 'aside'
                     },
                     'footer@jwtauth' : {
-                        templateUrl : view('jwt-auth.footer'),
+                        templateUrl : layoutProvider.view('jwt-auth.footer'),
                         controller  : 'JwtAuthFooterController',
                         controllerAs: 'footer'
                     },
@@ -144,7 +144,7 @@
                 data : {pageName: 'Sign-up'},
                 views: {
                     'main@jwtauth': {
-                        templateUrl : view('jwt-auth.signup'),
+                        templateUrl : layoutProvider.view('jwt-auth.signup'),
                         controller  : 'JwtAuthSignupController',
                         controllerAs: 'signup'
                     }
@@ -155,7 +155,7 @@
                 data : {pageName: 'Sign in'},
                 views: {
                     'main@jwtauth': {
-                        templateUrl : view('jwt-auth.signin'),
+                        templateUrl : layoutProvider.view('jwt-auth.signin'),
                         controller  : 'JwtAuthSigninController',
                         controllerAs: 'signin'
                     }
@@ -166,7 +166,7 @@
                 data   : {pageName: 'Home'},
                 views  : {
                     'main@jwtauth': {
-                        templateUrl : view('jwt-auth.home'),
+                        templateUrl : layoutProvider.view('jwt-auth.home'),
                         controller  : 'JwtAuthHomeController',
                         controllerAs: 'home'
                     }
@@ -175,60 +175,6 @@
                     loginRequired: loginRequired
                 }
             });
-
-        function dashboard(viewName) {
-            if (viewName !== '') {
-                return './views/dashboard/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
-            } else {
-                return './views/app/app/home/home.html';
-            }
-        }
-
-        function view(viewName) {
-            if (viewName !== '') {
-                return './views/app/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
-            } else {
-                return './views/app/app/home/home.html';
-            }
-        }
-
-        function layout(viewName) {
-            if (viewName !== '') {
-                return './views/layouts/' + appName(viewName) + '/' + fileDir(viewName) + '/' + fileName(viewName) + '.html';
-            } else {
-                return './views/layouts/themes/default/minimalist.html';
-            }
-        }
-
-        function appName(v) {
-            if (v.split('.')[0]) {
-                return v.split('.')[0];
-            } else {
-                return 'app';
-            }
-        }
-
-        function fileDir(v) {
-            if (v.split('.')[1]) {
-                return v.split('.')[1];
-            } else if (!v.split('.')[0]) {
-                return v;
-            } else {
-                return 'home';
-            }
-        }
-
-        function fileName(v) {
-            if (v.split('.')[2]) {
-                return v.split('.')[2];
-            } else if (!v.split('.')[2]) {
-                if (v.split('.')[1]) {
-                    return v.split('.')[1];
-                }
-            } else {
-                return 'home';
-            }
-        }
 
         function redirectWhenLoggedOut($q, $injector) {
 

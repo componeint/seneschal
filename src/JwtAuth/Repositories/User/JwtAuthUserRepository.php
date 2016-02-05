@@ -6,10 +6,10 @@
 
 namespace Onderdelen\JwtAuth\Repositories\User;
 
-use Cartalyst\Sentry\Sentry;
-use Cartalyst\Sentry\Users\UserExistsException;
-use Cartalyst\Sentry\Users\UserNotFoundException;
-use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
+use Einherjars\Carbuncle\Carbuncle;
+use Einherjars\Carbuncle\Users\UserExistsException;
+use Einherjars\Carbuncle\Users\UserNotFoundException;
+use Einherjars\Carbuncle\Users\UserAlreadyActivatedException;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Config\Repository;
@@ -27,9 +27,9 @@ use Onderdelen\JwtAuth\DataTransferObjects\ExceptionResponse;
 class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
 {
     /**
-     * @var Sentry
+     * @var Carbuncle
      */
-    protected $sentry;
+    protected $carbuncle;
     /**
      * @var Repository
      */
@@ -40,16 +40,16 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     protected $dispatcher;
 
     /**
-     * Construct a new SentryUser Object
+     * Construct a new CarbuncleUser Object
      */
-    public function __construct(Sentry $sentry, Repository $config, Dispatcher $dispatcher)
+    public function __construct(Carbuncle $carbuncle, Repository $config, Dispatcher $dispatcher)
     {
-        $this->sentry     = $sentry;
+        $this->carbuncle     = $carbuncle;
         $this->config     = $config;
         $this->dispatcher = $dispatcher;
 
         // Get the Throttle Provider
-        $this->throttleProvider = $this->sentry->getThrottleProvider();
+        $this->throttleProvider = $this->carbuncle->getThrottleProvider();
 
         // Enable the Throttling Feature
         $this->throttleProvider->enable();
@@ -85,7 +85,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             }
 
             // Attempt user registration
-            $user = $this->sentry->register($credentials, $activateUser, $data);
+            $user = $this->carbuncle->register($credentials, $activateUser, $data);
 
             // If the developer has specified additional fields for this user, update them here.
             foreach ($this->config->get('cerberus.additional_user_fields', []) as $key => $value) {
@@ -104,7 +104,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
 
             // Assign groups to this user
             foreach ($groups as $name) {
-                $group = $this->sentry->getGroupProvider()->findByName($name);
+                $group = $this->carbuncle->getGroupProvider()->findByName($name);
                 $user->addGroup($group);
             }
 
@@ -145,7 +145,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             // Find the user using the user id
-            $user = $this->sentry->findUserById($data['id']);
+            $user = $this->carbuncle->findUserById($data['id']);
 
             // Update User Details
             $user->email    = (isset($data['email']) ? e($data['email']) : $user->email);
@@ -187,7 +187,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             // Find the user using the user id
-            $user = $this->sentry->findUserById($id);
+            $user = $this->carbuncle->findUserById($id);
 
             // Delete the user
             if ($user->delete()) {
@@ -218,7 +218,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             // Find the user using the user id
-            $user = $this->sentry->findUserById($id);
+            $user = $this->carbuncle->findUserById($id);
 
             // Attempt to activate the user
             if ($user->attemptActivation($code)) {
@@ -254,7 +254,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             //Attempt to find the user.
-            $user = $this->sentry->getUserProvider()->findByLogin(e($data['email']));
+            $user = $this->carbuncle->getUserProvider()->findByLogin(e($data['email']));
 
             // If the user is not currently activated resend the activation email
             if (!$user->isActivated()) {
@@ -288,7 +288,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     public function triggerPasswordReset($email)
     {
         try {
-            $user = $this->sentry->getUserProvider()->findByLogin(e($email));
+            $user = $this->carbuncle->getUserProvider()->findByLogin(e($email));
 
             $this->dispatcher->fire('cerberus.user.reset', [
                 'user' => $user,
@@ -318,7 +318,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     public function validateResetCode($id, $code)
     {
         try {
-            $user = $this->sentry->findUserById($id);
+            $user = $this->carbuncle->findUserById($id);
 
             if (!$user->checkResetPasswordCode($code)) {
                 return new FailureResponse(trans('Cerberus::users.invalidreset'), ['user' => $user]);
@@ -344,7 +344,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             // Grab the user
-            $user = $this->sentry->getUserProvider()->findById($id);
+            $user = $this->carbuncle->getUserProvider()->findById($id);
 
             // Attempt to reset the user password
             if ($user->attemptResetPassword($code, $password)) {
@@ -373,12 +373,12 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     public function changePassword($data)
     {
         try {
-            $user = $this->sentry->getUserProvider()->findById($data['id']);
+            $user = $this->carbuncle->getUserProvider()->findById($data['id']);
 
             // Does the old password input match the user's existing password?
             if ($user->checkHash(e($data['oldPassword']), $user->getPassword())) {
 
-                // Set the new password (Sentry will hash it behind the scenes)
+                // Set the new password (Carbuncle will hash it behind the scenes)
                 $user->password = e($data['newPassword']);
 
                 if ($user->save()) {
@@ -412,9 +412,9 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     public function changePasswordWithoutCheck($data)
     {
         try {
-            $user = $this->sentry->getUserProvider()->findById($data['id']);
+            $user = $this->carbuncle->getUserProvider()->findById($data['id']);
 
-            // Set the new password (Sentry will hash it behind the scenes)
+            // Set the new password (Carbuncle will hash it behind the scenes)
             $user->password = e($data['newPassword']);
 
             if ($user->save()) {
@@ -442,10 +442,10 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     public function changeGroupMemberships($userId, $selections)
     {
         try {
-            $user = $this->sentry->getUserProvider()->findById(e($userId));
+            $user = $this->carbuncle->getUserProvider()->findById(e($userId));
 
             // Gather all available groups
-            $allGroups = $this->sentry->getGroupProvider()->findAll();
+            $allGroups = $this->carbuncle->getGroupProvider()->findAll();
 
             // Update group memberships
             foreach ($allGroups as $group) {
@@ -478,7 +478,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             // Find the user using the user id
-            $throttle = $this->sentry->findThrottlerByUserId($id);
+            $throttle = $this->carbuncle->findThrottlerByUserId($id);
 
             // Suspend the user
             $throttle->suspend();
@@ -506,7 +506,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             // Find the user using the user id
-            $throttle = $this->sentry->findThrottlerByUserId($id);
+            $throttle = $this->carbuncle->findThrottlerByUserId($id);
 
             // Un-suspend the user
             $throttle->unsuspend();
@@ -532,10 +532,10 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     public function ban($id)
     {
         try {
-            $user = $this->sentry->getUserProvider()->findById($id);
+            $user = $this->carbuncle->getUserProvider()->findById($id);
 
             // Find the user using the user id
-            $throttle = $this->sentry->findThrottlerByUserId($user->id);
+            $throttle = $this->carbuncle->findThrottlerByUserId($user->id);
 
             // Ban the user
             $throttle->ban();
@@ -566,7 +566,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
     {
         try {
             // Find the user using the user id
-            $throttle = $this->sentry->findThrottlerByUserId($id);
+            $throttle = $this->carbuncle->findThrottlerByUserId($id);
 
             // Un-ban the user
             $throttle->unBan();
@@ -590,7 +590,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
      */
     public function retrieveById($identifier)
     {
-        $model = $this->sentry->getUserProvider()->createModel();
+        $model = $this->carbuncle->getUserProvider()->createModel();
 
         return $model->find($identifier);
     }
@@ -604,7 +604,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
      */
     public function retrieveByToken($identifier, $token)
     {
-        $model = $this->sentry->getUserProvider()->createModel();
+        $model = $this->carbuncle->getUserProvider()->createModel();
 
         return $model->where('id', $identifier)->where('persist_code', $token)->first();
     }
@@ -619,7 +619,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
      */
     public function updateRememberToken(Authenticatable $user, $token)
     {
-        $model = $this->sentry->getUserProvider()->createModel();
+        $model = $this->carbuncle->getUserProvider()->createModel();
 
         $model->where('id', $user->id)->update('persist_code', $token);
     }
@@ -628,12 +628,12 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
      * Retrieve a user by the given credentials.
      *
      * @param array $credentials
-     * @return \Cartalyst\Sentry\Users\UserInterface|null
+     * @return \Einherjars\Carbuncle\Users\UserInterface|null
      */
     public function retrieveByCredentials(array $credentials)
     {
         try {
-            return $this->sentry->findUserByCredentials($credentials);
+            return $this->carbuncle->findUserByCredentials($credentials);
         } catch (UserNotFoundException $e) {
             return null;
         }
@@ -646,7 +646,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
      */
     public function all()
     {
-        $users = $this->sentry->findAllUsers();
+        $users = $this->carbuncle->findAllUsers();
 
         foreach ($users as $user) {
             if ($user->isActivated()) {
@@ -681,7 +681,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
      */
     public function getUser()
     {
-        return $this->sentry->getUser();
+        return $this->carbuncle->getUser();
     }
 
     /**

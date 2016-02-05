@@ -17,7 +17,7 @@ use Cerberus\Traits\CerberusRedirectionTrait;
 use Cerberus\Traits\CerberusViewfinderTrait;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
-use Sentry;
+use Carbuncle;
 use View;
 use Input;
 use Event;
@@ -62,7 +62,7 @@ class RegistrationController extends Controller
     public function registration()
     {
         // Is this user already signed in? If so redirect to the post login route
-        if (Sentry::check()) {
+        if (Carbuncle::check()) {
             return $this->redirectTo('session_store');
         }
 

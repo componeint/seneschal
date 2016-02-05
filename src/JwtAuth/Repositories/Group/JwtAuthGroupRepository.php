@@ -6,12 +6,12 @@
 
 namespace Onderdelen\JwtAuth\Repositories\Group;
 
-use Cartalyst\Sentry\Sentry;
+use Einherjars\Carbuncle\Carbuncle;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Response;
-use Cartalyst\Sentry\Groups\GroupExistsException;
-use Cartalyst\Sentry\Groups\GroupNotFoundException;
+use Einherjars\Carbuncle\Groups\GroupExistsException;
+use Einherjars\Carbuncle\Groups\GroupNotFoundException;
 use Cerberus\Models\Group;
 use Onderdelen\JwtAuth\DataTransferObjects\BaseResponse;
 use Onderdelen\JwtAuth\DataTransferObjects\SuccessResponse;
@@ -25,16 +25,16 @@ use Onderdelen\JwtAuth\DataTransferObjects\ExceptionResponse;
 class JwtAuthGroupRepository implements GroupRepositoryInterface
 {
     /**
-     * @var Sentry
+     * @var Carbuncle
      */
-    protected $sentry;
+    protected $carbuncle;
 
     /**
      * Constructor
      */
-    public function __construct(Sentry $sentry, Dispatcher $dispatcher)
+    public function __construct(Carbuncle $carbuncle, Dispatcher $dispatcher)
     {
-        $this->sentry     = $sentry;
+        $this->carbuncle     = $carbuncle;
         $this->dispatcher = $dispatcher;
     }
 
@@ -50,7 +50,7 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
             $permissions = (isset($data['permissions']) ? $data['permissions'] : []);
 
             /// Create the group
-            $group = $this->sentry->createGroup([
+            $group = $this->carbuncle->createGroup([
                 'name'        => e($data['name']),
                 'permissions' => $permissions,
             ]);
@@ -79,7 +79,7 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
             $permissions = (isset($data['permissions']) ? $data['permissions'] : []);
 
             // Find the group using the group id
-            $group = $this->sentry->findGroupById($data['id']);
+            $group = $this->carbuncle->findGroupById($data['id']);
 
             // Grab the current (pre-edit) permissions and nullify appropriately
             $existingPermissions = $group->getPermissions();
@@ -124,7 +124,7 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
     {
         try {
             // Find the group using the group id
-            $group = $this->sentry->findGroupById($id);
+            $group = $this->carbuncle->findGroupById($id);
 
             // Delete the group
             $group->delete();
@@ -148,7 +148,7 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
      */
     public function retrieveById($id)
     {
-        return $this->sentry->findGroupById($id);
+        return $this->carbuncle->findGroupById($id);
     }
 
     /**
@@ -159,7 +159,7 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
      */
     public function retrieveByName($name)
     {
-        return $this->sentry->findGroupByName($name);
+        return $this->carbuncle->findGroupByName($name);
     }
 
     /**
@@ -169,6 +169,6 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
      */
     public function all()
     {
-        return $this->sentry->getGroupProvider()->findAll();
+        return $this->carbuncle->getGroupProvider()->findAll();
     }
 }

@@ -15,7 +15,7 @@ use Cerberus\Traits\CerberusViewfinderTrait;
 use Onderdelen\JwtAuth\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
-use Sentry;
+use Carbuncle;
 use View;
 use Input;
 use Event;
@@ -117,7 +117,7 @@ class AuthenticateController extends Controller
     public function create()
     {
         // Is this user already signed in?
-        if (Sentry::check()) {
+        if (Carbuncle::check()) {
             return $this->redirectTo('session_store');
         }
 

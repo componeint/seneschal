@@ -54,7 +54,7 @@ class JwtAuthServiceProvider extends ServiceProvider
         // Bind the User Repository
         $this->app->bind('Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface', function ($app) {
             return new JwtAuthUserRepository(
-                $app['sentry'],
+                $app['carbuncle'],
                 $app['config'],
                 $app['events']
             );
@@ -63,7 +63,7 @@ class JwtAuthServiceProvider extends ServiceProvider
         // Bind the Group Repository
         $this->app->bind('Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface', function ($app) {
             return new JwtAuthGroupRepository(
-                $app['sentry'],
+                $app['carbuncle'],
                 $app['events']
             );
         });
@@ -72,7 +72,7 @@ class JwtAuthServiceProvider extends ServiceProvider
         $this->app->bind('Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface',
             function ($app) {
                 return new AuthenticateRepository(
-                    $app['sentry'],
+                    $app['carbuncle'],
                     $app['events']
                 );
             });

@@ -129,7 +129,7 @@
         function refresh() {
             vm.promise = $timeout(function() {
                 loading();
-                ToastService.show('Refreshed.');
+                ToastService.show('Refreshed');
             }, 1000);
         }
 

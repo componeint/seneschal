@@ -1,4 +1,5 @@
 /**
+ * jwt-auth.controller
  * Created by anonymous on 03/12/15 4:55.
  */
 
@@ -13,9 +14,8 @@
 
     /* @ngInject */
     function JwtAuthController($state, jwtAuthService) {
-        var vm   = this;
-        vm.title = 'JwtAuthController';
-        vm.signout  = signout;
+        var vm     = this;
+        vm.signout = signout;
 
         activate();
 
@@ -29,7 +29,6 @@
             jwtAuthService.signout().then(function() {
                 $state.go('jwtauth.signin');
             });
-            //console.log('sign-out');
         }
     }
 

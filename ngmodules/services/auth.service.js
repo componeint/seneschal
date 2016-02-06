@@ -10,10 +10,10 @@
         .module('jwtAuth')
         .factory('auth', authenticate);
 
-    authenticate.$inject = [];
+    authenticate.$inject = ['$http', '$auth'];
 
     /* @ngInject */
-    function authenticate() {
+    function authenticate($http, $auth) {
         var service = {
             authenticate        : authenticate,
             getAuthenticatedUser: getAuthenticatedUser,
@@ -25,12 +25,12 @@
 
         ////////////////
 
-        function authenticate() {
-            //
+        function authenticate(credentials) {
+            return $auth.login(credentials)
         }
 
         function getAuthenticatedUser() {
-            //
+            return $http.get('api/authenticate/user');
         }
 
         function create() {

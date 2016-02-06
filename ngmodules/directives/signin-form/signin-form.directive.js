@@ -32,14 +32,14 @@
         }
     }
 
-    SigninFormController.$inject = ['$auth', '$state', '$http', '$rootScope', 'ToastService'];
+    SigninFormController.$inject = ['$state', '$rootScope', 'ToastService', 'auth'];
 
     /* @ngInject */
-    function SigninFormController($auth, $state, $http, $rootScope, ToastService) {
-        var vm        = this;
-        vm.loginError = false;
-        vm.loginErrorText;
-        vm.login      = login;
+    function SigninFormController($state, $rootScope, ToastService, auth) {
+        var vm            = this;
+        vm.loginError     = false;
+        vm.loginErrorText = '';
+        vm.login          = login;
 
         ////////////////
 
@@ -50,9 +50,10 @@
                     password: vm.password
                 };
 
-            $auth.login(credentials)
+            auth
+                .authenticate(credentials)
                 .then(function() {
-                    return $http.get('api/authenticate/user');
+                    return auth.getAuthenticatedUser();
                 }, function(error) {
                     vm.loginError     = true;
                     vm.loginErrorText = error.data.error;

@@ -123,12 +123,12 @@
 
     angular
         .module('jwtAuth')
-        .factory('user', user);
+        .factory('User', User);
 
-    user.$inject = [];
+    User.$inject = [];
 
     /* @ngInject */
-    function user() {
+    function User() {
         var service = {
             index                 : index,
             create                : create,

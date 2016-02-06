@@ -118,3 +118,89 @@
  * Created by anonymous on 01/02/16 6:10.
  */
 
+(function() {
+    'use strict';
+
+    angular
+        .module('jwtAuth')
+        .factory('user', user);
+
+    user.$inject = [];
+
+    /* @ngInject */
+    function user() {
+        var service = {
+            index                 : index,
+            create                : create,
+            store                 : store,
+            show                  : show,
+            edit                  : edit,
+            update                : update,
+            destroy               : destroy,
+            updateGroupMemberships: updateGroupMemberships,
+            changePassword        : changePassword,
+            suspend               : suspend,
+            unsuspend             : unsuspend,
+            ban                   : ban,
+            unban                 : unban
+        };
+        return service;
+
+        ////////////////
+
+        function index() {
+            //
+        }
+
+        function create() {
+            //
+        }
+
+        function store() {
+            //
+        }
+
+        function show() {
+            //
+        }
+
+        function edit() {
+            //
+        }
+
+        function update() {
+            //
+        }
+
+        function destroy() {
+            //
+        }
+
+        function updateGroupMemberships() {
+            //
+        }
+
+        function changePassword() {
+            //
+        }
+
+        function suspend() {
+            //
+        }
+
+        function unsuspend() {
+            //
+        }
+
+        function ban() {
+            //
+        }
+
+        function unban() {
+            //
+        }
+
+    }
+
+})();
+

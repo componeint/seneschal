@@ -20,7 +20,9 @@
             controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
-            scope           : {},
+            scope           : {
+                successredirect: '@'
+            },
             templateUrl     : function(elem, attr) {
                 return attr.template;
             }
@@ -64,7 +66,7 @@
                     localStorage.setItem('user', user);
                     $rootScope.authenticated = true;
                     $rootScope.currentUser   = response.data.user;
-                    $state.go('jwtauth.home');
+                    $state.go(vm.successredirect);
                 });
         }
 

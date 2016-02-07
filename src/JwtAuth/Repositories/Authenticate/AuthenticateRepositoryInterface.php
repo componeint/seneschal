@@ -5,7 +5,7 @@
 
 namespace Onderdelen\JwtAuth\Repositories\Authenticate;
 
-use Sentinel\DataTransferObjects\BaseResponse;
+use Cerberus\DataTransferObjects\BaseResponse;
 
 /**
  * Interface AuthenticateRepositoryInterface

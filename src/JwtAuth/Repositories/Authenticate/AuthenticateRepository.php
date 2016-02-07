@@ -78,7 +78,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
             $credentials['email']    = isset($data['email']) ? e($data['email']) : '';
 
             // Should we check for a username?
-            if (Config::get('Sentinel::auth.allow_usernames', false) && isset($data['username'])) {
+            if (Config::get('Cerberus::auth.allow_usernames', false) && isset($data['username'])) {
                 $credentials['username'] = e($data['username']);
             }
 
@@ -105,33 +105,33 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
             // Might be unnecessary, but just in case:
             $this->carbuncleUserProvider->getEmptyUser()->setLoginAttributeName('email');
 
-            // Login was successful. Fire the Sentinel.user.login event
-            // $this->dispatcher->fire('sentinel.user.login', ['user' => $user]);
+            // Login was successful. Fire the Cerberus.user.login event
+            // $this->dispatcher->fire('cerberus.user.login', ['user' => $user]);
 
             // Return Response Object
             return new SuccessResponse('');
         } catch (WrongPasswordException $e) {
-            $message = trans('Sentinel::sessions.invalid');
+            $message = trans('Cerberus::sessions.invalid');
             $this->recordLoginAttempt($credentials);
 
             return new ExceptionResponse($message);
         } catch (UserNotFoundException $e) {
-            $message = trans('Sentinel::sessions.invalid');
+            $message = trans('Cerberus::sessions.invalid');
 
             return new ExceptionResponse($message);
         } catch (UserNotActivatedException $e) {
-            $url = route('sentinel.reactivate.form');
+            $url = route('cerberus.reactivate.form');
             $this->recordLoginAttempt($credentials);
-            $message = trans('Sentinel::sessions.notactive', ['url' => $url]);
+            $message = trans('Cerberus::sessions.notactive', ['url' => $url]);
 
             return new ExceptionResponse($message);
         } catch (UserSuspendedException $e) {
-            $message = trans('Sentinel::sessions.suspended');
+            $message = trans('Cerberus::sessions.suspended');
             $this->recordLoginAttempt($credentials);
 
             return new ExceptionResponse($message);
         } catch (UserBannedException $e) {
-            $message = trans('Sentinel::sessions.banned');
+            $message = trans('Cerberus::sessions.banned');
             $this->recordLoginAttempt($credentials);
 
             return new ExceptionResponse($message);
@@ -143,9 +143,9 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
      */
     public function destroy()
     {
-        // Fire the Sentinel User Logout event
+        // Fire the Cerberus User Logout event
         $user = $this->carbuncle->getUser();
-        $this->dispatcher->fire('sentinel.user.logout', ['user' => $user]);
+        $this->dispatcher->fire('cerberus.user.logout', ['user' => $user]);
 
         // Destroy the user's session and log them out
         $this->carbuncle->logout();

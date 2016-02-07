@@ -160,7 +160,7 @@
                     vm.lists.splice(index, 1);
                 }
                 vm.selected = [];
-                ToastService.show('Group deleted.');
+                ToastService.show('Group deleted');
             });
 
             /*
@@ -203,7 +203,7 @@
             }
 
             reload();
-            ToastService.show('Groups deleted.');
+            ToastService.show('Groups deleted');
         }
 
     }

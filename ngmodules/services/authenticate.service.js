@@ -1,5 +1,5 @@
 /**
- * auth.service
+ * authenticate.service
  * Created by anonymous on 31/01/16 22:45.
  */
 
@@ -8,12 +8,19 @@
 
     angular
         .module('jwtAuth')
-        .factory('auth', authenticate);
+        .factory('Authenticate', Authenticate)
+        .factory('Auth', Auth);
 
-    authenticate.$inject = ['$http', '$auth'];
+    Authenticate.$inject = ['API'];
+    Auth.$inject         = ['$http', '$auth'];
 
     /* @ngInject */
-    function authenticate($http, $auth) {
+    function Authenticate(API) {
+        return API.all('authenticate');
+    }
+
+    /* @ngInject */
+    function Auth($http, $auth) {
         var service = {
             authenticate        : authenticate,
             getAuthenticatedUser: getAuthenticatedUser,

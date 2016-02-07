@@ -1,5 +1,6 @@
 <?php
 /**
+ * AuthenticateRepository.php
  * Created by anonymous on 05/01/16 16:36.
  */
 
@@ -106,7 +107,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
             $this->carbuncleUserProvider->getEmptyUser()->setLoginAttributeName('email');
 
             // Login was successful. Fire the Cerberus.user.login event
-            // $this->dispatcher->fire('cerberus.user.login', ['user' => $user]);
+            $this->dispatcher->fire('cerberus.user.login', ['user' => $user]);
 
             // Return Response Object
             return new SuccessResponse('');

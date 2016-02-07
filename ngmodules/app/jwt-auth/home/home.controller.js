@@ -10,10 +10,10 @@
         .module('jwtAuth')
         .controller('JwtAuthHomeController', JwtAuthHomeController);
 
-    JwtAuthHomeController.$inject = ['userData', '$log'];
+    JwtAuthHomeController.$inject = ['Authenticate', '$log'];
 
     /* @ngInject */
-    function JwtAuthHomeController(userData, $log) {
+    function JwtAuthHomeController(Authenticate, $log) {
         var vm      = this;
         vm.getUsers = getUsers;
 
@@ -26,7 +26,7 @@
         }
 
         function getUsers() {
-            return userData.get().then(function(response) {
+            return Authenticate.getList().then(function(response) {
                 vm.users = response;
                 //$log.debug(vm.users);
             }).catch(function(error) {

@@ -44,13 +44,13 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
     private $dispatcher;
 
     /**
-     * @param Carbuncle     $carbuncle
+     * @param Carbuncle  $carbuncle
      * @param Dispatcher $dispatcher
      */
     public function __construct(Carbuncle $carbuncle, Dispatcher $dispatcher)
     {
         // Carbuncle Singleton Object
-        $this->carbuncle     = $carbuncle;
+        $this->carbuncle  = $carbuncle;
         $this->dispatcher = $dispatcher;
 
         // Get the Throttle Provider

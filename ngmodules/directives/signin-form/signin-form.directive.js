@@ -1,5 +1,5 @@
 /**
- * signin-form.directive.js
+ * signin-form.directive
  * Created by anonymous on 01/01/16 15:01.
  */
 

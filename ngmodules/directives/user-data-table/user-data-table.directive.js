@@ -133,7 +133,7 @@
         }
 
         function destroy(id) {
-            var listWithId = _.find(response, function(list) {
+            var listWithId = _.find(vm.lists, function(list) {
                 return list.id === id;
             });
 

@@ -26,7 +26,7 @@
         ////////////////
 
         function authenticate(credentials) {
-            return $auth.login(credentials)
+            return $auth.login(credentials);
         }
 
         function getAuthenticatedUser() {

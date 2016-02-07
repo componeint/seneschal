@@ -1,5 +1,27 @@
 /**
- * authenticate.service
+ * authenticate.service.js
+ * Created by anonymous on 07/02/16 18:48.
+ */
+
+(function() {
+    'use strict';
+
+    angular
+        .module('jwtAuth')
+        .factory('Authenticate', Authenticate);
+
+    Authenticate.$inject = ['API'];
+
+    /* @ngInject */
+    function Authenticate(API) {
+        return API.all('authenticate');
+    }
+
+})();
+
+
+/**
+ * authenticate.service.js
  * Created by anonymous on 31/01/16 22:45.
  */
 
@@ -8,19 +30,12 @@
 
     angular
         .module('jwtAuth')
-        .factory('Authenticate', Authenticate)
-        .factory('Auth', Auth);
+        .factory('auth', auth);
 
-    Authenticate.$inject = ['API'];
-    Auth.$inject         = ['$http', '$auth'];
+    auth.$inject = ['$http', '$auth'];
 
     /* @ngInject */
-    function Authenticate(API) {
-        return API.all('authenticate');
-    }
-
-    /* @ngInject */
-    function Auth($http, $auth) {
+    function auth($http, $auth) {
         var service = {
             authenticate        : authenticate,
             getAuthenticatedUser: getAuthenticatedUser,

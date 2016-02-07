@@ -71,7 +71,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
     {
         try {
             // Check for 'rememberMe' in POST data
-            // $rememberMe = isset($data['rememberMe']);
+            $rememberMe = isset($data['rememberMe']);
 
             // Set login credentials
             $credentials['password'] = e($data['password']);
@@ -100,7 +100,7 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
             $throttle->check();
 
             // Try to authenticate the user
-            // $user = $this->carbuncle->authenticate($credentials, $rememberMe);
+            $user = $this->carbuncle->authenticate($credentials, $rememberMe);
 
             // Might be unnecessary, but just in case:
             $this->carbuncleUserProvider->getEmptyUser()->setLoginAttributeName('email');

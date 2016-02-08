@@ -81,3 +81,4 @@ $api->version('v1', ['middleware' => 'api.auth', 'namespace' => 'Onderdelen\JwtA
     $api->get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 });
 
+Route::get('users/activate/{hash}/{code}', ['as' => 'cerberus.activate', 'uses' => 'Onderdelen\JwtAuth\Controllers\RegistrationController@activate']);

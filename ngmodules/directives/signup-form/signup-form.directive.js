@@ -20,7 +20,9 @@
             controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
-            scope           : {},
+            scope           : {
+                successredirect: '@'
+            },
             templateUrl     : function(elem, attr) {
                 return attr.template;
             }
@@ -44,7 +46,7 @@
         function signup() {
             $auth.signup(vm.user).then(function(response) {
                 $auth.setToken(response);
-                $state.go('jwtauth.home');
+                $state.go(vm.successredirect);
                 ToastService.show('You have successfully created a new account and have been signed-in');
             }).catch(function(response) {
                 ToastService.error(response.data.message);

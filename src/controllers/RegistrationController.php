@@ -51,7 +51,7 @@ class RegistrationController extends Controller
         // Check CSRF token on POST
         // $this->beforeFilter('Cerberus\csrf', array('on' => array('post', 'put', 'delete')));
 
-        $this->middleware('jwt.auth', ['except' => ['register']]);
+        // $this->middleware('jwt.auth', ['except' => ['register']]);
     }
 
     /**

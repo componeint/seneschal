@@ -226,7 +226,8 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
                 $this->dispatcher->fire('cerberus.user.activated', ['user' => $user]);
 
                 // Generate login url
-                $url = route('cerberus.login');
+                // previously: $url = route('cerberus.login');
+                $url = route('home');
 
                 return new SuccessResponse(trans('Cerberus::users.activated', ['url' => $url]), ['user' => $user]);
             }

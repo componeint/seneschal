@@ -60,7 +60,7 @@ trait CerberusRedirectionTrait
 
         // If the url is empty or views have been disabled the developer
         // wants to return json rather than an HTML view.
-        if (! $url || !$views) {
+        if (!$url || !$views) {
             return Response::json(array_merge($payload, $message));
         }
 
@@ -88,7 +88,11 @@ trait CerberusRedirectionTrait
 
         // If views have been disabled, return a JSON response
         if (!$views) {
-            return Response::json(array_merge($payload, $message), 400);
+            if (is_array($payload)) {
+                return Response::json(array_merge($payload, $message), 400);
+            }
+
+            return Response::json(array_merge([], $message), 400);
         }
 
         // Do we need to flash any session data?
@@ -112,7 +116,8 @@ trait CerberusRedirectionTrait
     public function generateUrl(array $direction, array $payload = [])
     {
         // Do we need to pull any data from the payload to build the url?
-        $parameters = (isset($direction['parameters']) ? $this->extractParameters($direction['parameters'], $payload) : []);
+        $parameters = (isset($direction['parameters']) ? $this->extractParameters($direction['parameters'],
+            $payload) : []);
         unset($direction['parameters']);
 
         // Determine how the URL has been referenced

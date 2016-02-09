@@ -150,7 +150,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $hash)
     {
         // Gather Input
-        $data = Input::all();
+        $data = $request->all();
 
         // Decode the hashid
         $data['id'] = $this->hashids->decode($hash)[0];

@@ -67,11 +67,11 @@
                     return list.id === id;
                 });
 
-                listWithId.username = vm.list.username;
-                listWithId.email    = vm.list.email;
-                // listWithId.password              = vm.list.password;
-                // listWithId.password_confirmation = vm.list.password_confirmation;
-                // listWithId.activate              = vm.list.activate;
+                listWithId.username = vm.list[0].username;
+                listWithId.email    = vm.list[0].email;
+                // listWithId.password              = vm.list[0].password;
+                // listWithId.password_confirmation = vm.list[0].password_confirmation;
+                // listWithId.activate              = vm.list[0].activate;
                 listWithId.put();
 
                 $state.go('dashboard.users');

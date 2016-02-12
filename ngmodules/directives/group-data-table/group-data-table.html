@@ -28,10 +28,6 @@
                 <md-icon ng-md-icon icon="edit" style="fill: black" size="24"></md-icon>
                 <md-tooltip md-direction="bottom">Edit</md-tooltip>
             </md-button>
-            <md-button class="md-icon-button" ui-sref="dashboard.groups.show({id : ctrl.selected[0].id})">
-                <md-icon ng-md-icon icon="details" style="fill: black" size="24"></md-icon>
-                <md-tooltip md-direction="bottom">Detail</md-tooltip>
-            </md-button>
             <md-button class="md-icon-button" ui-sref="dashboard.groups" ng-click="ctrl.destroy(ctrl.selected[0].id)">
                 <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
                 <md-tooltip md-direction="bottom">Delete</md-tooltip>
@@ -63,7 +59,9 @@
             <td md-cell>
                 <span layout="row" flex>
                     <span flex layout="row" layout-align="start center">
-                        {{list.name}}
+                        <a ui-sref="dashboard.groups.show({id : list.id})">
+                            {{list.name}}
+                        </a>
                     </span>
                     <span flex layout="row" layout-align="end center" ng-hide="(((list.id === 1) && (list.name === 'Users')) || ((list.id === 2) && (list.name === 'Admins')))">
                         <md-menu md-offset="0 -7">
@@ -75,12 +73,6 @@
                                     <md-button ui-sref="dashboard.groups.edit({id : list.id})">
                                         <md-icon ng-md-icon icon="edit" style="fill: gray" size="24"></md-icon>
                                         <span md-menu-align-target>Edit</span>
-                                    </md-button>
-                                </md-menu-item>
-                                <md-menu-item>
-                                    <md-button ui-sref="dashboard.groups.show({id : list.id})">
-                                        <md-icon ng-md-icon icon="details" style="fill: gray" size="24"></md-icon>
-                                        <span md-menu-align-target>Detail</span>
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
@@ -107,3 +99,71 @@
 <md-divider></md-divider>
 
 <pre style="height:200px;scroll:auto;"><code>{{ctrl.lists | json: 2}}</code></pre>
+
+<!--
+<div class="row">
+	<table class="full-width">
+		<thead>
+		<th>Name</th>
+		<th>Permissions</th>
+		<th>Options</th>
+		</thead>
+		<tbody>
+		<tr>
+			<td>
+				<a href="groups/qjr9j2">Users</a>
+			</td>
+			<td>
+				Users
+			</td>
+			<td>
+				<button class="button small" onClick="location.href='http://localhost:8000/groups/qjr9j2/edit'">Edit</button>
+				<button class="button small action_confirm " type="button" data-token="8qIhIR479zSifejpdWlgAaAPzzuzfeksNp9zxjUy" data-method="delete" href="http://localhost:8000/groups/qjr9j2">Delete</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="groups/y3yrw0">Admins</a>
+			</td>
+			<td>
+				Admin,
+				Users
+			</td>
+			<td>
+				<button class="button small" onClick="location.href='http://localhost:8000/groups/y3yrw0/edit'">Edit</button>
+				<button class="button small action_confirm " type="button" data-token="8qIhIR479zSifejpdWlgAaAPzzuzfeksNp9zxjUy" data-method="delete" href="http://localhost:8000/groups/y3yrw0">Delete</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="groups/y3y7r3">Ikea</a>
+			</td>
+			<td>
+				Users,
+				Admin
+			</td>
+			<td>
+				<button class="button small" onClick="location.href='http://localhost:8000/groups/y3y7r3/edit'">Edit</button>
+				<button class="button small action_confirm " type="button" data-token="8qIhIR479zSifejpdWlgAaAPzzuzfeksNp9zxjUy" data-method="delete" href="http://localhost:8000/groups/y3y7r3">Delete</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="groups/7wevlj">Ordo</a>
+			</td>
+			<td>
+				Admin,
+				Users
+			</td>
+			<td>
+				<button class="button small" onClick="location.href='http://localhost:8000/groups/7wevlj/edit'">Edit</button>
+				<button class="button small action_confirm " type="button" data-token="8qIhIR479zSifejpdWlgAaAPzzuzfeksNp9zxjUy" data-method="delete" href="http://localhost:8000/groups/7wevlj">Delete</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+<div class="row">
+
+</div>
+-->

@@ -52,7 +52,8 @@
         ////////////////
 
         function activate() {
-            /*$http.get('api/groups').then(function(response) {
+            /*
+            $http.get('api/groups').then(function(response) {
              vm.lists = response.data.data;
              // console.log(response.data);
              // $timeout(function () {
@@ -60,13 +61,16 @@
              // }, 1000);
              }, function(error) {
              console.log('error: ' + error);
-             });*/
+             });
+             */
             Groups.getList().then(function(response) {
                 vm.lists = response;
                 // console.log(response);
                 //ToastService.show('Refreshed');
             }, function(error) {
-                console.log('error: ' + error);
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ': ' + error.data.message);
+                ToastService.show('Error ' + error.data.status_code + ': ' + error.data.message);
             });
         }
 

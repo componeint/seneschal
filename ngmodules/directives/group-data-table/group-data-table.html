@@ -13,12 +13,12 @@
     </div>
 </md-toolbar>
 
-<md-toolbar class="md-primary md-hue-1" ng-show="ctrl.selected.length">
+<md-toolbar class="md-table-toolbar md-default" ng-show="ctrl.selected.length">
     <div class="md-toolbar-tools">
         <span>{{ctrl.selected.length}} {{ctrl.selected.length > 1 ? 'items' : 'item'}} selected</span>
         <span flex></span>
         <span ng-if="ctrl.selected.length > 1">
-            <md-button class="md-icon-button" ng-click="ctrl.crush(ctrl.selected)">
+            <md-button class="md-icon-button" ui-sref="dashboard.groups" ng-click="ctrl.crush(ctrl.selected)">
                 <md-icon ng-md-icon icon="delete" style="fill: black" size="24"></md-icon>
                 <md-tooltip md-direction="bottom">Deletes</md-tooltip>
             </md-button>

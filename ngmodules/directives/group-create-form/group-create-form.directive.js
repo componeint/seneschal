@@ -20,7 +20,9 @@
             controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
-            scope           : {},
+            scope           : {
+                successStateRedirect: '@'
+            },
             templateUrl     : function(elem, attr) {
                 return attr.template;
             }
@@ -36,15 +38,9 @@
 
     /* @ngInject */
     function GroupCreateFormController(ToastService, $state, Groups) {
-        var vm                = this;
-        vm.defaultPermissions = [
-            {name: 'admin', value: 1},
-            {name: 'users', value: 1}
-        ];
-        vm.selected           = [];
-        vm.toggle             = toggle;
-        vm.exists             = exists;
-        vm.create             = create;
+        var vm         = this;
+        vm.permissions = {};
+        vm.create      = create;
 
         activate();
 
@@ -54,28 +50,17 @@
             //
         }
 
-        function toggle(item, list) {
-            var idx = list.indexOf(item);
-            if (idx > -1) {
-                list.splice(idx, 1);
-            } else {
-                list.push(item);
-            }
-        }
-
-        function exists(item, list) {
-            return list.indexOf(item) > -1;
-        }
-
         function create() {
             vm.formData = {
                 name       : vm.name,
-                permissions: vm.selected
+                permissions: vm.permissions
             };
 
+            var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
+
             Groups.post(vm.formData).then(function(response) {
-                $state.go('dashboard.groups');
-                ToastService.show('Group added.');
+                $state.go(stateRedirect);
+                ToastService.show('Group added');
             });
         }
 

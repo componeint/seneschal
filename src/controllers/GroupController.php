@@ -99,14 +99,14 @@ class GroupController extends Controller
      * @param $hash
      * @return \Response
      */
-    public function show($hash)
+    public function show($id)
     {
         // Decode the hashid
         // $id = $this->hashids->decode($hash);
         // $id = $hash;
 
         // Pull the group from storage
-        $group = $this->groupRepository->retrieveById($hash);
+        $group = $this->groupRepository->retrieveById($id);
 
         // return $this->viewFinder('Cerberus::groups.show', ['group' => $group]);
         return response()->success([$group]);
@@ -155,16 +155,16 @@ class GroupController extends Controller
     /**
      * Remove the specified group from storage.
      *
-     * @param $hash
+     * @param $id
      * @return \Response
      */
-    public function destroy($hash)
+    public function destroy($id)
     {
         // Decode the hashid
         // $id = $this->hashids->decode($hash)[0];
 
         // Remove the group from storage
-        $result = $this->groupRepository->destroy($hash);
+        $result = $this->groupRepository->destroy($id);
 
         // return $this->redirectViaResponse('groups_destroy', $result);
         return response()->json($result);

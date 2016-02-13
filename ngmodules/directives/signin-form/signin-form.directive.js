@@ -21,7 +21,7 @@
             link            : link,
             restrict        : 'EA',
             scope           : {
-                successredirect: '@'
+                successStateRedirect: '@'
             },
             templateUrl     : function(elem, attr) {
                 return attr.template;
@@ -46,28 +46,25 @@
         ////////////////
 
         function login() {
-            var
-                credentials = {
-                    email   : vm.email,
-                    password: vm.password
-                };
+            var credentials = {
+                email   : vm.email,
+                password: vm.password
+            };
 
-            auth
-                .authenticate(credentials)
-                .then(function() {
-                    return auth.getAuthenticatedUser();
-                }, function(error) {
-                    vm.loginError     = true;
-                    vm.loginErrorText = error.data.error;
-                    ToastService.show(error.data.error);
-                })
-                .then(function(response) {
-                    var user                 = JSON.stringify(response.data.user);
-                    localStorage.setItem('user', user);
-                    $rootScope.authenticated = true;
-                    $rootScope.currentUser   = response.data.user;
-                    $state.go(vm.successredirect);
-                });
+            auth.authenticate(credentials).then(function() {
+                return auth.getAuthenticatedUser();
+            }, function(error) {
+                vm.loginError     = true;
+                vm.loginErrorText = error.data.error;
+                ToastService.show(error.data.error);
+            }).then(function(response) {
+                var stateRedirect        = _.isEmpty(vm.successStateRedirect) ? 'jwtauth.home' : vm.successStateRedirect;
+                var user                 = JSON.stringify(response.data.user);
+                localStorage.setItem('user', user);
+                $rootScope.authenticated = true;
+                $rootScope.currentUser   = response.data.user;
+                $state.go(stateRedirect);
+            });
         }
 
     }

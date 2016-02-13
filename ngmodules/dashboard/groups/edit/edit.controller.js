@@ -8,23 +8,21 @@
 
     angular
         .module('jwtAuth')
-        .controller('GroupEditController', GroupEditController);
+        .controller('GroupsEditController', GroupsEditController);
 
-    GroupEditController.$inject = ['$stateParams', 'Groups'];
+    GroupsEditController.$inject = ['$stateParams', 'Groups'];
 
     /* @ngInject */
-    function GroupEditController($stateParams, Groups) {
-        var vm     = this;
-        vm.groupId = $stateParams.id;
+    function GroupsEditController($stateParams, Groups) {
+        var vm  = this;
+        vm.data = {id: $stateParams.id};
 
         activate();
 
         ////////////////
 
         function activate() {
-            Groups.get(vm.groupId).then(function(response) {
-                vm.groups = response.data;
-            });
+            //
         }
     }
 

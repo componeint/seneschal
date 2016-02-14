@@ -90,7 +90,7 @@ class GroupController extends Controller
 
         // return $this->redirectViaResponse('groups_store', $result);
 
-        return response()->success($result);
+        return response()->success([$result]);
     }
 
     /**

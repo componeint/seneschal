@@ -30,12 +30,12 @@
 
     angular
         .module('jwtAuth')
-        .factory('Group', Group);
+        .factory('group', group);
 
-    Group.$inject = [];
+    group.$inject = ['API'];
 
     /* @ngInject */
-    function Group() {
+    function group(API) {
         var service = {
             index  : index,
             create : create,
@@ -43,7 +43,8 @@
             show   : show,
             edit   : edit,
             update : update,
-            destroy: destroy
+            destroy: destroy,
+            crush  : crush
         };
         return service;
 
@@ -65,8 +66,8 @@
             //
         }
 
-        function edit() {
-            //
+        function edit(id) {
+            return API.one('groups', id).getList('edit');
         }
 
         function update() {
@@ -74,6 +75,10 @@
         }
 
         function destroy() {
+            //
+        }
+
+        function crush() {
             //
         }
 

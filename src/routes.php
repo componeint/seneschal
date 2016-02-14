@@ -65,10 +65,10 @@ $api->version('v1', ['namespace' => 'Onderdelen\JwtAuth\Controllers'], function 
     $api->get('groups', ['as' => 'groups.index', 'uses' => 'GroupController@index']);
     // // $api->get('groups/create', ['as' => 'groups.create', 'uses' => 'GroupController@create']);
     $api->post('groups', ['as' => 'groups.store', 'uses' => 'GroupController@store']);
-    $api->get('groups/{hash}', ['as' => 'groups.show', 'uses' => 'GroupController@show']);
-    $api->get('groups/{hash}/edit', ['as' => 'groups.edit', 'uses' => 'GroupController@edit']);
-    $api->put('groups/{hash}', ['as' => 'groups.update', 'uses' => 'GroupController@update']);
-    $api->delete('groups/{hash}', ['as' => 'groups.destroy', 'uses' => 'GroupController@destroy']);
+    $api->get('groups/{id}', ['as' => 'groups.show', 'uses' => 'GroupController@show']);
+    $api->get('groups/{id}/edit', ['as' => 'groups.edit', 'uses' => 'GroupController@edit']);
+    $api->put('groups/{id}', ['as' => 'groups.update', 'uses' => 'GroupController@update']);
+    $api->delete('groups/{id}', ['as' => 'groups.destroy', 'uses' => 'GroupController@destroy']);
 });
 
 // Protected with JWT

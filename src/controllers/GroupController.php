@@ -118,10 +118,10 @@ class GroupController extends Controller
      * @param $hash
      * @return \Response
      */
-    public function edit($hash)
+    public function edit($id)
     {
         // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
+        // $id = $this->hashids->decode($id)[0];
 
         // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);

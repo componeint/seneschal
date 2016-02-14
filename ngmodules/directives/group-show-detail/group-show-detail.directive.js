@@ -34,10 +34,10 @@
         }
     }
 
-    GroupShowDetailController.$inject = ['Groups'];
+    GroupShowDetailController.$inject = ['Groups', 'ToastService'];
 
     /* @ngInject */
-    function GroupShowDetailController(Groups) {
+    function GroupShowDetailController(Groups, ToastService) {
         var vm = this;
 
         activate();
@@ -54,6 +54,10 @@
 
             Groups.get(id).then(function(response) {
                 vm.lists = response.data;
+            }, function(error) {
+                console.log(error);
+                ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
 

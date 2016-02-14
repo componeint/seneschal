@@ -10,10 +10,10 @@
         .module('jwtAuth')
         .directive('groupEditForm', groupEditForm);
 
-    groupEditForm.$inject = ['Groups'];
+    groupEditForm.$inject = [];
 
     /* @ngInject */
-    function groupEditForm(Groups) {
+    function groupEditForm() {
         var directive = {
             bindToController: true,
             controller      : GroupEditFormController,
@@ -34,11 +34,12 @@
         }
     }
 
-    GroupEditFormController.$inject = ['Groups', 'ToastService'];
+    GroupEditFormController.$inject = ['$state', 'Groups', 'ToastService'];
 
     /* @ngInject */
-    function GroupEditFormController(Groups, ToastService) {
-        var vm = this;
+    function GroupEditFormController($state, Groups, ToastService) {
+        var vm    = this;
+        vm.update = update;
 
         activate();
 
@@ -53,13 +54,13 @@
             }
 
             Groups.get(id).then(function(response) {
-                vm.records = response.data;
+                vm.list = response.data;
             });
         }
 
         function update(id) {
             Groups.getList().then(function(response) {
-                vm.records = response;
+                vm.records     = response;
                 var listWithId = _.find(vm.records, function(list) {
                     return list.id === id;
                 });
@@ -68,18 +69,18 @@
                 listWithId.put();
 
                 /*
-                // Alternatively delete the element from the list when finished
-                listWithId.remove().then(function() {
-                    // Updating the list and removing the user after the response is OK.
-                    // vm.records = _.without(vm.records, listWithId);
-                    var index = vm.records.indexOf(listWithId);
-                    if (index > -1) {
-                        vm.records.splice(index, 1);
-                    }
-                    vm.selected = [];
-                    //$state.go('dashboard.groups');
-                    ToastService.show('Group deleted.');
-                });*/
+                 // Alternatively delete the element from the list when finished
+                 listWithId.remove().then(function() {
+                 // Updating the list and removing the user after the response is OK.
+                 // vm.records = _.without(vm.records, listWithId);
+                 var index = vm.records.indexOf(listWithId);
+                 if (index > -1) {
+                 vm.records.splice(index, 1);
+                 }
+                 vm.selected = [];
+                 //$state.go('dashboard.groups');
+                 ToastService.show('Group deleted.');
+                 });*/
 
             });
 
@@ -89,7 +90,7 @@
 
             // Here we use then to resolve the promise.
             Groups.getList().then(function(response) {
-                vm.lists = response;
+                vm.lists       = response;
                 var listWithId = _.find(vm.lists, function(list) {
                     return list.id === id;
                 });

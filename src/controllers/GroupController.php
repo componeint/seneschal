@@ -96,15 +96,11 @@ class GroupController extends Controller
     /**
      * Display the specified group.
      *
-     * @param $hash
+     * @param $id
      * @return \Response
      */
     public function show($id)
     {
-        // Decode the hashid
-        // $id = $this->hashids->decode($hash);
-        // $id = $hash;
-
         // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);
 
@@ -115,18 +111,22 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified group.
      *
-     * @param $hash
+     * @param $id
      * @return \Response
      */
     public function edit($id)
     {
-        // Decode the hashid
-        // $id = $this->hashids->decode($id)[0];
-
         // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);
 
+        /*
         return $this->viewFinder('Cerberus::groups.edit', [
+            'group'       => $group,
+            'permissions' => $group->getPermissions(),
+        ]);
+        */
+
+        return response()->success([
             'group'       => $group,
             'permissions' => $group->getPermissions(),
         ]);

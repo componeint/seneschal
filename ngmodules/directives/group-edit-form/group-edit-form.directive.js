@@ -60,27 +60,18 @@
 
         function update(id) {
             Groups.getList().then(function(response) {
-                vm.records     = response;
-                var listWithId = _.find(vm.records, function(list) {
+                vm.lists = response;
+
+                var listWithId = _.find(vm.lists, function(list) {
                     return list.id === id;
                 });
 
-                listWithId.name = '';
+                listWithId.username = vm.list[0].username;
+                listWithId.email    = vm.list[0].email;
                 listWithId.put();
 
-                /*
-                 // Alternatively delete the element from the list when finished
-                 listWithId.remove().then(function() {
-                 // Updating the list and removing the user after the response is OK.
-                 // vm.records = _.without(vm.records, listWithId);
-                 var index = vm.records.indexOf(listWithId);
-                 if (index > -1) {
-                 vm.records.splice(index, 1);
-                 }
-                 vm.selected = [];
-                 //$state.go('dashboard.groups');
-                 ToastService.show('Group deleted.');
-                 });*/
+                $state.go('dashboard.users');
+                ToastService.show('User updated.');
 
             });
 

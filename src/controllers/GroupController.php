@@ -119,37 +119,33 @@ class GroupController extends Controller
         // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);
 
-        /*
-        return $this->viewFinder('Cerberus::groups.edit', [
+        $result = [
             'group'       => $group,
             'permissions' => $group->getPermissions(),
-        ]);
-        */
+        ];
 
-        return response()->success([
-            'group'       => $group,
-            'permissions' => $group->getPermissions(),
-        ]);
+        return response()->success([$result]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param $hash
+     * @param
      * @return \Response
      */
-    public function update($hash)
+    public function update()
     {
         // Gather Input
         $data = Input::all();
 
         // Decode the hashid
-        $data['id'] = $this->hashids->decode($hash)[0];
+        // $data['id'] = $this->hashids->decode($id)[0];
 
         // Update the group
         $result = $this->groupRepository->update($data);
 
-        return $this->redirectViaResponse('groups_update', $result);
+        // return $this->redirectViaResponse('groups_update', $result);
+        return response()->success([$result]);
     }
 
     /**

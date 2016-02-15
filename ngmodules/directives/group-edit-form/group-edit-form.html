@@ -2,7 +2,7 @@
     <md-input-container class="md-block">
         <label for="name">Name</label>
         <md-icon ng-md-icon icon="group" style="fill: black" size="24"></md-icon>
-        <input id="name" name="name" ng-model="ctrl.name" ng-minlength="4" required>
+        <input id="name" name="name" ng-model="ctrl.listWithId[0].group.name" ng-minlength="4" required>
 
         <div ng-if="groupEditForm.name.$dirty" ng-messages="groupEditForm.name.$error">
             <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
@@ -18,23 +18,24 @@
         </div>
         -->
         <div>
-            <md-checkbox name="permissions[admin]" ng-model="ctrl.permissions.admin" ng-true-value="1">
+            <md-checkbox name="permissions[admin]" ng-model="ctrl.listWithId[0].group.permissions.admin" ng-true-value="1">
                 Admin
             </md-checkbox>
         </div>
         <div>
-            <md-checkbox name="permissions[users]" ng-model="ctrl.permissions.users" ng-true-value="1">
+            <md-checkbox name="permissions[users]" ng-model="ctrl.listWithId[0].group.permissions.users" ng-true-value="1">
                 Users
             </md-checkbox>
         </div>
     </fieldset>
     <div layout="row" layout-align="end center">
-        <md-button ng-click="ctrl.create()" ng-disabled="groupEditForm.$invalid" class="md-raised md-primary md-hue-3">
+        <md-button ng-click="ctrl.update(ctrl.listWithId[0].group.id)" ng-disabled="groupEditForm.$invalid" class="md-raised md-primary md-hue-3">
             <ng-md-icon icon="send" style="fill: black" size="24"></ng-md-icon>
-            Create
+            Update
         </md-button>
     </div>
 </form>
 
 <pre><code>{{ctrl.name | json: 2}}</code></pre>
 <pre><code>{{ctrl.permissions | json: 2}}</code></pre>
+<pre><code>{{ctrl.listWithId | json: 2}}</code></pre>

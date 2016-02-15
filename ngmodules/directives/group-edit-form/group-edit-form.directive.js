@@ -21,7 +21,8 @@
             link            : link,
             restrict        : 'EA',
             scope           : {
-                id: '=id'
+                id                  : '=id',
+                successStateRedirect: '@'
             },
             templateUrl     : function(elem, attr) {
                 return attr.template;
@@ -34,10 +35,10 @@
         }
     }
 
-    GroupEditFormController.$inject = ['$state', 'Groups', 'ToastService'];
+    GroupEditFormController.$inject = ['Groups', 'group', '$state', 'ToastService'];
 
     /* @ngInject */
-    function GroupEditFormController($state, Groups, ToastService) {
+    function GroupEditFormController(Groups, group, $state, ToastService) {
         var vm    = this;
         vm.update = update;
 
@@ -53,25 +54,44 @@
                 id = vm.id;
             }
 
-            Groups.get(id).then(function(response) {
-                vm.list = response.data;
-            });
+            /*
+             Groups.get(id).then(function(response) {
+             vm.list = response.data;
+             });
+             */
+
+            group.edit(id).then(function(response) {
+                vm.listWithId = response;
+            }, function(error) {
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ': ' + error.data.message);
+                ToastService.show('Error ' + error.data.status_code + ': ' + error.data.message);
+            })
         }
 
         function update(id) {
+
+            // var editListWithId = vm.listWithId;
+
+            // listWithId.username = vm.listWithId[0].group.name;
+            // listWithId.email    = vm.listWithId[0].group.permissions;
+            // vm.listWithId.put();
+
             Groups.getList().then(function(response) {
                 vm.lists = response;
 
-                var listWithId = _.find(vm.lists, function(list) {
+                var editListWithId = _.find(vm.lists, function(list) {
                     return list.id === id;
                 });
 
-                listWithId.username = vm.list[0].username;
-                listWithId.email    = vm.list[0].email;
-                listWithId.put();
+                editListWithId.name        = vm.listWithId[0].group.name;
+                editListWithId.permissions = vm.listWithId[0].group.permissions;
+                editListWithId.put();
 
-                $state.go('dashboard.users');
-                ToastService.show('User updated.');
+                var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
+
+                $state.go(stateRedirect);
+                ToastService.show('Group updated');
 
             });
 

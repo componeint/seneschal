@@ -53,7 +53,7 @@
             }
 
             Groups.get(id).then(function(response) {
-                vm.lists = response.data;
+                vm.lists = response;
             }, function(error) {
                 ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
 

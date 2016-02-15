@@ -1,4 +1,4 @@
-<table ng-repeat="list in ctrl.lists">
+<table ng-repeat="list in ctrl.lists.data">
     <tr>
         <td>Id</td>
         <td> :</td>
@@ -28,6 +28,5 @@
 
 <!--<md-divider></md-divider>-->
 
-<!--
-<pre style="height:200px;scroll:auto;"><code>{{ctrl.lists | json: 2}}</code></pre>
--->
+<pre><code>{{ctrl.lists | json: 2}}</code></pre>
+

@@ -64,7 +64,7 @@
             Groups.getList().then(function(response) {
                 vm.lists = response;
             }, function(error) {
-                ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
                 // Log error message / object into console
                 console.log(error);
@@ -120,7 +120,7 @@
             Groups.getList().then(function(response) {
                 vm.lists = response;
             }, function(error) {
-                ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
                 // Log error message / object into console
                 console.log(error);

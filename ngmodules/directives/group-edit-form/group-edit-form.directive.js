@@ -57,7 +57,7 @@
             group.edit(id).then(function(response) {
                 vm.listWithId = response;
             }, function(error) {
-                ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
                 // Log error message / object into console
                 console.log(error);
@@ -84,7 +84,7 @@
                 ToastService.show('Group updated');
 
             }, function(error) {
-                ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
                 // Log error message / object into console
                 console.log(error);

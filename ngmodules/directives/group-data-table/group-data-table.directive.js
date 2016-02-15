@@ -40,12 +40,10 @@
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
         vm.log        = log;
-        // vm.loading    = loading;
-        // vm.reload     = reload;
-        vm.refresh   = refresh;
-        vm.onReorder = onReorder;
-        vm.destroy   = destroy;
-        vm.crush     = crush;
+        vm.refresh    = refresh;
+        vm.onReorder  = onReorder;
+        vm.destroy    = destroy;
+        vm.crush      = crush;
 
         activate();
 
@@ -53,7 +51,7 @@
 
         function activate() {
             /*
-            $http.get('api/groups').then(function(response) {
+             $http.get('api/groups').then(function(response) {
              vm.lists = response.data.data;
              // console.log(response.data);
              // $timeout(function () {
@@ -64,13 +62,13 @@
              });
              */
             Groups.getList().then(function(response) {
-                vm.lists = response;
-                // console.log(response);
-                //ToastService.show('Refreshed');
+                vm.lists = response[0].lists;
             }, function(error) {
+                ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
                 console.log(error);
-                console.log('Error ' + error.data.status_code + ': ' + error.data.message);
-                ToastService.show('Error ' + error.data.status_code + ': ' + error.data.message);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
 
@@ -122,7 +120,11 @@
             Groups.getList().then(function(response) {
                 vm.lists = response;
             }, function(error) {
-                console.log('error: ' + error);
+                ToastService.show('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
 

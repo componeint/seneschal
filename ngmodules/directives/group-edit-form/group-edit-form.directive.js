@@ -35,10 +35,10 @@
         }
     }
 
-    GroupEditFormController.$inject = ['Restangular', 'Groups', 'group', '$state', 'ToastService'];
+    GroupEditFormController.$inject = ['Groups', 'group', '$state', 'ToastService'];
 
     /* @ngInject */
-    function GroupEditFormController(Restangular, Groups, group, $state, ToastService) {
+    function GroupEditFormController(Groups, group, $state, ToastService) {
         var vm    = this;
         vm.update = update;
 

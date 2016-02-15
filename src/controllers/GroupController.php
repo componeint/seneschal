@@ -10,6 +10,7 @@ use Onderdelen\AppFoundation\Controller\Controller;
 use Vinkla\Hashids\HashidsManager;
 use Illuminate\Pagination\Paginator;
 use Onderdelen\JwtAuth\FormRequests\GroupCreateRequest;
+use Onderdelen\JwtAuth\FormRequests\GroupUpdateRequest;
 use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
 use Onderdelen\JwtAuth\Traits\CerberusRedirectionTrait;
 use Onderdelen\JwtAuth\Traits\CerberusViewfinderTrait;
@@ -131,13 +132,13 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param
+     * @param GroupUpdateRequest $request
      * @return \Response
      */
-    public function update()
+    public function update(GroupUpdateRequest $request)
     {
         // Gather Input
-        $data = Input::all();
+        $data = $request->all();
 
         // Update the group
         $result = $this->groupRepository->update($data);

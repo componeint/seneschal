@@ -61,6 +61,8 @@ class GroupController extends Controller
 
         $groups = $this->groupRepository->all();
 
+        $result = ['count' => count($groups), 'data' => $groups];
+
         return response()->json(['count' => count($groups), 'data' => $groups]);
     }
 
@@ -89,7 +91,6 @@ class GroupController extends Controller
         $result = $this->groupRepository->store($data);
 
         // return $this->redirectViaResponse('groups_store', $result);
-
         return response()->success([$result]);
     }
 
@@ -138,9 +139,6 @@ class GroupController extends Controller
         // Gather Input
         $data = Input::all();
 
-        // Decode the hashid
-        // $data['id'] = $this->hashids->decode($id)[0];
-
         // Update the group
         $result = $this->groupRepository->update($data);
 
@@ -156,14 +154,11 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        // Decode the hashid
-        // $id = $this->hashids->decode($hash)[0];
-
         // Remove the group from storage
         $result = $this->groupRepository->destroy($id);
 
         // return $this->redirectViaResponse('groups_destroy', $result);
-        return response()->json($result);
+        return response()->success([$result]);
     }
 }
 

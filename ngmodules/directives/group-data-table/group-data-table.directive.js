@@ -96,6 +96,9 @@
             {
                 name   : 'Updated',
                 orderBy: 'updated_at'
+            },
+            {
+                name   : 'Option'
             }
         ];
 

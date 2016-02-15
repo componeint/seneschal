@@ -89,6 +89,18 @@
             <td md-cell>{{list.permissions}}</td>
             <td md-cell>{{list.created_at}}</td>
             <td md-cell>{{list.updated_at}}</td>
+            <td md-cell>
+                <span flex layout="row" layout-align="center center" ng-hide="(((list.id === 1) && (list.name === 'Users')) || ((list.id === 2) && (list.name === 'Admins')))">
+                    <md-button class="md-icon-button" ui-sref="dashboard.groups.edit({id : list.id})">
+                        <md-icon ng-md-icon icon="edit" style="fill: gray" size="24"></md-icon>
+                        <md-tooltip md-direction="bottom">Edit</md-tooltip>
+                    </md-button>
+                    <md-button class="md-icon-button" ui-sref="dashboard.groups" ng-click="ctrl.destroy(list.id)">
+                        <md-icon ng-md-icon icon="delete" style="fill: gray" size="24"></md-icon>
+                        <md-tooltip md-direction="bottom">Delete</md-tooltip>
+                    </md-button>
+                </span>
+            </td>
         </tr>
         </tbody>
     </table>

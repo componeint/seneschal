@@ -40,12 +40,10 @@
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
         vm.log        = log;
-        // vm.loading    = loading;
-        // vm.reload     = reload;
-        vm.refresh   = refresh;
-        vm.onReorder = onReorder;
-        vm.destroy   = destroy;
-        vm.crush     = crush;
+        vm.refresh    = refresh;
+        vm.onReorder  = onReorder;
+        vm.destroy    = destroy;
+        vm.crush      = crush;
 
         activate();
 
@@ -55,7 +53,11 @@
             Users.getList().then(function(response) {
                 vm.lists = response;
             }, function(error) {
-                console.log('error: ' + error);
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
 
@@ -83,6 +85,9 @@
             {
                 name   : 'Status',
                 orderBy: 'status'
+            },
+            {
+                name   : 'Option'
             }
         ];
 
@@ -107,7 +112,11 @@
             Users.getList().then(function(response) {
                 vm.lists = response;
             }, function(error) {
-                console.log('error: ' + error);
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
 
@@ -136,14 +145,6 @@
             var listWithId = _.find(vm.lists, function(list) {
                 return list.id === id;
             });
-
-            // Alternatively delete the element from the list when finished
-            /*listWithId.remove().then(function() {
-             // Updating the list and removing the user after the response is OK.
-             vm.lists = _.without(vm.lists, listWithId);
-             vm.selected = [];
-             ToastService.show('User deleted');
-             });*/
 
             listWithId.remove().then(function() {
                 var index = vm.lists.indexOf(listWithId);

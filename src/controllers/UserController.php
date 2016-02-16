@@ -100,17 +100,14 @@ class UserController extends Controller
     /**
      * Show the profile of a specific user account
      *
-     * @param $hash
+     * @param $id
      *
      * @return View
      */
-    public function show($hash)
+    public function show($id)
     {
-        // Decode the hashid
-        // $id = $this->hashids->decode($hash)[0];
-
         // Get the user
-        $user = $this->userRepository->retrieveById($hash);
+        $user = $this->userRepository->retrieveById($id);
 
         // return $this->viewFinder('Cerberus::users.show', ['user' => $user]);
         return response()->success([$user]);
@@ -119,15 +116,12 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string $hash
+     * @param  $id
      *
      * @return Redirect
      */
-    public function edit($hash)
+    public function edit($id)
     {
-        // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
-
         // Get the user
         $user = $this->userRepository->retrieveById($id);
 
@@ -143,17 +137,17 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  string $hash
+     * @param  $id
      *
      * @return Redirect
      */
-    public function update(UserUpdateRequest $request, $hash)
+    public function update(UserUpdateRequest $request, $id)
     {
         // Gather Input
         $data = $request->all();
 
         // Decode the hashid
-        $data['id'] = $this->hashids->decode($hash)[0];
+        // $data['id'] = $this->hashids->decode($id)[0];
 
         // Attempt to update the user
         $result = $this->userRepository->update($data);
@@ -166,17 +160,14 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string $hash
+     * @param  $id
      *
      * @return Redirect
      */
-    public function destroy($hash)
+    public function destroy($id)
     {
-        // Decode the hashid
-        // $id = $this->hashids->decode($hash)[0];
-
         // Remove the user from storage
-        $result = $this->userRepository->destroy($hash);
+        $result = $this->userRepository->destroy($id);
 
         // return $this->redirectViaResponse('users_destroy', $result);
         return response()->success($result);
@@ -185,15 +176,12 @@ class UserController extends Controller
     /**
      * Change the group memberships for a given user
      *
-     * @param $hash
+     * @param $id
      *
      * @return Redirect
      */
-    public function updateGroupMemberships($hash)
+    public function updateGroupMemberships($id)
     {
-        // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
-
         // Gather input
         $groups = Input::get('groups');
 
@@ -207,15 +195,15 @@ class UserController extends Controller
     /**
      * Process a password change request
      *
-     * @param  string $hash
+     * @param  $id
      *
      * @return redirect
      */
-    public function changePassword(ChangePasswordRequest $request, $hash)
+    public function changePassword(ChangePasswordRequest $request, $id)
     {
         // Gather input
-        $data       = Input::all();
-        $data['id'] = $this->hashids->decode($hash)[0];
+        $data = Input::all();
+        // $data['id'] = $this->hashids->decode($id)[0];
 
         // Grab the current user
         $user = $this->userRepository->getUser();
@@ -236,14 +224,14 @@ class UserController extends Controller
     /**
      * Process a suspend user request
      *
-     * @param  string $hash
+     * @param  $id
      *
      * @return Redirect
      */
-    public function suspend($hash)
+    public function suspend($id)
     {
         // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
+        // $id = $this->hashids->decode($id)[0];
 
         // Trigger the suspension
         $result = $this->userRepository->suspend($id);
@@ -254,15 +242,12 @@ class UserController extends Controller
     /**
      * Unsuspend user
      *
-     * @param  string $hash
+     * @param  $id
      *
      * @return Redirect
      */
-    public function unsuspend($hash)
+    public function unsuspend($id)
     {
-        // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
-
         // Trigger the unsuspension
         $result = $this->userRepository->unsuspend($id);
 
@@ -272,15 +257,12 @@ class UserController extends Controller
     /**
      * Ban a user
      *
-     * @param  string $hash
+     * @param  $id
      *
      * @return Redirect
      */
-    public function ban($hash)
+    public function ban($id)
     {
-        // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
-
         // Ban the user
         $result = $this->userRepository->ban($id);
 
@@ -290,18 +272,16 @@ class UserController extends Controller
     /**
      * Unban a user
      *
-     * @param string $hash
+     * @param $id
      *
      * @return Redirect
      */
-    public function unban($hash)
+    public function unban($id)
     {
-        // Decode the hashid
-        $id = $this->hashids->decode($hash)[0];
-
         // Unban the user
         $result = $this->userRepository->unban($id);
 
         return $this->redirectViaResponse('users_unban', $result);
     }
 }
+

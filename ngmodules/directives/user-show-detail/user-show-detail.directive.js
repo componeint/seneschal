@@ -53,7 +53,13 @@
             }
 
             Users.get(id).then(function(response) {
-                vm.lists = response.data;
+                vm.lists = response;
+            }, function(error) {
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
     }

@@ -41,22 +41,21 @@ $api->version('v1', ['namespace' => 'Onderdelen\JwtAuth\Controllers'], function 
      * Users
      *
      */
-
     $api->get('users', ['as' => 'users.index', 'uses' => 'UserController@index']);
     // // $api->get('users/create', ['as' => 'users.create', 'uses' => 'UserController@create']);
     $api->post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
 
-    $api->get('users/{hash}', ['as' => 'users.show', 'uses' => 'UserController@show']);
-    $api->get('users/{hash}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
-    $api->post('users/{hash}/password', ['as' => 'password.change', 'uses' => 'UserController@changePassword']);
-    $api->post('users/{hash}/memberships',
+    $api->get('users/{id}', ['as' => 'users.show', 'uses' => 'UserController@show']);
+    $api->get('users/{id}/edit', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+    $api->post('users/{id}/password', ['as' => 'password.change', 'uses' => 'UserController@changePassword']);
+    $api->post('users/{id}/memberships',
         ['as' => 'users.memberships', 'uses' => 'UserController@updateGroupMemberships']);
-    $api->put('users/{hash}', ['as' => 'users.update', 'uses' => 'UserController@update']);
-    $api->delete('users/{hash}', ['as' => 'users.destroy', 'uses' => 'UserController@destroy']);
-    $api->get('users/{hash}/suspend', ['as' => 'users.suspend', 'uses' => 'UserController@suspend']);
-    $api->get('users/{hash}/unsuspend', ['as' => 'users.unsuspend', 'uses' => 'UserController@unsuspend']);
-    $api->get('users/{hash}/ban', ['as' => 'users.ban', 'uses' => 'UserController@ban']);
-    $api->get('users/{hash}/unban', ['as' => 'users.unban', 'uses' => 'UserController@unban']);
+    $api->put('users/{id}', ['as' => 'users.update', 'uses' => 'UserController@update']);
+    $api->delete('users/{id}', ['as' => 'users.destroy', 'uses' => 'UserController@destroy']);
+    $api->get('users/{id}/suspend', ['as' => 'users.suspend', 'uses' => 'UserController@suspend']);
+    $api->get('users/{id}/unsuspend', ['as' => 'users.unsuspend', 'uses' => 'UserController@unsuspend']);
+    $api->get('users/{id}/ban', ['as' => 'users.ban', 'uses' => 'UserController@ban']);
+    $api->get('users/{id}/unban', ['as' => 'users.unban', 'uses' => 'UserController@unban']);
 
     /*
      * Groups

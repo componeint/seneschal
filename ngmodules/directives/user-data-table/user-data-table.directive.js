@@ -44,6 +44,10 @@
         vm.onReorder  = onReorder;
         vm.destroy    = destroy;
         vm.crush      = crush;
+        vm.suspend    = suspend;
+        vm.unsuspend  = unsuspend;
+        vm.ban        = ban;
+        vm.unban      = unban;
 
         activate();
 
@@ -87,7 +91,7 @@
                 orderBy: 'status'
             },
             {
-                name   : 'Option'
+                name: 'Option'
             }
         ];
 
@@ -176,6 +180,22 @@
 
             reload();
             ToastService.show('Users deleted');
+        }
+
+        function suspend(id) {
+            //
+        }
+
+        function unsuspend(id) {
+            //
+        }
+
+        function ban(id) {
+            //
+        }
+
+        function unban(id) {
+            //
         }
     }
 

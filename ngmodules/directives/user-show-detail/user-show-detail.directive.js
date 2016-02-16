@@ -1,5 +1,5 @@
 /**
- * user-show-detail.scss
+ * user-show-detail.directive.js
  * Created by anonymous on 22/01/16 14:14.
  */
 
@@ -34,10 +34,10 @@
         }
     }
 
-    UserShowDetailController.$inject = ['Users'];
+    UserShowDetailController.$inject = ['Users', 'ToastService'];
 
     /* @ngInject */
-    function UserShowDetailController(Users) {
+    function UserShowDetailController(Users, ToastService) {
         var vm = this;
 
         activate();

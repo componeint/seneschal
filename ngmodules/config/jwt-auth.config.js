@@ -17,7 +17,7 @@
         $authProvider.loginUrl    = '/api/auth/signin';
         $authProvider.signupUrl   = '/api/auth/signup';
         $authProvider.tokenName   = 'token';
-        $authProvider.tokenPrefix = 'app';
+        $authProvider.tokenPrefix = 'onsigbaar';
     }
 
 })();

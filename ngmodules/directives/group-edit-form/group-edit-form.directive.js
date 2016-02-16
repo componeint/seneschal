@@ -35,10 +35,10 @@
         }
     }
 
-    GroupEditFormController.$inject = ['Groups', 'group', '$state', 'ToastService'];
+    GroupEditFormController.$inject = ['API', 'Groups', 'group', '$state', 'ToastService'];
 
     /* @ngInject */
-    function GroupEditFormController(Groups, group, $state, ToastService) {
+    function GroupEditFormController(API, Groups, group, $state, ToastService) {
         var vm    = this;
         vm.update = update;
 
@@ -67,7 +67,21 @@
 
         function update(id) {
 
-            Groups.getList().then(function(response) {
+            API.one('groups').doPUT(vm.listWithId[0].group, id).then(function(response) {
+                //console.log(response);
+                var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
+
+                $state.go(stateRedirect);
+                ToastService.show('Group updated');
+            }, function(error) {
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+            });
+
+            /*Groups.getList().then(function(response) {
                 vm.lists = response;
 
                 var editListWithId = _.find(vm.lists, function(list) {
@@ -89,7 +103,7 @@
                 // Log error message / object into console
                 console.log(error);
                 console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
-            });
+            });*/
 
         }
 

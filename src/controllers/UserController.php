@@ -170,7 +170,7 @@ class UserController extends Controller
         $result = $this->userRepository->destroy($id);
 
         // return $this->redirectViaResponse('users_destroy', $result);
-        return response()->success($result);
+        return response()->success([$result]);
     }
 
     /**

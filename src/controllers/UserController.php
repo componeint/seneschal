@@ -230,13 +230,11 @@ class UserController extends Controller
      */
     public function suspend($id)
     {
-        // Decode the hashid
-        // $id = $this->hashids->decode($id)[0];
-
         // Trigger the suspension
         $result = $this->userRepository->suspend($id);
 
-        return $this->redirectViaResponse('users_suspend', $result);
+        // return $this->redirectViaResponse('users_suspend', $result);
+        return response()->success([$result]);
     }
 
     /**
@@ -251,7 +249,8 @@ class UserController extends Controller
         // Trigger the unsuspension
         $result = $this->userRepository->unsuspend($id);
 
-        return $this->redirectViaResponse('users_unsuspend', $result);
+        // return $this->redirectViaResponse('users_unsuspend', $result);
+        return response()->success([$result]);
     }
 
     /**
@@ -266,7 +265,8 @@ class UserController extends Controller
         // Ban the user
         $result = $this->userRepository->ban($id);
 
-        return $this->redirectViaResponse('users_ban', $result);
+        // return $this->redirectViaResponse('users_ban', $result);
+        return response()->success([$result]);
     }
 
     /**
@@ -281,7 +281,8 @@ class UserController extends Controller
         // Unban the user
         $result = $this->userRepository->unban($id);
 
-        return $this->redirectViaResponse('users_unban', $result);
+        // return $this->redirectViaResponse('users_unban', $result);
+        return response()->success([$result]);
     }
 }
 

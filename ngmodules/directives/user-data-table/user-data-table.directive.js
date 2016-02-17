@@ -32,10 +32,10 @@
         }
     }
 
-    UserDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Users', 'ToastService'];
+    UserDataTableController.$inject = ['API', '$http', '$mdEditDialog', '$q', '$timeout', 'Users', 'ToastService'];
 
     /* @ngInject */
-    function UserDataTableController($http, $mdEditDialog, $q, $timeout, Users, ToastService) {
+    function UserDataTableController(API, $http, $mdEditDialog, $q, $timeout, Users, ToastService) {
         var vm        = this;
         vm.onPaginate = onPaginate;
         vm.deselect   = deselect;
@@ -183,19 +183,55 @@
         }
 
         function suspend(id) {
-            //
+            API.one('users', id).getList('suspend').then(function(response) {
+                loading();
+
+                /*
+                if (vm.lists[0].id === id) {
+                    vm.lists[0].status = 'Suspended';
+                }
+                */
+            });
         }
 
         function unsuspend(id) {
-            //
+            API.one('users', id).getList('unsuspend').then(function(response) {
+                loading();
+
+                /*
+                if (vm.lists[0].id === id) {
+                    if (vm.lists[0].status !== 'Banned') {
+                        vm.lists[0].status = 'Active';
+                    }
+                }
+                */
+            });
         }
 
         function ban(id) {
-            //
+            API.one('users', id).getList('ban').then(function(response) {
+                loading();
+
+                /*
+                if (vm.lists[0].id === id) {
+                    vm.lists[0].status = 'Banned';
+                }
+                */
+            });
         }
 
         function unban(id) {
-            //
+            API.one('users', id).getList('unban').then(function(response) {
+                loading();
+
+                /*
+                if (vm.lists[0].id === id) {
+                    if (vm.lists[0].status !== 'Suspended') {
+                        vm.lists[0].status = 'Active';
+                    }
+                }
+                */
+            });
         }
     }
 

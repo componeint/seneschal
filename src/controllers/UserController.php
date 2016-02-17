@@ -128,32 +128,40 @@ class UserController extends Controller
         // Get all available groups
         $groups = $this->groupRepository->all();
 
+        $result = [
+            'user'   => $user,
+            'groups' => $groups,
+        ];
+
+        /*
         return $this->viewFinder('Cerberus::users.edit', [
             'user'   => $user,
             'groups' => $groups,
         ]);
+        */
+
+        return response()->success([$result]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  $id
+     * @param  UserUpdateRequest $request
      *
      * @return Redirect
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request)
     {
         // Gather Input
         $data = $request->all();
-
-        // Decode the hashid
-        // $data['id'] = $this->hashids->decode($id)[0];
 
         // Attempt to update the user
         $result = $this->userRepository->update($data);
 
         // Done!
-        return $this->redirectViaResponse('users_update', $result);
+        // return $this->redirectViaResponse('users_update', $result);
+
+        return response()->success([$result]);
     }
 
 

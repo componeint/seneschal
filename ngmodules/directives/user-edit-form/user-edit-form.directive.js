@@ -35,10 +35,10 @@
         }
     }
 
-    UserEditFormController.$inject = ['$state', 'Users', 'ToastService'];
+    UserEditFormController.$inject = ['API', '$state', 'Users', 'ToastService'];
 
     /* @ngInject */
-    function UserEditFormController($state, Users, ToastService) {
+    function UserEditFormController(API, $state, Users, ToastService) {
         var vm    = this;
         vm.update = update;
 
@@ -54,12 +54,42 @@
                 id = vm.id;
             }
 
+            /*
             Users.get(id).then(function(response) {
                 vm.list = response.data;
+            });
+            */
+
+            API.one('users', id).getList('edit').then(function(response) {
+                vm.list = response;
+
+                // console.log(vm.list);
+            }, function(error) {
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
 
         function update(id) {
+
+            API.one('users').doPUT(vm.list[0].user, id).then(function(response) {
+                //console.log(response);
+                //var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
+
+                //$state.go(stateRedirect);
+                ToastService.show('User updated');
+            }, function(error) {
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+            });
+
+            /*
             Users.getList().then(function(response) {
                 vm.lists = response;
 
@@ -75,6 +105,7 @@
                 ToastService.show('User updated.');
 
             });
+            */
 
         }
     }

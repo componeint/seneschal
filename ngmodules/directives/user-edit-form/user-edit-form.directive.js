@@ -39,8 +39,9 @@
 
     /* @ngInject */
     function UserEditFormController(API, $state, Users, ToastService) {
-        var vm    = this;
-        vm.update = update;
+        var vm                    = this;
+        vm.update                 = update;
+        vm.updateGroupMemberships = updateGroupMemberships;
 
         activate();
 
@@ -55,13 +56,16 @@
             }
 
             /*
-            Users.get(id).then(function(response) {
-                vm.list = response.data;
-            });
-            */
+             Users.get(id).then(function(response) {
+             vm.list = response.data;
+             });
+             */
 
             API.one('users', id).getList('edit').then(function(response) {
                 vm.list = response;
+
+                vm.groups      = vm.list[0].groups;
+                vm.permissions = vm.list[0].permissions;
 
                 // console.log(vm.list);
             }, function(error) {
@@ -90,22 +94,43 @@
             });
 
             /*
-            Users.getList().then(function(response) {
-                vm.lists = response;
+             Users.getList().then(function(response) {
+             vm.lists = response;
 
-                var listWithId = _.find(vm.lists, function(list) {
-                    return list.id === id;
-                });
+             var listWithId = _.find(vm.lists, function(list) {
+             return list.id === id;
+             });
 
-                listWithId.username = vm.list[0].username;
-                listWithId.email    = vm.list[0].email;
-                listWithId.put();
+             listWithId.username = vm.list[0].username;
+             listWithId.email    = vm.list[0].email;
+             listWithId.put();
 
-                $state.go('dashboard.users');
-                ToastService.show('User updated.');
+             $state.go('dashboard.users');
+             ToastService.show('User updated.');
 
+             });
+             */
+
+        }
+
+        function updateGroupMemberships(id) {
+
+            vm.formData = {
+                id    : id,
+                groups: vm.membership
+            };
+
+            API.one('users', id).post('memberships', vm.formData).then(function(response) {
+                // $state.go('dashboard.users');
+                // ToastService.show(response.data.message);
+                ToastService.show('User group membership updated');
+            }, function(error) {
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
-            */
 
         }
     }

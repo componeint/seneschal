@@ -16,6 +16,7 @@ use Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface;
 use Onderdelen\JwtAuth\Traits\CerberusRedirectionTrait;
 use Onderdelen\JwtAuth\Traits\CerberusViewfinderTrait;
 use Vinkla\Hashids\HashidsManager;
+use DB;
 use View;
 use Input;
 use Event;
@@ -128,9 +129,15 @@ class UserController extends Controller
         // Get all available groups
         $groups = $this->groupRepository->all();
 
+        $permissions = DB::table('users_groups')
+            ->select('*')
+            ->where('user_id', '=', $id)
+            ->get();
+
         $result = [
-            'user'   => $user,
-            'groups' => $groups,
+            'user'        => $user,
+            'groups'      => $groups,
+            'permissions' => $permissions,
         ];
 
         /*
@@ -184,17 +191,17 @@ class UserController extends Controller
     /**
      * Change the group memberships for a given user
      *
-     * @param $id
+     * @param
      *
      * @return Redirect
      */
-    public function updateGroupMemberships($id)
+    public function updateGroupMemberships()
     {
         // Gather input
-        $groups = Input::get('groups');
+        $data = Input::All();
 
         // Change memberships
-        $result = $this->userRepository->changeGroupMemberships($id, $groups);
+        $result = $this->userRepository->changeGroupMemberships($data['id'], $data['groups']);
 
         // Done
         // return $this->redirectViaResponse('users_change_memberships', $result);

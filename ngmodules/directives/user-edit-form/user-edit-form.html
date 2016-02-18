@@ -1,37 +1,5 @@
-<!--
-<h4>Profile</h4>
-<h4>Group membership</h4>
-<h4>Change Password</h4>
--->
-
 <h4>Edit User</h4>
 <form name="userEditForm" novalidate>
-    <!--
-    <md-input-container class="md-block" flex-gt-sm>
-        <label for="username">Username</label>
-        <md-icon ng-md-icon icon="account_circle" style="fill: black" size="24"></md-icon>
-        <input type="text" id="username" name="username" ng-model="ctrl.list[0].username" required>
-
-        <div ng-if="userEditForm.username.$dirty" ng-messages="userEditForm.username.$error">
-            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
-        </div>
-    </md-input-container>
-    <md-input-container class="md-block" flex-gt-sm>
-        <label for="email">Email</label>
-        <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
-        <input type="email" id="email" name="email" ng-model="ctrl.list[0].email" ng-minlength="4" ng-maxlength="254" required>
-
-        <div ng-if="userEditForm.email.$dirty" ng-messages="userEditForm.email.$error">
-            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
-        </div>
-    </md-input-container>
-    -->
-
-    <!--
-    <md-checkbox ng-model="ctrl.list[0].activate" ng-true-value="'activate'" class="md-warn" flex>
-        Activated
-    </md-checkbox>
-    -->
 
     <md-input-container class="md-block" flex-gt-sm>
         <label for="first_name">First Name</label>
@@ -58,6 +26,7 @@
             Update
         </md-button>
     </div>
+
 </form>
 
 <pre><code>{{ctrl.list[0].user.first_name | json: 2}}</code></pre>
@@ -65,55 +34,27 @@
 
 <md-divider></md-divider>
 
-<!--
-<form name="editGroupMemberships" method="POST" action="http://localhost:8000/users/p3de9j/memberships" accept-charset="UTF-8">
--->
+<h4>Group Memberships</h4>
 <form name="editGroupMemberships" novalidate>
-    <h4>Group Memberships</h4>
 
-    <!--
-    <div class="row">
-            <div class="small-9 small-offset-3 columns">
-            <label class="checkbox-inline">
-                <input type="checkbox" name="groups[Users]" value="1" checked> Users
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" name="groups[Admins]" value="1"> Admins
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" name="groups[Ikea]" value="1"> Ikea
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" name="groups[Borheim 25999]" value="1"> Borheim 25999
-            </label>
-        </div>
-    </div>
-    -->
-
-    <!--
-    <div class="row">
-        <div class="small-9 small-offset-3 columns">
-            <input class="button" value="Update Memberships" type="submit">
-        </div>
-    </div>
-    -->
-
-    <div ng-repeat="group in ctrl.list[0].groups">
-        <md-checkbox name="groups[{{ group.name }}]" ng-model="groups" ng-true-value="1">
+    <div ng-repeat="group in ctrl.groups">
+        <md-checkbox name="groups[{{ group.name }}]" ng-model="ctrl.membership[group.name]" ng-true-value="1">
             {{ group.name }}
         </md-checkbox>
     </div>
 
+    <md-divider></md-divider>
+
     <div layout="row" layout-align="end center">
-        <md-button ng-click="ctrl.updateGroupMemberships(group.name)" ng-disabled="editGroupMemberships.$invalid" class="md-raised md-primary md-hue-3">
+        <md-button ng-click="ctrl.updateGroupMemberships(ctrl.list[0].user.id)" ng-disabled="editGroupMemberships.$invalid" class="md-raised md-primary md-hue-3">
             <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
             Update
         </md-button>
     </div>
 </form>
 
-<pre><code>{{editGroupMemberships | json: 2}}</code></pre>
-<pre><code>{{ctrl.list[0].groups | json: 2}}</code></pre>
+<pre><code>Current membership : {{ctrl.permissions | json: 2}}</code></pre>
+<!--<pre><code>{{ctrl.list[0].groups | json: 2}}</code></pre>-->
 <!--
 array:3 [▼
   "Users" => "1"
@@ -163,80 +104,6 @@ array:3 [▼
 <md-divider></md-divider>
 
 <pre><code>{{ctrl.list | json: 2}}</code></pre>
-<!--
-<div class="row">
-    <div class="small-6 large-centered columns">
-        <form method="POST" action="http://localhost:8000/users/p3de9j" accept-charset="UTF-8" class="form-horizontal" role="form">
-            <input name="_method" value="PUT" type="hidden">
-            <input name="_token" value="92gMDe5FQk4ebwR4w6qwKeYwtDVTmh9h0AVcpBVZ" type="hidden">
-
-            <h4>Profile</h4>
-
-            <div class="row">
-                <div class="small-3 columns">
-                    <label for="right-label" class="right inline">First Name</label>
-                </div>
-                <div class="small-9 columns ">
-                    <input name="first_name" type="text" value="">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="small-3 columns">
-                    <label for="right-label" class="right inline">Last Name</label>
-                </div>
-                <div class="small-9 columns ">
-                    <input name="last_name" type="text" value="">
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="small-9 small-offset-3 columns">
-                    <input class="button" value="Submit Changes" type="submit">
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
--->
-
-
-<!--
-<form method="POST" action="http://localhost:8000/users/p3de9j/memberships" accept-charset="UTF-8" class="form-horizontal" role="form">
-    <div class="row">
-        <div class="small-6 large-centered columns">
-            <h4>Group Memberships</h4>
-
-            <div class="row">
-                <div class="small-9 small-offset-3 columns">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="groups[Users]" value="1" checked> Users
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="groups[Admins]" value="1"> Admins
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="groups[Ikea]" value="1"> Ikea
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="groups[Borheim 25999]" value="1"> Borheim 25999
-                    </label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="small-9 small-offset-3 columns">
-                    <input name="_token" value="92gMDe5FQk4ebwR4w6qwKeYwtDVTmh9h0AVcpBVZ" type="hidden">
-                    <input class="button" value="Update Memberships" type="submit">
-                </div>
-            </div>
-
-        </div>
-    </div>
-</form>
--->
-
 
 <!--
 <form method="POST" action="http://localhost:8000/users/p3de9j/password" accept-charset="UTF-8" class="form-inline" role="form">

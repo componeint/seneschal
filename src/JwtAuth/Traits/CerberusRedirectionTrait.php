@@ -6,9 +6,10 @@
 
 namespace Onderdelen\JwtAuth\Traits;
 
+use Request;
+use Session;
 use Redirect;
 use Response;
-use Session;
 use Onderdelen\JwtAuth\DataTransferObjects\BaseResponse;
 
 trait CerberusRedirectionTrait
@@ -46,7 +47,7 @@ trait CerberusRedirectionTrait
      *
      * @return Response
      */
-    public function redirectTo($key, array $message = null, $payload = [])
+    public function redirectTo($key, array $message = [], $payload = [])
     {
         // A key can either be a string representing a config entry, or
         // an array representing the "direction" we intend to go in.
@@ -60,7 +61,7 @@ trait CerberusRedirectionTrait
 
         // If the url is empty or views have been disabled the developer
         // wants to return json rather than an HTML view.
-        if (!$url || !$views) {
+        if (!$url || !$views || Request::ajax() || Request::pjax()) {
             return Response::json(array_merge($payload, $message));
         }
 
@@ -81,13 +82,13 @@ trait CerberusRedirectionTrait
      * @param $message
      * @param $payload
      */
-    public function redirectBack($message, $payload)
+    public function redirectBack($message, $payload = [])
     {
         // Determine if the developer has disabled HTML views
         $views = config('cerberus.views_enabled');
 
         // If views have been disabled, return a JSON response
-        if (!$views) {
+        if (!$views || Request::ajax() || Request::pjax()) {
             if (is_array($payload)) {
                 return Response::json(array_merge($payload, $message), 400);
             }

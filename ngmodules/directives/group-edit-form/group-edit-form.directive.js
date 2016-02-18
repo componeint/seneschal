@@ -62,7 +62,7 @@
                 // Log error message / object into console
                 console.log(error);
                 console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
-            })
+            });
         }
 
         function update(id) {

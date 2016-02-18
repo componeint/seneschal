@@ -65,6 +65,57 @@
 
 <md-divider></md-divider>
 
+<!--
+<form name="editGroupMemberships" method="POST" action="http://localhost:8000/users/p3de9j/memberships" accept-charset="UTF-8">
+-->
+<form name="editGroupMemberships" novalidate>
+    <h4>Group Memberships</h4>
+
+    <!--
+    <div class="row">
+            <div class="small-9 small-offset-3 columns">
+            <label class="checkbox-inline">
+                <input type="checkbox" name="groups[Users]" value="1" checked> Users
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="groups[Admins]" value="1"> Admins
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="groups[Ikea]" value="1"> Ikea
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="groups[Borheim 25999]" value="1"> Borheim 25999
+            </label>
+        </div>
+    </div>
+    -->
+
+    <!--
+    <div class="row">
+        <div class="small-9 small-offset-3 columns">
+            <input class="button" value="Update Memberships" type="submit">
+        </div>
+    </div>
+    -->
+
+    <div ng-repeat="permission in ctrl.list[0].groups">
+        <md-checkbox name="permissions[{{ permission.name }}]" ng-true-value="1" ng-false-value="0">
+            {{ permission.name }}
+        </md-checkbox>
+    </div>
+
+    <div layout="row" layout-align="end center">
+        <md-button ng-click="ctrl.updateGroupMemberships()" ng-disabled="editGroupMemberships.$invalid" class="md-raised md-primary md-hue-3">
+            <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
+            Update
+        </md-button>
+    </div>
+</form>
+
+<pre><code>{{editGroupMemberships | json: 2}}</code></pre>
+<pre><code>{{ctrl.list[0].groups | json: 2}}</code></pre>
+<md-divider></md-divider>
+
 <h4>Change password</h4>
 <form name="changePasswordForm" novalidate>
     <md-input-container class="md-block" flex-gt-sm>
@@ -144,7 +195,8 @@
 -->
 
 
-<!--<form method="POST" action="http://localhost:8000/users/p3de9j/memberships" accept-charset="UTF-8" class="form-horizontal" role="form">
+<!--
+<form method="POST" action="http://localhost:8000/users/p3de9j/memberships" accept-charset="UTF-8" class="form-horizontal" role="form">
     <div class="row">
         <div class="small-6 large-centered columns">
             <h4>Group Memberships</h4>
@@ -175,7 +227,8 @@
 
         </div>
     </div>
-</form>-->
+</form>
+-->
 
 
 <!--

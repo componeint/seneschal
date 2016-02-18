@@ -197,7 +197,8 @@ class UserController extends Controller
         $result = $this->userRepository->changeGroupMemberships($id, $groups);
 
         // Done
-        return $this->redirectViaResponse('users_change_memberships', $result);
+        // return $this->redirectViaResponse('users_change_memberships', $result);
+        return response()->success([$result]);
     }
 
     /**

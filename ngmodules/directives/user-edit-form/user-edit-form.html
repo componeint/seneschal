@@ -98,14 +98,14 @@
     </div>
     -->
 
-    <div ng-repeat="permission in ctrl.list[0].groups">
-        <md-checkbox name="permissions[{{ permission.name }}]" ng-true-value="1" ng-false-value="0">
-            {{ permission.name }}
+    <div ng-repeat="group in ctrl.list[0].groups">
+        <md-checkbox name="groups[{{ group.name }}]" ng-model="groups" ng-true-value="1">
+            {{ group.name }}
         </md-checkbox>
     </div>
 
     <div layout="row" layout-align="end center">
-        <md-button ng-click="ctrl.updateGroupMemberships()" ng-disabled="editGroupMemberships.$invalid" class="md-raised md-primary md-hue-3">
+        <md-button ng-click="ctrl.updateGroupMemberships(group.name)" ng-disabled="editGroupMemberships.$invalid" class="md-raised md-primary md-hue-3">
             <ng-md-icon icon="input" style="fill: black" size="24"></ng-md-icon>
             Update
         </md-button>
@@ -114,6 +114,13 @@
 
 <pre><code>{{editGroupMemberships | json: 2}}</code></pre>
 <pre><code>{{ctrl.list[0].groups | json: 2}}</code></pre>
+<!--
+array:3 [▼
+  "Users" => "1"
+  "Ikea" => "1"
+  "Borheim" => "1"
+]
+-->
 <md-divider></md-divider>
 
 <h4>Change password</h4>

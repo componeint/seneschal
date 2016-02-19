@@ -20,7 +20,9 @@
             controllerAs    : 'ctrl',
             link            : link,
             restrict        : 'EA',
-            scope           : {},
+            scope           : {
+                successStateRedirect: '@'
+            },
             templateUrl     : function(elem, attr) {
                 return attr.template;
             }
@@ -32,11 +34,14 @@
         }
     }
 
-    UserCreateFormController.$inject = ['ToastService', '$state', 'Users'];
+    UserCreateFormController.$inject = ['API', '$state', 'ToastService'];
 
     /* @ngInject */
-    function UserCreateFormController(ToastService, $state, Users) {
-        var vm    = this;
+    function UserCreateFormController(API, $state, ToastService) {
+        var
+            vm    = this,
+            Users = API.all('users');
+
         vm.create = create;
 
         activate();
@@ -48,6 +53,7 @@
         }
 
         function create() {
+
             vm.formData = {
                 username             : vm.username,
                 email                : vm.email,
@@ -56,10 +62,17 @@
                 activate             : vm.activate
             };
 
+            var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
+
             Users.post(vm.formData).then(function(response) {
-                $state.go('dashboard.users');
-                // ToastService.show(response.data.message);
-                ToastService.show('User added.');
+                $state.go(stateRedirect);
+                ToastService.show('User added');
+            }, function(error) {
+                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+
+                // Log error message / object into console
+                console.log(error);
+                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
             });
         }
 

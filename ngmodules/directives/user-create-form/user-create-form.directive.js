@@ -38,10 +38,10 @@
 
     }
 
-    UserCreateFormController.$inject = ['API', '$state', 'Toast'];
+    UserCreateFormController.$inject = ['API', '$state', 'Toast', 'logService'];
 
     /* @ngInject */
-    function UserCreateFormController(API, $state, Toast) {
+    function UserCreateFormController(API, $state, Toast, logService) {
 
         var vm    = this,
             Users = API.all('users');
@@ -75,11 +75,8 @@
 
             }, function(error) {
 
-                Toast.error('Error ' + error.data.status_code + ' : ' + error.data.message);
-
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                logService.error(error);
+                logService.debug(error);
 
             });
 

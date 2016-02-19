@@ -14,96 +14,77 @@
 
     /* @ngInject */
     function groupEditForm() {
-        var directive = {
-            bindToController: true,
-            controller      : GroupEditFormController,
-            controllerAs    : 'ctrl',
-            link            : link,
-            restrict        : 'EA',
-            scope           : {
-                id                  : '=id',
-                successStateRedirect: '@'
-            },
-            templateUrl     : function(elem, attr) {
-                return attr.template;
-            }
-        };
+
+        var
+            directive = {
+                bindToController: true,
+                controller      : GroupEditFormController,
+                controllerAs    : 'ctrl',
+                link            : link,
+                restrict        : 'EA',
+                scope           : {
+                    id                  : '=id',
+                    successStateRedirect: '@'
+                },
+                templateUrl     : function(elem, attr) {
+                    return attr.template;
+                }
+            };
+
         return directive;
 
         function link(scope, element, attrs) {
-
+            //
         }
+
     }
 
-    GroupEditFormController.$inject = ['API', 'Groups', 'group', '$state', 'ToastService'];
+    GroupEditFormController.$inject = ['API', '$state', 'Toast', 'logService'];
 
     /* @ngInject */
-    function GroupEditFormController(API, Groups, group, $state, ToastService) {
-        var vm    = this;
+    function GroupEditFormController(API, $state, Toast, logService) {
+
+        var vm            = this;
+        var
+            id            = _.isString(vm.id) ? parseInt(vm.id) : vm.id,
+            stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
+
         vm.update = update;
+
 
         activate();
 
         ////////////////
 
         function activate() {
-            var id;
-            if (_.isString(vm.id)) {
-                id = parseInt(vm.id);
-            } else {
-                id = vm.id;
-            }
 
-            group.edit(id).then(function(response) {
+            API.one('groups', id).getList('edit').then(function(response) {
                 vm.listWithId = response;
             }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                logService.error(error);
+                logService.debug(error);
+
             });
+
         }
 
         function update(id) {
 
             API.one('groups').doPUT(vm.listWithId[0].group, id).then(function(response) {
-                //console.log(response);
-                var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
 
+                // If update successfull and no error detected then redirect here
                 $state.go(stateRedirect);
-                ToastService.show('Group updated');
-            }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                // Show successfull toast notification
+                Toast.show('Group updated');
+
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
             });
-
-            /*Groups.getList().then(function(response) {
-                vm.lists = response;
-
-                var editListWithId = _.find(vm.lists, function(list) {
-                    return list.id === id;
-                });
-
-                editListWithId.name        = vm.listWithId[0].group.name;
-                editListWithId.permissions = vm.listWithId[0].group.permissions;
-                editListWithId.put();
-
-                var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
-
-                $state.go(stateRedirect);
-                ToastService.show('Group updated');
-
-            }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
-
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
-            });*/
 
         }
 

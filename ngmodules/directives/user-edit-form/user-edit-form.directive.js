@@ -14,102 +14,79 @@
 
     /* @ngInject */
     function userEditForm() {
-        var directive = {
-            bindToController: true,
-            controller      : UserEditFormController,
-            controllerAs    : 'ctrl',
-            link            : link,
-            restrict        : 'EA',
-            scope           : {
-                id: '=id'
-            },
-            templateUrl     : function(elem, attr) {
-                return attr.template;
-            }
-        };
+
+        var
+            directive = {
+                bindToController: true,
+                controller      : UserEditFormController,
+                controllerAs    : 'ctrl',
+                link            : link,
+                restrict        : 'EA',
+                scope           : {
+                    id: '=id'
+                },
+                templateUrl     : function(elem, attr) {
+                    return attr.template;
+                }
+            };
 
         return directive;
 
         function link(scope, element, attrs) {
-
+            //
         }
+
     }
 
-    UserEditFormController.$inject = ['API', '$state', 'Users', 'ToastService'];
+    UserEditFormController.$inject = ['API', '$state', 'Toast', 'logService'];
 
     /* @ngInject */
-    function UserEditFormController(API, $state, Users, ToastService) {
-        var vm                    = this;
+    function UserEditFormController(API, $state, Toast, logService) {
+
+        var vm            = this;
+        var
+            id            = _.isString(vm.id) ? parseInt(vm.id) : vm.id,
+            stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
+
         vm.update                 = update;
         vm.updateGroupMemberships = updateGroupMemberships;
+
 
         activate();
 
         ////////////////
 
         function activate() {
-            var id;
-            if (_.isString(vm.id)) {
-                id = parseInt(vm.id);
-            } else {
-                id = vm.id;
-            }
-
-            /*
-             Users.get(id).then(function(response) {
-             vm.list = response.data;
-             });
-             */
 
             API.one('users', id).getList('edit').then(function(response) {
-                vm.list = response;
 
+                vm.list        = response;
                 vm.groups      = vm.list[0].groups;
                 vm.permissions = vm.list[0].permissions;
 
-                // console.log(vm.list);
             }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                logService.error(error);
+                logService.debug(error);
+
             });
+
         }
 
         function update(id) {
 
             API.one('users').doPUT(vm.list[0].user, id).then(function(response) {
-                //console.log(response);
-                //var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
 
-                //$state.go(stateRedirect);
-                ToastService.show('User updated');
+                // $state.go(stateRedirect);
+
+                Toast.show('User updated');
+
             }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                logService.error(error);
+                logService.debug(error);
+
             });
-
-            /*
-             Users.getList().then(function(response) {
-             vm.lists = response;
-
-             var listWithId = _.find(vm.lists, function(list) {
-             return list.id === id;
-             });
-
-             listWithId.username = vm.list[0].username;
-             listWithId.email    = vm.list[0].email;
-             listWithId.put();
-
-             $state.go('dashboard.users');
-             ToastService.show('User updated.');
-
-             });
-             */
 
         }
 
@@ -121,18 +98,19 @@
             };
 
             API.one('users', id).post('memberships', vm.formData).then(function(response) {
-                // $state.go('dashboard.users');
-                // ToastService.show(response.data.message);
-                ToastService.show('User group membership updated');
-            }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                // $state.go('dashboard.users');
+                Toast.show('User group membership updated');
+
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
             });
 
         }
+
     }
 
 })();

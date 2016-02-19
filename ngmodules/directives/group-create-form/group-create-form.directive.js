@@ -14,6 +14,7 @@
 
     /* @ngInject */
     function groupCreateForm() {
+
         var
             directive = {
                 bindToController: true,
@@ -32,20 +33,24 @@
         return directive;
 
         function link(scope, element, attrs) {
-
+            //
         }
+
     }
 
-    GroupCreateFormController.$inject = ['API', '$state', 'Toast'];
+    GroupCreateFormController.$inject = ['API', '$state', 'Toast', 'logService'];
 
     /* @ngInject */
-    function GroupCreateFormController(API, $state, Toast) {
+    function GroupCreateFormController(API, $state, Toast, logService) {
 
-        var vm     = this,
-            Groups = API.all('groups');
+        var vm            = this;
+        var
+            Groups        = API.all('groups'),
+            stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
 
         vm.permissions = {};
         vm.create      = create;
+
 
         activate();
 
@@ -62,17 +67,19 @@
                 permissions: vm.permissions
             };
 
-            var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.groups' : vm.successStateRedirect;
-
             Groups.post(vm.formData).then(function(response) {
-                $state.go(stateRedirect);
-                Toast.show('Group added');
-            }, function(error) {
-                Toast.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                // If update successfull and no error detected then redirect here
+                $state.go(stateRedirect);
+
+                // Show successfull toast notification
+                Toast.show('Group added');
+
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
             });
 
         }

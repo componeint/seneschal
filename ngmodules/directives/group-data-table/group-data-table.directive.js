@@ -14,73 +14,43 @@
 
     /* @ngInject */
     function groupDataTable() {
-        var directive = {
-            bindToController: true,
-            controller      : GroupDataTableController,
-            controllerAs    : 'ctrl',
-            link            : link,
-            restrict        : 'EA',
-            scope           : {},
-            templateUrl     : function(elem, attr) {
-                return attr.template;
-            }
-        };
+
+        var
+            directive = {
+                bindToController: true,
+                controller      : GroupDataTableController,
+                controllerAs    : 'ctrl',
+                link            : link,
+                restrict        : 'EA',
+                scope           : {},
+                templateUrl     : function(elem, attr) {
+                    return attr.template;
+                }
+            };
+
         return directive;
 
         function link(scope, element, attrs) {
 
         }
+
     }
 
-    GroupDataTableController.$inject = ['$http', '$mdEditDialog', '$q', '$timeout', 'Groups', 'ToastService'];
+    GroupDataTableController.$inject = ['API', '$mdEditDialog', '$q', '$timeout', 'Toast', 'logService'];
 
     /* @ngInject */
-    function GroupDataTableController($http, $mdEditDialog, $q, $timeout, Groups, ToastService) {
-        var vm        = this;
-        vm.onPaginate = onPaginate;
-        vm.deselect   = deselect;
-        vm.log        = log;
-        vm.refresh    = refresh;
-        vm.onReorder  = onReorder;
-        vm.destroy    = destroy;
-        vm.crush      = crush;
+    function GroupDataTableController(API, $mdEditDialog, $q, $timeout, Toast, logService) {
 
-        activate();
+        var vm     = this;
+        var Groups = API.all('groups');
 
-        ////////////////
-
-        function activate() {
-            /*
-             $http.get('api/groups').then(function(response) {
-             vm.lists = response.data.data;
-             // console.log(response.data);
-             // $timeout(function () {
-             //   vm.lists = responses.data;
-             // }, 1000);
-             }, function(error) {
-             console.log('error: ' + error);
-             });
-             */
-            Groups.getList().then(function(response) {
-                vm.lists = response;
-            }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
-
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
-            });
-        }
-
-        vm.selected = [];
-
-        vm.query = {
+        vm.selected   = [];
+        vm.query      = {
             order: 'id',
             limit: 5,
             page : 1
         };
-
-        vm.columns = [
+        vm.columns    = [
             {
                 name   : 'Name',
                 orderBy: 'name'
@@ -98,17 +68,44 @@
                 orderBy: 'updated_at'
             },
             {
-                name   : 'Option'
+                name: 'Option'
             }
         ];
+        vm.onPaginate = onPaginate;
+        vm.deselect   = deselect;
+        vm.log        = log;
+        vm.refresh    = refresh;
+        vm.onReorder  = onReorder;
+        vm.destroy    = destroy;
+        vm.crush      = crush;
+
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+
+            Groups.getList().then(function(response) {
+                vm.lists = response;
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
+            });
+
+        }
 
         function onPaginate(page, limit) {
+
             // console.log('Scope Page: ' + vm.query.page + ' Scope Limit: ' + vm.query.limit);
             // console.log('Page: ' + page + ' Limit: ' + limit);
 
             vm.promise = $timeout(function() {
-
+                //
             }, 2000);
+
         }
 
         function deselect(item) {
@@ -120,15 +117,16 @@
         }
 
         function loading() {
+
             Groups.getList().then(function(response) {
                 vm.lists = response;
             }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
-                // Log error message / object into console
-                console.log(error);
-                console.log('Error ' + error.data.status_code + ' : ' + error.data.message);
+                logService.error(error);
+                logService.debug(error);
+
             });
+
         }
 
         function reload() {
@@ -136,10 +134,15 @@
         }
 
         function refresh() {
+
             vm.promise = $timeout(function() {
+
                 loading();
-                ToastService.show('Refreshed');
+
+                Toast.show('Refreshed');
+
             }, 1000);
+
         }
 
         function onReorder(order) {
@@ -150,69 +153,62 @@
             vm.promise = $timeout(function() {
 
             }, 2000);
+
         }
 
         function destroy(id) {
+
             var listWithId = _.find(vm.lists, function(list) {
                 return list.id === id;
             });
 
-            // groupWithId.name = '';
-            // groupWithId.put();
-
             // Alternatively delete the element from the list when finished
             listWithId.remove().then(function() {
+
                 // Updating the list and removing the user after the response is OK.
                 // vm.lists = _.without(vm.lists, listWithId);
                 var index = vm.lists.indexOf(listWithId);
                 if (index > -1) {
                     vm.lists.splice(index, 1);
                 }
-                vm.selected = [];
-                ToastService.show('Group deleted');
-            });
 
-            /*
-             Groups.remove(id).then(function() {
-             // vm.lists = _.without(vm.lists.data[id], id);
-             // activate();
-             ToastService.show('Group has been successfully deleted.');
-             }, function(error) {
-             console.log('Error : ' + error.status_code + ' : ' + error.message);
-             });
-             */
+                vm.selected = [];
+
+                Toast.show('Group deleted');
+
+            });
 
         }
 
         function crush(collection) {
+
             for (var i = 0; i < collection.length; i++) {
                 var listWithId = _.find(vm.lists, function(list) {
 
                     if (list.id === collection[i].id) {
                         return list.id === collection[i].id;
                     }
+
                 });
 
-                // Alternatively delete the element from the list when finished
-                // console.log('listWithId ' + listWithId);
-                /*listWithId.remove().then(function() {
-                 // Updating the list and removing the user after the response is OK.
-                 vm.lists = _.without(vm.lists, listWithId);
-                 vm.selected = [];
-                 });*/
-
                 listWithId.remove().then(function() {
+
                     var index = vm.lists.indexOf(listWithId);
+
                     if (index > -1) {
                         vm.lists.splice(index, 1);
                     }
+
                     vm.selected = [];
 
                 });
+
             }
 
             reload();
-            ToastService.show('Groups deleted');
+
+            Toast.show('Groups deleted');
+
         }
 
     }

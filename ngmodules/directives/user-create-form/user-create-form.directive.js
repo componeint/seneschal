@@ -33,7 +33,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-
+            //
         }
 
     }
@@ -43,10 +43,13 @@
     /* @ngInject */
     function UserCreateFormController(API, $state, Toast, logService) {
 
-        var vm    = this,
-            Users = API.all('users');
+        var vm            = this;
+        var
+            Users         = API.all('users'),
+            stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
 
         vm.create = create;
+
 
         activate();
 
@@ -66,11 +69,12 @@
                 activate             : vm.activate
             };
 
-            var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
-
             Users.post(vm.formData).then(function(response) {
 
+                // If update successfull and no error detected then redirect here
                 $state.go(stateRedirect);
+
+                // Show successfull toast notification
                 Toast.show('User added');
 
             }, function(error) {

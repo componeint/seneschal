@@ -14,19 +14,21 @@
 
     /* @ngInject */
     function userCreateForm() {
-        var directive = {
-            bindToController: true,
-            controller      : UserCreateFormController,
-            controllerAs    : 'ctrl',
-            link            : link,
-            restrict        : 'EA',
-            scope           : {
-                successStateRedirect: '@'
-            },
-            templateUrl     : function(elem, attr) {
-                return attr.template;
-            }
-        };
+        var
+            directive = {
+                bindToController: true,
+                controller      : UserCreateFormController,
+                controllerAs    : 'ctrl',
+                link            : link,
+                restrict        : 'EA',
+                scope           : {
+                    successStateRedirect: '@'
+                },
+                templateUrl     : function(elem, attr) {
+                    return attr.template;
+                }
+            };
+
         return directive;
 
         function link(scope, element, attrs) {
@@ -34,10 +36,10 @@
         }
     }
 
-    UserCreateFormController.$inject = ['API', '$state', 'ToastService'];
+    UserCreateFormController.$inject = ['API', '$state', 'Toast'];
 
     /* @ngInject */
-    function UserCreateFormController(API, $state, ToastService) {
+    function UserCreateFormController(API, $state, Toast) {
         var
             vm    = this,
             Users = API.all('users');
@@ -66,9 +68,9 @@
 
             Users.post(vm.formData).then(function(response) {
                 $state.go(stateRedirect);
-                ToastService.show('User added');
+                Toast.show('User added');
             }, function(error) {
-                ToastService.error('Error ' + error.data.status_code + ' : ' + error.data.message);
+                Toast.error('Error ' + error.data.status_code + ' : ' + error.data.message);
 
                 // Log error message / object into console
                 console.log(error);

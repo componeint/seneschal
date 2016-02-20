@@ -1,8 +1,15 @@
 <?php
+/**
+ * SeneschalServiceProvider.php
+ * Created by anonymous on 16/11/15 22:33.
+ */
 
 namespace Onderdelen\Seneschal;
 
+use Artisan;
+use Hashids\Hashids;
 use ReflectionClass;
+use Onderdelen\Seneschal\Commands\SeneschalPublishCommand;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Onderdelen\Seneschal\Repositories\Group\JwtAuthGroupRepository;
@@ -29,9 +36,40 @@ class SeneschalServiceProvider extends ServiceProvider
         $componenentsFileName = with(new ReflectionClass('\Onderdelen\Seneschal\SeneschalServiceProvider'))->getFileName();
         $componenentsPath     = dirname($componenentsFileName);
 
-        $this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
+        // Register Artisan Commands
+        $this->registerArtisanCommands();
 
-        include $componenentsPath . '/../routes.php';
+        // Establish Fallback Config settings
+        $this->mergeConfigFrom($componenentsPath . '/../config/seneschal.php', 'seneschal');
+        $this->mergeConfigFrom($componenentsPath . '/../config/carbuncle.php', 'carbuncle');
+
+        // Establish Views Namespace
+        if (is_dir(base_path() . '/resources/views/seneschal')) {
+            // The package views have been published - use those views.
+            $this->loadViewsFrom(base_path() . '/resources/views/seneschal', 'Seneschal');
+        } else {
+            // The package views have not been published. Use the defaults.
+            $this->loadViewsFrom($componenentsPath . '/../views/bootstrap', 'Seneschal');
+        }
+
+        // Establish Translator Namespace
+        $this->loadTranslationsFrom($componenentsPath . '/../lang', 'Seneschal');
+
+        // Include custom validation rules
+        include $componenentsPath . '/../validators.php';
+
+        // Should we register the default routes?
+        if (config('seneschal.routes_enabled')) {
+            include $componenentsPath . '/../routes.php';
+        }
+
+        // Set up event listeners
+        $dispatcher = $this->app->make('events');
+        $dispatcher->subscribe('Onderdelen\Seneschal\Listeners\UserEventListener');
+
+        //$this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
+
+        //include $componenentsPath . '/../routes.php';
 
     }
 
@@ -45,11 +83,20 @@ class SeneschalServiceProvider extends ServiceProvider
         $this->app->register(\Onderdelen\AppFoundation\AppFoundationServiceProvider::class);
         $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 
+        // Register the Carbuncle Service Provider
+        $this->app->register(\Onderdelen\Seneschal\CarbuncleServiceProvider::class);
+
+        // Register the Vinkla/Hashids Service Provider
+        $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
+
+        // Load the Carbuncle and Hashid Facade Aliases
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Carbuncle', \Einherjars\Carbuncle\Facades\Laravel\Carbuncle::class);
+        $loader->alias('Hashids', \Vinkla\Hashids\Facades\Hashids::class);
+
         $loader = AliasLoader::getInstance();
         $loader->alias('JWTAuth', \Tymon\JWTAuth\Facades\JWTAuth::class);
         $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
-
-        $this->app->register(\Cerberus\CerberusServiceProvider::class);
 
         // Bind the User Repository
         $this->app->bind('Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface', function ($app) {
@@ -85,7 +132,21 @@ class SeneschalServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [];
+        return ['auth', 'carbuncle'];
+    }
+
+    /**
+     * Register the Artisan Commands
+     */
+    private function registerArtisanCommands()
+    {
+        $this->app['seneschal.publisher'] = $this->app->share(function ($app) {
+            return new SeneschalPublishCommand(
+                $app->make('files')
+            );
+        });
+
+        $this->commands('seneschal.publisher');
     }
 
 }

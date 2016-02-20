@@ -4,23 +4,23 @@
  * Created by anonymous on 29/12/15 21:16.
  */
 
-namespace Onderdelen\JwtAuth\Controllers;
+namespace Onderdelen\Seneschal\Controllers;
 
 use Onderdelen\AppFoundation\Controller\Controller;
 use Vinkla\Hashids\HashidsManager;
 use Illuminate\Pagination\Paginator;
-use Onderdelen\JwtAuth\FormRequests\GroupCreateRequest;
-use Onderdelen\JwtAuth\FormRequests\GroupUpdateRequest;
-use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\JwtAuth\Traits\CerberusRedirectionTrait;
-use Onderdelen\JwtAuth\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\FormRequests\GroupCreateRequest;
+use Onderdelen\Seneschal\FormRequests\GroupUpdateRequest;
+use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
+use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
+use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
 use View;
 use Input;
 use Redirect;
 
 /**
  * Class GroupController
- * @package Onderdelen\JwtAuth\Controllers
+ * @package Onderdelen\Seneschal\Controllers
  */
 class GroupController extends Controller
 {

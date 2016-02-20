@@ -1,11 +1,11 @@
 {
-  "name"             : "onderdelen/jwt-auth",
-  "description"      : "Description jwt-auth",
+  "name"             : "onderdelen/seneschal",
+  "description"      : "Description seneschal",
   "keywords"         : [
     "onderdelen",
-    "jwt-auth"
+    "seneschal"
   ],
-  "homepage"         : "https://github.com/onderdelen/jwt-auth",
+  "homepage"         : "https://github.com/onderdelen/seneschal",
   "license"          : "MIT",
   "authors"          : [
     {
@@ -34,12 +34,12 @@
       "tests"
     ],
     "psr-4"   : {
-      "Onderdelen\\JwtAuth\\": "src"
+      "Onderdelen\\Seneschal\\": "src"
     }
   },
   "autoload-dev"     : {
     "psr-4": {
-      "Onderdelen\\JwtAuth\\Test\\": "tests"
+      "Onderdelen\\Seneschal\\Test\\": "tests"
     }
   },
   "minimum-stability": "stable"

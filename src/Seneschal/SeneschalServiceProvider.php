@@ -1,14 +1,13 @@
 <?php
-/**
- * SeneschalServiceProvider.php
- * Created by anonymous on 29/01/16 6:00.
- */
 
 namespace Onderdelen\Seneschal;
 
 use ReflectionClass;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Onderdelen\Seneschal\Repositories\Group\JwtAuthGroupRepository;
+use Onderdelen\Seneschal\Repositories\User\JwtAuthUserRepository;
+use Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepository;
 
 class SeneschalServiceProvider extends ServiceProvider
 {
@@ -30,9 +29,9 @@ class SeneschalServiceProvider extends ServiceProvider
         $componenentsFileName = with(new ReflectionClass('\Onderdelen\Seneschal\SeneschalServiceProvider'))->getFileName();
         $componenentsPath     = dirname($componenentsFileName);
 
-        $this->loadViewsFrom($componenentsPath . '/../views', 'seneschal');
+        $this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
 
-        // include $componenentsPath . '/../routes.php';
+        include $componenentsPath . '/../routes.php';
 
     }
 
@@ -44,7 +43,39 @@ class SeneschalServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(\Onderdelen\AppFoundation\AppFoundationServiceProvider::class);
-        $this->app->register(\Onderdelen\JwtAuth\JwtAuthServiceProvider::class);
+        $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
+
+        $loader = AliasLoader::getInstance();
+        $loader->alias('JWTAuth', \Tymon\JWTAuth\Facades\JWTAuth::class);
+        $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
+
+        $this->app->register(\Cerberus\CerberusServiceProvider::class);
+
+        // Bind the User Repository
+        $this->app->bind('Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface', function ($app) {
+            return new JwtAuthUserRepository(
+                $app['carbuncle'],
+                $app['config'],
+                $app['events']
+            );
+        });
+
+        // Bind the Group Repository
+        $this->app->bind('Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface', function ($app) {
+            return new JwtAuthGroupRepository(
+                $app['carbuncle'],
+                $app['events']
+            );
+        });
+
+        // Bind the Authenticate Repository
+        $this->app->bind('Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface',
+            function ($app) {
+                return new AuthenticateRepository(
+                    $app['carbuncle'],
+                    $app['events']
+                );
+            });
     }
 
     /**

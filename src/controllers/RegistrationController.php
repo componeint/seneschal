@@ -4,17 +4,17 @@
  * Created by anonymous on 17/12/15 16:34.
  */
 
-namespace Onderdelen\JwtAuth\Controllers;
+namespace Onderdelen\Seneschal\Controllers;
 
 use Onderdelen\AppFoundation\Controller\Controller;
 use Vinkla\Hashids\HashidsManager;
-use Onderdelen\JwtAuth\FormRequests\RegisterRequest;
-use Onderdelen\JwtAuth\FormRequests\EmailRequest;
-use Onderdelen\JwtAuth\FormRequests\ResetPasswordRequest;
-use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface;
-use Onderdelen\JwtAuth\Traits\CerberusRedirectionTrait;
-use Onderdelen\JwtAuth\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\FormRequests\RegisterRequest;
+use Onderdelen\Seneschal\FormRequests\EmailRequest;
+use Onderdelen\Seneschal\FormRequests\ResetPasswordRequest;
+use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
+use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
+use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
+use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Carbuncle;
@@ -27,7 +27,7 @@ use Config;
 
 /**
  * Class RegistrationController
- * @package Onderdelen\JwtAuth\Controllers
+ * @package Onderdelen\Seneschal\Controllers
  */
 class RegistrationController extends Controller
 {

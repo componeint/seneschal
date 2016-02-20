@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'user'              => 'Onderdelen\JwtAuth\Models\User',
+    'user'              => 'Onderdelen\Seneschal\Models\User',
     /*
     |--------------------------------------------------------------------------
     | User identifier

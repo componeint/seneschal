@@ -4,15 +4,15 @@
  * Created by anonymous on 05/12/15 9:00.
  */
 
-namespace Onderdelen\JwtAuth\Controllers;
+namespace Onderdelen\Seneschal\Controllers;
 
 use Onderdelen\AppFoundation\Controller\Controller;
 use Illuminate\Support\Facades\Response;
-use Onderdelen\JwtAuth\FormRequests\LoginRequest;
-use Onderdelen\JwtAuth\Repositories\Authenticate\AuthenticateRepositoryInterface;
-use Onderdelen\JwtAuth\Traits\CerberusRedirectionTrait;
-use Onderdelen\JwtAuth\Traits\CerberusViewfinderTrait;
-use Onderdelen\JwtAuth\Models\User;
+use Onderdelen\Seneschal\FormRequests\LoginRequest;
+use Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface;
+use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
+use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Carbuncle;
@@ -25,7 +25,7 @@ use Config;
 
 /**
  * Class AuthenticateController
- * @package Onderdelen\JwtAuth\Controllers
+ * @package Onderdelen\Seneschal\Controllers
  */
 class AuthenticateController extends Controller
 {

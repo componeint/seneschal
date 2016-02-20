@@ -4,17 +4,17 @@
  * Created by anonymous on 28/12/15 16:00.
  */
 
-namespace Onderdelen\JwtAuth\Controllers;
+namespace Onderdelen\Seneschal\Controllers;
 
 use Onderdelen\AppFoundation\Controller\Controller;
 use Illuminate\Pagination\Paginator;
-use Onderdelen\JwtAuth\FormRequests\ChangePasswordRequest;
-use Onderdelen\JwtAuth\FormRequests\UserCreateRequest;
-use Onderdelen\JwtAuth\FormRequests\UserUpdateRequest;
-use Onderdelen\JwtAuth\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\JwtAuth\Repositories\User\UserRepositoryInterface;
-use Onderdelen\JwtAuth\Traits\CerberusRedirectionTrait;
-use Onderdelen\JwtAuth\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\FormRequests\ChangePasswordRequest;
+use Onderdelen\Seneschal\FormRequests\UserCreateRequest;
+use Onderdelen\Seneschal\FormRequests\UserUpdateRequest;
+use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
+use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
+use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
+use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
 use Vinkla\Hashids\HashidsManager;
 use DB;
 use View;

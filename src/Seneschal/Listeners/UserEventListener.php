@@ -24,11 +24,11 @@ class UserEventListener
      */
     public function subscribe($events)
     {
-        $events->listen('user.login', 'Onderdelen\Seneschal\Listeners\UserEventListener@onUserLogin', 10);
-        $events->listen('user.logout', 'Onderdelen\Seneschal\Listeners\UserEventListener@onUserLogout', 10);
-        $events->listen('user.registered', 'Onderdelen\Seneschal\Listeners\UserEventListener@welcome', 10);
-        $events->listen('user.resend', 'Onderdelen\Seneschal\Listeners\UserEventListener@welcome', 10);
-        $events->listen('user.reset', 'Onderdelen\Seneschal\Listeners\UserEventListener@passwordReset', 10);
+        $events->listen('seneschal.user.login', 'Onderdelen\Seneschal\Listeners\UserEventListener@onUserLogin', 10);
+        $events->listen('seneschal.user.logout', 'Onderdelen\Seneschal\Listeners\UserEventListener@onUserLogout', 10);
+        $events->listen('seneschal.user.registered', 'Onderdelen\Seneschal\Listeners\UserEventListener@welcome', 10);
+        $events->listen('seneschal.user.resend', 'Onderdelen\Seneschal\Listeners\UserEventListener@welcome', 10);
+        $events->listen('seneschal.user.reset', 'Onderdelen\Seneschal\Listeners\UserEventListener@passwordReset', 10);
     }
 
     /**

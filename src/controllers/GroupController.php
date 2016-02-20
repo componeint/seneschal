@@ -68,7 +68,7 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a group.
+     * Show the form for creating a group
      *
      * @return \Response
      */
@@ -78,10 +78,10 @@ class GroupController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage
      *
      * @param GroupCreateRequest $request
-     * @return \Response
+     * @return mixed
      */
     public function store(GroupCreateRequest $request)
     {
@@ -96,10 +96,10 @@ class GroupController extends Controller
     }
 
     /**
-     * Display the specified group.
+     * Display the specified group
      *
      * @param $id
-     * @return \Response
+     * @return mixed
      */
     public function show($id)
     {
@@ -111,10 +111,10 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for editing the specified group.
+     * Show the form for editing the specified group
      *
      * @param $id
-     * @return \Response
+     * @return mixed
      */
     public function edit($id)
     {
@@ -130,10 +130,10 @@ class GroupController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage
      *
      * @param GroupUpdateRequest $request
-     * @return \Response
+     * @return mixed
      */
     public function update(GroupUpdateRequest $request)
     {
@@ -148,10 +148,10 @@ class GroupController extends Controller
     }
 
     /**
-     * Remove the specified group from storage.
+     * Remove the specified group from storage
      *
      * @param $id
-     * @return \Response
+     * @return mixed
      */
     public function destroy($id)
     {

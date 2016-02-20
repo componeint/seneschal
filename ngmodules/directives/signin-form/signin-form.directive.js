@@ -32,14 +32,15 @@
         return directive;
 
         function link(scope, element, attrs) {
-
+            //
         }
+
     }
 
-    SigninFormController.$inject = ['$auth', '$state', '$rootScope'];
+    SigninFormController.$inject = ['$rootScope', '$auth', '$http', '$state', 'logService'];
 
     /* @ngInject */
-    function SigninFormController($auth, $state, $rootScope) {
+    function SigninFormController($rootScope, $auth, $http, $state, logService) {
 
         var vm            = this;
         var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'jwtauth.home' : vm.successStateRedirect;

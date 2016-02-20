@@ -57,7 +57,7 @@ class RegistrationController extends Controller
     /**
      * Show the registration form, if registration is allowed
      *
-     * @return Response
+     * @return \Response
      */
     public function registration()
     {
@@ -76,7 +76,7 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Process a registration request.
+     * Process a registration request
      *
      * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
@@ -116,10 +116,9 @@ class RegistrationController extends Controller
     /**
      * Activate a new user
      *
-     * @param  int    $id
-     * @param  string $code
-     *
-     * @return Response
+     * @param $hash
+     * @param $code
+     * @return \Response
      */
     public function activate($hash, $code)
     {
@@ -136,7 +135,7 @@ class RegistrationController extends Controller
     /**
      * Show the 'Resend Activation' form
      *
-     * @return View
+     * @return \Response
      */
     public function resendActivationForm()
     {
@@ -145,7 +144,9 @@ class RegistrationController extends Controller
 
     /**
      * Process resend activation request
-     * @return Response
+     *
+     * @param EmailRequest $request
+     * @return \Response
      */
     public function resendActivation(EmailRequest $request)
     {
@@ -159,17 +160,18 @@ class RegistrationController extends Controller
     /**
      * Display the "Forgot Password" form
      *
-     * @return \Illuminate\View\View
+     * @return \Response
      */
     public function forgotPasswordForm()
     {
         return $this->viewFinder('Cerberus::users.forgot');
     }
 
-
     /**
      * Process Forgot Password request
-     * @return Response
+     *
+     * @param EmailRequest $request
+     * @return \Response
      */
     public function sendResetPasswordEmail(EmailRequest $request)
     {
@@ -183,10 +185,9 @@ class RegistrationController extends Controller
     /**
      * A user is attempting to reset their password
      *
-     * @param $id
+     * @param $hash
      * @param $code
-     *
-     * @return Redirect|View
+     * @return \Response
      */
     public function passwordResetForm($hash, $code)
     {
@@ -209,9 +210,10 @@ class RegistrationController extends Controller
     /**
      * Process a password reset form submission
      *
-     * @param $hash
-     * @param $code
-     * @return Response
+     * @param ResetPasswordRequest $request
+     * @param                      $hash
+     * @param                      $code
+     * @return \Response
      */
     public function resetPassword(ResetPasswordRequest $request, $hash, $code)
     {

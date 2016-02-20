@@ -34,6 +34,8 @@ class AuthenticateController extends Controller
 
     /**
      * Constructor
+     *
+     * @param AuthenticateRepositoryInterface $authenticateManager
      */
     public function __construct(AuthenticateRepositoryInterface $authenticateManager)
     {
@@ -44,7 +46,7 @@ class AuthenticateController extends Controller
     /**
      * Return the user
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return mixed
      */
     public function index()
     {
@@ -56,13 +58,12 @@ class AuthenticateController extends Controller
     /**
      * Return a JWT
      *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param LoginRequest $request
+     * @return mixed
      */
     public function authenticate(LoginRequest $request)
     {
         // Gather the input
-        // $data = Input::all();
         $data = $request->all();
 
         // Attempt the login
@@ -91,7 +92,7 @@ class AuthenticateController extends Controller
     /**
      * Return the authenticated user
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return mixed
      */
     public function getAuthenticatedUser()
     {
@@ -113,6 +114,8 @@ class AuthenticateController extends Controller
 
     /**
      * Show the login form
+     *
+     * @return \Response
      */
     public function create()
     {
@@ -126,9 +129,10 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * Attempt authenticate a user.
+     * Attempt authenticate a user
      *
-     * @return Response
+     * @param LoginRequest $request
+     * @return mixed
      */
     public function store(LoginRequest $request)
     {
@@ -163,9 +167,9 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage
      *
-     * @return Response
+     * @return \Response
      */
     public function destroy()
     {

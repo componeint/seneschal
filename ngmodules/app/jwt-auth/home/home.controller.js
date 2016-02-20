@@ -10,12 +10,15 @@
         .module('jwtAuth')
         .controller('JwtAuthHomeController', JwtAuthHomeController);
 
-    JwtAuthHomeController.$inject = ['Authenticate', '$log'];
+    JwtAuthHomeController.$inject = ['Authenticate', 'logService'];
 
     /* @ngInject */
-    function JwtAuthHomeController(Authenticate, $log) {
-        var vm      = this;
+    function JwtAuthHomeController(Authenticate, logService) {
+
+        var vm = this;
+
         vm.getUsers = getUsers;
+
 
         activate();
 
@@ -26,15 +29,18 @@
         }
 
         function getUsers() {
+
             return Authenticate.getList().then(function(response) {
                 vm.users = response;
-                //$log.debug(vm.users);
             }).catch(function(error) {
-                vm.error = error;
-                $log.debug('Error with status code', error.status);
-                $log.debug(error);
+
+                logService.error(error);
+                logService.debug(error);
+
             });
+
         }
+
     }
 
 })();

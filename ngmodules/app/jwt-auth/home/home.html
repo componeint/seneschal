@@ -9,7 +9,7 @@
             <button class="" ng-click="jwtAuth.signout()">Logout</button>
         </div>
         <ul class="" ng-if="home.users">
-            <li class="" ng-repeat="user in home.users">
+            <li class="" ng-repeat="user in home.users[0]">
                 <h4>{{user.name}}</h4>
                 <h5>{{user.email}}</h5>
             </li>
@@ -24,6 +24,7 @@
         <!-- Server response -->
         <div ng-if="home.users">
             <p>Server response : </p>
+
             <p>
                 <pre style="height:200px;scroll:auto;">
                     <code>{{home.users | json: 2}}</code>
@@ -32,6 +33,7 @@
         </div>
         <div ng-if="home.error">
             <p>Server response : </p>
+
             <p>
                 <pre style="height:200px;scroll:auto;">
                     <code>{{home.error | json: 2}}</code>

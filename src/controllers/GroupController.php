@@ -12,8 +12,8 @@ use Illuminate\Pagination\Paginator;
 use Onderdelen\Seneschal\FormRequests\GroupCreateRequest;
 use Onderdelen\Seneschal\FormRequests\GroupUpdateRequest;
 use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
-use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
+use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
 use View;
 use Input;
 use Redirect;
@@ -24,8 +24,8 @@ use Redirect;
  */
 class GroupController extends Controller
 {
-    use CerberusRedirectionTrait;
-    use CerberusViewfinderTrait;
+    use SeneschalRedirectionTrait;
+    use SeneschalViewfinderTrait;
 
     /**
      * Constructor
@@ -58,7 +58,7 @@ class GroupController extends Controller
         // $pagedData   = array_slice($groups, $currentPage * $perPage, $perPage);
         // $groups      = new Paginator($pagedData, $perPage, $currentPage);
 
-        // return $this->viewFinder('Cerberus::groups.index', ['groups' => $groups]);
+        // return $this->viewFinder('Seneschal::groups.index', ['groups' => $groups]);
 
         $groups = $this->groupRepository->all();
 
@@ -74,7 +74,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return $this->viewFinder('Cerberus::groups.create');
+        return $this->viewFinder('Seneschal::groups.create');
     }
 
     /**
@@ -106,7 +106,7 @@ class GroupController extends Controller
         // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);
 
-        // return $this->viewFinder('Cerberus::groups.show', ['group' => $group]);
+        // return $this->viewFinder('Seneschal::groups.show', ['group' => $group]);
         return response()->success([$group]);
     }
 

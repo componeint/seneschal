@@ -13,8 +13,8 @@ use Onderdelen\Seneschal\FormRequests\UserCreateRequest;
 use Onderdelen\Seneschal\FormRequests\UserUpdateRequest;
 use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
 use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
-use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
-use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
+use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
 use Vinkla\Hashids\HashidsManager;
 use DB;
 use View;
@@ -26,8 +26,8 @@ use Config;
 
 class UserController extends Controller
 {
-    use CerberusRedirectionTrait;
-    use CerberusViewfinderTrait;
+    use SeneschalRedirectionTrait;
+    use SeneschalViewfinderTrait;
 
     /**
      * Constructor
@@ -61,7 +61,7 @@ class UserController extends Controller
         // $pagedData   = array_slice($users, $currentPage * $perPage, $perPage);
         // $users       = new Paginator($pagedData, $perPage, $currentPage);
 
-        // return $this->viewFinder('Cerberus::users.index', ['users' => $users]);
+        // return $this->viewFinder('Seneschal::users.index', ['users' => $users]);
 
         $users = $this->userRepository->all();
 
@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return $this->viewFinder('Cerberus::users.create');
+        return $this->viewFinder('Seneschal::users.create');
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
         $result = $this->userRepository->store($request->all());
 
         // Determine response message based on whether or not the user was activated
-        $message = ($result->getPayload()['activated'] ? trans('Cerberus::users.addedactive') : trans('Cerberus::users.added'));
+        $message = ($result->getPayload()['activated'] ? trans('Seneschal::users.addedactive') : trans('Seneschal::users.added'));
 
         // Finished!
         // return $this->redirectTo('users_store', ['success' => $message]);
@@ -110,7 +110,7 @@ class UserController extends Controller
         // Get the user
         $user = $this->userRepository->retrieveById($id);
 
-        // return $this->viewFinder('Cerberus::users.show', ['user' => $user]);
+        // return $this->viewFinder('Seneschal::users.show', ['user' => $user]);
         return response()->success([$user]);
     }
 
@@ -141,7 +141,7 @@ class UserController extends Controller
         ];
 
         /*
-        return $this->viewFinder('Cerberus::users.edit', [
+        return $this->viewFinder('Seneschal::users.edit', [
             'user'   => $user,
             'groups' => $groups,
         ]);

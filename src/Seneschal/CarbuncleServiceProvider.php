@@ -27,7 +27,7 @@ use Einherjars\Carbuncle\Users\UserExistsException;
 use Einherjars\Carbuncle\Users\UserNotActivatedException;
 use Einherjars\Carbuncle\Users\UserNotFoundException;
 use Illuminate\Support\ServiceProvider;
-// use Cerberus\Services\Responders\FailureResponse;
+// use Seneschal\Services\Responders\FailureResponse;
 use Onderdelen\Seneschal\DataTransferObjects\FailureResponse;
 
 class CarbuncleServiceProvider extends ServiceProvider
@@ -46,7 +46,7 @@ class CarbuncleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //$this->package('einherjars/carbuncle', 'einherjars/carbuncle');
+        //$this->package('onderdelen/carbuncle', 'onderdelen/carbuncle');
     }
 
     /**

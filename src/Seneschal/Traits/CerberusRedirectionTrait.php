@@ -1,6 +1,6 @@
 <?php
 /**
- * CerberusRedirectionTrait.php
+ * SeneschalRedirectionTrait.php
  * Created by anonymous on 16/01/16 13:23.
  */
 
@@ -12,7 +12,7 @@ use Redirect;
 use Response;
 use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
 
-trait CerberusRedirectionTrait
+trait SeneschalRedirectionTrait
 {
     /**
      * Use a ResponseObject to generate a browser redirect, based on config options
@@ -51,13 +51,13 @@ trait CerberusRedirectionTrait
     {
         // A key can either be a string representing a config entry, or
         // an array representing the "direction" we intend to go in.
-        $direction = (is_array($key) ? $key : config('cerberus.routing.' . $key));
+        $direction = (is_array($key) ? $key : config('seneschal.routing.' . $key));
 
         // Convert this "direction" to a url
         $url = $this->generateUrl($direction, $payload);
 
         // Determine if the developer has disabled HTML views
-        $views = config('cerberus.views_enabled');
+        $views = config('seneschal.views_enabled');
 
         // If the url is empty or views have been disabled the developer
         // wants to return json rather than an HTML view.
@@ -85,7 +85,7 @@ trait CerberusRedirectionTrait
     public function redirectBack($message, $payload = [])
     {
         // Determine if the developer has disabled HTML views
-        $views = config('cerberus.views_enabled');
+        $views = config('seneschal.views_enabled');
 
         // If views have been disabled, return a JSON response
         if (!$views || Request::ajax() || Request::pjax()) {

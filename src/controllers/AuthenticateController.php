@@ -10,8 +10,8 @@ use Onderdelen\AppFoundation\Controller\Controller;
 use Illuminate\Support\Facades\Response;
 use Onderdelen\Seneschal\FormRequests\LoginRequest;
 use Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface;
-use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
-use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
+use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
 use Onderdelen\Seneschal\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
@@ -29,8 +29,8 @@ use Config;
  */
 class AuthenticateController extends Controller
 {
-    use CerberusRedirectionTrait;
-    use CerberusViewfinderTrait;
+    use SeneschalRedirectionTrait;
+    use SeneschalViewfinderTrait;
 
     /**
      * Constructor
@@ -125,7 +125,7 @@ class AuthenticateController extends Controller
         }
 
         // No - they are not signed in.  Show the login form.
-        return $this->viewFinder('Cerberus::sessions.login');
+        return $this->viewFinder('Seneschal::sessions.login');
     }
 
     /**
@@ -145,23 +145,23 @@ class AuthenticateController extends Controller
         // Did it work?
         if ($result->isSuccessful()) {
             // Login was successful.  Determine where we should go now.
-            if (!config('cerberus.views_enabled')) {
+            if (!config('seneschal.views_enabled')) {
                 // Views are disabled - return json instead
                 return Response::json('success', 200);
             }
             // Views are enabled, so go to the determined route
-            $redirect_route = config('cerberus.routing.session_store');
+            $redirect_route = config('seneschal.routing.session_store');
 
             return Redirect::intended($this->generateUrl($redirect_route));
         } else {
             // There was a problem - unrelated to Form validation.
-            if (!config('cerberus.views_enabled')) {
+            if (!config('seneschal.views_enabled')) {
                 // Views are disabled - return json instead
                 return Response::json($result->getMessage(), 400);
             }
             Session::flash('error', $result->getMessage());
 
-            return Redirect::route('cerberus.session.create')
+            return Redirect::route('seneschal.session.create')
                 ->withInput();
         }
     }

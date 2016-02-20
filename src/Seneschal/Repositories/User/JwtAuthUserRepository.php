@@ -67,7 +67,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             if (array_key_exists('activate', $data)) {
                 $activateUser = (bool)$data['activate'];
             } else {
-                $activateUser = !$this->config->get('cerberus.require_activation', true);
+                $activateUser = !$this->config->get('seneschal.require_activation', true);
             }
 
             //Prepare the user credentials
@@ -77,7 +77,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             ];
 
             // Are we allowed to use usernames?
-            if ($this->config->get('cerberus.allow_usernames', false)) {
+            if ($this->config->get('seneschal.allow_usernames', false)) {
                 // Make sure a username was provided with the user data
                 if (array_key_exists('username', $data)) {
                     $credentials['username'] = e($data['username']);
@@ -88,7 +88,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             $user = $this->carbuncle->register($credentials, $activateUser, $data);
 
             // If the developer has specified additional fields for this user, update them here.
-            foreach ($this->config->get('cerberus.additional_user_fields', []) as $key => $value) {
+            foreach ($this->config->get('seneschal.additional_user_fields', []) as $key => $value) {
                 if (array_key_exists($key, $data)) {
                     $user->$key = e($data[$key]);
                 }
@@ -99,7 +99,7 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             if (array_key_exists('groups', $data)) {
                 $groups = $data['groups'];
             } else {
-                $groups = $this->config->get('cerberus.default_user_groups', []);
+                $groups = $this->config->get('seneschal.default_user_groups', []);
             }
 
             // Assign groups to this user
@@ -110,9 +110,9 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
 
             // User registration was successful.  Determine response message
             if ($activateUser) {
-                $message = trans('Cerberus::users.createdactive');
+                $message = trans('Seneschal::users.createdactive');
             } else {
-                $message = trans('Cerberus::users.created');
+                $message = trans('Seneschal::users.created');
             }
 
 
@@ -123,12 +123,12 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             ];
 
             // Fire the 'user registered' event
-            $this->dispatcher->fire('cerberus.user.registered', $payload);
+            $this->dispatcher->fire('seneschal.user.registered', $payload);
 
             // Return a response
             return new SuccessResponse($message, $payload);
         } catch (UserExistsException $e) {
-            $message = trans('Cerberus::users.exists');
+            $message = trans('Seneschal::users.exists');
 
             return new ExceptionResponse($message);
         }
@@ -152,25 +152,25 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             $user->username = (isset($data['username']) ? e($data['username']) : $user->username);
 
             // Are there additional fields specified in the config? If so, update them here.
-            foreach ($this->config->get('cerberus.additional_user_fields', []) as $key => $value) {
+            foreach ($this->config->get('seneschal.additional_user_fields', []) as $key => $value) {
                 $user->$key = (isset($data[$key]) ? e($data[$key]) : $user->$key);
             }
 
             // Update the user
             if ($user->save()) {
                 // User information was updated
-                $this->dispatcher->fire('cerberus.user.updated', ['user' => $user]);
+                $this->dispatcher->fire('seneschal.user.updated', ['user' => $user]);
 
-                return new SuccessResponse(trans('Cerberus::users.updated'), ['user' => $user]);
+                return new SuccessResponse(trans('Seneschal::users.updated'), ['user' => $user]);
             }
 
-            return new FailureResponse(trans('Cerberus::users.notupdated'), ['user' => $user]);
+            return new FailureResponse(trans('Seneschal::users.notupdated'), ['user' => $user]);
         } catch (UserExistsException $e) {
-            $message = trans('Cerberus::users.exists');
+            $message = trans('Seneschal::users.exists');
 
             return new ExceptionResponse($message);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -191,16 +191,16 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
 
             // Delete the user
             if ($user->delete()) {
-                //Fire the cerberus.user.destroyed event
-                $this->dispatcher->fire('cerberus.user.destroyed', ['user' => $user]);
+                //Fire the seneschal.user.destroyed event
+                $this->dispatcher->fire('seneschal.user.destroyed', ['user' => $user]);
 
-                return new SuccessResponse(trans('Cerberus::users.destroyed'), ['user' => $user]);
+                return new SuccessResponse(trans('Seneschal::users.destroyed'), ['user' => $user]);
             }
 
             // Unable to delete the user
-            return new FailureResponse(trans('Cerberus::users.notdestroyed'), ['user' => $user]);
+            return new FailureResponse(trans('Seneschal::users.notdestroyed'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -223,22 +223,22 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             // Attempt to activate the user
             if ($user->attemptActivation($code)) {
                 // User activation passed
-                $this->dispatcher->fire('cerberus.user.activated', ['user' => $user]);
+                $this->dispatcher->fire('seneschal.user.activated', ['user' => $user]);
 
                 // Generate login url
-                // previously: $url = route('cerberus.login');
+                // previously: $url = route('seneschal.login');
                 $url = route('home');
 
-                return new SuccessResponse(trans('Cerberus::users.activated', ['url' => $url]), ['user' => $user]);
+                return new SuccessResponse(trans('Seneschal::users.activated', ['url' => $url]), ['user' => $user]);
             }
 
-            return new FailureResponse(trans('Cerberus::users.notactivated'), ['user' => $user]);
+            return new FailureResponse(trans('Seneschal::users.notactivated'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         } catch (UserAlreadyActivatedException $e) {
-            $message = trans('Cerberus::users.alreadyactive');
+            $message = trans('Seneschal::users.alreadyactive');
 
             return new ExceptionResponse($message);
         }
@@ -259,21 +259,21 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
 
             // If the user is not currently activated resend the activation email
             if (!$user->isActivated()) {
-                $this->dispatcher->fire('cerberus.user.resend', [
+                $this->dispatcher->fire('seneschal.user.resend', [
                     'user'      => $user,
                     'activated' => $user->activated,
                 ]);
 
-                return new SuccessResponse(trans('Cerberus::users.emailconfirm'), ['user' => $user]);
+                return new SuccessResponse(trans('Seneschal::users.emailconfirm'), ['user' => $user]);
             }
 
             // The user is already activated
-            return new FailureResponse(trans('Cerberus::users.alreadyactive'), ['user' => $user]);
+            return new FailureResponse(trans('Seneschal::users.alreadyactive'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
             // The user is trying to "reactivate" an account that doesn't exist.  This could be
             // a vector for determining valid existing accounts, so we will send a vague
             // response without actually sending a new activation email.
-            $message = trans('Cerberus::users.emailconfirm');
+            $message = trans('Seneschal::users.emailconfirm');
 
             return new SuccessResponse($message, []);
         }
@@ -291,17 +291,17 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
         try {
             $user = $this->carbuncle->getUserProvider()->findByLogin(e($email));
 
-            $this->dispatcher->fire('cerberus.user.reset', [
+            $this->dispatcher->fire('seneschal.user.reset', [
                 'user' => $user,
                 'code' => $user->getResetPasswordCode(),
             ]);
 
-            return new SuccessResponse(trans('Cerberus::users.emailinfo'), ['user' => $user]);
+            return new SuccessResponse(trans('Seneschal::users.emailinfo'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
             // The user is trying to send a password reset link to an account that doesn't
             // exist.  This could be a vector for determining valid existing accounts,
             // so we will send a vague response without actually doing anything.
-            $message = trans('Cerberus::users.emailinfo');
+            $message = trans('Seneschal::users.emailinfo');
 
             return new SuccessResponse($message, []);
         }
@@ -322,12 +322,12 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             $user = $this->carbuncle->findUserById($id);
 
             if (!$user->checkResetPasswordCode($code)) {
-                return new FailureResponse(trans('Cerberus::users.invalidreset'), ['user' => $user]);
+                return new FailureResponse(trans('Seneschal::users.invalidreset'), ['user' => $user]);
             }
 
             return new SuccessResponse(null);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -351,14 +351,14 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             if ($user->attemptResetPassword($code, $password)) {
 
                 // Fire the 'password reset' event
-                $this->dispatcher->fire('cerberus.password.reset', ['user' => $user]);
+                $this->dispatcher->fire('seneschal.password.reset', ['user' => $user]);
 
-                return new SuccessResponse(trans('Cerberus::users.passwordchg'), ['user' => $user]);
+                return new SuccessResponse(trans('Seneschal::users.passwordchg'), ['user' => $user]);
             }
 
-            return new FailureResponse(trans('Cerberus::users.problem'), ['user' => $user]);
+            return new FailureResponse(trans('Seneschal::users.problem'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -385,19 +385,19 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
                 if ($user->save()) {
 
                     // User saved
-                    $this->dispatcher->fire('cerberus.user.passwordchange', ['user' => $user]);
+                    $this->dispatcher->fire('seneschal.user.passwordchange', ['user' => $user]);
 
-                    return new SuccessResponse(trans('Cerberus::users.passwordchg'), ['user' => $user]);
+                    return new SuccessResponse(trans('Seneschal::users.passwordchg'), ['user' => $user]);
                 }
 
                 // User not Saved
-                return new FailureResponse(trans('Cerberus::users.passwordprob'), ['user' => $user]);
+                return new FailureResponse(trans('Seneschal::users.passwordprob'), ['user' => $user]);
             }
 
             // Password mismatch. Abort.
-            return new FailureResponse(trans('Cerberus::users.oldpassword'), ['user' => $user]);
+            return new FailureResponse(trans('Seneschal::users.oldpassword'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -421,15 +421,15 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             if ($user->save()) {
 
                 // User saved
-                $this->dispatcher->fire('cerberus.user.passwordchange', ['user' => $user]);
+                $this->dispatcher->fire('seneschal.user.passwordchange', ['user' => $user]);
 
-                return new SuccessResponse(trans('Cerberus::users.passwordchg'), ['user' => $user]);
+                return new SuccessResponse(trans('Seneschal::users.passwordchg'), ['user' => $user]);
             }
 
             // User not Saved
-            return new FailureResponse(trans('Cerberus::users.passwordprob'), ['user' => $user]);
+            return new FailureResponse(trans('Seneschal::users.passwordprob'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -459,9 +459,9 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
                 }
             }
 
-            return new SuccessResponse(trans('Cerberus::users.memberships'), ['user' => $user]);
+            return new SuccessResponse(trans('Seneschal::users.memberships'), ['user' => $user]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -485,11 +485,11 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             $throttle->suspend();
 
             // Fire the 'user suspended' event
-            $this->dispatcher->fire('cerberus.user.suspended', ['userId' => $id]);
+            $this->dispatcher->fire('seneschal.user.suspended', ['userId' => $id]);
 
-            return new SuccessResponse(trans('Cerberus::users.suspended'), ['userId' => $id]);
+            return new SuccessResponse(trans('Seneschal::users.suspended'), ['userId' => $id]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -513,11 +513,11 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             $throttle->unsuspend();
 
             // Fire the 'user un-suspended' event
-            $this->dispatcher->fire('cerberus.user.unsuspended', ['userId' => $id]);
+            $this->dispatcher->fire('seneschal.user.unsuspended', ['userId' => $id]);
 
-            return new SuccessResponse(trans('Cerberus::users.unsuspended'), ['userId' => $id]);
+            return new SuccessResponse(trans('Seneschal::users.unsuspended'), ['userId' => $id]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -546,11 +546,11 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             $user->save();
 
             // Fire the 'banned user' event
-            $this->dispatcher->fire('cerberus.user.banned', ['user' => $user]);
+            $this->dispatcher->fire('seneschal.user.banned', ['user' => $user]);
 
-            return new SuccessResponse(trans('Cerberus::users.banned'), ['userId' => $id]);
+            return new SuccessResponse(trans('Seneschal::users.banned'), ['userId' => $id]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }
@@ -573,11 +573,11 @@ class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
             $throttle->unBan();
 
             // Fire the 'un-ban user event'
-            $this->dispatcher->fire('cerberus.user.unbanned', ['userId' => $id]);
+            $this->dispatcher->fire('seneschal.user.unbanned', ['userId' => $id]);
 
-            return new SuccessResponse(trans('Cerberus::users.unbanned'), ['userId' => $id]);
+            return new SuccessResponse(trans('Seneschal::users.unbanned'), ['userId' => $id]);
         } catch (UserNotFoundException $e) {
-            $message = trans('Cerberus::sessions.invalid');
+            $message = trans('Seneschal::sessions.invalid');
 
             return new ExceptionResponse($message);
         }

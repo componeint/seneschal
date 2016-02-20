@@ -11,8 +11,8 @@ use Onderdelen\Seneschal\FormRequests\ChangePasswordRequest;
 use Onderdelen\Seneschal\FormRequests\UserUpdateRequest;
 use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
 use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
-use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
-use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
+use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
 use Session;
 use Input;
 use Response;
@@ -24,8 +24,8 @@ use Redirect;
  */
 class ProfileController extends Controller
 {
-    use CerberusRedirectionTrait;
-    use CerberusViewfinderTrait;
+    use SeneschalRedirectionTrait;
+    use SeneschalViewfinderTrait;
 
     /**
      * @param UserRepositoryInterface  $userRepository
@@ -53,7 +53,7 @@ class ProfileController extends Controller
         // Grab the current user
         $user = $this->userRepository->getUser();
 
-        return $this->viewFinder('Cerberus::users.show', ['user' => $user]);
+        return $this->viewFinder('Seneschal::users.show', ['user' => $user]);
     }
 
     /**
@@ -69,7 +69,7 @@ class ProfileController extends Controller
         // Get all available groups
         $groups = $this->groupRepository->all();
 
-        return $this->viewFinder('Cerberus::users.edit', [
+        return $this->viewFinder('Seneschal::users.edit', [
             'user'   => $user,
             'groups' => $groups,
         ]);

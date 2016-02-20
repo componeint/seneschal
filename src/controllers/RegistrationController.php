@@ -13,8 +13,8 @@ use Onderdelen\Seneschal\FormRequests\EmailRequest;
 use Onderdelen\Seneschal\FormRequests\ResetPasswordRequest;
 use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
 use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
-use Onderdelen\Seneschal\Traits\CerberusRedirectionTrait;
-use Onderdelen\Seneschal\Traits\CerberusViewfinderTrait;
+use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
+use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Carbuncle;
@@ -31,8 +31,8 @@ use Config;
  */
 class RegistrationController extends Controller
 {
-    use CerberusRedirectionTrait;
-    use CerberusViewfinderTrait;
+    use SeneschalRedirectionTrait;
+    use SeneschalViewfinderTrait;
 
     /**
      * @param UserRepositoryInterface  $userRepository
@@ -49,7 +49,7 @@ class RegistrationController extends Controller
         $this->hashids         = $hashids;
 
         // Check CSRF token on POST
-        // $this->beforeFilter('Cerberus\csrf', array('on' => array('post', 'put', 'delete')));
+        // $this->beforeFilter('Seneschal\csrf', array('on' => array('post', 'put', 'delete')));
 
         // $this->middleware('jwt.auth', ['except' => ['register']]);
     }
@@ -67,12 +67,12 @@ class RegistrationController extends Controller
         }
 
         //If registration is currently disabled, show a message and redirect home.
-        if (!config('cerberus.registration', false)) {
-            return $this->redirectTo(['route' => 'home'], ['error' => trans('Cerberus::users.inactive_reg')]);
+        if (!config('seneschal.registration', false)) {
+            return $this->redirectTo(['route' => 'home'], ['error' => trans('Seneschal::users.inactive_reg')]);
         }
 
         // All clear - show the registration form.
-        return $this->viewFinder('Cerberus::users.register');
+        return $this->viewFinder('Seneschal::users.register');
     }
 
     /**
@@ -139,7 +139,7 @@ class RegistrationController extends Controller
      */
     public function resendActivationForm()
     {
-        return $this->viewFinder('Cerberus::users.resend');
+        return $this->viewFinder('Seneschal::users.resend');
     }
 
     /**
@@ -164,7 +164,7 @@ class RegistrationController extends Controller
      */
     public function forgotPasswordForm()
     {
-        return $this->viewFinder('Cerberus::users.forgot');
+        return $this->viewFinder('Seneschal::users.forgot');
     }
 
     /**
@@ -201,7 +201,7 @@ class RegistrationController extends Controller
             return $this->redirectViaResponse('registration_reset_invalid', $result);
         }
 
-        return $this->viewFinder('Cerberus::users.reset', [
+        return $this->viewFinder('Seneschal::users.reset', [
             'hash' => $hash,
             'code' => $code,
         ]);

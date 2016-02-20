@@ -27,6 +27,6 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return config('cerberus.additional_user_fields');
+        return config('seneschal.additional_user_fields');
     }
 }

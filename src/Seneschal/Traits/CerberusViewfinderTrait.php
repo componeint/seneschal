@@ -1,6 +1,6 @@
 <?php
 /**
- * CerberusViewfinderTrait.php
+ * SeneschalViewfinderTrait.php
  * Created by anonymous on 16/01/16 13:23.
  */
 
@@ -10,7 +10,7 @@ use Redirect;
 use Response;
 use View;
 
-trait CerberusViewfinderTrait
+trait SeneschalViewfinderTrait
 {
     /**
      * Before returning an HTML view, we need to make sure the developer has not
@@ -25,7 +25,7 @@ trait CerberusViewfinderTrait
     {
 
         // Check the config for enabled views
-        if (config('cerberus.views_enabled')) {
+        if (config('seneschal.views_enabled')) {
             // Views are enabled.
             return View::make($view)->with($payload);
         } else {

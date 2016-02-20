@@ -5,7 +5,7 @@
 
 namespace Onderdelen\Seneschal\Repositories\Authenticate;
 
-use Cerberus\DataTransferObjects\BaseResponse;
+use Seneschal\DataTransferObjects\BaseResponse;
 
 /**
  * Interface AuthenticateRepositoryInterface

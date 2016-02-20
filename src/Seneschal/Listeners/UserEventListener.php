@@ -60,8 +60,8 @@ class UserEventListener
      */
     public function welcome($user, $activated)
     {
-        $subject       = $this->config->get('cerberus.subjects.welcome');
-        $view          = $this->config->get('cerberus.email.views.welcome', 'Cerberus::emails.welcome');
+        $subject       = $this->config->get('seneschal.subjects.welcome');
+        $view          = $this->config->get('seneschal.email.views.welcome', 'Seneschal::emails.welcome');
         $data['hash']  = $user->hash;
         $data['code']  = $user->getActivationCode();
         $data['email'] = $user->email;
@@ -83,8 +83,8 @@ class UserEventListener
      */
     public function passwordReset($user, $code)
     {
-        $subject       = $this->config->get('cerberus.subjects.reset_password');
-        $view          = $this->config->get('cerberus.email.views.reset', 'Cerberus::emails.reset');
+        $subject       = $this->config->get('seneschal.subjects.reset_password');
+        $view          = $this->config->get('seneschal.email.views.reset', 'Seneschal::emails.reset');
         $data['hash']  = $user->hash;
         $data['code']  = $code;
         $data['email'] = $user->email;

@@ -12,7 +12,7 @@ use Illuminate\Events\Dispatcher;
 use Illuminate\Http\Response;
 use Einherjars\Carbuncle\Groups\GroupExistsException;
 use Einherjars\Carbuncle\Groups\GroupNotFoundException;
-use Cerberus\Models\Group;
+use Onderdelen\Seneschal\Models\Group;
 use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
 use Onderdelen\Seneschal\DataTransferObjects\SuccessResponse;
 use Onderdelen\Seneschal\DataTransferObjects\FailureResponse;
@@ -56,11 +56,11 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
             ]);
 
             // Fire the 'group created' event
-            $this->dispatcher->fire('cerberus.group.created', ['group' => $group]);
+            $this->dispatcher->fire('seneschal.group.created', ['group' => $group]);
 
-            return new SuccessResponse(trans('Cerberus::groups.created'), ['group' => $group]);
+            return new SuccessResponse(trans('Seneschal::groups.created'), ['group' => $group]);
         } catch (GroupExistsException $e) {
-            $message = trans('Cerberus::groups.groupexists');
+            $message = trans('Seneschal::groups.groupexists');
 
             return new ExceptionResponse($message);
         }
@@ -96,19 +96,19 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
             // Update the group
             if ($group->save()) {
                 // Fire the 'group updated' event
-                $this->dispatcher->fire('cerberus.group.updated', ['group' => $group]);
+                $this->dispatcher->fire('seneschal.group.updated', ['group' => $group]);
 
-                return new SuccessResponse(trans('Cerberus::groups.updated'), ['group' => $group]);
+                return new SuccessResponse(trans('Seneschal::groups.updated'), ['group' => $group]);
             } else {
                 // There was a problem
-                return new FailureResponse(trans('Cerberus::groups.updateproblem'), ['group' => $group]);
+                return new FailureResponse(trans('Seneschal::groups.updateproblem'), ['group' => $group]);
             }
         } catch (GroupExistsException $e) {
-            $message = trans('Cerberus::groups.groupexists');
+            $message = trans('Seneschal::groups.groupexists');
 
             return new ExceptionResponse($message);
         } catch (GroupNotFoundException $e) {
-            $message = trans('Cerberus::groups.notfound');
+            $message = trans('Seneschal::groups.notfound');
 
             return new ExceptionResponse($message);
         }
@@ -130,11 +130,11 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
             $group->delete();
 
             // Fire the 'group destroyed' event
-            $this->dispatcher->fire('cerberus.group.destroyed', ['group' => $group]);
+            $this->dispatcher->fire('seneschal.group.destroyed', ['group' => $group]);
 
-            return new SuccessResponse(trans('Cerberus::groups.destroyed'), ['group' => $group]);
+            return new SuccessResponse(trans('Seneschal::groups.destroyed'), ['group' => $group]);
         } catch (GroupNotFoundException $e) {
-            $message = trans('Cerberus::groups.notfound');
+            $message = trans('Seneschal::groups.notfound');
 
             return new ExceptionResponse($message);
         }

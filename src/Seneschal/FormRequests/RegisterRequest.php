@@ -35,7 +35,7 @@ class RegisterRequest extends FormRequest
         ];
 
         // If Usernames are enabled, add username validation rules
-        if (config('cerberus.allow_usernames')) {
+        if (config('seneschal.allow_usernames')) {
             $rules['username'] = 'required|unique:users,username';
         }
 

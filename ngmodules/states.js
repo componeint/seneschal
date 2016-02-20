@@ -161,6 +161,17 @@
                     }
                 }
             })
+            .state('jwtauth.forgot-password', {
+                url  : '/forgot-password',
+                data : {pageName: 'Forgot Password'},
+                views: {
+                    'main@jwtauth': {
+                        templateUrl : layoutProvider.view('jwt-auth.forgot-password'),
+                        controller  : 'JwtAuthForgotPasswordController',
+                        controllerAs: 'forgot'
+                    }
+                }
+            })
             .state('jwtauth.home', {
                 url    : '/home',
                 data   : {pageName: 'Home'},

@@ -44,9 +44,8 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource
      *
-     * @param  int $id
      * @return Response
      */
     public function show()
@@ -58,7 +57,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource
      *
      * @return Response
      */
@@ -77,8 +76,9 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage
      *
+     * @param UserUpdateRequest $request
      * @return Response
      */
     public function update(UserUpdateRequest $request)
@@ -97,7 +97,8 @@ class ProfileController extends Controller
     /**
      * Process a password change request
      *
-     * @return Redirect
+     * @param ChangePasswordRequest $request
+     * @return Response
      */
     public function changePassword(ChangePasswordRequest $request)
     {

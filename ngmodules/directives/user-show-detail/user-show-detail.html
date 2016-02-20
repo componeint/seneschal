@@ -1,8 +1,13 @@
-<table ng-repeat="list in ctrl.lists.data">
+<table ng-repeat="list in $ctrl.lists.data">
     <tr>
         <td>Id</td>
         <td> :</td>
         <td>{{list.id}}</td>
+    </tr>
+    <tr>
+        <td>Username</td>
+        <td> :</td>
+        <td>{{list.username}}</td>
     </tr>
     <tr>
         <td>Email</td>
@@ -49,22 +54,12 @@
         <td> :</td>
         <td>{{list.updated_at}}</td>
     </tr>
-    <tr>
-        <td>Username</td>
-        <td> :</td>
-        <td>{{list.username}}</td>
-    </tr>
-    <tr>
-        <td>Status</td>
-        <td> :</td>
-        <td>{{list.status}}</td>
-    </tr>
 </table>
 
 <!--<md-divider></md-divider>-->
 
 <!--
-<pre style="height:200px;scroll:auto;"><code>{{ctrl.lists | json: 2}}</code></pre>
+<pre style="height:200px;scroll:auto;"><code>{{$ctrl.lists | json: 2}}</code></pre>
 -->
-<pre><code>{{ctrl.lists | json: 2}}</code></pre>
+<pre><code>{{$ctrl.lists | json: 2}}</code></pre>
 

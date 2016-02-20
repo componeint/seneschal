@@ -19,7 +19,7 @@
             directive = {
                 bindToController: true,
                 controller      : UserShowDetailController,
-                controllerAs    : 'ctrl',
+                controllerAs    : '$ctrl',
                 link            : link,
                 restrict        : 'EA',
                 scope           : {

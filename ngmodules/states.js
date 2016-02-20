@@ -152,7 +152,7 @@
             })
             .state('jwtauth.signin', {
                 url  : '/signin',
-                data : {pageName: 'Sign in'},
+                data : {pageName: 'Sign-in'},
                 views: {
                     'main@jwtauth': {
                         templateUrl : layoutProvider.view('jwt-auth.signin'),

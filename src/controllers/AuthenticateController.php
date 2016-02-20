@@ -50,7 +50,7 @@ class AuthenticateController extends Controller
     {
         $users = User::all();
 
-        return response()->success($users);
+        return response()->success([$users]);
     }
 
     /**

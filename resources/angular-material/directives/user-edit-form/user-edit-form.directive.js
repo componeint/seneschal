@@ -19,7 +19,7 @@
             directive = {
                 bindToController: true,
                 controller      : UserEditFormController,
-                controllerAs    : 'ctrl',
+                controllerAs    : '$ctrl',
                 link            : link,
                 restrict        : 'EA',
                 scope           : {
@@ -48,8 +48,7 @@
             id            = _.isString(vm.id) ? parseInt(vm.id) : vm.id,
             stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
 
-        vm.update                 = update;
-        vm.updateGroupMemberships = updateGroupMemberships;
+        vm.update = update;
 
 
         activate();
@@ -80,27 +79,6 @@
                 // $state.go(stateRedirect);
 
                 Toast.show('User updated');
-
-            }, function(error) {
-
-                logService.error(error);
-                logService.debug(error);
-
-            });
-
-        }
-
-        function updateGroupMemberships(id) {
-
-            vm.formData = {
-                id    : id,
-                groups: vm.membership
-            };
-
-            API.one('users', id).post('memberships', vm.formData).then(function(response) {
-
-                // $state.go('dashboard.users');
-                Toast.show('User group membership updated');
 
             }, function(error) {
 

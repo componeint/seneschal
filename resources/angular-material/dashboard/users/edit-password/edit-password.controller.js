@@ -10,10 +10,10 @@
         .module('jwtAuth')
         .controller('UsersEditPasswordController', UsersEditPasswordController);
 
-    UsersEditPasswordController.$inject = [];
+    UsersEditPasswordController.$inject = ['$stateParams'];
 
     /* @ngInject */
-    function UsersEditPasswordController() {
+    function UsersEditPasswordController($stateParams) {
 
         var vm = this;
 

@@ -10,10 +10,10 @@
         .module('jwtAuth')
         .controller('UsersEditMembershipController', UsersEditMembershipController);
 
-    UsersEditMembershipController.$inject = [];
+    UsersEditMembershipController.$inject = ['$stateParams'];
 
     /* @ngInject */
-    function UsersEditMembershipController() {
+    function UsersEditMembershipController($stateParams) {
 
         var vm = this;
 

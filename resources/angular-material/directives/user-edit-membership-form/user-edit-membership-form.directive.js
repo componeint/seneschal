@@ -37,15 +37,61 @@
         }
     }
 
-    UserEditMembershipFormController.$inject = [];
+    UserEditMembershipFormController.$inject = ['API', 'logService', 'Toast'];
 
     /* @ngInject */
-    function UserEditMembershipFormController() {
+    function UserEditMembershipFormController(API, logService, Toast) {
 
         var vm            = this;
         var
             id            = _.isString(vm.id) ? parseInt(vm.id) : vm.id,
             stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
+
+        vm.updateGroupMemberships = updateGroupMemberships;
+
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+
+            API.one('users', id).getList('edit').then(function(response) {
+
+                vm.list        = response;
+                vm.groups      = vm.list[0].groups;
+                vm.permissions = vm.list[0].permissions;
+
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
+            });
+
+        }
+
+        function updateGroupMemberships(id) {
+
+            vm.formData = {
+                id    : id,
+                groups: vm.membership
+            };
+
+            API.one('users', id).post('memberships', vm.formData).then(function(response) {
+
+                // $state.go('dashboard.users');
+                Toast.show('User group membership updated');
+
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
+            });
+
+        }
+
     }
 
 })();

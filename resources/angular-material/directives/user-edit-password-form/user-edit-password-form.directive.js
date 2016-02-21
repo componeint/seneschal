@@ -37,15 +37,37 @@
         }
     }
 
-    UserEditPasswordFormController.$inject = [''];
+    UserEditPasswordFormController.$inject = ['API', 'logService'];
 
     /* @ngInject */
-    function UserEditPasswordFormController() {
+    function UserEditPasswordFormController(API, logService) {
 
         var vm            = this;
         var
             id            = _.isString(vm.id) ? parseInt(vm.id) : vm.id,
             stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'dashboard.users' : vm.successStateRedirect;
+
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+
+            API.one('users', id).getList('edit').then(function(response) {
+
+                vm.list        = response;
+                vm.groups      = vm.list[0].groups;
+                vm.permissions = vm.list[0].permissions;
+
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
+            });
+
+        }
     }
 
 })();

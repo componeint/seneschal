@@ -10,12 +10,15 @@
         .module('jwtAuth')
         .controller('UsersEditController', UsersEditController);
 
-    UsersEditController.$inject = ['$stateParams', 'Users'];
+    UsersEditController.$inject = ['$stateParams'];
 
     /* @ngInject */
-    function UsersEditController($stateParams, Users) {
-        var vm  = this;
+    function UsersEditController($stateParams) {
+
+        var vm = this;
+
         vm.data = {id: $stateParams.id};
+
 
         activate();
 

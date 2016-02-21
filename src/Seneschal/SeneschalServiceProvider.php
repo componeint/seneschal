@@ -67,9 +67,9 @@ class SeneschalServiceProvider extends ServiceProvider
         $dispatcher = $this->app->make('events');
         $dispatcher->subscribe('Onderdelen\Seneschal\Listeners\UserEventListener');
 
-        //$this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
+        // $this->loadViewsFrom($componenentsPath . '/../views', 'jwtauth');
 
-        //include $componenentsPath . '/../routes.php';
+        // include $componenentsPath . '/../routes.php';
 
     }
 
@@ -93,8 +93,6 @@ class SeneschalServiceProvider extends ServiceProvider
         $loader = AliasLoader::getInstance();
         $loader->alias('Carbuncle', \Einherjars\Carbuncle\Facades\Laravel\Carbuncle::class);
         $loader->alias('Hashids', \Vinkla\Hashids\Facades\Hashids::class);
-
-        $loader = AliasLoader::getInstance();
         $loader->alias('JWTAuth', \Tymon\JWTAuth\Facades\JWTAuth::class);
         $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
 

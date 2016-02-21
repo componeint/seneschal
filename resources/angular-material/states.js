@@ -107,6 +107,28 @@
                     }
                 }
             })
+            .state('dashboard.users.edit-membership', {
+                url  : '/edit-membership/{id}',
+                data : {pageName: 'Edit Membership'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.edit-membership'),
+                        controller  : 'UsersEditMembershipController',
+                        controllerAs: 'edit'
+                    }
+                }
+            })
+            .state('dashboard.users.edit-password', {
+                url  : '/edit-password/{id}',
+                data : {pageName: 'Edit Password'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.edit-password'),
+                        controller  : 'UsersEditPasswordController',
+                        controllerAs: 'edit'
+                    }
+                }
+            })
             .state('jwtauth', {
                 abstract: true,
                 url     : '/auth',

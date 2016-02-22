@@ -194,6 +194,17 @@
                     }
                 }
             })
+            .state('jwtauth.users-activate', {
+                url  : '^/users/activate/{hash}/{code}',
+                data : {pageName: 'Users Activate'},
+                views: {
+                    'main@jwtauth': {
+                        templateUrl : layoutProvider.view('jwt-auth.users-activate'),
+                        controller  : 'JwtAuthUsersActivateController',
+                        controllerAs: 'activate'
+                    }
+                }
+            })
             .state('jwtauth.home', {
                 url    : '/home',
                 data   : {pageName: 'Home'},

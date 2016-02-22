@@ -61,7 +61,7 @@
 
                 Toast.show('You have successfully created a new account and have been signed-in');
 
-            }).catch(function(response) {
+            }).catch(function(error) {
 
                 logService.error(error);
                 logService.debug(error);

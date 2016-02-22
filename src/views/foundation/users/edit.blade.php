@@ -11,7 +11,7 @@ Edit Profile
 
 <?php
     // Pull the custom fields from config
-    $isProfileUpdate = ($user->email == Carbuncle::getUser()->email);
+    $isProfileUpdate = ($user->email == Sentry::getUser()->email);
     $customFields = config('seneschal.additional_user_fields');
 
     // Determine the form post route
@@ -71,7 +71,7 @@ Edit Profile
 @endif
 
 
-@if (Carbuncle::getUser()->hasAccess('admin') && ($user->hash != Carbuncle::getUser()->hash))
+@if (Sentry::getUser()->hasAccess('admin') && ($user->hash != Sentry::getUser()->hash))
 <form method="POST" action="{{ route('seneschal.users.memberships', $user->hash) }}" accept-charset="UTF-8" class="form-horizontal" role="form">
     <div class="row">
         <div class="small-6 large-centered columns">

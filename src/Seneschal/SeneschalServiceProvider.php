@@ -41,7 +41,7 @@ class SeneschalServiceProvider extends ServiceProvider
 
         // Establish Fallback Config settings
         $this->mergeConfigFrom($componenentsPath . '/../config/seneschal.php', 'seneschal');
-        $this->mergeConfigFrom($componenentsPath . '/../config/carbuncle.php', 'carbuncle');
+        $this->mergeConfigFrom($componenentsPath . '/../config/sentry.php', 'sentry');
 
         // Establish Views Namespace
         if (is_dir(base_path() . '/resources/views/seneschal')) {
@@ -78,15 +78,15 @@ class SeneschalServiceProvider extends ServiceProvider
         $this->app->register(\Onderdelen\AppFoundation\AppFoundationServiceProvider::class);
         $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
 
-        // Register the Carbuncle Service Provider
-        $this->app->register(\Onderdelen\Seneschal\CarbuncleServiceProvider::class);
+        // Register the Sentry Service Provider
+        $this->app->register(\Onderdelen\Seneschal\SentryServiceProvider::class);
 
         // Register the Vinkla/Hashids Service Provider
         $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
 
-        // Load the Carbuncle and Hashid Facade Aliases
+        // Load the Sentry and Hashid Facade Aliases
         $loader = AliasLoader::getInstance();
-        $loader->alias('Carbuncle', \Einherjars\Carbuncle\Facades\Laravel\Carbuncle::class);
+        $loader->alias('Sentry', \Cartalyst\Sentry\Facades\Laravel\Sentry::class);
         $loader->alias('Hashids', \Vinkla\Hashids\Facades\Hashids::class);
         $loader->alias('JWTAuth', \Tymon\JWTAuth\Facades\JWTAuth::class);
         $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
@@ -94,7 +94,7 @@ class SeneschalServiceProvider extends ServiceProvider
         // Bind the User Repository
         $this->app->bind('Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface', function ($app) {
             return new JwtAuthUserRepository(
-                $app['carbuncle'],
+                $app['sentry'],
                 $app['config'],
                 $app['events']
             );
@@ -103,7 +103,7 @@ class SeneschalServiceProvider extends ServiceProvider
         // Bind the Group Repository
         $this->app->bind('Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface', function ($app) {
             return new JwtAuthGroupRepository(
-                $app['carbuncle'],
+                $app['sentry'],
                 $app['events']
             );
         });
@@ -112,7 +112,7 @@ class SeneschalServiceProvider extends ServiceProvider
         $this->app->bind('Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface',
             function ($app) {
                 return new AuthenticateRepository(
-                    $app['carbuncle'],
+                    $app['sentry'],
                     $app['events']
                 );
             });
@@ -125,7 +125,7 @@ class SeneschalServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['auth', 'carbuncle'];
+        return ['auth', 'sentry'];
     }
 
     /**

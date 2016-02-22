@@ -8,14 +8,14 @@ namespace Onderdelen\Seneschal\Repositories\Authenticate;
 
 use Config;
 use Illuminate\Events\Dispatcher;
-use Einherjars\Carbuncle\Carbuncle;
-use Einherjars\Carbuncle\Throttling\UserBannedException;
-use Einherjars\Carbuncle\Throttling\UserSuspendedException;
-use Einherjars\Carbuncle\Users\UserNotActivatedException;
-use Einherjars\Carbuncle\Users\UserNotFoundException;
-use Einherjars\Carbuncle\Users\LoginRequiredException;
-use Einherjars\Carbuncle\Users\PasswordRequiredException;
-use Einherjars\Carbuncle\Users\WrongPasswordException;
+use Cartalyst\Sentry\Sentry;
+use Cartalyst\Sentry\Throttling\UserBannedException;
+use Cartalyst\Sentry\Throttling\UserSuspendedException;
+use Cartalyst\Sentry\Users\UserNotActivatedException;
+use Cartalyst\Sentry\Users\UserNotFoundException;
+use Cartalyst\Sentry\Users\LoginRequiredException;
+use Cartalyst\Sentry\Users\PasswordRequiredException;
+use Cartalyst\Sentry\Users\WrongPasswordException;
 use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
 use Onderdelen\Seneschal\DataTransferObjects\ExceptionResponse;
 use Onderdelen\Seneschal\DataTransferObjects\SuccessResponse;
@@ -28,40 +28,40 @@ use Onderdelen\Seneschal\DataTransferObjects\FailureResponse;
 class AuthenticateRepository implements AuthenticateRepositoryInterface
 {
     /**
-     * @var Carbuncle
+     * @var Sentry
      */
-    private $carbuncle;
+    private $sentry;
     /**
-     * @var \Einherjars\Carbuncle\Throttling\ProviderInterface
+     * @var \Cartalyst\Sentry\Throttling\ProviderInterface
      */
-    private $carbuncleThrottleProvider;
+    private $sentryThrottleProvider;
     /**
-     * @var \Einherjars\Carbuncle\Users\ProviderInterface
+     * @var \Cartalyst\Sentry\Users\ProviderInterface
      */
-    private $carbuncleUserProvider;
+    private $sentryUserProvider;
     /**
      * @var Dispatcher
      */
     private $dispatcher;
 
     /**
-     * @param Carbuncle  $carbuncle
+     * @param Sentry  $sentry
      * @param Dispatcher $dispatcher
      */
-    public function __construct(Carbuncle $carbuncle, Dispatcher $dispatcher)
+    public function __construct(Sentry $sentry, Dispatcher $dispatcher)
     {
-        // Carbuncle Singleton Object
-        $this->carbuncle  = $carbuncle;
+        // Sentry Singleton Object
+        $this->sentry  = $sentry;
         $this->dispatcher = $dispatcher;
 
         // Get the Throttle Provider
-        $this->carbuncleThrottleProvider = $this->carbuncle->getThrottleProvider();
+        $this->sentryThrottleProvider = $this->sentry->getThrottleProvider();
 
         // Enable the Throttling Feature
-        $this->carbuncleThrottleProvider->enable();
+        $this->sentryThrottleProvider->enable();
 
         // Get the user provider
-        $this->carbuncleUserProvider = $this->carbuncle->getUserProvider();
+        $this->sentryUserProvider = $this->sentry->getUserProvider();
     }
 
     /**
@@ -85,8 +85,8 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
 
             // If the email address is blank or not valid, try using the username as the primary login credential
             if (!$this->validEmail($credentials['email'])) {
-                // Tell carbuncle to look for a username when attempting login
-                $this->carbuncleUserProvider->getEmptyUser()->setLoginAttributeName('username');
+                // Tell sentry to look for a username when attempting login
+                $this->sentryUserProvider->getEmptyUser()->setLoginAttributeName('username');
 
                 // Remove the email credential
                 unset($credentials['email']);
@@ -96,15 +96,15 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
             }
 
             //Check for suspension or banned status
-            $user     = $this->carbuncleUserProvider->findByCredentials($credentials);
-            $throttle = $this->carbuncleThrottleProvider->findByUserId($user->id);
+            $user     = $this->sentryUserProvider->findByCredentials($credentials);
+            $throttle = $this->sentryThrottleProvider->findByUserId($user->id);
             $throttle->check();
 
             // Try to authenticate the user
-            $user = $this->carbuncle->authenticate($credentials, $rememberMe);
+            $user = $this->sentry->authenticate($credentials, $rememberMe);
 
             // Might be unnecessary, but just in case:
-            $this->carbuncleUserProvider->getEmptyUser()->setLoginAttributeName('email');
+            $this->sentryUserProvider->getEmptyUser()->setLoginAttributeName('email');
 
             // Login was successful. Fire the Seneschal.user.login event
             $this->dispatcher->fire('seneschal.user.login', ['user' => $user]);
@@ -145,11 +145,11 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
     public function destroy()
     {
         // Fire the Seneschal User Logout event
-        $user = $this->carbuncle->getUser();
+        $user = $this->sentry->getUser();
         $this->dispatcher->fire('seneschal.user.logout', ['user' => $user]);
 
         // Destroy the user's session and log them out
-        $this->carbuncle->logout();
+        $this->sentry->logout();
 
         return new SuccessResponse('');
     }
@@ -160,15 +160,15 @@ class AuthenticateRepository implements AuthenticateRepositoryInterface
     private function recordLoginAttempt($credentials)
     {
         if (array_key_exists('email', $credentials)) {
-            $throttle = $this->carbuncle->findThrottlerByUserLogin(
+            $throttle = $this->sentry->findThrottlerByUserLogin(
                 $credentials['email'],
                 \Request::ip()
             );
         }
 
         if (array_key_exists('username', $credentials)) {
-            $this->carbuncleUserProvider->getEmptyUser()->setLoginAttributeName('username');
-            $throttle = $this->carbuncle->findThrottlerByUserLogin(
+            $this->sentryUserProvider->getEmptyUser()->setLoginAttributeName('username');
+            $throttle = $this->sentry->findThrottlerByUserLogin(
                 $credentials['username'],
                 \Request::ip()
             );

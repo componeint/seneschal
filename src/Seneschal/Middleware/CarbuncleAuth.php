@@ -1,6 +1,6 @@
 <?php
 /**
- * CarbuncleAuth.php
+ * SentryAuth.php
  * Modified from https://github.com/rydurham/Sentinel
  * by anonymous on 13/01/16 1:37.
  */
@@ -8,9 +8,9 @@
 namespace Onderdelen\Seneschal\Middleware;
 
 use Closure;
-use Carbuncle;
+use Sentry;
 
-class CarbuncleAuth
+class SentryAuth
 {
     /**
      * Handle an incoming request.
@@ -21,7 +21,7 @@ class CarbuncleAuth
      */
     public function handle($request, Closure $next)
     {
-        if (!Carbuncle::check()) {
+        if (!Sentry::check()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {

@@ -15,7 +15,7 @@ use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
 use Onderdelen\Seneschal\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
-use Carbuncle;
+use Sentry;
 use View;
 use Input;
 use Event;
@@ -120,7 +120,7 @@ class AuthenticateController extends Controller
     public function create()
     {
         // Is this user already signed in?
-        if (Carbuncle::check()) {
+        if (Sentry::check()) {
             return $this->redirectTo('session_store');
         }
 

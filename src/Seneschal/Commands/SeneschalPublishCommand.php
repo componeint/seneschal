@@ -114,8 +114,8 @@ class SeneschalPublishCommand extends Command
         // Publish the Seneschal Config
         $this->publishSeneschalConfig();
 
-        // Publish the Carbuncle Config
-        $this->publishCarbuncleConfig();
+        // Publish the Sentry Config
+        $this->publishSentryConfig();
 
         // Publish the Mitch/Hashids config files
         $this->publishHashidsConfig();
@@ -178,17 +178,17 @@ class SeneschalPublishCommand extends Command
     }
 
     /**
-     * Publish the Carbuncle Config file
+     * Publish the Sentry Config file
      */
-    private function publishCarbuncleConfig()
+    private function publishSentryConfig()
     {
         // Prepare for copying
-        $source      = realpath($this->packagePath . '/../config/carbuncle.php');
-        $destination = base_path() . '/config/carbuncle.php';
+        $source      = realpath($this->packagePath . '/../config/sentry.php');
+        $destination = base_path() . '/config/sentry.php';
 
         // If this file has already been published, confirm that we want to overwrite.
         if ($this->file->isFile($destination)) {
-            $answer = $this->confirm('Carbuncle config has already been published. Do you want to overwrite?');
+            $answer = $this->confirm('Sentry config has already been published. Do you want to overwrite?');
 
             if (!$answer) {
                 return;
@@ -199,7 +199,7 @@ class SeneschalPublishCommand extends Command
         $this->file->copy($source, $destination);
 
         // Notify action completion
-        $this->info('Carbuncle configuration file published.');
+        $this->info('Sentry configuration file published.');
     }
 
 

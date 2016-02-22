@@ -15,13 +15,13 @@
         <div class="container">
             <div class="nav-wrapper"><a id="logo-container" href="{{ route('home') }}" class="brand-logo">Seneschal</a>
                 <ul id="nav-mobile" class="right side-nav">
-                    @if (Carbuncle::check() && Carbuncle::getUser()->hasAccess('admin'))
+                    @if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
                         <li {!! (Request::is('users*') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.users.index') }}">Users</a></li>
                         <li {!! (Request::is('groups*') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.groups.index') }}">Groups</a></li>
                     @endif
-                    @if (Carbuncle::check())
+                    @if (Sentry::check())
                         <li {!! (Request::is('profile') ? 'class="active"' : '') !!}>
-                            <a href="{{ route('seneschal.profile.show') }}">{{ Carbuncle::getUser()->email }}</a>
+                            <a href="{{ route('seneschal.profile.show') }}">{{ Sentry::getUser()->email }}</a>
                         </li>
                         <li><a href="{{ route('seneschal.logout') }}">Logout</a></li>
                     @else

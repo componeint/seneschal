@@ -8,7 +8,7 @@ namespace Onderdelen\Seneschal\Models;
 
 use Hashids;
 
-class Group extends \Einherjars\Carbuncle\Groups\Eloquent\Group
+class Group extends \Cartalyst\Sentry\Groups\Eloquent\Group
 {
     /**
      * Use a mutator to derive the appropriate hash for this group

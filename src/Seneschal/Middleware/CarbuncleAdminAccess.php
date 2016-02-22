@@ -1,6 +1,6 @@
 <?php
 /**
- * CarbuncleAdminAccess.php
+ * SentryAdminAccess.php
  * Modified from https://github.com/rydurham/Sentinel
  * by anonymous on 13/01/16 1:37.
  */
@@ -9,10 +9,10 @@ namespace Onderdelen\Seneschal\Middleware;
 
 use Closure;
 use Session;
-use Carbuncle;
+use Sentry;
 use Illuminate\Contracts\Routing\Middleware;
 
-class CarbuncleAdminAccess
+class SentryAdminAccess
 {
     /**
      * Handle an incoming request.
@@ -24,7 +24,7 @@ class CarbuncleAdminAccess
     public function handle($request, Closure $next)
     {
         // First make sure there is an active session
-        if (!Carbuncle::check()) {
+        if (!Sentry::check()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
@@ -33,7 +33,7 @@ class CarbuncleAdminAccess
         }
 
         // Now check to see if the current user has the 'admin' permission
-        if (!Carbuncle::getUser()->hasAccess('admin')) {
+        if (!Sentry::getUser()->hasAccess('admin')) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {

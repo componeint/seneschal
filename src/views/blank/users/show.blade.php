@@ -11,7 +11,7 @@ Home
 	
 	<?php
 	    // Determine the edit profile route
-	    if (($user->email == Carbuncle::getUser()->email)) {
+	    if (($user->email == Sentry::getUser()->email)) {
 	        $editAction = route('seneschal.profile.edit');
 	    } else {
 	        $editAction =  action('\\Seneschal\Controllers\UserController@edit', [$user->hash]);

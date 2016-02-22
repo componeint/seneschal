@@ -9,15 +9,15 @@ namespace Onderdelen\Seneschal\Models;
 use Hashids;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;
 
-class User extends \Einherjars\Carbuncle\Users\Eloquent\User implements UserContract
+class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserContract
 {
     /**
-     * Set the Carbuncle User Model Hasher to be the same as the configured Carbuncle Hasher
+     * Set the Sentry User Model Hasher to be the same as the configured Sentry Hasher
      */
     public static function boot()
     {
         parent::boot();
-        static::setHasher(app()->make('carbuncle.hasher'));
+        static::setHasher(app()->make('sentry.hasher'));
     }
 
     /**

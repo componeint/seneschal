@@ -1,6 +1,6 @@
 <?php
 /**
- * CarbuncleGuest.php
+ * SentryGuest.php
  * Modified from https://github.com/rydurham/Sentinel
  * by anonymous on 13/01/16 1:37.
  */
@@ -8,9 +8,9 @@
 namespace Onderdelen\Seneschal\Middleware;
 
 use Closure;
-use Carbuncle;
+use Sentry;
 
-class CarbuncleGuest
+class SentryGuest
 {
     /**
      * Handle an incoming request.
@@ -21,7 +21,7 @@ class CarbuncleGuest
      */
     public function handle($request, Closure $next)
     {
-        if (Carbuncle::check()) {
+        if (Sentry::check()) {
             $destination = config('seneschal.redirect_if_authenticated', 'home');
 
             return redirect()->route($destination);

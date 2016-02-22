@@ -17,7 +17,7 @@ use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
 use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
-use Carbuncle;
+use Sentry;
 use View;
 use Input;
 use Event;
@@ -62,7 +62,7 @@ class RegistrationController extends Controller
     public function registration()
     {
         // Is this user already signed in? If so redirect to the post login route
-        if (Carbuncle::check()) {
+        if (Sentry::check()) {
             return $this->redirectTo('session_store');
         }
 

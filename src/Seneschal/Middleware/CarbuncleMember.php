@@ -1,6 +1,6 @@
 <?php
 /**
- * CarbuncleMember.php
+ * SentryMember.php
  * Modified from https://github.com/rydurham/Sentinel
  * by anonymous on 13/01/16 1:38.
  */
@@ -8,10 +8,10 @@
 namespace Onderdelen\Seneschal\Middleware;
 
 use Closure;
-use Carbuncle;
+use Sentry;
 use Session;
 
-class CarbuncleMember
+class SentryMember
 {
     /**
      * Handle an incoming request.
@@ -23,7 +23,7 @@ class CarbuncleMember
      */
     public function handle($request, Closure $next, $group)
     {
-        if (!Carbuncle::check()) {
+        if (!Sentry::check()) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
@@ -32,10 +32,10 @@ class CarbuncleMember
         }
 
         // Find the specified group
-        $group = Carbuncle::findGroupByName($group);
+        $group = Sentry::findGroupByName($group);
 
         // Now check to see if the current user is a member of the specified group
-        if (!Carbuncle::getUser()->inGroup($group)) {
+        if (!Sentry::getUser()->inGroup($group)) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {

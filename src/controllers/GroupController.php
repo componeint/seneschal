@@ -41,7 +41,7 @@ class GroupController extends Controller
         $this->hashids         = $hashids;
 
         // You must have admin access to proceed
-        // $this->middleware('carbuncle.admin');
+        // $this->middleware('sentry.admin');
     }
 
     /**

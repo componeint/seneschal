@@ -50,14 +50,14 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
-				@if (Carbuncle::check() && Carbuncle::getUser()->hasAccess('admin'))
+				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 					<li {!! (Request::is('users*') ? 'class="active"' : '') !!}><a href="{{ action('\\Seneschal\Controllers\UserController@index') }}">Users</a></li>
 					<li {!! (Request::is('groups*') ? 'class="active"' : '') !!}><a href="{{ action('\\Seneschal\Controllers\GroupController@index') }}">Groups</a></li>
 				@endif
 	          </ul>
 	          <ul class="nav navbar-nav navbar-right">
-	            @if (Carbuncle::check())
-				<li {!! (Request::is('profile') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.profile.show') }}">{{ Carbuncle::getUser()->email }}</a>
+	            @if (Sentry::check())
+				<li {!! (Request::is('profile') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.profile.show') }}">{{ Sentry::getUser()->email }}</a>
 				</li>
 				<li>
 					<a href="{{ route('seneschal.logout') }}">Logout</a>

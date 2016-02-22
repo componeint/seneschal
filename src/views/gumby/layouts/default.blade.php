@@ -32,15 +32,15 @@
 		        </h1>
 
 		        <ul class="eight columns">
-		           @if ( ! Carbuncle::check() )
+		           @if ( ! Sentry::check() )
        					<li {!! (Request::is('login') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.login') }}">Log In</a></li>
        					<li {!! (Request::is('register') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.register.form') }}">Register</a></li>
        				@else 
-       					@if (Carbuncle::getUser()->hasAccess('admin'))
+       					@if (Sentry::getUser()->hasAccess('admin'))
        						<li {!! (Request::is('users*') ? 'class="active"' : '') !!}><a href="{{ action('\\Seneschal\Controllers\UserController@index') }}">Users</a></li>
        						<li {!! (Request::is('groups*') ? 'class="active"' : '') !!}><a href="{{ action('\\Seneschal\Controllers\GroupController@index') }}">Groups</a></li>
        					@endif
-       					<li {!! (Request::is('profile') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.profile.show') }}">{{ Carbuncle::getUser()->email }}</a></li>
+       					<li {!! (Request::is('profile') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.profile.show') }}">{{ Sentry::getUser()->email }}</a></li>
        					<li><a href="{{ route('seneschal.logout') }}">Logout</a></li>
        				@endif 
 		        </ul>

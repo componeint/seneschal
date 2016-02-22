@@ -31,12 +31,12 @@
 		        	<h1><a class="seneschal-nav" href="{{ URL::route('home') }}">Seneschal</a></h1>
 		        </div>
 		        <ul id="seneschal-navbar-right">
-		           	@if (Carbuncle::check() && Carbuncle::getUser()->hasAccess('admin'))
+		           	@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 						<li {!! (Request::is('users*') ? 'class="active"' : '') !!}><a href="{{ URL::to('/users') }}">Users</a></li>
 						<li {!! (Request::is('groups*') ? 'class="active"' : '') !!}><a href="{{ URL::to('/groups') }}">Groups</a></li>
 					@endif
-		            @if (Carbuncle::check())
-    				<li {!! (Request::is('profile') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.profile.show') }}">{{ Carbuncle::getUser()->email }}</a></li>
+		            @if (Sentry::check())
+    				<li {!! (Request::is('profile') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.profile.show') }}">{{ Sentry::getUser()->email }}</a></li>
     				<li><a href="{{ route('seneschal.logout') }}">Logout</a></li>
     				@else
     				<li {!! (Request::is('login') ? 'class="active"' : '') !!}><a href="{{ route('seneschal.login') }}">Login</a></li>

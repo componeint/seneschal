@@ -1,6 +1,6 @@
 <?php
 /**
- * carbuncle.php
+ * sentry.php
  * Modified from https://github.com/rydurham/Sentinel
  * by anonymous on 13/01/16 1:55.
  */
@@ -26,7 +26,7 @@ return [
     | Default Hasher
     |--------------------------------------------------------------------------
     |
-    | This option allows you to specify the default hasher used by Carbuncle
+    | This option allows you to specify the default hasher used by Sentry
     |
     | Supported: "native", "bcrypt", "sha256", "whirlpool"
     |
@@ -38,7 +38,7 @@ return [
     | Cookie
     |--------------------------------------------------------------------------
     |
-    | Configuration specific to the cookie component of Carbuncle.
+    | Configuration specific to the cookie component of Sentry.
     |
     */
 
@@ -49,13 +49,13 @@ return [
         | Default Cookie Key
         |--------------------------------------------------------------------------
         |
-        | This option allows you to specify the default cookie key used by Carbuncle.
+        | This option allows you to specify the default cookie key used by Sentry.
         |
         | Supported: string
         |
         */
 
-        'key' => 'einherjars_carbuncle',
+        'key' => 'cartalyst_sentry',
 
     ],
     /*
@@ -63,7 +63,7 @@ return [
     | Groups
     |--------------------------------------------------------------------------
     |
-    | Configuration specific to the group management component of Carbuncle.
+    | Configuration specific to the group management component of Sentry.
     |
     */
 
@@ -75,7 +75,7 @@ return [
         |--------------------------------------------------------------------------
         |
         | When using the "eloquent" driver, we need to know which
-        | Eloquent models should be used throughout Carbuncle.
+        | Eloquent models should be used throughout Sentry.
         |
         */
 
@@ -87,7 +87,7 @@ return [
     | Users
     |--------------------------------------------------------------------------
     |
-    | Configuration specific to the user management component of Carbuncle.
+    | Configuration specific to the user management component of Sentry.
     |
     */
 
@@ -99,7 +99,7 @@ return [
         |--------------------------------------------------------------------------
         |
         | When using the "eloquent" driver, we need to know which
-        | Eloquent models should be used throughout Carbuncle.
+        | Eloquent models should be used throughout Sentry.
         |
         */
 
@@ -161,11 +161,11 @@ return [
         |--------------------------------------------------------------------------
         |
         | When using the "eloquent" driver, we need to know which
-        | Eloquent models should be used throughout Carbuncle.
+        | Eloquent models should be used throughout Sentry.
         |
         */
 
-        'model'           => 'Einherjars\Carbuncle\Throttling\Eloquent\Throttle',
+        'model'           => 'Cartalyst\Sentry\Throttling\Eloquent\Throttle',
         /*
         |--------------------------------------------------------------------------
         | Attempts Limit

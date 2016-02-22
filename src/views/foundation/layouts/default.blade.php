@@ -30,9 +30,9 @@
 		<section class="top-bar-section">
 			<!-- Right Nav Section -->
 			<ul class="right">
-				 @if (Carbuncle::check())
+				 @if (Sentry::check())
 					<li {!! (Request::is('profile') ? 'class="active"' : '') !!}>
-						<a href="{{ route('seneschal.profile.show') }}">{{ Carbuncle::getUser()->email }}</a>
+						<a href="{{ route('seneschal.profile.show') }}">{{ Sentry::getUser()->email }}</a>
 					</li>
 					<li>
 						<a href="{{ route('seneschal.logout') }}">Logout</a>
@@ -49,7 +49,7 @@
 
 			<!-- Left Nav Section -->
 			<ul class="left">
-				@if (Carbuncle::check() && Carbuncle::getUser()->hasAccess('admin'))
+				@if (Sentry::check() && Sentry::getUser()->hasAccess('admin'))
 					<li {!! (Request::is('users*') ? 'class="active"' : '') !!}>
 						<a href="{{ action('\\Seneschal\Controllers\UserController@index') }}">Users</a>
 					</li>

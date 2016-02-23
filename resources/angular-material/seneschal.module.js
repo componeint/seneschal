@@ -6,19 +6,11 @@
 (function() {
     'use strict';
 
-    angular
-        .module('seneschal', [
-            'jwtAuth',
-            /* Shared */
-            'appFoundation',
-            'widgets'
-        ]);
-
-    angular
-        .module('jwtAuth', [
+    angular.module('seneschal', [
             /* Shared */
             'appFoundation',
             'widgets'
         ]);
 
 })();
+

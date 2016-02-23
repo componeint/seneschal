@@ -29,7 +29,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('user', userFactory);
 
     userFactory.$inject = [];
@@ -121,7 +121,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('userService', userService);
 
     userService.$inject = [];

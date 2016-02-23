@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .directive('userEditForm', userEditForm);
 
     userEditForm.$inject = [];

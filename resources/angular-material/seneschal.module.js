@@ -7,7 +7,12 @@
     'use strict';
 
     angular
-        .module('seneschal', ['jwtAuth']);
+        .module('seneschal', [
+            'jwtAuth',
+            /* Shared */
+            'appFoundation',
+            'widgets'
+        ]);
 
     angular
         .module('jwtAuth', [

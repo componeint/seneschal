@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .controller('JwtAuthSidenavController', JwtAuthSidenavController);
 
     JwtAuthSidenavController.$inject = ['$timeout', '$mdSidenav', '$log'];

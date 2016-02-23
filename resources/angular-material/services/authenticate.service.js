@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('Authenticate', Authenticate);
 
     Authenticate.$inject = ['API'];
@@ -29,7 +29,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('auth', auth);
 
     auth.$inject = ['$http', '$auth'];

@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .controller('JwtAuthUsersActivateController', JwtAuthUsersActivateController);
 
     JwtAuthUsersActivateController.$inject = ['$stateParams', 'API', 'logService', 'Toast', '$state', '$timeout'];

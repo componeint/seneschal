@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .directive('groupCreateForm', groupCreateForm);
 
     groupCreateForm.$inject = [];

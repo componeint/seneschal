@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .controller('JwtAuthForgotPasswordController', JwtAuthForgotPasswordController);
 
     JwtAuthForgotPasswordController.$inject = [];

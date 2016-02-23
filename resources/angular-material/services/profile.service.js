@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('Profile', Profile);
 
     Profile.$inject = [];

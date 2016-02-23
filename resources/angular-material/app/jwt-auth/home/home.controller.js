@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .controller('JwtAuthHomeController', JwtAuthHomeController);
 
     JwtAuthHomeController.$inject = ['Authenticate', 'logService'];

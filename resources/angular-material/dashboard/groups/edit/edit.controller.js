@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .controller('GroupsEditController', GroupsEditController);
 
     GroupsEditController.$inject = ['$stateParams', 'Groups'];

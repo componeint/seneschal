@@ -7,17 +7,18 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('jwtAuthService', jwtAuthService);
 
     jwtAuthService.$inject = ['$rootScope', '$http', '$auth'];
 
     /* @ngInject */
     function jwtAuthService($rootScope, $http, $auth) {
-        var service = {
-            getUsers: getUsers,
-            signout : signout
-        };
+        var
+            service = {
+                getUsers: getUsers,
+                signout : signout
+            };
         return service;
 
         ////////////////

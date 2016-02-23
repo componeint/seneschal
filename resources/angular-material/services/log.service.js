@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('logService', logService);
 
     logService.$inject = ['Toast', '$log'];

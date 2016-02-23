@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .directive('signinForm', signinForm);
 
     signinForm.$inject = [];

@@ -7,7 +7,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('Groups', Groups);
 
     Groups.$inject = ['API'];
@@ -29,7 +29,7 @@
     'use strict';
 
     angular
-        .module('jwtAuth')
+        .module('seneschal')
         .factory('group', group);
 
     group.$inject = ['API'];

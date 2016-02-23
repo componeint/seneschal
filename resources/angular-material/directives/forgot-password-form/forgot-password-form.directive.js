@@ -21,7 +21,9 @@
                 controllerAs    : '$ctrl',
                 link            : link,
                 restrict        : 'EA',
-                scope           : {},
+                scope           : {
+                    successStateRedirect: '@'
+                },
                 templateUrl     : function(elem, attr) {
                     return attr.template;
                 }
@@ -35,10 +37,48 @@
 
     }
 
-    ForgotPasswordFormController.$inject = [];
+    ForgotPasswordFormController.$inject = ['API', '$state', 'logService', '$timeout', 'Toast'];
 
     /* @ngInject */
-    function ForgotPasswordFormController() {
+    function ForgotPasswordFormController(API, $state, logService, $timeout, Toast) {
+
+        var vm            = this;
+        var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'jwtauth.signin' : vm.successStateRedirect;
+
+        vm.forgotPassword = forgotPassword;
+
+
+        activate();
+
+        ////////////////
+
+        function activate() {
+            //
+        }
+
+        function forgotPassword() {
+
+            vm.formData = {
+                email: vm.email
+            };
+
+            API.one('forgot').doPOST(vm.formData).then(function(response) {
+
+                if (!response.status.error) {
+                    Toast.show('Email sent');
+
+                    $timeout(function() {
+                        $state.go(stateRedirect);
+                    }, 7000);
+                }
+            }, function(error) {
+
+                logService.error(error);
+                logService.debug(error);
+
+            });
+
+        }
 
     }
 

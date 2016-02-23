@@ -82,3 +82,6 @@ $api->version('v1', ['middleware' => 'api.auth', 'namespace' => 'Onderdelen\Sene
 
 Route::get('/#/users/activate/{hash}/{code}',
     ['as' => 'seneschal.activate', 'uses' => 'Onderdelen\Seneschal\Controllers\RegistrationController@activate']);
+
+Route::get('/#/reset/{hash}/{code}',
+    ['as' => 'seneschal.reset.form', 'uses' => 'Onderdelen\Seneschal\Controllers\RegistrationController@passwordResetForm']);

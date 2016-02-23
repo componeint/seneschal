@@ -176,10 +176,11 @@ class RegistrationController extends Controller
     public function sendResetPasswordEmail(EmailRequest $request)
     {
         // Send Password Reset Email
-        $result = $this->userRepository->triggerPasswordReset(e(Input::get('email')));
+        $result = $this->userRepository->triggerPasswordReset(e($request->get('email')));
 
         // It worked!  Use config to determine where we should go.
-        return $this->redirectViaResponse('registration_reset_triggered', $result);
+        // return $this->redirectViaResponse('registration_reset_triggered', $result);
+        return response()->success([$result]);
     }
 
     /**

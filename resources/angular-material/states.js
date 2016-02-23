@@ -205,6 +205,17 @@
                     }
                 }
             })
+            .state('jwtauth.reset-password', {
+                url  : '^/reset/{hash}/{code}',
+                data : {pageName: 'Reset Password'},
+                views: {
+                    'main@jwtauth': {
+                        templateUrl : layoutProvider.view('jwt-auth.reset-password'),
+                        controller  : 'JwtAuthResetPasswordController',
+                        controllerAs: 'reset'
+                    }
+                }
+            })
             .state('jwtauth.home', {
                 url    : '/home',
                 data   : {pageName: 'Home'},

@@ -200,7 +200,7 @@ class RegistrationController extends Controller
 
         if (!$result->isSuccessful()) {
             // return $this->redirectViaResponse('registration_reset_invalid', $result);
-            response()->exception('Invalid', '', [$result]);
+            response()->fail('', '', [$result]);
         }
 
         /*
@@ -209,6 +209,8 @@ class RegistrationController extends Controller
             'code' => $code,
         ]);
         */
+
+        return response()->success([$result]);
     }
 
     /**
@@ -231,6 +233,7 @@ class RegistrationController extends Controller
         $result = $this->userRepository->resetPassword($id, $code, e($data['password']));
 
         // It worked!  Use config to determine where we should go.
-        return $this->redirectViaResponse('registration_reset_complete', $result);
+        // return $this->redirectViaResponse('registration_reset_complete', $result);
+        return response()->success([$result]);
     }
 }

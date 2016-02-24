@@ -8,12 +8,12 @@
 
     angular
         .module('seneschal')
-        .config(jwtAuthRouter);
+        .config(seneschalRouter);
 
-    jwtAuthRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', '$httpProvider', '$provide', 'layoutProvider'];
+    seneschalRouter.$inject = ['$stateProvider', '$urlRouterProvider', '$authProvider', '$httpProvider', '$provide', 'layoutProvider'];
 
     /* @ngInject */
-    function jwtAuthRouter($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, layoutProvider) {
+    function seneschalRouter($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, layoutProvider) {
         $provide.factory('redirectWhenLoggedOut', redirectWhenLoggedOut);
         $httpProvider.interceptors.push('redirectWhenLoggedOut');
         $urlRouterProvider.otherwise('/');
@@ -266,12 +266,12 @@
             return deferred.promise;
         }
 
-        function loginRequired($q, $location, $auth) {
+        function loginRequired($q, $state, $auth) {
             var deferred = $q.defer();
             if ($auth.isAuthenticated()) {
                 deferred.resolve();
             } else {
-                $location.path('/auth/signin');
+                $state.go('jwtauth.signin');
             }
 
             return deferred.promise;

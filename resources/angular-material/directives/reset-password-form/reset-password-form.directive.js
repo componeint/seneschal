@@ -1,5 +1,5 @@
 /**
- * reset-password-form.directive
+ * reset-password-form.directive.js
  * Created by anonymous on 24/02/16 3:46.
  */
 
@@ -93,7 +93,8 @@
                 logService.error(error);
                 logService.debug(error);
 
-            })
+            });
+
         }
 
         function resetPassword() {

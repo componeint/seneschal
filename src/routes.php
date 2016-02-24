@@ -13,24 +13,17 @@ $api->version('v1', ['namespace' => 'Onderdelen\Seneschal\Controllers'], functio
     // $api->post('register', ['as' => 'seneschal.register.user', 'uses' => 'RegistrationController@register']);
 
     $api->post('auth/signup', ['as' => 'seneschal.register.user', 'uses' => 'RegistrationController@register']);
-
     $api->get('users/activate/{hash}/{code}',
         ['as' => 'seneschal.user.activate', 'uses' => 'RegistrationController@activate']);
-
     // // $api->get('reactivate', ['as' => 'seneschal.reactivate.form', 'uses' => 'RegistrationController@resendActivationForm']);
     $api->post('reactivate',
         ['as' => 'seneschal.reactivate.send', 'uses' => 'RegistrationController@resendActivation']);
-
     $api->get('forgot', ['as' => 'seneschal.forgot.form', 'uses' => 'RegistrationController@forgotPasswordForm']);
-
     $api->post('forgot',
         ['as' => 'seneschal.reset.request', 'uses' => 'RegistrationController@sendResetPasswordEmail']);
-
-    // // $api->get('reset/{hash}/{code}', ['as' => 'seneschal.reset.form', 'uses' => 'RegistrationController@passwordResetForm']);
-
+    $api->get('reset/{hash}/{code}', ['as' => 'seneschal.reset.form', 'uses' => 'RegistrationController@passwordResetForm']);
     $api->post('reset/{hash}/{code}',
         ['as' => 'seneschal.reset.password', 'uses' => 'RegistrationController@resetPassword']);
-
 
     // Authentication
     $api->post('auth/signin', 'AuthenticateController@authenticate');

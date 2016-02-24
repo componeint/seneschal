@@ -199,13 +199,16 @@ class RegistrationController extends Controller
         $result = $this->userRepository->validateResetCode($id, $code);
 
         if (!$result->isSuccessful()) {
-            return $this->redirectViaResponse('registration_reset_invalid', $result);
+            // return $this->redirectViaResponse('registration_reset_invalid', $result);
+            response()->exception('Invalid', '', [$result]);
         }
 
+        /*
         return $this->viewFinder('Seneschal::users.reset', [
             'hash' => $hash,
             'code' => $code,
         ]);
+        */
     }
 
     /**

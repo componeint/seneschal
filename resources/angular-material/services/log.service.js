@@ -56,16 +56,17 @@
         function debug(error) {
 
             // Log error message / object into console
-            $log.debug('Debug ' + error.data.debug.line + ' : ' + error.data.debug.file + ' , ' + error.data.debug.class);
-            $log.debug('Debug::line' + ' : ' + error.data.debug.line);
-            $log.debug('Debug::file' + ' : ' + error.data.debug.file);
-            $log.debug('Debug::class' + ' : ' + error.data.debug.class);
-            $log.debug('Debug::trace ' + ' : ');
+            if (_.isUndefined(error.data.debug) === false) {
+                $log.debug('Debug ' + error.data.debug.line + ' : ' + error.data.debug.file + ' , ' + error.data.debug.class);
+                $log.debug('Debug::line' + ' : ' + error.data.debug.line);
+                $log.debug('Debug::file' + ' : ' + error.data.debug.file);
+                $log.debug('Debug::class' + ' : ' + error.data.debug.class);
+                $log.debug('Debug::trace ' + ' : ');
 
-            for (var i = 0; i <= error.data.debug.trace.length; i++) {
-                $log.debug(error.data.debug.trace[i]);
+                for (var i = 0; i <= error.data.debug.trace.length; i++) {
+                    $log.debug(error.data.debug.trace[i]);
+                }
             }
-
         }
 
     }

@@ -1,5 +1,5 @@
 <h1 class="animated infinite bounce">Example</h1>
-<table ng-repeat="list in ctrl.lists.data">
+<table ng-repeat="list in $ctrl.lists.data">
     <tr>
         <td>Id</td>
         <td> :</td>
@@ -29,5 +29,5 @@
 
 <!--<md-divider></md-divider>-->
 
-<pre><code>{{ctrl.lists | json: 2}}</code></pre>
+<pre><code>{{$ctrl.lists | json: 2}}</code></pre>
 

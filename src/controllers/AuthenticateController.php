@@ -109,6 +109,10 @@ class AuthenticateController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
         }
 
+        // cleanup later
+        // Using eloquent result in three queries instead of one if using query builder
+        // select `groups`.`name` from `groups` inner join `users_groups` on `groups`.`id` = `users_groups`.`group_id` inner join `users` on `users`.`id` = `users_groups`.`user_id` where `users`.`id` = 77
+
         $permissions = DB::table('groups')
             ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
             ->join('users', 'users.id', '=', 'users_groups.user_id')

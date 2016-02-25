@@ -22,6 +22,7 @@ use Event;
 use Redirect;
 use Session;
 use Config;
+use DB;
 
 /**
  * Class AuthenticateController
@@ -108,8 +109,16 @@ class AuthenticateController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
         }
 
+        $permissions = DB::table('groups')
+            ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
+            ->join('users', 'users.id', '=', 'users_groups.user_id')
+            ->select('groups.name')
+            ->where('users.id', $user['id'])
+            ->get();
+
+
         // the token is valid and we have found the user via the sub claim
-        return response()->json(compact('user'));
+        return response()->json(['user' => $user, 'permissions' => $permissions]);
     }
 
     /**

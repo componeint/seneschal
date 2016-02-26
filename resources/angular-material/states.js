@@ -268,7 +268,7 @@
                 views  : {
                     'main@profile': {
                         templateUrl : layoutProvider.view('profile.username'),
-                        controller  : 'profileUsernameController',
+                        controller  : 'ProfileUsernameController',
                         controllerAs: 'profile'
                     }
                 },

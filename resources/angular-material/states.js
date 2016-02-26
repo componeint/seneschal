@@ -232,7 +232,7 @@
             })
             .state('profile', {
                 abstract: true,
-                url     : '/auth',
+                url     : '/profile',
                 views   : {
                     'layout@'        : {
                         templateUrl : layoutProvider.layout('themes.minimalist'),
@@ -262,14 +262,14 @@
                     'main@profile'   : {}
                 }
             })
-            .state('profile.username', {
-                url    : 'profile/{username}',
+            .state('profile.user', {
+                url    : '/{user}',
                 data   : {pageName: 'Profile'},
                 views  : {
                     'main@profile': {
                         templateUrl : layoutProvider.view('profile.username'),
                         controller  : 'ProfileUsernameController',
-                        controllerAs: 'profile'
+                        controllerAs: 'profileUser'
                     }
                 },
                 resolve: {

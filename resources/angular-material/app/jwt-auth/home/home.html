@@ -7,6 +7,7 @@
         <div class="">
             <button class="" ng-click="home.getUsers()">Get Users!</button>
             <button class="" ng-click="jwtAuth.signout()">Logout</button>
+            <button class="" ui-sref="profile.user({user : currentUser.username})" >Profile</button>
         </div>
         <ul class="" ng-if="home.users">
             <li class="" ng-repeat="user in home.users[0]">

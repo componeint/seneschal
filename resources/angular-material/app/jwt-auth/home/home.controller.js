@@ -10,10 +10,10 @@
         .module('seneschal')
         .controller('JwtAuthHomeController', JwtAuthHomeController);
 
-    JwtAuthHomeController.$inject = ['Authenticate', 'logService'];
+    JwtAuthHomeController.$inject = ['API', 'logService'];
 
     /* @ngInject */
-    function JwtAuthHomeController(Authenticate, logService) {
+    function JwtAuthHomeController(API, logService) {
 
         var vm = this;
 
@@ -30,7 +30,7 @@
 
         function getUsers() {
 
-            return Authenticate.getList().then(function(response) {
+            return API.all('authenticate').getList().then(function(response) {
                 vm.users = response;
             }).catch(function(error) {
 

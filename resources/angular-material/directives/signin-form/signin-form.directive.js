@@ -65,7 +65,6 @@
 
                 vm.loginError     = true;
                 vm.loginErrorText = error.data.error;
-                // ToastService.show(error.data.error);
 
                 logService.error(error);
                 logService.debug(error);
@@ -76,8 +75,9 @@
 
                 localStorage.setItem('user', user);
 
-                $rootScope.authenticated = true;
-                $rootScope.currentUser   = response.data.user;
+                $rootScope.authenticated      = true;
+                $rootScope.currentUser        = response.data.user;
+                $rootScope.currentPermissions = response.data.permissions;
 
                 $state.go(stateRedirect);
 

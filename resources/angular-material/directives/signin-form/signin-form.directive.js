@@ -42,8 +42,8 @@
     /* @ngInject */
     function SigninFormController($rootScope, $auth, $http, $state, logService) {
 
-        var vm            = this;
-        var stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'jwtauth.home' : vm.successStateRedirect;
+        var vm            = this,
+            stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'jwtauth.home' : vm.successStateRedirect;
 
         vm.loginError     = false;
         vm.loginErrorText = '';
@@ -71,13 +71,14 @@
 
             }).then(function(response) {
 
+                response.data.user.permissions = response.data.permissions;
+
                 var user = JSON.stringify(response.data.user);
 
                 localStorage.setItem('user', user);
 
-                $rootScope.authenticated      = true;
-                $rootScope.currentUser        = response.data.user;
-                $rootScope.currentPermissions = response.data.permissions;
+                $rootScope.authenticated = true;
+                $rootScope.currentUser   = response.data.user;
 
                 $state.go(stateRedirect);
 

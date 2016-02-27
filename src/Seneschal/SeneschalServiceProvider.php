@@ -76,15 +76,12 @@ class SeneschalServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(\Onderdelen\AppFoundation\AppFoundationServiceProvider::class);
+        $this->app->register(\Onderdelen\Dashboard\DashboardServiceProvider::class);
         $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
-
-        // Register the Sentry Service Provider
         $this->app->register(\Onderdelen\Seneschal\SentryServiceProvider::class);
-
-        // Register the Vinkla/Hashids Service Provider
         $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
 
-        // Load the Sentry and Hashid Facade Aliases
+        // Load the Facade aliases
         $loader = AliasLoader::getInstance();
         $loader->alias('Sentry', \Cartalyst\Sentry\Facades\Laravel\Sentry::class);
         $loader->alias('Hashids', \Vinkla\Hashids\Facades\Hashids::class);

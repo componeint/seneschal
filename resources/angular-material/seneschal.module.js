@@ -6,10 +6,16 @@
 (function() {
     'use strict';
 
-    angular.module('seneschal', [
+    angular
+        .module('seneschal', [
+
             /* Shared */
             'appFoundation',
-            'widgets'
+            'widgets',
+
+            /* components */
+            'dashboard'
+
         ]);
 
 })();

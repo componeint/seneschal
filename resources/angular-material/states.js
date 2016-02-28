@@ -229,52 +229,6 @@
                 resolve: {
                     loginRequired: loginRequired
                 }
-            })
-            .state('profile', {
-                abstract: true,
-                url     : '/profile',
-                views   : {
-                    'layout@'        : {
-                        templateUrl : layoutProvider.layout('minimalist.theme'),
-                        controller  : 'ProfileController',
-                        controllerAs: 'profile'
-                    },
-                    'header@profile' : {
-                        templateUrl : layoutProvider.layout('minimalist.header'),
-                        controller  : 'HeaderController',
-                        controllerAs: 'header'
-                    },
-                    'sidenav@profile': {
-                        templateUrl : layoutProvider.layout('minimalist.sidenav'),
-                        controller  : 'SidenavController',
-                        controllerAs: 'sidenav'
-                    },
-                    'aside@profile'  : {
-                        templateUrl : layoutProvider.layout('minimalist.aside'),
-                        controller  : 'AsideController',
-                        controllerAs: 'aside'
-                    },
-                    'footer@profile' : {
-                        templateUrl : layoutProvider.layout('minimalist.footer'),
-                        controller  : 'FooterController',
-                        controllerAs: 'footer'
-                    },
-                    'main@profile'   : {}
-                }
-            })
-            .state('profile.user', {
-                url    : '/{user}',
-                data   : {pageName: 'Profile'},
-                views  : {
-                    'main@profile': {
-                        templateUrl : layoutProvider.view('profile.username'),
-                        controller  : 'ProfileUsernameController',
-                        controllerAs: 'profileUser'
-                    }
-                },
-                resolve: {
-                    loginRequired: loginRequired
-                }
             });
 
         function redirectWhenLoggedOut($q, $injector) {

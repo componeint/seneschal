@@ -37,10 +37,10 @@
 
     }
 
-    SigninFormController.$inject = ['$rootScope', '$auth', '$http', '$state', 'logService'];
+    SigninFormController.$inject = ['$rootScope', '$auth', '$http', '$state', 'logService', 'Toast'];
 
     /* @ngInject */
-    function SigninFormController($rootScope, $auth, $http, $state, logService) {
+    function SigninFormController($rootScope, $auth, $http, $state, logService, Toast) {
 
         var vm            = this,
             stateRedirect = _.isEmpty(vm.successStateRedirect) ? 'jwtauth.home' : vm.successStateRedirect;
@@ -64,7 +64,7 @@
             }, function(error) {
 
                 vm.loginError     = true;
-                vm.loginErrorText = error.data.error;
+                vm.loginErrorText = error.data.message;
 
                 logService.error(error);
                 logService.debug(error);
@@ -81,6 +81,18 @@
                 $rootScope.currentUser   = response.data.user;
 
                 $state.go(stateRedirect);
+
+            }).catch(function(error) {
+
+                if (_.isEmpty(error.data.status_code)) {
+                    /*
+                     if (error.data.status_code === 401) {
+                     Toast.error(error.data.message);
+                     }
+                     */
+
+                    Toast.error(error.data.message);
+                }
 
             });
 

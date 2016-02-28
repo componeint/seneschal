@@ -11,10 +11,7 @@
 
             /* Shared */
             'appFoundation',
-            'widgets',
-
-            /* components */
-            'dashboard'
+            'widgets'
 
         ]);
 

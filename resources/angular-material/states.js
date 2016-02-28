@@ -134,28 +134,28 @@
                 url     : '/auth',
                 views   : {
                     'layout@'        : {
-                        templateUrl : layoutProvider.layout('themes.minimalist'),
+                        templateUrl : layoutProvider.layout('minimalist.theme'),
                         controller  : 'JwtAuthController',
                         controllerAs: 'jwtAuth'
                     },
                     'header@jwtauth' : {
-                        templateUrl : layoutProvider.view('jwt-auth.header'),
-                        controller  : 'JwtAuthHeaderController',
+                        templateUrl : layoutProvider.layout('minimalist.header'),
+                        controller  : 'HeaderController',
                         controllerAs: 'header'
                     },
                     'sidenav@jwtauth': {
-                        templateUrl : layoutProvider.view('jwt-auth.sidenav'),
-                        controller  : 'JwtAuthSidenavController',
+                        templateUrl : layoutProvider.layout('minimalist.sidenav'),
+                        controller  : 'SidenavController',
                         controllerAs: 'sidenav'
                     },
                     'aside@jwtauth'  : {
-                        templateUrl : layoutProvider.view('jwt-auth.aside'),
-                        controller  : 'JwtAuthAsideController',
+                        templateUrl : layoutProvider.layout('minimalist.aside'),
+                        controller  : 'AsideController',
                         controllerAs: 'aside'
                     },
                     'footer@jwtauth' : {
-                        templateUrl : layoutProvider.view('jwt-auth.footer'),
-                        controller  : 'JwtAuthFooterController',
+                        templateUrl : layoutProvider.layout('minimalist.footer'),
+                        controller  : 'FooterController',
                         controllerAs: 'footer'
                     },
                     'main@jwtauth'   : {}
@@ -235,28 +235,28 @@
                 url     : '/profile',
                 views   : {
                     'layout@'        : {
-                        templateUrl : layoutProvider.layout('themes.minimalist'),
+                        templateUrl : layoutProvider.layout('minimalist.theme'),
                         controller  : 'ProfileController',
                         controllerAs: 'profile'
                     },
                     'header@profile' : {
-                        templateUrl : layoutProvider.view('profile.header'),
-                        controller  : 'ProfileHeaderController',
+                        templateUrl : layoutProvider.layout('minimalist.header'),
+                        controller  : 'HeaderController',
                         controllerAs: 'header'
                     },
                     'sidenav@profile': {
-                        templateUrl : layoutProvider.view('profile.sidenav'),
-                        controller  : 'ProfileSidenavController',
+                        templateUrl : layoutProvider.layout('minimalist.sidenav'),
+                        controller  : 'SidenavController',
                         controllerAs: 'sidenav'
                     },
                     'aside@profile'  : {
-                        templateUrl : layoutProvider.view('profile.aside'),
-                        controller  : 'ProfileAsideController',
+                        templateUrl : layoutProvider.layout('minimalist.aside'),
+                        controller  : 'AsideController',
                         controllerAs: 'aside'
                     },
                     'footer@profile' : {
-                        templateUrl : layoutProvider.view('profile.footer'),
-                        controller  : 'ProfileFooterController',
+                        templateUrl : layoutProvider.layout('minimalist.footer'),
+                        controller  : 'FooterController',
                         controllerAs: 'footer'
                     },
                     'main@profile'   : {}

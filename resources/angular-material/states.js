@@ -60,6 +60,9 @@
                         controller  : 'JwtAuthSignupController',
                         controllerAs: 'signup'
                     }
+                },
+                resolve: {
+                    skipIfLoggedIn: skipIfLoggedIn
                 }
             })
             .state('jwtauth.signin', {
@@ -71,6 +74,9 @@
                         controller  : 'JwtAuthSigninController',
                         controllerAs: 'signin'
                     }
+                },
+                resolve: {
+                    skipIfLoggedIn: skipIfLoggedIn
                 }
             })
             .state('jwtauth.forgot-password', {

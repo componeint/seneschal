@@ -13,10 +13,12 @@
                 $rootScope.authenticated = true;
                 $rootScope.currentUser   = user;
 
+                /*
                 if ((toState.name === 'jwtauth.signin') || (toState.name === 'jwtauth.register')) {
                     event.preventDefault();
                     $state.go('client.home');
                 }
+                */
             }
         });
     });

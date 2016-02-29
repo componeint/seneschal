@@ -129,9 +129,11 @@ class UserController extends Controller
         // Get all available groups
         $groups = $this->groupRepository->all();
 
-        $permissions = DB::table('users_groups')
-            ->select('*')
-            ->where('user_id', '=', $id)
+        $permissions = DB::table('groups')
+            ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
+            ->join('users', 'users.id', '=', 'users_groups.user_id')
+            ->select('groups.name')
+            ->where('users.id', $user['id'])
             ->get();
 
         $result = [

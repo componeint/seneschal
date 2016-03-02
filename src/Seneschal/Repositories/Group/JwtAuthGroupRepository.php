@@ -69,7 +69,7 @@ class JwtAuthGroupRepository implements GroupRepositoryInterface
     /**
      * Update the specified resource in storage.
      *
-     * @param  int $id
+     * @param  $data
      * @return BaseResponse
      */
     public function update($data)

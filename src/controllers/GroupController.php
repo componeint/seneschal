@@ -74,7 +74,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return $this->viewFinder('Seneschal::groups.create');
+        //
     }
 
     /**
@@ -106,7 +106,6 @@ class GroupController extends Controller
         // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);
 
-        // return $this->viewFinder('Seneschal::groups.show', ['group' => $group]);
         return response()->success([$group]);
     }
 
@@ -143,7 +142,6 @@ class GroupController extends Controller
         // Update the group
         $result = $this->groupRepository->update($data);
 
-        // return $this->redirectViaResponse('groups_update', $result);
         return response()->success([$result]);
     }
 
@@ -158,7 +156,6 @@ class GroupController extends Controller
         // Remove the group from storage
         $result = $this->groupRepository->destroy($id);
 
-        // return $this->redirectViaResponse('groups_destroy', $result);
         return response()->success([$result]);
     }
 }

@@ -90,6 +90,17 @@
                     }
                 }
             })
+            .state('jwtauth.reset-password', {
+                url  : '^/reset/{hash}/{code}',
+                data : {pageName: 'Reset Password'},
+                views: {
+                    'main@jwtauth': {
+                        templateUrl : layoutProvider.view('jwt-auth.reset-password'),
+                        controller  : 'JwtAuthResetPasswordController',
+                        controllerAs: 'reset'
+                    }
+                }
+            })
             .state('jwtauth.users-activate', {
                 url  : '^/users/activate/{hash}/{code}',
                 data : {pageName: 'Users Activate'},
@@ -101,14 +112,14 @@
                     }
                 }
             })
-            .state('jwtauth.reset-password', {
-                url  : '^/reset/{hash}/{code}',
-                data : {pageName: 'Reset Password'},
+            .state('jwtauth.users-reactivate', {
+                url  : '^/reactivate',
+                data : {pageName: 'Users Reactivate'},
                 views: {
                     'main@jwtauth': {
-                        templateUrl : layoutProvider.view('jwt-auth.reset-password'),
-                        controller  : 'JwtAuthResetPasswordController',
-                        controllerAs: 'reset'
+                        templateUrl : layoutProvider.view('jwt-auth.users-reactivate'),
+                        controller  : 'JwtAuthUsersReactivateController',
+                        controllerAs: 'reactivate'
                     }
                 }
             })

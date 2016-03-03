@@ -1,0 +1,17 @@
+<form name="usersReactivateForm" novalidate>
+    <md-input-container class="md-block">
+        <label for="email">Email</label>
+        <md-icon ng-md-icon icon="email" style="fill: black" size="24"></md-icon>
+        <input type="email" id="email" name="email" ng-model="$ctrl.email" ng-minlength="4" ng-maxlength="254" required>
+
+        <div ng-if="usersReactivateForm.email.$dirty" ng-messages="usersReactivateForm.email.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
+        </div>
+    </md-input-container>
+    <div layout="row" layout-align="end center">
+        <md-button ng-click="$ctrl.reactivate()" ng-disabled="usersReactivateForm.$invalid" class="md-raised md-primary md-hue-3">
+            <ng-md-icon icon="login" style="fill: black" size="24"></ng-md-icon>
+            Resend
+        </md-button>
+    </div>
+</form>

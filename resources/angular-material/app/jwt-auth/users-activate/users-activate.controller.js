@@ -1,5 +1,5 @@
 /**
- * users-activate.controller
+ * users-activate.controller.js
  * Created by anonymous on 22/02/16 17:19.
  */
 
@@ -20,7 +20,7 @@
         vm.hash = {hash: $stateParams.hash};
         vm.code = {code: $stateParams.code};
 
-
+        /* Initialization */
         activate();
 
         ////////////////
@@ -43,8 +43,6 @@
                 } else {
                     Toast.error('Invalid credential');
                 }
-                // Toast.error(error.data.error);
-
 
             });
 

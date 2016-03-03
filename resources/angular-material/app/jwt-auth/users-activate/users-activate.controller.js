@@ -10,25 +10,26 @@
         .module('seneschal')
         .controller('JwtAuthUsersActivateController', JwtAuthUsersActivateController);
 
-    JwtAuthUsersActivateController.$inject = ['$stateParams', 'API', 'logService', 'Toast', '$state', '$timeout'];
+    // jscs:disable maximumLineLength
+    JwtAuthUsersActivateController.$inject = ['$stateParams', 'API', 'Toast', '$state', '$timeout'];
+    // jscs:enable maximumLineLength
 
     /* @ngInject */
-    function JwtAuthUsersActivateController($stateParams, API, logService, Toast, $state, $timeout) {
+    function JwtAuthUsersActivateController($stateParams, API, Toast, $state, $timeout) {
 
-        var vm = this;
+        // var vm = this;
 
-        vm.hash = {hash: $stateParams.hash};
-        vm.code = {code: $stateParams.code};
-
-        /* Initialization */
+        /* Init */
         activate();
 
         ////////////////
 
         function activate() {
 
-            API.one('users', 'activate').one($stateParams.hash, $stateParams.code).get().then(function(response) {
-                // console.log(response);
+            // jscs:disable maximumLineLength
+            API.one('users', 'activate').one($stateParams.hash, $stateParams.code).get().then(function() {
+
+                // jscs:enable maximumLineLength
 
                 Toast.show('Activation success');
 

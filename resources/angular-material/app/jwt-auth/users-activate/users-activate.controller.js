@@ -17,9 +17,10 @@
     /* @ngInject */
     function JwtAuthUsersActivateController($stateParams, API, Toast, $state, $timeout) {
 
+        // noinspection JSUnusedAssignment
         // var vm = this;
 
-        /* Init */
+        /* @Init */
         activate();
 
         ////////////////

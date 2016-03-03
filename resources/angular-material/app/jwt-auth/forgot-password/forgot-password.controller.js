@@ -15,9 +15,9 @@
     /* @ngInject */
     function JwtAuthForgotPasswordController() {
 
-        var vm   = this;
+        // var vm   = this;
 
-
+        /* @Init */
         activate();
 
         ////////////////

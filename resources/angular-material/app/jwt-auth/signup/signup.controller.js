@@ -14,8 +14,11 @@
 
     /* @ngInject */
     function JwtAuthSignupController() {
-        var vm = this;
 
+        // noinspection JSUnusedAssignment
+        // var vm = this;
+
+        /* @Init */
         activate();
 
         ////////////////
@@ -23,6 +26,7 @@
         function activate() {
             //
         }
+
     }
 
 })();

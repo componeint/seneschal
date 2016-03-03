@@ -139,7 +139,7 @@ class RegistrationController extends Controller
      */
     public function resendActivationForm()
     {
-        return $this->viewFinder('Seneschal::users.resend');
+        // return $this->viewFinder('Seneschal::users.resend');
     }
 
     /**
@@ -151,10 +151,11 @@ class RegistrationController extends Controller
     public function resendActivation(EmailRequest $request)
     {
         // Resend the activation email
-        $result = $this->userRepository->resend(['email' => e(Input::get('email'))]);
+        $result = $this->userRepository->resend(['email' => e($request->get('email'))]);
 
         // It worked!  Use config to determine where we should go.
-        return $this->redirectViaResponse('registration_resend', $result);
+        // return $this->redirectViaResponse('registration_resend', $result);
+        return response()->success([$result]);
     }
 
     /**

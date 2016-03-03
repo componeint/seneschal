@@ -1,5 +1,5 @@
 /**
- * reset-password.controller
+ * reset-password.controller.js
  * Created by anonymous on 24/02/16 3:43.
  */
 
@@ -22,7 +22,7 @@
             code: $stateParams.code
         };
 
-
+        /* @Init */
         activate();
 
         ////////////////
@@ -30,6 +30,7 @@
         function activate() {
             //
         }
+
     }
 
 })();

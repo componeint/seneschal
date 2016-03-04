@@ -186,8 +186,6 @@ class AuthenticateController extends Controller
      */
     public function destroy()
     {
-        $this->session->destroy();
-
-        return $this->redirectTo('session_destroy');
+        //
     }
 }

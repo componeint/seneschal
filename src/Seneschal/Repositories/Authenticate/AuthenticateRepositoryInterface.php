@@ -1,11 +1,12 @@
 <?php
 /**
+ * AuthenticateRepositoryInterface.php
  * Created by anonymous on 05/01/16 17:57.
  */
 
 namespace Onderdelen\Seneschal\Repositories\Authenticate;
 
-use Seneschal\DataTransferObjects\BaseResponse;
+use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
 
 /**
  * Interface AuthenticateRepositoryInterface

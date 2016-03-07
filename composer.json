@@ -1,17 +1,17 @@
 {
-  "name"             : "onderdelen/seneschal",
+  "name"             : "componeint/seneschal",
   "description"      : "Description seneschal",
   "keywords"         : [
-    "onderdelen",
+    "componeint",
     "seneschal"
   ],
-  "homepage"         : "https://github.com/onderdelen/seneschal",
+  "homepage"         : "https://github.com/componeint/seneschal",
   "license"          : "MIT",
   "authors"          : [
     {
       "name"    : "anonymoussc",
       "email"   : "50c5ac69@opayq.com",
-      "homepage": "https://github.com/onderdelen",
+      "homepage": "https://github.com/componeint",
       "role"    : "Developer"
     }
   ],
@@ -35,12 +35,12 @@
       "tests"
     ],
     "psr-4"   : {
-      "Onderdelen\\Seneschal\\": "src"
+      "Componeint\\Seneschal\\": "src"
     }
   },
   "autoload-dev"     : {
     "psr-4": {
-      "Onderdelen\\Seneschal\\Test\\": "tests"
+      "Componeint\\Seneschal\\Test\\": "tests"
     }
   },
   "minimum-stability": "stable"

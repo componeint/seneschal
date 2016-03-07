@@ -6,7 +6,7 @@
 
 $api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', ['namespace' => 'Onderdelen\Seneschal\Controllers'], function ($api) {
+$api->version('v1', ['namespace' => 'Componeint\Seneschal\Controllers'], function ($api) {
 
     // Registration
     // // $api->get('register', ['as' => 'seneschal.register.form', 'uses' => 'RegistrationController@registration']);
@@ -115,7 +115,7 @@ $api->version('v1', ['namespace' => 'Onderdelen\Seneschal\Controllers'], functio
 });
 
 // Protected with JWT
-$api->version('v1', ['middleware' => 'api.auth', 'namespace' => 'Onderdelen\Seneschal\Controllers'], function ($api) {
+$api->version('v1', ['middleware' => 'api.auth', 'namespace' => 'Componeint\Seneschal\Controllers'], function ($api) {
 
     // Authentication
     $api->get('authenticate', 'AuthenticateController@index');
@@ -127,20 +127,20 @@ $api->version('v1', ['middleware' => 'api.auth', 'namespace' => 'Onderdelen\Sene
 Route::get('/#/users/activate/{hash}/{code}',
     [
         'as'   => 'seneschal.activate',
-        'uses' => 'Onderdelen\Seneschal\Controllers\RegistrationController@activate',
+        'uses' => 'Componeint\Seneschal\Controllers\RegistrationController@activate',
     ]
 );
 
 Route::get('/#/reset/{hash}/{code}',
     [
         'as'   => 'seneschal.reset.form',
-        'uses' => 'Onderdelen\Seneschal\Controllers\RegistrationController@passwordResetForm',
+        'uses' => 'Componeint\Seneschal\Controllers\RegistrationController@passwordResetForm',
     ]
 );
 
 Route::get('/#/reactivate',
     [
         'as'   => 'seneschal.reactivate.form',
-        'uses' => 'Onderdelen\Seneschal\Controllers\RegistrationController@resendActivationForm',
+        'uses' => 'Componeint\Seneschal\Controllers\RegistrationController@resendActivationForm',
     ]
 );

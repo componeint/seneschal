@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'user'              => 'Onderdelen\Seneschal\Models\User',
+    'user'              => 'Componeint\Seneschal\Models\User',
     /*
     |--------------------------------------------------------------------------
     | User identifier

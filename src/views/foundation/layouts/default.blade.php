@@ -11,10 +11,10 @@
 	</title>
 
 	<!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
-	<link rel="stylesheet" href="{{ asset('packages/onderdelen/seneschal/css/normalize.css') }}">
-	<link rel="stylesheet" href="{{ asset('packages/onderdelen/seneschal/css/foundation.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('packages/componeint/seneschal/css/normalize.css') }}">
+	<link rel="stylesheet" href="{{ asset('packages/componeint/seneschal/css/foundation.min.css') }}">
 
-	<script src="{{ asset('packages/onderdelen/seneschal/js/modernizr.js') }}"></script>
+	<script src="{{ asset('packages/componeint/seneschal/js/modernizr.js') }}"></script>
 
 </head>
 <body>
@@ -69,9 +69,9 @@
 	@yield('content')
 	<!-- ./ content -->
 
-	<script src="{{ asset('packages/onderdelen/seneschal/js/jquery.js') }}"></script>
-	<script src="{{ asset('packages/onderdelen/seneschal/js/foundation.min.js') }}"></script>
-	<script src="{{ asset('packages/onderdelen/seneschal/js/restfulizer.js') }}"></script>
+	<script src="{{ asset('packages/componeint/seneschal/js/jquery.js') }}"></script>
+	<script src="{{ asset('packages/componeint/seneschal/js/foundation.min.js') }}"></script>
+	<script src="{{ asset('packages/componeint/seneschal/js/restfulizer.js') }}"></script>
 	<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
 	<script>
 		$(document).foundation();

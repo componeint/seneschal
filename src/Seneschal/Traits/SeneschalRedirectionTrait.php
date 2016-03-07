@@ -4,13 +4,13 @@
  * Created by anonymous on 16/01/16 13:23.
  */
 
-namespace Onderdelen\Seneschal\Traits;
+namespace Componeint\Seneschal\Traits;
 
 use Request;
 use Session;
 use Redirect;
 use Response;
-use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
+use Componeint\Seneschal\DataTransferObjects\BaseResponse;
 
 trait SeneschalRedirectionTrait
 {

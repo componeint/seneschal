@@ -4,15 +4,15 @@
  * Created by anonymous on 05/12/15 9:00.
  */
 
-namespace Onderdelen\Seneschal\Controllers;
+namespace Componeint\Seneschal\Controllers;
 
-use Onderdelen\AppFoundation\Controller\Controller;
+use Componeint\AppFoundation\Controller\Controller;
 use Illuminate\Support\Facades\Response;
-use Onderdelen\Seneschal\FormRequests\LoginRequest;
-use Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface;
-use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
-use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
-use Onderdelen\Seneschal\Models\User;
+use Componeint\Seneschal\FormRequests\LoginRequest;
+use Componeint\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface;
+use Componeint\Seneschal\Traits\SeneschalRedirectionTrait;
+use Componeint\Seneschal\Traits\SeneschalViewfinderTrait;
+use Componeint\Seneschal\Models\User;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Sentry;
@@ -26,7 +26,7 @@ use DB;
 
 /**
  * Class AuthenticateController
- * @package Onderdelen\Seneschal\Controllers
+ * @package Componeint\Seneschal\Controllers
  */
 class AuthenticateController extends Controller
 {

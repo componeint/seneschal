@@ -4,17 +4,17 @@
  * Created by anonymous on 17/12/15 16:34.
  */
 
-namespace Onderdelen\Seneschal\Controllers;
+namespace Componeint\Seneschal\Controllers;
 
-use Onderdelen\AppFoundation\Controller\Controller;
+use Componeint\AppFoundation\Controller\Controller;
 use Vinkla\Hashids\HashidsManager;
-use Onderdelen\Seneschal\FormRequests\RegisterRequest;
-use Onderdelen\Seneschal\FormRequests\EmailRequest;
-use Onderdelen\Seneschal\FormRequests\ResetPasswordRequest;
-use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
-use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
-use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
+use Componeint\Seneschal\FormRequests\RegisterRequest;
+use Componeint\Seneschal\FormRequests\EmailRequest;
+use Componeint\Seneschal\FormRequests\ResetPasswordRequest;
+use Componeint\Seneschal\Repositories\Group\GroupRepositoryInterface;
+use Componeint\Seneschal\Repositories\User\UserRepositoryInterface;
+use Componeint\Seneschal\Traits\SeneschalRedirectionTrait;
+use Componeint\Seneschal\Traits\SeneschalViewfinderTrait;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
 use Sentry;
@@ -27,7 +27,7 @@ use Config;
 
 /**
  * Class RegistrationController
- * @package Onderdelen\Seneschal\Controllers
+ * @package Componeint\Seneschal\Controllers
  */
 class RegistrationController extends Controller
 {

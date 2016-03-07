@@ -79,7 +79,7 @@ return [
         |
         */
 
-        'model' => 'Onderdelen\Seneschal\Models\Group',
+        'model' => 'Componeint\Seneschal\Models\Group',
 
     ],
     /*
@@ -103,7 +103,7 @@ return [
         |
         */
 
-        'model'           => 'Onderdelen\Seneschal\Models\User',
+        'model'           => 'Componeint\Seneschal\Models\User',
         /*
         |--------------------------------------------------------------------------
         | Login Attribute

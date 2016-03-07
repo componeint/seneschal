@@ -4,17 +4,17 @@
  * Created by anonymous on 16/11/15 22:33.
  */
 
-namespace Onderdelen\Seneschal;
+namespace Componeint\Seneschal;
 
 use Artisan;
 use Hashids\Hashids;
 use ReflectionClass;
-use Onderdelen\Seneschal\Commands\SeneschalPublishCommand;
+use Componeint\Seneschal\Commands\SeneschalPublishCommand;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Onderdelen\Seneschal\Repositories\Group\JwtAuthGroupRepository;
-use Onderdelen\Seneschal\Repositories\User\JwtAuthUserRepository;
-use Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepository;
+use Componeint\Seneschal\Repositories\Group\JwtAuthGroupRepository;
+use Componeint\Seneschal\Repositories\User\JwtAuthUserRepository;
+use Componeint\Seneschal\Repositories\Authenticate\AuthenticateRepository;
 
 class SeneschalServiceProvider extends ServiceProvider
 {
@@ -33,7 +33,7 @@ class SeneschalServiceProvider extends ServiceProvider
     public function boot()
     {
         // Find path to the package
-        $componenentsFileName = with(new ReflectionClass('\Onderdelen\Seneschal\SeneschalServiceProvider'))->getFileName();
+        $componenentsFileName = with(new ReflectionClass('\Componeint\Seneschal\SeneschalServiceProvider'))->getFileName();
         $componenentsPath     = dirname($componenentsFileName);
 
         // Register Artisan Commands
@@ -65,7 +65,7 @@ class SeneschalServiceProvider extends ServiceProvider
 
         // Set up event listeners
         $dispatcher = $this->app->make('events');
-        $dispatcher->subscribe('Onderdelen\Seneschal\Listeners\UserEventListener');
+        $dispatcher->subscribe('Componeint\Seneschal\Listeners\UserEventListener');
     }
 
     /**
@@ -75,9 +75,9 @@ class SeneschalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(\Onderdelen\AppFoundation\AppFoundationServiceProvider::class);
+        $this->app->register(\Componeint\AppFoundation\AppFoundationServiceProvider::class);
         $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
-        $this->app->register(\Onderdelen\Seneschal\SentryServiceProvider::class);
+        $this->app->register(\Componeint\Seneschal\SentryServiceProvider::class);
         $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
 
         // Load the Facade aliases
@@ -88,7 +88,7 @@ class SeneschalServiceProvider extends ServiceProvider
         $loader->alias('JWTFactory', \Tymon\JWTAuth\Facades\JWTFactory::class);
 
         // Bind the User Repository
-        $this->app->bind('Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface', function ($app) {
+        $this->app->bind('Componeint\Seneschal\Repositories\User\UserRepositoryInterface', function ($app) {
             return new JwtAuthUserRepository(
                 $app['sentry'],
                 $app['config'],
@@ -97,7 +97,7 @@ class SeneschalServiceProvider extends ServiceProvider
         });
 
         // Bind the Group Repository
-        $this->app->bind('Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface', function ($app) {
+        $this->app->bind('Componeint\Seneschal\Repositories\Group\GroupRepositoryInterface', function ($app) {
             return new JwtAuthGroupRepository(
                 $app['sentry'],
                 $app['events']
@@ -105,7 +105,7 @@ class SeneschalServiceProvider extends ServiceProvider
         });
 
         // Bind the Authenticate Repository
-        $this->app->bind('Onderdelen\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface',
+        $this->app->bind('Componeint\Seneschal\Repositories\Authenticate\AuthenticateRepositoryInterface',
             function ($app) {
                 return new AuthenticateRepository(
                     $app['sentry'],

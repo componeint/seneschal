@@ -4,7 +4,7 @@
  * Created by anonymous on 01/01/16 1:25.
  */
 
-namespace Onderdelen\Seneschal\FormRequests;
+namespace Componeint\Seneschal\FormRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

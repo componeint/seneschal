@@ -6,8 +6,8 @@
     <title>@yield('title')</title>
 
     <!-- CSS  -->
-    <link href="{{ asset('packages/onderdelen/seneschal/css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{{ asset('packages/onderdelen/seneschal/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('packages/componeint/seneschal/css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{ asset('packages/componeint/seneschal/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
 <body>
@@ -47,8 +47,8 @@
     <!-- Javascripts
     ================================================== -->
     <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="{{ asset('packages/onderdelen/seneschal/js/materialize.min.js') }}"></script>
-    <script src="{{ asset('packages/onderdelen/seneschal/js/restfulizer.js') }}"></script>
+    <script src="{{ asset('packages/componeint/seneschal/js/materialize.min.js') }}"></script>
+    <script src="{{ asset('packages/componeint/seneschal/js/restfulizer.js') }}"></script>
     <!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
     <script language="javascript">
         (function($){

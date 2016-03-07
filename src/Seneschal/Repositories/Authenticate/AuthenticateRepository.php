@@ -4,7 +4,7 @@
  * Created by anonymous on 05/01/16 16:36.
  */
 
-namespace Onderdelen\Seneschal\Repositories\Authenticate;
+namespace Componeint\Seneschal\Repositories\Authenticate;
 
 use Config;
 use Illuminate\Events\Dispatcher;
@@ -16,14 +16,14 @@ use Cartalyst\Sentry\Users\UserNotFoundException;
 use Cartalyst\Sentry\Users\LoginRequiredException;
 use Cartalyst\Sentry\Users\PasswordRequiredException;
 use Cartalyst\Sentry\Users\WrongPasswordException;
-use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
-use Onderdelen\Seneschal\DataTransferObjects\ExceptionResponse;
-use Onderdelen\Seneschal\DataTransferObjects\SuccessResponse;
-use Onderdelen\Seneschal\DataTransferObjects\FailureResponse;
+use Componeint\Seneschal\DataTransferObjects\BaseResponse;
+use Componeint\Seneschal\DataTransferObjects\ExceptionResponse;
+use Componeint\Seneschal\DataTransferObjects\SuccessResponse;
+use Componeint\Seneschal\DataTransferObjects\FailureResponse;
 
 /**
  * Class AuthenticateRepository
- * @package Onderdelen\Seneschal\Repositories\Authenticate
+ * @package Componeint\Seneschal\Repositories\Authenticate
  */
 class AuthenticateRepository implements AuthenticateRepositoryInterface
 {

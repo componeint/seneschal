@@ -4,16 +4,16 @@
  * Created by anonymous on 18/12/15 8:34.
  */
 
-namespace Onderdelen\Seneschal\Repositories\User;
+namespace Componeint\Seneschal\Repositories\User;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Collection;
-use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
-use Onderdelen\Seneschal\Models\User;
+use Componeint\Seneschal\DataTransferObjects\BaseResponse;
+use Componeint\Seneschal\Models\User;
 
 /**
  * Interface UserRepositoryInterface
- * @package Onderdelen\Seneschal\Repositories\User
+ * @package Componeint\Seneschal\Repositories\User
  */
 interface UserRepositoryInterface
 {

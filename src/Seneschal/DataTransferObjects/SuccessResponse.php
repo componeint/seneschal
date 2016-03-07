@@ -3,11 +3,11 @@
  * Created by anonymous on 06/01/16 5:03.
  */
 
-namespace Onderdelen\Seneschal\DataTransferObjects;
+namespace Componeint\Seneschal\DataTransferObjects;
 
 /**
  * Class SuccessResponse
- * @package Onderdelen\Seneschal\DataTransferObjects
+ * @package Componeint\Seneschal\DataTransferObjects
  */
 class SuccessResponse extends BaseResponse
 {

@@ -4,7 +4,7 @@
  * Created by anonymous on 09/02/16 18:34.
  */
 
-namespace Onderdelen\Seneschal\Listeners;
+namespace Componeint\Seneschal\Listeners;
 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Contracts\Config\Repository;
@@ -24,11 +24,11 @@ class UserEventListener
      */
     public function subscribe($events)
     {
-        $events->listen('seneschal.user.login', 'Onderdelen\Seneschal\Listeners\UserEventListener@onUserLogin', 10);
-        $events->listen('seneschal.user.logout', 'Onderdelen\Seneschal\Listeners\UserEventListener@onUserLogout', 10);
-        $events->listen('seneschal.user.registered', 'Onderdelen\Seneschal\Listeners\UserEventListener@welcome', 10);
-        $events->listen('seneschal.user.resend', 'Onderdelen\Seneschal\Listeners\UserEventListener@welcome', 10);
-        $events->listen('seneschal.user.reset', 'Onderdelen\Seneschal\Listeners\UserEventListener@passwordReset', 10);
+        $events->listen('seneschal.user.login', 'Componeint\Seneschal\Listeners\UserEventListener@onUserLogin', 10);
+        $events->listen('seneschal.user.logout', 'Componeint\Seneschal\Listeners\UserEventListener@onUserLogout', 10);
+        $events->listen('seneschal.user.registered', 'Componeint\Seneschal\Listeners\UserEventListener@welcome', 10);
+        $events->listen('seneschal.user.resend', 'Componeint\Seneschal\Listeners\UserEventListener@welcome', 10);
+        $events->listen('seneschal.user.reset', 'Componeint\Seneschal\Listeners\UserEventListener@passwordReset', 10);
     }
 
     /**

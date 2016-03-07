@@ -5,7 +5,7 @@
  * by anonymous on 13/01/16 1:50.
  */
 
-namespace Onderdelen\Seneschal\Commands;
+namespace Componeint\Seneschal\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
@@ -67,7 +67,7 @@ class SeneschalPublishCommand extends Command
         $this->appPath = app_path();
 
         // Set the path to the Seneschal Package namespace root
-        $componenentsFileName = with(new ReflectionClass('\Onderdelen\Seneschal\SeneschalServiceProvider'))->getFileName();
+        $componenentsFileName = with(new ReflectionClass('\Componeint\Seneschal\SeneschalServiceProvider'))->getFileName();
         $this->packagePath    = dirname($componenentsFileName);
     }
 
@@ -262,7 +262,7 @@ class SeneschalPublishCommand extends Command
     {
         // Prepare for copying files
         $source      = $this->packagePath . '/../../public/' . $theme;
-        $destination = $this->appPath . '/../public/packages/onderdelen/seneschal';
+        $destination = $this->appPath . '/../public/packages/componeint/seneschal';
 
         // If there are already assets published, confirm that we want to overwrite.
         if ($this->file->isDirectory($destination)) {

@@ -4,15 +4,15 @@
  * Created by anonymous on 14/01/16 8:25.
  */
 
-namespace Onderdelen\Seneschal\Controllers;
+namespace Componeint\Seneschal\Controllers;
 
-use Onderdelen\AppFoundation\Controller\Controller;
-use Onderdelen\Seneschal\FormRequests\ChangePasswordRequest;
-use Onderdelen\Seneschal\FormRequests\UserUpdateRequest;
-use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
-use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
-use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
+use Componeint\AppFoundation\Controller\Controller;
+use Componeint\Seneschal\FormRequests\ChangePasswordRequest;
+use Componeint\Seneschal\FormRequests\UserUpdateRequest;
+use Componeint\Seneschal\Repositories\Group\GroupRepositoryInterface;
+use Componeint\Seneschal\Repositories\User\UserRepositoryInterface;
+use Componeint\Seneschal\Traits\SeneschalRedirectionTrait;
+use Componeint\Seneschal\Traits\SeneschalViewfinderTrait;
 use Session;
 use Input;
 use Response;
@@ -20,7 +20,7 @@ use Redirect;
 
 /**
  * Class ProfileController
- * @package Onderdelen\Seneschal\Controllers
+ * @package Componeint\Seneschal\Controllers
  */
 class ProfileController extends Controller
 {

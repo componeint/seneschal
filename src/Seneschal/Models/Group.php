@@ -4,7 +4,7 @@
  * Created by anonymous on 12/02/16 4:42.
  */
 
-namespace Onderdelen\Seneschal\Models;
+namespace Componeint\Seneschal\Models;
 
 use Hashids;
 

@@ -9,11 +9,11 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<link rel="stylesheet" href="{{ asset('packages/onderdelen/seneschal/css/gumby.css') }}">
-		<link rel="stylesheet" href="{{ asset('packages/onderdelen/seneschal/css/style.css') }}">
+		<link rel="stylesheet" href="{{ asset('packages/componeint/seneschal/css/gumby.css') }}">
+		<link rel="stylesheet" href="{{ asset('packages/componeint/seneschal/css/style.css') }}">
 
 		<!-- Modernizr -->
-		<script src="{{ asset('packages/onderdelen/seneschal/js/vendor/modernizr-2.6.2.min.js') }}"></script>
+		<script src="{{ asset('packages/componeint/seneschal/js/vendor/modernizr-2.6.2.min.js') }}"></script>
 
 	</head>
 
@@ -27,7 +27,7 @@
 		      	<a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
 		        <h1 class="four columns logo">
 		          <a href="#">
-		            <img src="packages/onderdelen/seneschal/img/gumby_mainlogo.png" gumby-retina />
+		            <img src="packages/componeint/seneschal/img/gumby_mainlogo.png" gumby-retina />
 		          </a>
 		        </h1>
 
@@ -64,9 +64,9 @@
 
 		<!-- Javascripts
 		================================================== -->
-		<script src="{{ asset('packages/onderdelen/seneschal/js/libs/jquery-2.0.2.min.js') }}"></script>
-		<script src="{{ asset('packages/onderdelen/seneschal/js/libs/gumby.min.js') }}"></script>
-		<script src="{{ asset('packages/onderdelen/seneschal/js/restfulizer.js') }}"></script>
+		<script src="{{ asset('packages/componeint/seneschal/js/libs/jquery-2.0.2.min.js') }}"></script>
+		<script src="{{ asset('packages/componeint/seneschal/js/libs/gumby.min.js') }}"></script>
+		<script src="{{ asset('packages/componeint/seneschal/js/restfulizer.js') }}"></script>
 		<!-- Thanks to Zizaco for the Restfulizer script.  http://zizaco.net  -->
 	</body>
 </html>

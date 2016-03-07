@@ -4,17 +4,17 @@
  * Created by anonymous on 28/12/15 16:00.
  */
 
-namespace Onderdelen\Seneschal\Controllers;
+namespace Componeint\Seneschal\Controllers;
 
-use Onderdelen\AppFoundation\Controller\Controller;
+use Componeint\AppFoundation\Controller\Controller;
 use Illuminate\Pagination\Paginator;
-use Onderdelen\Seneschal\FormRequests\ChangePasswordRequest;
-use Onderdelen\Seneschal\FormRequests\UserCreateRequest;
-use Onderdelen\Seneschal\FormRequests\UserUpdateRequest;
-use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\Seneschal\Repositories\User\UserRepositoryInterface;
-use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
-use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
+use Componeint\Seneschal\FormRequests\ChangePasswordRequest;
+use Componeint\Seneschal\FormRequests\UserCreateRequest;
+use Componeint\Seneschal\FormRequests\UserUpdateRequest;
+use Componeint\Seneschal\Repositories\Group\GroupRepositoryInterface;
+use Componeint\Seneschal\Repositories\User\UserRepositoryInterface;
+use Componeint\Seneschal\Traits\SeneschalRedirectionTrait;
+use Componeint\Seneschal\Traits\SeneschalViewfinderTrait;
 use Vinkla\Hashids\HashidsManager;
 use DB;
 use View;

@@ -5,7 +5,7 @@
  * by anonymous on 13/01/16 1:38.
  */
 
-namespace Onderdelen\Seneschal\Middleware;
+namespace Componeint\Seneschal\Middleware;
 
 use Closure;
 use Sentry;

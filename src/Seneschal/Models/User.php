@@ -4,7 +4,7 @@
  * Created by anonymous on 05/12/15 9:10.
  */
 
-namespace Onderdelen\Seneschal\Models;
+namespace Componeint\Seneschal\Models;
 
 use Hashids;
 use Illuminate\Contracts\Auth\Authenticatable as UserContract;

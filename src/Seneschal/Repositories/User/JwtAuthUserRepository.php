@@ -4,7 +4,7 @@
  * Created by anonymous on 18/12/15 8:35.
  */
 
-namespace Onderdelen\Seneschal\Repositories\User;
+namespace Componeint\Seneschal\Repositories\User;
 
 use Cartalyst\Sentry\Sentry;
 use Cartalyst\Sentry\Users\UserExistsException;
@@ -14,15 +14,15 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Config\Repository;
 use Illuminate\Events\Dispatcher;
-use Onderdelen\Seneschal\Models\User;
-use Onderdelen\Seneschal\DataTransferObjects\BaseResponse;
-use Onderdelen\Seneschal\DataTransferObjects\SuccessResponse;
-use Onderdelen\Seneschal\DataTransferObjects\FailureResponse;
-use Onderdelen\Seneschal\DataTransferObjects\ExceptionResponse;
+use Componeint\Seneschal\Models\User;
+use Componeint\Seneschal\DataTransferObjects\BaseResponse;
+use Componeint\Seneschal\DataTransferObjects\SuccessResponse;
+use Componeint\Seneschal\DataTransferObjects\FailureResponse;
+use Componeint\Seneschal\DataTransferObjects\ExceptionResponse;
 
 /**
  * Class JwtAuthUserRepository
- * @package Onderdelen\Seneschal\Repositories\User
+ * @package Componeint\Seneschal\Repositories\User
  */
 class JwtAuthUserRepository implements UserRepositoryInterface, UserProvider
 {

@@ -5,7 +5,7 @@
  * by anonymous on 12/01/16 22:31.
  */
 
-namespace Onderdelen\Seneschal;
+namespace Componeint\Seneschal;
 
 use Cartalyst\Sentry\Cookies\IlluminateCookie;
 use Cartalyst\Sentry\Groups\Eloquent\Provider as GroupProvider;
@@ -28,7 +28,7 @@ use Cartalyst\Sentry\Users\UserNotActivatedException;
 use Cartalyst\Sentry\Users\UserNotFoundException;
 use Illuminate\Support\ServiceProvider;
 // use Seneschal\Services\Responders\FailureResponse;
-use Onderdelen\Seneschal\DataTransferObjects\FailureResponse;
+use Componeint\Seneschal\DataTransferObjects\FailureResponse;
 
 class SentryServiceProvider extends ServiceProvider
 {
@@ -46,7 +46,7 @@ class SentryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //$this->package('onderdelen/sentry', 'onderdelen/sentry');
+        //$this->package('componeint/sentry', 'componeint/sentry');
     }
 
     /**

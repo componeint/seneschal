@@ -4,7 +4,7 @@
  * Created by anonymous on 16/01/16 13:23.
  */
 
-namespace Onderdelen\Seneschal\Traits;
+namespace Componeint\Seneschal\Traits;
 
 use Redirect;
 use Response;

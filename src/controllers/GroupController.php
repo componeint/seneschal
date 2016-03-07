@@ -4,23 +4,23 @@
  * Created by anonymous on 29/12/15 21:16.
  */
 
-namespace Onderdelen\Seneschal\Controllers;
+namespace Componeint\Seneschal\Controllers;
 
-use Onderdelen\AppFoundation\Controller\Controller;
+use Componeint\AppFoundation\Controller\Controller;
 use Vinkla\Hashids\HashidsManager;
 use Illuminate\Pagination\Paginator;
-use Onderdelen\Seneschal\FormRequests\GroupCreateRequest;
-use Onderdelen\Seneschal\FormRequests\GroupUpdateRequest;
-use Onderdelen\Seneschal\Repositories\Group\GroupRepositoryInterface;
-use Onderdelen\Seneschal\Traits\SeneschalRedirectionTrait;
-use Onderdelen\Seneschal\Traits\SeneschalViewfinderTrait;
+use Componeint\Seneschal\FormRequests\GroupCreateRequest;
+use Componeint\Seneschal\FormRequests\GroupUpdateRequest;
+use Componeint\Seneschal\Repositories\Group\GroupRepositoryInterface;
+use Componeint\Seneschal\Traits\SeneschalRedirectionTrait;
+use Componeint\Seneschal\Traits\SeneschalViewfinderTrait;
 use View;
 use Input;
 use Redirect;
 
 /**
  * Class GroupController
- * @package Onderdelen\Seneschal\Controllers
+ * @package Componeint\Seneschal\Controllers
  */
 class GroupController extends Controller
 {

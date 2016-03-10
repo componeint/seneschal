@@ -75,7 +75,6 @@ class SeneschalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(\Componeint\AppFoundation\AppFoundationServiceProvider::class);
         $this->app->register(\Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class);
         $this->app->register(\Componeint\Seneschal\SentryServiceProvider::class);
         $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);

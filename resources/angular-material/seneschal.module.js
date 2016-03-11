@@ -8,10 +8,9 @@
 
     angular
         .module('seneschal', [
-
             /* Shared */
-            'appFoundation',
-            'widgets'
+
+            /* Components */
 
         ]);
 

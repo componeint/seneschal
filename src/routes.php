@@ -150,3 +150,4 @@ Route::get('/#/reactivate',
         'uses' => 'Componeint\Seneschal\Controllers\RegistrationController@resendActivationForm',
     ]
 );
+

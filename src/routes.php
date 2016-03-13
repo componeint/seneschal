@@ -37,7 +37,9 @@ $api->version('v1', ['namespace' => 'Componeint\Seneschal\Controllers'], functio
     );
 
     // Authentication
-    $api->post('auth/signin', 'AuthenticateController@authenticate');
+    $api->post('auth/signin',
+        ['as' => 'auth.signin', 'uses' => 'AuthenticateController@authenticate']
+    );
 
     // Profile
     $api->get('profile',
@@ -118,8 +120,12 @@ $api->version('v1', ['namespace' => 'Componeint\Seneschal\Controllers'], functio
 $api->version('v1', ['middleware' => 'api.auth', 'namespace' => 'Componeint\Seneschal\Controllers'], function ($api) {
 
     // Authentication
-    $api->get('authenticate', 'AuthenticateController@index');
-    $api->get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+    $api->get('authenticate',
+        ['as' => 'auth.authenticate', 'uses' => 'AuthenticateController@index']
+    );
+    $api->get('authenticate/user',
+        ['as' => 'auth.authenticate.user', 'uses' => 'AuthenticateController@getAuthenticatedUser']
+    );
 });
 
 ////////////////

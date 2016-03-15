@@ -1,5 +1,5 @@
 /**
- * states.js
+ * seneschal.state.js
  * Created by anonymous on 01/12/15 23:48.
  */
 

@@ -7,12 +7,7 @@
     'use strict';
 
     angular
-        .module('seneschal', [
-            /* Shared */
-
-            /* Components */
-
-        ]);
+        .module('seneschal', []);
 
 })();
 

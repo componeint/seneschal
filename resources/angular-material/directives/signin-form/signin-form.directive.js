@@ -85,13 +85,11 @@
             }).catch(function(error) {
 
                 if (_.isEmpty(error.data.status_code)) {
-                    /*
-                     if (error.data.status_code === 401) {
-                     Toast.error(error.data.message);
-                     }
-                     */
+                    if (error.data.status_code === 401) {
+                        $state.go('jwtauth.users-reactivate');
+                    }
 
-                    Toast.error(error.data.message);
+                    //Toast.error(error.data.message);
                 }
 
             });

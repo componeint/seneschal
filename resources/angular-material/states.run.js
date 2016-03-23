@@ -14,6 +14,11 @@
             if (user) {
                 $rootScope.authenticated = true;
                 $rootScope.currentUser   = user;
+
+                if (user.activated === 0) {
+                    event.preventDefault();
+                    $state.go('jwtauth.users-reactivate');
+                }
             }
 
         });

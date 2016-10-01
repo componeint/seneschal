@@ -1,6 +1,6 @@
 /**
  * signin-form.directive.js
- * Created by anonymous on 01/01/16 15:01.
+ * Created by @anonymoussc on 01/01/16 15:01.
  */
 
 (function() {

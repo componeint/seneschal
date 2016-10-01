@@ -1,6 +1,6 @@
 /**
  * jwt-auth.service.js
- * Created by anonymous on 06/12/15 12:15.
+ * Created by @anonymoussc on 06/12/15 12:15.
  */
 
 (function() {

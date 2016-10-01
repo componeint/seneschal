@@ -1,6 +1,6 @@
 /**
  * users-activate.controller.js
- * Created by anonymous on 22/02/16 17:19.
+ * Created by @anonymoussc on 22/02/16 17:19.
  */
 
 (function() {

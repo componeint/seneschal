@@ -1,7 +1,7 @@
 <?php
 /**
  * AuthenticateController.php
- * Created by anonymous on 05/12/15 9:00.
+ * Created by @anonymoussc on 05/12/15 9:00.
  */
 
 namespace Componeint\Seneschal\Controllers;

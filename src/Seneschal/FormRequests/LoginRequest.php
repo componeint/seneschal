@@ -1,7 +1,7 @@
 <?php
 /**
  * LoginRequest.php
- * Created by anonymous on 01/01/16 2:42.
+ * Created by @anonymoussc on 01/01/16 2:42.
  */
 
 namespace Componeint\Seneschal\FormRequests;

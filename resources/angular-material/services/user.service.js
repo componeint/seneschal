@@ -1,6 +1,6 @@
 /**
  * users.service
- * Created by anonymous on 16/01/16 22:43.
+ * Created by @anonymoussc on 16/01/16 22:43.
  */
 
 (function() {
@@ -22,7 +22,7 @@
 
 /**
  * user.service
- * Created by anonymous on 01/02/16 6:10.
+ * Created by @anonymoussc on 01/02/16 6:10.
  */
 
 (function() {
@@ -114,7 +114,7 @@
 
 /**
  * user.service
- * Created by anonymous on 15/12/15 13:51.
+ * Created by @anonymoussc on 15/12/15 13:51.
  */
 
 (function() {

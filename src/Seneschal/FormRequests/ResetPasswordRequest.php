@@ -1,7 +1,7 @@
 <?php
 /**
  * ResetPasswordRequest.php
- * Created by anonymous on 01/01/16 2:45.
+ * Created by @anonymoussc on 01/01/16 2:45.
  */
 
 namespace Componeint\Seneschal\FormRequests;

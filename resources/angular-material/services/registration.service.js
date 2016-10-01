@@ -1,6 +1,6 @@
 /**
  * registration.service
- * Created by anonymous on 01/02/16 7:23.
+ * Created by @anonymoussc on 01/02/16 7:23.
  */
 
 (function() {

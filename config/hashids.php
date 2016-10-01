@@ -2,7 +2,7 @@
 /**
  * hashids.php
  * Modified from https://github.com/rydurham/Sentinel
- * by anonymous on 13/01/16 1:55.
+ * by @anonymoussc on 13/01/16 1:55.
  */
 
 return [

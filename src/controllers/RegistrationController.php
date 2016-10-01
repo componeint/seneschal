@@ -1,7 +1,7 @@
 <?php
 /**
  * RegistrationController.php
- * Created by anonymous on 17/12/15 16:34.
+ * Created by @anonymoussc on 17/12/15 16:34.
  */
 
 namespace Componeint\Seneschal\Controllers;

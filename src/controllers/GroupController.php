@@ -1,7 +1,7 @@
 <?php
 /**
  * GroupController.php
- * Created by anonymous on 29/12/15 21:16.
+ * Created by @anonymoussc on 29/12/15 21:16.
  */
 
 namespace Componeint\Seneschal\Controllers;

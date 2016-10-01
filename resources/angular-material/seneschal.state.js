@@ -1,6 +1,6 @@
 /**
  * seneschal.state.js
- * Created by anonymous on 01/12/15 23:48.
+ * Created by @anonymoussc on 01/12/15 23:48.
  */
 
 (function() {

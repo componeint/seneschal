@@ -1,7 +1,7 @@
 <?php
 /**
  * Group.php
- * Created by anonymous on 12/02/16 4:42.
+ * Created by @anonymoussc on 12/02/16 4:42.
  */
 
 namespace Componeint\Seneschal\Models;

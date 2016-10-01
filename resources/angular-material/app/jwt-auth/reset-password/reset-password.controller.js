@@ -1,6 +1,6 @@
 /**
  * reset-password.controller.js
- * Created by anonymous on 24/02/16 3:43.
+ * Created by @anonymoussc on 24/02/16 3:43.
  */
 
 (function() {

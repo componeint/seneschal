@@ -1,7 +1,7 @@
 <?php
 /**
  * UserEventListener.php
- * Created by anonymous on 09/02/16 18:34.
+ * Created by @anonymoussc on 09/02/16 18:34.
  */
 
 namespace Componeint\Seneschal\Listeners;

@@ -1,6 +1,6 @@
 /**
  * jwt-auth.config.js
- * Created by anonymous on 06/12/15 5:02.
+ * Created by @anonymoussc on 06/12/15 5:02.
  */
 
 (function() {

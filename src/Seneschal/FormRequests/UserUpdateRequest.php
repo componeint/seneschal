@@ -1,7 +1,7 @@
 <?php
 /**
  * UserUpdateRequest.php
- * Created by anonymous on 01/01/16 2:50.
+ * Created by @anonymoussc on 01/01/16 2:50.
  */
 
 namespace Componeint\Seneschal\FormRequests;

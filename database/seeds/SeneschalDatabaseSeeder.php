@@ -1,7 +1,7 @@
 <?php
 /**
  * SeneschalDatabaseSeeder.php
- * Created by anonymous on 05/03/16 17:13.
+ * Created by @anonymoussc on 05/03/16 17:13.
  */
 
 use Illuminate\Database\Seeder;

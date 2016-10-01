@@ -1,7 +1,7 @@
 <?php
 /**
  * ChangePasswordRequest.php
- * Created by anonymous on 01/01/16 1:25.
+ * Created by @anonymoussc on 01/01/16 1:25.
  */
 
 namespace Componeint\Seneschal\FormRequests;

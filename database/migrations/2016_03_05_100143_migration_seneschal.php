@@ -1,7 +1,7 @@
 <?php
 /**
  * 2016_03_05_100143_migration_seneschal.php
- * Created by anonymous on 05/03/16 17:02.
+ * Created by @anonymoussc on 05/03/16 17:02.
  */
 
 use Illuminate\Database\Schema\Blueprint;

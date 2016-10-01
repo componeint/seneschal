@@ -1,6 +1,6 @@
 /**
  * reset-password-form.directive.js
- * Created by anonymous on 24/02/16 3:46.
+ * Created by @anonymoussc on 24/02/16 3:46.
  */
 
 (function() {

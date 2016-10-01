@@ -1,6 +1,6 @@
 /**
  * signup-form.directive.js
- * Created by anonymous on 02/01/16 21:12.
+ * Created by @anonymoussc on 02/01/16 21:12.
  */
 
 (function() {

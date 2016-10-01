@@ -1,6 +1,6 @@
 /**
  * users-reactivate.controller.js
- * Created by anonymous on 03/03/16 19:04.
+ * Created by @anonymoussc on 03/03/16 19:04.
  */
 
 (function() {

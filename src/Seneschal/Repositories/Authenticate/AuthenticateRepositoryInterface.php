@@ -1,7 +1,7 @@
 <?php
 /**
  * AuthenticateRepositoryInterface.php
- * Created by anonymous on 05/01/16 17:57.
+ * Created by @anonymoussc on 05/01/16 17:57.
  */
 
 namespace Componeint\Seneschal\Repositories\Authenticate;

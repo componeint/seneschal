@@ -1,6 +1,6 @@
 /**
  * forgot-password-form.directive.js
- * Created by anonymous on 20/02/16 22:03.
+ * Created by @anonymoussc on 20/02/16 22:03.
  */
 
 (function() {

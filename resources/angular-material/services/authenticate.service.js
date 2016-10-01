@@ -1,6 +1,6 @@
 /**
  * authenticate.service.js
- * Created by anonymous on 07/02/16 18:48.
+ * Created by @anonymoussc on 07/02/16 18:48.
  */
 
 (function() {
@@ -22,7 +22,7 @@
 
 /**
  * authenticate.service.js
- * Created by anonymous on 31/01/16 22:45.
+ * Created by @anonymoussc on 31/01/16 22:45.
  */
 
 (function() {

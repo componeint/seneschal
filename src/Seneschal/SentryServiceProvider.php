@@ -2,7 +2,7 @@
 /**
  * SentryServiceProvider.php
  * Modified from https://github.com/rydurham/Sentinel
- * by anonymous on 12/01/16 22:31.
+ * by @anonymoussc on 12/01/16 22:31.
  */
 
 namespace Componeint\Seneschal;

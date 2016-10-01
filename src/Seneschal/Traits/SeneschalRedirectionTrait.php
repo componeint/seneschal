@@ -1,7 +1,7 @@
 <?php
 /**
  * SeneschalRedirectionTrait.php
- * Created by anonymous on 16/01/16 13:23.
+ * Created by @anonymoussc on 16/01/16 13:23.
  */
 
 namespace Componeint\Seneschal\Traits;

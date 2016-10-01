@@ -1,7 +1,7 @@
 <?php
 /**
  * UserController.php
- * Created by anonymous on 28/12/15 16:00.
+ * Created by @anonymoussc on 28/12/15 16:00.
  */
 
 namespace Componeint\Seneschal\Controllers;

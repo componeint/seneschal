@@ -1,6 +1,6 @@
 /**
  * signup.controller.js
- * Created by anonymous on 10/12/15 21:24.
+ * Created by @anonymoussc on 10/12/15 21:24.
  */
 
 (function() {

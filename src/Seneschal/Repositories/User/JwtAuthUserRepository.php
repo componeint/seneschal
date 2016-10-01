@@ -1,7 +1,7 @@
 <?php
 /**
  * SeneschalUserRepository.php
- * Created by anonymous on 18/12/15 8:35.
+ * Created by @anonymoussc on 18/12/15 8:35.
  */
 
 namespace Componeint\Seneschal\Repositories\User;

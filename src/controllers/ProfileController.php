@@ -1,7 +1,7 @@
 <?php
 /**
  * ProfileController.php
- * Created by anonymous on 14/01/16 8:25.
+ * Created by @anonymoussc on 14/01/16 8:25.
  */
 
 namespace Componeint\Seneschal\Controllers;

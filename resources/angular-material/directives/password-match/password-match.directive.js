@@ -1,6 +1,6 @@
 /**
  * password-match.directive.js
- * Created by anonymous on 01/01/16 18:51.
+ * Created by @anonymoussc on 01/01/16 18:51.
  */
 
 (function() {

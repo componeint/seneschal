@@ -1,7 +1,7 @@
 <?php
 /**
  * GroupRepositoryInterface.php
- * Created by anonymous on 18/12/15 8:39.
+ * Created by @anonymoussc on 18/12/15 8:39.
  */
 
 namespace Componeint\Seneschal\Repositories\Group;

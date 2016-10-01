@@ -1,7 +1,7 @@
 <?php
 /**
  * JwtAuthGroupRepository.php
- * Created by anonymous on 18/12/15 8:38.
+ * Created by @anonymoussc on 18/12/15 8:38.
  */
 
 namespace Componeint\Seneschal\Repositories\Group;

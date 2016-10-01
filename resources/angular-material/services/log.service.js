@@ -1,6 +1,6 @@
 /**
  * log.service.js
- * Created by anonymous on 19/02/16 16:53.
+ * Created by @anonymoussc on 19/02/16 16:53.
  */
 
 (function() {

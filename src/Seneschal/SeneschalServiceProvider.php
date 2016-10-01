@@ -1,7 +1,7 @@
 <?php
 /**
  * SeneschalServiceProvider.php
- * Created by anonymous on 16/11/15 22:33.
+ * Created by @anonymoussc on 16/11/15 22:33.
  */
 
 namespace Componeint\Seneschal;

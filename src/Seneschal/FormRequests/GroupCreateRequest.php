@@ -1,7 +1,7 @@
 <?php
 /**
  * GroupCreateRequest.php
- * Created by anonymous on 01/01/16 2:33.
+ * Created by @anonymoussc on 01/01/16 2:33.
  */
 
 namespace Componeint\Seneschal\FormRequests;

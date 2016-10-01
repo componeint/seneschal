@@ -1,7 +1,7 @@
 <?php
 /**
  * routes.php
- * Created by anonymous on 05/12/15 21:45.
+ * Created by @anonymoussc on 05/12/15 21:45.
  */
 
 $api = app('Dingo\Api\Routing\Router');

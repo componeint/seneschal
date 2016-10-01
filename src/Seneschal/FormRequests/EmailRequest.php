@@ -1,7 +1,7 @@
 <?php
 /**
  * EmailRequest.php
- * Created by anonymous on 01/01/16 1:29.
+ * Created by @anonymoussc on 01/01/16 1:29.
  */
 
 namespace Componeint\Seneschal\FormRequests;

@@ -1,6 +1,6 @@
 /**
  * signin.controller.js
- * Created by anonymous on 02/12/15 5:49.
+ * Created by @anonymoussc on 02/12/15 5:49.
  */
 
 (function() {

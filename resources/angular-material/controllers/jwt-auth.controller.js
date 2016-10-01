@@ -1,6 +1,6 @@
 /**
  * jwt-auth.controller
- * Created by anonymous on 03/12/15 4:55.
+ * Created by @anonymoussc on 03/12/15 4:55.
  */
 
 (function() {

@@ -1,6 +1,6 @@
 /**
  * seneschal.module.js
- * Created by anonymous on 08/12/15 17:00.
+ * Created by @anonymoussc on 08/12/15 17:00.
  */
 
 (function() {

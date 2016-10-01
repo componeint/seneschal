@@ -51,7 +51,7 @@ class SeneschalServiceProvider extends ServiceProvider
             $this->loadViewsFrom(base_path() . '/resources/views/seneschal', 'Seneschal');
         } else {
             // The package views have not been published. Use the defaults.
-            $this->loadViewsFrom($componenentsPath . '/../views/foundation', 'Seneschal');
+            $this->loadViewsFrom($componenentsPath . '/../../resources/views/foundation', 'Seneschal');
         }
 
         // Establish Translator Namespace
@@ -138,5 +138,4 @@ class SeneschalServiceProvider extends ServiceProvider
 
         $this->commands('seneschal.publisher');
     }
-
 }

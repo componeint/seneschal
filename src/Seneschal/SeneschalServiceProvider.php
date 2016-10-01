@@ -40,8 +40,10 @@ class SeneschalServiceProvider extends ServiceProvider
         $this->registerArtisanCommands();
 
         // Establish Fallback Config settings
-        $this->mergeConfigFrom($componenentsPath . '/../config/seneschal.php', 'seneschal');
-        $this->mergeConfigFrom($componenentsPath . '/../config/sentry.php', 'sentry');
+        $this->mergeConfigFrom($componenentsPath . '/../../config/hashids.php', 'hashids');
+        $this->mergeConfigFrom($componenentsPath . '/../../config/jwt.php', 'jwt');
+        $this->mergeConfigFrom($componenentsPath . '/../../config/seneschal.php', 'seneschal');
+        $this->mergeConfigFrom($componenentsPath . '/../../config/sentry.php', 'sentry');
 
         // Establish Views Namespace
         if (is_dir(base_path() . '/resources/views/seneschal')) {
@@ -53,7 +55,7 @@ class SeneschalServiceProvider extends ServiceProvider
         }
 
         // Establish Translator Namespace
-        $this->loadTranslationsFrom($componenentsPath . '/../lang', 'Seneschal');
+        $this->loadTranslationsFrom($componenentsPath . '/../../resources/lang', 'Seneschal');
 
         // Include custom validation rules
         include $componenentsPath . '/../validators.php';

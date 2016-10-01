@@ -83,4 +83,14 @@ class User extends \Cartalyst\Sentry\Users\Eloquent\User implements UserContract
     {
         return Hashids::encode($this->attributes['id']);
     }
+
+    /**
+     * Get the name of the unique identifier for the user.
+     *
+     * @return string
+     */
+    public function getAuthIdentifierName()
+    {
+        // TODO: Implement getAuthIdentifierName() method.
+    }
 }

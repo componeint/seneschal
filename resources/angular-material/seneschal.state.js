@@ -137,6 +137,116 @@
                 resolve: {
                     loginRequired: loginRequired
                 }
+            })
+            .state('dashboard.groups', {
+                url  : '/groups',
+                data : {pageName: 'Groups'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('groups.index'),
+                        controller  : 'GroupsIndexController',
+                        controllerAs: 'index'
+                    }
+                }
+            })
+            .state('dashboard.groups.create', {
+                url  : '/create',
+                data : {pageName: 'Create'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('groups.create'),
+                        controller  : 'GroupsCreateController',
+                        controllerAs: 'create'
+                    }
+                }
+            })
+            .state('dashboard.groups.show', {
+                url  : '/show/{id}',
+                data : {pageName: 'Show'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('groups.show'),
+                        controller  : 'GroupsShowController',
+                        controllerAs: 'show'
+                    }
+                }
+            })
+            .state('dashboard.groups.edit', {
+                url  : '/edit/{id}',
+                data : {pageName: 'Edit'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('groups.edit'),
+                        controller  : 'GroupsEditController',
+                        controllerAs: 'edit'
+                    }
+                }
+            })
+            .state('dashboard.users', {
+                url  : '/users',
+                data : {pageName: 'Users'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.index'),
+                        controller  : 'UsersIndexController',
+                        controllerAs: 'index'
+                    }
+                }
+            })
+            .state('dashboard.users.create', {
+                url  : '/create',
+                data : {pageName: 'Create'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.create'),
+                        controller  : 'UsersCreateController',
+                        controllerAs: 'create'
+                    }
+                }
+            })
+            .state('dashboard.users.show', {
+                url  : '/show/{id}',
+                data : {pageName: 'Show'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.show'),
+                        controller  : 'UsersShowController',
+                        controllerAs: 'show'
+                    }
+                }
+            })
+            .state('dashboard.users.edit', {
+                url  : '/edit/{id}',
+                data : {pageName: 'Edit'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.edit'),
+                        controller  : 'UsersEditController',
+                        controllerAs: 'edit'
+                    }
+                }
+            })
+            .state('dashboard.users.edit-membership', {
+                url  : '/edit-membership/{id}',
+                data : {pageName: 'Edit Membership'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.edit-membership'),
+                        controller  : 'UsersEditMembershipController',
+                        controllerAs: 'edit'
+                    }
+                }
+            })
+            .state('dashboard.users.edit-password', {
+                url  : '/edit-password/{id}',
+                data : {pageName: 'Edit Password'},
+                views: {
+                    'main@dashboard': {
+                        templateUrl : layoutProvider.dashboard('users.edit-password'),
+                        controller  : 'UsersEditPasswordController',
+                        controllerAs: 'edit'
+                    }
+                }
             });
 
         function redirectWhenLoggedOut($q, $injector) {

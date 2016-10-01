@@ -1,0 +1,65 @@
+<table ng-repeat="list in $ctrl.lists.data">
+    <tr>
+        <td>Id</td>
+        <td> :</td>
+        <td>{{list.id}}</td>
+    </tr>
+    <tr>
+        <td>Username</td>
+        <td> :</td>
+        <td>{{list.username}}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td> :</td>
+        <td>{{list.email}}</td>
+    </tr>
+    <tr>
+        <td>Permissions</td>
+        <td> :</td>
+        <td>{{list.permissions}}</td>
+    </tr>
+    <tr>
+        <td>Activated</td>
+        <td> :</td>
+        <td>{{list.activated}}</td>
+    </tr>
+    <tr>
+        <td>Activated at</td>
+        <td> :</td>
+        <td>{{list.activated_at}}</td>
+    </tr>
+    <tr>
+        <td>Last login</td>
+        <td> :</td>
+        <td>{{list.last_login}}</td>
+    </tr>
+    <tr>
+        <td>First name</td>
+        <td> :</td>
+        <td>{{list.first_name}}</td>
+    </tr>
+    <tr>
+        <td>Last name</td>
+        <td> :</td>
+        <td>{{list.last_name}}</td>
+    </tr>
+    <tr>
+        <td>Created at</td>
+        <td> :</td>
+        <td>{{list.created_at}}</td>
+    </tr>
+    <tr>
+        <td>Updated at</td>
+        <td> :</td>
+        <td>{{list.updated_at}}</td>
+    </tr>
+</table>
+
+<!--<md-divider></md-divider>-->
+
+<!--
+<pre style="height:200px;scroll:auto;"><code>{{$ctrl.lists | json: 2}}</code></pre>
+-->
+<pre><code>{{$ctrl.lists | json: 2}}</code></pre>
+

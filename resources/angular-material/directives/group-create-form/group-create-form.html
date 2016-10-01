@@ -1,0 +1,45 @@
+<form name="groupCreateForm" novalidate xmlns:>
+    <md-input-container class="md-block">
+        <label for="name">Name</label>
+        <md-icon ng-md-icon icon="group" style="fill: black" size="24"></md-icon>
+        <input id="name" name="name" ng-model="ctrl.name" ng-minlength="4" required>
+
+        <div ng-if="groupCreateForm.name.$dirty" ng-messages="groupCreateForm.name.$error">
+            <div ng-messages-include="./views/ngMessages/ngMessages.html"></div>
+        </div>
+    </md-input-container>
+    <fieldset class="standard">
+        <legend>Permissions</legend>
+        <!--
+        <div ng-repeat="permission in ctrl.defaultPermissions">
+            <md-checkbox name="permissions[{{ permission.name }}]" ng-checked="ctrl.exists(permission, ctrl.selected)" ng-click="ctrl.toggle(permission, ctrl.selected)" ng-true-value="1" ng-false-value="0">
+                {{ permission.name }} <span ng-if="ctrl.exists(permission, ctrl.selected)">selected</span>
+            </md-checkbox>
+        </div>
+        -->
+        <div>
+            <md-checkbox name="permissions[admin]" ng-model="ctrl.permissions.admin" ng-true-value="1">
+                Admin
+            </md-checkbox>
+        </div>
+        <div>
+            <md-checkbox name="permissions[users]" ng-model="ctrl.permissions.users" ng-true-value="1">
+                Users
+            </md-checkbox>
+        </div>
+    </fieldset>
+    <div layout="row" layout-align="end center">
+        <md-button ng-click="ctrl.create()" ng-disabled="groupCreateForm.$invalid" class="md-raised md-primary md-hue-3">
+            <ng-md-icon icon="send" style="fill: black" size="24"></ng-md-icon>
+            Create
+        </md-button>
+    </div>
+</form>
+
+<pre><code>{{ctrl.name | json: 2}}</code></pre>
+<pre><code>{{ctrl.permissions | json: 2}}</code></pre>
+
+<!--
+    <pre style="height:200px;scroll:auto;"><code>{{ctrl.formData | json: 2}}</code></pre>
+-->
+

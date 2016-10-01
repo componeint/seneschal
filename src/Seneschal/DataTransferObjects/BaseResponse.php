@@ -1,6 +1,7 @@
 <?php
 /**
- * Created by anonymous on 06/01/16 5:02.
+ * BaseResponse.php
+ * Created by @anonymoussc on 06/01/16 5:02.
  */
 
 namespace Componeint\Seneschal\DataTransferObjects;

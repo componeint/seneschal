@@ -1,6 +1,7 @@
 <?php
 /**
- * Created by anonymous on 06/01/16 5:03.
+ * FailureResponse.php
+ * Created by @anonymoussc on 06/01/16 5:03.
  */
 
 namespace Componeint\Seneschal\DataTransferObjects;

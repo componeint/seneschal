@@ -158,7 +158,7 @@ class SeneschalPublishCommand extends Command
     private function publishSeneschalConfig()
     {
         // Prepare for copying
-        $source      = realpath($this->packagePath . '/../config/seneschal.php');
+        $source      = realpath($this->packagePath . '/../../config/seneschal.php');
         $destination = base_path() . '/config/seneschal.php';
 
         // If this file has already been published, confirm that we want to overwrite.
@@ -183,7 +183,7 @@ class SeneschalPublishCommand extends Command
     private function publishSentryConfig()
     {
         // Prepare for copying
-        $source      = realpath($this->packagePath . '/../config/sentry.php');
+        $source      = realpath($this->packagePath . '/../../config/sentry.php');
         $destination = base_path() . '/config/sentry.php';
 
         // If this file has already been published, confirm that we want to overwrite.
@@ -209,7 +209,7 @@ class SeneschalPublishCommand extends Command
     public function publishHashidsConfig()
     {
         // Prepare file paths
-        $source      = realpath($this->packagePath . '/../config/hashids.php');
+        $source      = realpath($this->packagePath . '/../../config/hashids.php');
         $destination = base_path() . '/config/hashids.php';
 
         // If there are already config files published, confirm that we want to overwrite them.
@@ -235,7 +235,7 @@ class SeneschalPublishCommand extends Command
     private function publishViews($theme)
     {
         // Prepare for copying files
-        $source      = $this->packagePath . '/../views/' . $theme;
+        $source      = $this->packagePath . '/../../resources/views/' . $theme;
         $destination = base_path() . '/resources/views/seneschal';
 
         // If there are already views published, confirm that we want to overwrite them.
@@ -288,7 +288,7 @@ class SeneschalPublishCommand extends Command
         if ($this->confirm('Would you like to publish the migration files?')) {
 
             // Prepare for copying files
-            $source      = $this->packagePath . '/../../migrations/';
+            $source      = $this->packagePath . '/../../database/migrations/';
             $destination = $this->appPath . '/../database/migrations';
 
             // Copy the asset files for the selected theme

@@ -18,24 +18,14 @@ use Input;
 use Response;
 use Redirect;
 
-/**
- * Class ProfileController
- * @package Componeint\Seneschal\Controllers
- */
+
 class ProfileController extends Controller
 {
     use SeneschalRedirectionTrait;
     use SeneschalViewfinderTrait;
 
-    /**
-     * @param UserRepositoryInterface  $userRepository
-     * @param GroupRepositoryInterface $groupRepository
-     */
-    public function __construct(
-        UserRepositoryInterface $userRepository,
-        GroupRepositoryInterface $groupRepository
-    ) {
-        // DI Member assignment
+    public function __construct(UserRepositoryInterface $userRepository, GroupRepositoryInterface $groupRepository)
+    {
         $this->userRepository  = $userRepository;
         $this->groupRepository = $groupRepository;
 
@@ -43,30 +33,16 @@ class ProfileController extends Controller
         // $this->middleware('sentry.auth');
     }
 
-    /**
-     * Display the specified resource
-     *
-     * @return Response
-     */
     public function show()
     {
-        // Grab the current user
         $user = $this->userRepository->getUser();
 
         return $this->viewFinder('Seneschal::users.show', ['user' => $user]);
     }
 
-    /**
-     * Show the form for editing the specified resource
-     *
-     * @return Response
-     */
     public function edit()
     {
-        // Grab the current user
-        $user = $this->userRepository->getUser();
-
-        // Get all available groups
+        $user   = $this->userRepository->getUser();
         $groups = $this->groupRepository->all();
 
         return $this->viewFinder('Seneschal::users.edit', [
@@ -75,44 +51,22 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage
-     *
-     * @param UserUpdateRequest $request
-     * @return Response
-     */
     public function update(UserUpdateRequest $request)
     {
-        // Gather Input
         $data       = Input::all();
         $data['id'] = $this->userRepository->getUser()->id;
+        $result     = $this->userRepository->update($data);
 
-        // Attempt to update the user
-        $result = $this->userRepository->update($data);
-
-        // Done!
         return $this->redirectViaResponse('profile_update', $result);
     }
 
-    /**
-     * Process a password change request
-     *
-     * @param ChangePasswordRequest $request
-     * @return Response
-     */
     public function changePassword(ChangePasswordRequest $request)
     {
-        // Grab the current user
-        $user = $this->userRepository->getUser();
-
-        // Gather input
+        $user       = $this->userRepository->getUser();
         $data       = Input::all();
         $data['id'] = $user->id;
+        $result     = ($user->hasAccess('admin') ? $this->userRepository->changePasswordWithoutCheck($data) : $this->userRepository->changePassword($data));
 
-        // Change the User's password
-        $result = ($user->hasAccess('admin') ? $this->userRepository->changePasswordWithoutCheck($data) : $this->userRepository->changePassword($data));
-
-        // Was the change successful?
         if (!$result->isSuccessful()) {
             Session::flash('error', $result->getMessage());
 

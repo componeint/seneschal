@@ -58,11 +58,12 @@ class SeneschalServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom($componenentsPath . '/../../resources/lang', 'Seneschal');
 
         // Include custom validation rules
-        include $componenentsPath . '/../validators.php';
+        include $componenentsPath . '/../../routes/validators.php';
 
         // Should we register the default routes?
         if (config('seneschal.routes_enabled')) {
-            include $componenentsPath . '/../routes.php';
+            include $componenentsPath . '/../../routes/api.php';
+            include $componenentsPath . '/../../routes/web.php';
         }
 
         // Set up event listeners

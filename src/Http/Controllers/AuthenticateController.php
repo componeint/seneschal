@@ -24,31 +24,18 @@ use Session;
 use Config;
 use DB;
 
-/**
- * Class AuthenticateController
- * @package Componeint\Seneschal\Controllers
- */
+
 class AuthenticateController extends Controller
 {
     use SeneschalRedirectionTrait;
     use SeneschalViewfinderTrait;
 
-    /**
-     * Constructor
-     *
-     * @param AuthenticateRepositoryInterface $authenticateManager
-     */
     public function __construct(AuthenticateRepositoryInterface $authenticateManager)
     {
         $this->authenticateManager = $authenticateManager;
         $this->middleware('jwt.auth', ['except' => ['authenticate', 'signup']]);
     }
 
-    /**
-     * Return the user
-     *
-     * @return mixed
-     */
     public function index()
     {
         $users = User::all();
@@ -56,45 +43,27 @@ class AuthenticateController extends Controller
         return response()->success([$users]);
     }
 
-    /**
-     * Return a JWT
-     *
-     * @param LoginRequest $request
-     * @return mixed
-     */
     public function authenticate(LoginRequest $request)
     {
-        // Gather the input
-        $data = $request->all();
-
-        // Attempt the login
+        $data   = $request->all();
         $result = $this->authenticateManager->store($data);
 
-        // Did it work?
         if ($result->isSuccessful()) {
             $credentials = $request->only('email', 'password');
             try {
-                // verify the credentials and create a token for the user
                 if (!$token = JWTAuth::attempt($credentials)) {
                     return response()->json(['error' => 'invalid_credentials'], 401);
                 }
             } catch (JWTException $e) {
-                // something went wrong
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
 
-            // if no errors are encountered we can return a JWT
             return response()->json(compact('token'));
         } else {
             return response()->error($result->getMessage(), 400);
         }
     }
 
-    /**
-     * Return the authenticated user
-     *
-     * @return mixed
-     */
     public function getAuthenticatedUser()
     {
         try {
@@ -125,59 +94,34 @@ class AuthenticateController extends Controller
         return response()->json(['user' => $user, 'permissions' => $permissions]);
     }
 
-    /**
-     * Show the login form
-     *
-     * @return \Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Attempt authenticate a user
-     *
-     * @param LoginRequest $request
-     * @return mixed
-     */
     public function store(LoginRequest $request)
     {
-        // Gather the input
         $data = Input::all();
 
-        // Attempt the login
         $result = $this->session->store($data);
 
-        // Did it work?
         if ($result->isSuccessful()) {
-            // Login was successful.  Determine where we should go now.
             if (!config('seneschal.views_enabled')) {
-                // Views are disabled - return json instead
                 return Response::json('success', 200);
             }
-            // Views are enabled, so go to the determined route
             $redirect_route = config('seneschal.routing.session_store');
 
             return Redirect::intended($this->generateUrl($redirect_route));
         } else {
-            // There was a problem - unrelated to Form validation.
             if (!config('seneschal.views_enabled')) {
-                // Views are disabled - return json instead
                 return Response::json($result->getMessage(), 400);
             }
             Session::flash('error', $result->getMessage());
 
-            return Redirect::route('seneschal.session.create')
-                ->withInput();
+            return Redirect::route('seneschal.session.create')->withInput();
         }
     }
 
-    /**
-     * Remove the specified resource from storage
-     *
-     * @return \Response
-     */
     public function destroy()
     {
         //

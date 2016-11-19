@@ -18,25 +18,14 @@ use View;
 use Input;
 use Redirect;
 
-/**
- * Class GroupController
- * @package Componeint\Seneschal\Controllers
- */
+
 class GroupController extends Controller
 {
     use SeneschalRedirectionTrait;
     use SeneschalViewfinderTrait;
 
-    /**
-     * Constructor
-     *
-     * @param GroupRepositoryInterface $groupRepository
-     * @param HashidsManager           $hashids
-     */
-    public function __construct(
-        GroupRepositoryInterface $groupRepository,
-        HashidsManager $hashids
-    ) {
+    public function __construct(GroupRepositoryInterface $groupRepository, HashidsManager $hashids)
+    {
         $this->groupRepository = $groupRepository;
         $this->hashids         = $hashids;
 
@@ -44,11 +33,6 @@ class GroupController extends Controller
         // $this->middleware('sentry.admin');
     }
 
-    /**
-     * Display a paginated list of all current groups
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function index()
     {
         // Paginate the existing users
@@ -67,59 +51,30 @@ class GroupController extends Controller
         return response()->json(['count' => count($groups), 'data' => $groups]);
     }
 
-    /**
-     * Show the form for creating a group
-     *
-     * @return \Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage
-     *
-     * @param GroupCreateRequest $request
-     * @return mixed
-     */
     public function store(GroupCreateRequest $request)
     {
-        // Gather input
-        $data = $request->all();
-
-        // Store the new group
+        $data   = $request->all();
         $result = $this->groupRepository->store($data);
 
         // return $this->redirectViaResponse('groups_store', $result);
         return response()->success([$result]);
     }
 
-    /**
-     * Display the specified group
-     *
-     * @param $id
-     * @return mixed
-     */
     public function show($id)
     {
-        // Pull the group from storage
         $group = $this->groupRepository->retrieveById($id);
 
         return response()->success([$group]);
     }
 
-    /**
-     * Show the form for editing the specified group
-     *
-     * @param $id
-     * @return mixed
-     */
     public function edit($id)
     {
-        // Pull the group from storage
-        $group = $this->groupRepository->retrieveById($id);
-
+        $group  = $this->groupRepository->retrieveById($id);
         $result = [
             'group'       => $group,
             'permissions' => $group->getPermissions(),
@@ -128,35 +83,18 @@ class GroupController extends Controller
         return response()->success([$result]);
     }
 
-    /**
-     * Update the specified resource in storage
-     *
-     * @param GroupUpdateRequest $request
-     * @return mixed
-     */
     public function update(GroupUpdateRequest $request)
     {
-        // Gather Input
-        $data = $request->all();
-
-        // Update the group
+        $data   = $request->all();
         $result = $this->groupRepository->update($data);
 
         return response()->success([$result]);
     }
 
-    /**
-     * Remove the specified group from storage
-     *
-     * @param $id
-     * @return mixed
-     */
     public function destroy($id)
     {
-        // Remove the group from storage
         $result = $this->groupRepository->destroy($id);
 
         return response()->success([$result]);
     }
 }
-
